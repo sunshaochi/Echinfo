@@ -19,4 +19,5 @@
     <attr name="notesTextSize" format="dimension" />
 
 </declare-styleable>
+
 </resources>

@@ -68,4 +68,60 @@
         <item name="com.beyonditsm.echinfo:notesTextColor">#999999</item>
     </style>
 
+
+    <!--首页面输入框左右两边图片样式-->
+    <style name="syimag">
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_width">25dp</item>
+    </style>
+
+    <!--二级文字 -->
+    <style name="tv_second">
+        <item name="android:textSize">@dimen/sixteen</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <!--首页企业数据跟新下面text-->
+    <style name="tv_qygx">
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">40dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@mipmap/paizi</item>
+        <item name="android:textColor">#2582CE</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+
+    </style>
+
+
+    <!--首页查企业，查法人，查私信 Linnerlayout样式-->
+    <style name="sy_LinearLayout">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">75dp</item>
+        <item name="android:layout_weight">1</item>
+
+    </style>
+    <!--首页我的关注，热门企业 失信相对布局样式-->
+    <style name="rl_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+
+    </style>
+
+    <style name="tv_third">
+    <item name="android:textSize">@dimen/fourteen</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_width">wrap_content</item>
+
+    </style>
+
+
+
 </resources>

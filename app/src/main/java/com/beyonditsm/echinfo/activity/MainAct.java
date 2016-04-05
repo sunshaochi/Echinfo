@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.beyonditsm.echinfo.R;
 
+
 /**
  * 主页面
  */

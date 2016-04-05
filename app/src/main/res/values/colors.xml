@@ -15,6 +15,7 @@
     <!--输入框hint颜色-->
     <color name="edit_hint_color">#c1ced9</color>
 
+
     <color name="item_focus_color">#e7e7e7</color>
 
 
