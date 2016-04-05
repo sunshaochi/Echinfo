@@ -123,5 +123,17 @@
     </style>
 
 
+    <!--首页我的关注，热门企业 失信下面item布局样式-->
+    <style name="ll_item">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">75dp</item>
+
+
+    </style>
+
 
 </resources>

@@ -196,7 +196,41 @@
                     android:layout_centerVertical="true"
                     android:src="@mipmap/arrow_right" />
 
+
             </RelativeLayout>
+            <LinearLayout
+                android:background="@color/white"
+                style="@style/ll_item"
+                >
+                <TextView
+                    android:text="香港强悍信息科技有限公司"
+                    style="@style/tv_second"/>
+                <RelativeLayout
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/iv_tupian"
+                        android:src="@mipmap/zyserch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/iv_tupian"
+                        android:text="gognsifaren"
+                        style="@style/tv_third" />
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:text="women"
+                        android:layout_alignParentRight="true"
+                        style="@style/tv_third" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
 
 
             <RelativeLayout
@@ -217,6 +251,41 @@
                     android:src="@mipmap/arrow_right" />
 
             </RelativeLayout>
+
+            <LinearLayout
+                android:background="@color/white"
+                style="@style/ll_item"
+                >
+                <TextView
+                    android:text="香港强悍信息科技有限公司"
+                    style="@style/tv_second"/>
+                <RelativeLayout
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                       android:src="@mipmap/search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textColor="#ff5023"
+                        android:layout_marginRight="5dp"
+                        android:layout_toLeftOf="@+id/iv_guanzhu"
+                        android:layout_centerVertical="true"
+                        android:text="20"
+                        style="@style/tv_third" />
+                    <TextView
+                        android:id="@+id/iv_guanzhu"
+                        android:layout_centerVertical="true"
+                        android:text="个人"
+                        android:layout_alignParentRight="true"
+                        style="@style/tv_third" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
 
             <RelativeLayout
                 style="@style/rl_item">
