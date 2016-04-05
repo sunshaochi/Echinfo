@@ -2,5 +2,7 @@
 
     <!--头部导航颜色 -->
     <color name="main_color">#00bbfb</color>
+    <color name="white">#FFFFFF</color>
+
 
 </resources>
