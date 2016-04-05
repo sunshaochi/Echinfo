@@ -2,5 +2,29 @@
 
     <!--头部导航颜色 -->
     <color name="main_color">#00bbfb</color>
+    <!--背景颜色-->
+    <color name="bg_color">#f1f5f8</color>
+    <!--一级标题-->
+    <color name="text_first_color">#3c3c3c</color>
+    <!--用于普通级段落，引导词-->
+    <color name="text_sec_color">#a0a0a0</color>
+    <!--分割线color-->
+    <color name="line_color">#c0c0c0</color>
+    <!--按钮触摸颜色-->
+    <color name="btn_focus_color">#05A5DF</color>
+    <!--输入框hint颜色-->
+    <color name="edit_hint_color">#c1ced9</color>
 
+    <color name="item_focus_color">#e7e7e7</color>
+
+
+    <!-- 自定义 dialog弹出框颜色 -->
+    <color name="trans">#00000000</color>
+    <color name="black">#000000</color>
+    <color name="alertdialog_line">#c6c6c6</color>
+    <color name="actionsheet_blue">#037BFF</color>
+    <color name="actionsheet_red">#FD4A2E</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray">#CACACA</color>
+    <color name="navpage">#FFE1E8EB</color>
 </resources>

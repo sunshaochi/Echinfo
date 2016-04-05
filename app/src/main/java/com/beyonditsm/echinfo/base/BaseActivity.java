@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.Window;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
@@ -16,6 +17,8 @@ import com.lidroid.xutils.ViewUtils;
  */
 public abstract class BaseActivity extends FragmentActivity {
     private TextView tv_title;
+    private RelativeLayout rlRight;
+    private TextView tvRight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +77,13 @@ public abstract class BaseActivity extends FragmentActivity {
         }
     }
 
+    public void setRight(String rightText,View.OnClickListener onClick){
+        rlRight= (RelativeLayout) findViewById(R.id.rlRight);
+        tvRight= (TextView) findViewById(R.id.tvRight);
+        rlRight.setVisibility(View.VISIBLE);
+        tvRight.setText(rightText);
+        rlRight.setOnClickListener(onClick);
+    }
 
     /**
      * 返回
