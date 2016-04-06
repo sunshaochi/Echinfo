@@ -3,6 +3,7 @@ package com.beyonditsm.echinfo.activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import com.beyonditsm.echinfo.R;
@@ -28,7 +29,12 @@ public class InvestmentAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("对外投资");
-        setRight("纠错",null);
+        setRight("纠错", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivity(ErrorAct.class);
+            }
+        });
         plv.setPullRefreshEnabled(true);//下拉刷新
         plv.setScrollLoadEnabled(true);//滑动加载
         plv.setPullLoadEnabled(false);//上拉刷新

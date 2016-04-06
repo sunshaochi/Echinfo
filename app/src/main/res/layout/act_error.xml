@@ -6,6 +6,7 @@
 
     <include layout="@layout/title_act_layout"></include>
     <TextView
+        android:textSize="12sp"
         android:textColor="#3c3c3c"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
@@ -30,14 +31,16 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/btn_white_gray"
         android:gravity="top"
-        android:textColorHint="#ccc"
-        android:textColor="#333"
+        android:textColorHint="#c0c0c0"
+        android:textColor="#c0c0c0"
         android:hint="我们手机您提交额请求，并在3-5个工作日回复"
         android:lines="10"
         android:maxLength="200"
         android:padding="10dp"
         android:textSize="14sp" />
     <EditText
+        android:textColorHint="#c0c0c0"
+        android:textColor="#c0c0c0"
         android:id="@+id/dh_et"
         android:padding="10dp"
         android:hint="137611111"
