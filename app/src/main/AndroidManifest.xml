@@ -51,6 +51,12 @@
          <!-- 各种h5页面-->
         <activity android:name=".activity.WebAct"
             android:screenOrientation="portrait"></activity>
+        <!-- 对外投资-->
+        <activity android:name=".activity.InvestmentAct"
+            android:screenOrientation="portrait"></activity>
+        <!-- 分只机构-->
+        <activity android:name=".activity.PamentAct"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 
