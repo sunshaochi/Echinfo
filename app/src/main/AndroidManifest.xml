@@ -77,6 +77,15 @@
         <!-- 企业详情页面-->
         <activity android:name=".activity.CompanyxqAct"
             android:screenOrientation="portrait"></activity>
+        <!-- 股东详情-->
+        <activity android:name=".activity.GudonginfoAct"
+            android:screenOrientation="portrait"></activity>
+        <!-- 企业资讯-->
+        <activity android:name=".activity.InformationAct"
+            android:screenOrientation="portrait"></activity>
+        <!-- 资讯详情-->
+        <activity android:name=".activity.DetailsAct"
+            android:screenOrientation="portrait"></activity>
 
     </application>
 

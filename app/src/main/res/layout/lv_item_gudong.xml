@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#3c3c3c"
+        android:textSize="14sp"
+        android:text="张婷婷"
+        style="@style/tv_second"/>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/text_sec_color"
+        android:textSize="12sp"
+        android:text="张婷婷"
+        style="@style/tv_second"/>
+
+    <RelativeLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/text_sec_color"
+                android:textSize="12sp"
+                android:text="张婷婷"
+                style="@style/tv_second"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textColor="#3c3c3c"
+                android:textSize="12sp"
+                android:text="2008年5月12号"
+                style="@style/tv_second"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:textColor="@color/text_sec_color"
+                android:textSize="12sp"
+                android:text="张婷婷"
+                style="@style/tv_second"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:textColor="#3c3c3c"
+                android:textSize="12sp"
+                android:text="2008年5月12号"
+                style="@style/tv_second"/>
+        </LinearLayout>
+
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/text_sec_color"
+                android:textSize="12sp"
+                android:text="张婷婷"
+                style="@style/tv_second"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textColor="#3c3c3c"
+                android:textSize="12sp"
+                android:text="2008年5月12号"
+                style="@style/tv_second"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:textColor="@color/text_sec_color"
+                android:textSize="12sp"
+                android:text="张婷婷"
+                style="@style/tv_second"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:textColor="#3c3c3c"
+                android:textSize="12sp"
+                android:text="2008年5月12号"
+                style="@style/tv_second"/>
+        </LinearLayout>
+
+
+
+
+    </RelativeLayout>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/text_sec_color"
+        android:textSize="12sp"
+        android:text="张婷婷"
+        style="@style/tv_second"/>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#3c3c3c"
+        android:textSize="12sp"
+        android:text="2008年5月12号"
+        style="@style/tv_second"/>
+
+    <View
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+       style="@style/view_line"></View>
+
+
+
+
+</LinearLayout>

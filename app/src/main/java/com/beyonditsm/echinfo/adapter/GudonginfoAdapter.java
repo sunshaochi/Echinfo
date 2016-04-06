@@ -9,11 +9,10 @@ import com.beyonditsm.echinfo.R;
 
 /**
  * Created by bitch-1 on 2016/4/6.
- * 企业资讯适配器
  */
-public class InformationAdapter extends BaseAdapter {
+public class GudonginfoAdapter  extends BaseAdapter {
     private Context context;
-    public InformationAdapter(Context context){
+    public GudonginfoAdapter(Context context){
         this.context=context;
     }
 
@@ -34,7 +33,7 @@ public class InformationAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView=View.inflate(context, R.layout.lv_item_info,null);
+        convertView=View.inflate(context, R.layout.lv_item_gudong,null);
         return convertView;
     }
 }
