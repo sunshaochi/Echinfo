@@ -21,7 +21,7 @@ public class SplashAct extends BaseActivity {
        new  Handler().postDelayed(new Runnable() {
            @Override
            public void run() {
-               openActivity(LoginAct.class);
+               openActivity(MainAct.class);
                finish();
            }
        },0);

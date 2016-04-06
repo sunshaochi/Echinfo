@@ -25,6 +25,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -45,6 +46,7 @@
                         android:textSize="12sp" />
 
                     <ImageView
+                        android:id="@+id/ivMine"
                         style="@style/syimag"
                         android:layout_marginLeft="15dp"
                         android:src="@mipmap/member" />
@@ -56,13 +58,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="20dp"
                     android:orientation="vertical">
 
                     <TextView
                         style="@style/tv_second"
                         android:text="企业数据更新中....."
-                        android:textColor="@color/white" />
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -140,11 +144,14 @@
                     style="@style/sy_LinearLayout"
                     android:background="#43BCC6">
 
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@mipmap/search"/>
                     <TextView
                         style="@style/tv_second"
-                        android:drawableLeft="@mipmap/search"
-                        android:drawablePadding="10dp"
                         android:text="查企业"
+                        android:layout_marginLeft="10dp"
                         android:textColor="@color/white" />
 
                 </LinearLayout>
@@ -152,13 +159,15 @@
                 <LinearLayout
                     style="@style/sy_LinearLayout"
                     android:background="#F68745">
-
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="28dp"
+                        android:src="@mipmap/farengudong"/>
                     <TextView
                         style="@style/tv_second"
-                        android:drawableLeft="@mipmap/farengudong"
-                        android:drawablePadding="10dp"
+                       android:layout_marginLeft="10dp"
                         android:maxEms="5"
-                        android:text="查企业股东"
+                        android:text="查法人\n股东"
                         android:textColor="@color/white" />
 
                 </LinearLayout>
@@ -166,11 +175,13 @@
                 <LinearLayout
                     style="@style/sy_LinearLayout"
                     android:background="#4C7E54">
-
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="29dp"
+                        android:src="@mipmap/lose_letter"/>
                     <TextView
                         style="@style/tv_second"
-                        android:drawableLeft="@mipmap/lose_letter"
-                        android:drawablePadding="10dp"
+                        android:layout_marginLeft="10dp"
                         android:text="查失信"
                         android:textColor="@color/white" />
 

@@ -1,9 +1,6 @@
 package com.beyonditsm.echinfo.activity;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.beyonditsm.echinfo.R;
@@ -27,7 +24,7 @@ public class MainAct extends BaseActivity {
 
     }
 
-    @OnClick({R.id.rl_gz,R.id.rl_qy,R.id.rl_sx})
+    @OnClick({R.id.rl_gz,R.id.rl_qy,R.id.rl_sx,R.id.ivMine})
     public void Onclick(View v) {
         switch(v.getId()){
             case R.id.rl_gz:
@@ -35,6 +32,9 @@ public class MainAct extends BaseActivity {
                break;
             case R.id.rl_qy:
 
+                break;
+            case R.id.ivMine:
+                openActivity(LoginAct.class);
                 break;
 
            }
