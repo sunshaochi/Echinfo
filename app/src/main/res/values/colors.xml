@@ -14,6 +14,8 @@
     <color name="btn_focus_color">#05A5DF</color>
     <!--输入框hint颜色-->
     <color name="edit_hint_color">#c1ced9</color>
+    <!--红色字-->
+    <color name="text_red_color">#ff5023</color>
 
 
     <color name="item_focus_color">#e7e7e7</color>

@@ -12,6 +12,7 @@
         android:background="#ffffff"
         android:layout_marginTop="10dp"
         android:padding="15dp"
+        android:visibility="gone"
         >
 
        <LinearLayout
@@ -52,12 +53,22 @@
     </RelativeLayout>
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:layout_marginTop="10dp"
+        >
+    <View
+        style="@style/view_line"
+        ></View>
     <RelativeLayout
         android:id="@+id/rlRecomm"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@drawable/item_back"
-        android:layout_marginTop="10dp"
+
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         >
@@ -65,7 +76,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" 推荐给好友"
+            android:text="推荐给好友"
             android:textColor="@color/text_first_color"
             android:layout_centerVertical="true"
             />
@@ -78,6 +89,37 @@
             android:layout_alignParentRight="true"
             />
     </RelativeLayout>
+    <View
+        style="@style/view_line"
+        android:layout_marginLeft="15dp"
+        ></View>
+    <RelativeLayout
+        android:id="@+id/rlUPwd"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/item_back"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        >
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改密码"
+            android:textColor="@color/text_first_color"
+            android:layout_centerVertical="true"
+            />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/arrow_right"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+    <View
+        style="@style/view_line"
+        ></View>
+    </LinearLayout>
 </LinearLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_act_layout"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <View style="@style/view_line"></View>
+
+        <EditText
+            android:id="@+id/etPwd"
+            style="@style/edit_style"
+            android:layout_height="45dp"
+            android:hint="原密码"
+            android:inputType="textPassword"
+            android:paddingLeft="15dp"
+            />
+        <View style="@style/view_line"
+            android:layout_marginLeft="15dp"
+            ></View>
+        <EditText
+            android:id="@+id/etNewP"
+            style="@style/edit_style"
+            android:layout_height="45dp"
+            android:inputType="textPassword"
+            android:hint="新密码"
+            android:paddingLeft="15dp"
+            />
+        <View style="@style/view_line"
+            android:layout_marginLeft="15dp"
+            ></View>
+        <EditText
+            android:id="@+id/etSP"
+            style="@style/edit_style"
+            android:layout_height="45dp"
+            android:inputType="textPassword"
+            android:hint="确认新密码"
+            android:paddingLeft="15dp"
+            />
+        <View style="@style/view_line"
+            ></View>
+    </LinearLayout>
+
+</LinearLayout>

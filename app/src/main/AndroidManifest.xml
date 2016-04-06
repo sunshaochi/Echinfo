@@ -34,25 +34,36 @@
             android:name=".activity.ForgetAct"
             android:screenOrientation="portrait"></activity>
         <!--注册-->
-        <activity android:name=".activity.RegAct"
+        <activity
+            android:name=".activity.RegAct"
             android:screenOrientation="portrait"></activity>
         <!-- 我的-->
-        <activity android:name=".activity.MineAct"
+        <activity
+            android:name=".activity.MineAct"
             android:screenOrientation="portrait"></activity>
         <!--意见反馈-->
-        <activity android:name=".activity.FeedBackAct"
+        <activity
+            android:name=".activity.FeedBackAct"
             android:screenOrientation="portrait"></activity>
         <!--我的关注-->
-        <activity android:name=".activity.MyFollowAct"
+        <activity
+            android:name=".activity.MyFollowAct"
             android:screenOrientation="portrait"></activity>
         <!--消息-->
-        <activity android:name=".activity.MsgAct"
+        <activity
+            android:name=".activity.MsgAct"
             android:screenOrientation="portrait"></activity>
         <!-- 设置-->
-        <activity android:name=".activity.SettingAct"
+        <activity
+            android:name=".activity.SettingAct"
             android:screenOrientation="portrait"></activity>
-         <!-- 各种h5页面-->
-        <activity android:name=".activity.WebAct"
+        <!--修改密码-->
+        <activity
+            android:name=".activity.UpdatePwdAct"
+            android:screenOrientation="portrait"></activity>
+        <!-- 各种h5页面-->
+        <activity
+            android:name=".activity.WebAct"
             android:screenOrientation="portrait"></activity>
     </application>
 

@@ -75,6 +75,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="10dp"
                         android:hint="请输入手机号"
+                        android:maxLength="11"
                         android:inputType="number" />
                 </LinearLayout>
 

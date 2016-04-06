@@ -23,11 +23,14 @@ public class SettingAct extends BaseActivity {
         setTopTitle("设置");
     }
 
-    @OnClick({R.id.rlRecomm})
+    @OnClick({R.id.rlRecomm,R.id.rlUPwd})
     public void onClick(View v){
         switch (v.getId()){
             case R.id.rlRecomm://推荐好友
 
+                break;
+            case R.id.rlUPwd://修改密码
+                openActivity(UpdatePwdAct.class);
                 break;
         }
     }
