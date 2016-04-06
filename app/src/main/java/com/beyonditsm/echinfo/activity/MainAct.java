@@ -24,7 +24,7 @@ public class MainAct extends BaseActivity {
 
     }
 
-    @OnClick({R.id.rl_gz,R.id.rl_qy,R.id.rl_sx,R.id.ivMine})
+    @OnClick({R.id.rl_gz,R.id.rl_qy,R.id.rl_sx,R.id.ivMine,R.id.ll_qyxq})
     public void Onclick(View v) {
         switch(v.getId()){
             case R.id.rl_gz:
@@ -35,6 +35,9 @@ public class MainAct extends BaseActivity {
                 break;
             case R.id.ivMine:
                 openActivity(LoginAct.class);
+                break;
+            case R.id.ll_qyxq:
+                openActivity(CompanyxqAct.class);
                 break;
 
            }
