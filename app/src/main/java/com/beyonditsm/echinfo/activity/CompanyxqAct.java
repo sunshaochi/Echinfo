@@ -1,7 +1,12 @@
 package com.beyonditsm.echinfo.activity;
 
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.adapter.CompanyAdapter;
@@ -28,6 +33,10 @@ public class CompanyxqAct extends BaseActivity {
     public void init(Bundle savedInstanceState) {
         setTopTitle("华东控股集团有限公司");
         gvqy.setAdapter(new CompanyAdapter(CompanyxqAct.this));
+
+
+
+
     }
 
 
@@ -36,13 +45,30 @@ public class CompanyxqAct extends BaseActivity {
     public void Onclick(View v) {
        switch (v.getId()){
            case R.id.iv_cd:
-
-
+               View view=findViewById(R.id.iv_cd);
+               showPopupWindow(view);
        }
 
 
 
-
     }
+
+    private void showPopupWindow(View parent) {
+        LinearLayout layout = (LinearLayout) LayoutInflater.from(this).inflate(
+                R.layout.popuwindows_dialog, null);
+        // 实例化popupWindow
+        PopupWindow popupWindow = new PopupWindow(layout, 300, 500);
+        //控制键盘是否可以获得焦点
+        popupWindow.setFocusable(true);
+        //设置popupWindow弹出窗体的背景
+        popupWindow.setBackgroundDrawable(new BitmapDrawable(null,""));
+        WindowManager manager=(WindowManager) getSystemService(CompanyxqAct.this.WINDOW_SERVICE);
+        @SuppressWarnings("deprecation")
+        //获取xoff
+                int xpos=manager.getDefaultDisplay().getWidth()/2-popupWindow.getWidth()/2;
+        //xoff,yoff基于anchor的左下角进行偏移。
+        popupWindow.showAsDropDown(parent, xpos, 0);
+    }
+
 
 }
