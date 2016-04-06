@@ -134,6 +134,33 @@
 
 
     </style>
+    <!--ratingbar样式-->
+    <style name="myRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/roomratingbar</item>
+        <item name="android:isIndicator">true</item>
+        <item name="android:numStars">5</item>
+        <item name="android:stepSize">1</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">14dp</item>
+    </style>
+
+    <!--企业详情页面顶部线性布局样式-->
+    <style name="ll_qyxq">
+     <item name="android:layout_width" >match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:gravity">center</item>
+
+    </style>
+    <!--企业详情页面顶部线text样式-->
+    <style name="tv_qyxq">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">12sp</item>
+
+    </style>
 
 
 </resources>

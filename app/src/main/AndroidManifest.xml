@@ -74,6 +74,9 @@
         <!-- 纠错界面-->
         <activity android:name=".activity.ErrorAct"
             android:screenOrientation="portrait"></activity>
+        <!-- 企业详情页面-->
+        <activity android:name=".activity.CompanyxqAct"
+            android:screenOrientation="portrait"></activity>
 
     </application>
 
