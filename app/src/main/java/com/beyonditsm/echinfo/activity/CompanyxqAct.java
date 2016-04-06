@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.adapter.CompanyAdapter;
-import com.beyonditsm.echinfo.adapter.JiucuoAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.view.MyGridView;
 import com.lidroid.xutils.view.annotation.ViewInject;

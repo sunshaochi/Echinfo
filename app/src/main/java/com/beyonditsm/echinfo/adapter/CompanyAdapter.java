@@ -11,6 +11,7 @@ import com.beyonditsm.echinfo.R;
 
 /**
  * Created by bitch-1 on 2016/4/6.
+ * 公司详情页面
  */
 public class CompanyAdapter extends BaseAdapter {
 
