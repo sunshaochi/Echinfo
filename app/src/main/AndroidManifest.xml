@@ -66,15 +66,31 @@
             android:name=".activity.WebAct"
             android:screenOrientation="portrait"></activity>
         <!-- 对外投资-->
-        <activity android:name=".activity.InvestmentAct"
+        <activity
+            android:name=".activity.InvestmentAct"
             android:screenOrientation="portrait"></activity>
         <!-- 分只机构-->
-        <activity android:name=".activity.PamentAct"
+        <activity
+            android:name=".activity.PamentAct"
             android:screenOrientation="portrait"></activity>
         <!-- 纠错界面-->
-        <activity android:name=".activity.ErrorAct"
+        <activity
+            android:name=".activity.ErrorAct"
             android:screenOrientation="portrait"></activity>
-
+        <!--修改资料-->
+        <activity android:name=".activity.UpdateAct"
+            android:screenOrientation="portrait"></activity>
+        <!--职业选择-->
+        <activity
+            android:name=".activity.OccupationAct"
+            android:screenOrientation="portrait"></activity>
+        <!--裁减照片-->
+        <activity android:name=".activity.ClipActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--不良信用查询系统-->
+        <activity android:name=".activity.BadCreditAct"
+            android:screenOrientation="portrait"
+            ></activity>
     </application>
 
 

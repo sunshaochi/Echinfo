@@ -30,7 +30,7 @@ public class MineAct extends BaseActivity {
                 openActivity(SettingAct.class);
                 break;
             case R.id.rlHead://用户资料
-
+                openActivity(UpdateAct.class);
                 break;
             case R.id.cvFollow://我的关注
                 openActivity(MyFollowAct.class);
