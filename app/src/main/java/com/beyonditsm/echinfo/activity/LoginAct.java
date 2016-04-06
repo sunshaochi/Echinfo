@@ -86,7 +86,12 @@ public class LoginAct extends BaseActivity {
             etPhone.requestFocus();
             return false;
         }
-
+        if(phone.length()!=11){
+            MyToastUtils.showShortToast(getApplicationContext(), "请输入正确的手机号");
+            etPhone.requestFocus();
+            etPhone.setSelection(etPhone.length());
+            return false;
+        }
         if (TextUtils.isEmpty(pwd)) {
             MyToastUtils.showShortToast(getApplicationContext(), "请输入密码");
             etPwd.requestFocus();
