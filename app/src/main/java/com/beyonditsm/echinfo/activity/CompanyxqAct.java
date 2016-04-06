@@ -54,8 +54,8 @@ public class CompanyxqAct extends BaseActivity {
                     case 3:
 
                         break;
-                    case 4:
-
+                    case 4://诉讼信息
+                        openActivity(LitigationAct.class);
                         break;
                     case 5:
 
