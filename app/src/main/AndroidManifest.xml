@@ -57,6 +57,10 @@
         <!-- 分只机构-->
         <activity android:name=".activity.PamentAct"
             android:screenOrientation="portrait"></activity>
+        <!-- 纠错界面-->
+        <activity android:name=".activity.ErrorAct"
+            android:screenOrientation="portrait"></activity>
+
     </application>
 
 
