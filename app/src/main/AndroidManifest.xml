@@ -45,6 +45,9 @@
         <!--我的关注-->
         <activity android:name=".activity.MyFollowAct"
             android:screenOrientation="portrait"></activity>
+        <!--消息-->
+        <activity android:name=".activity.MsgAct"
+            android:screenOrientation="portrait"></activity>
         <!-- 设置-->
         <activity android:name=".activity.SettingAct"
             android:screenOrientation="portrait"></activity>

@@ -27,7 +27,7 @@ public class MineAct extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ivSet://设置
-
+                openActivity(SettingAct.class);
                 break;
             case R.id.rlHead://用户资料
 
@@ -36,7 +36,7 @@ public class MineAct extends BaseActivity {
                 openActivity(MyFollowAct.class);
                 break;
             case R.id.cvMsg://系统消息
-
+                openActivity(MsgAct.class);
                 break;
             case R.id.cvFeedBack://意见反馈
                 openActivity(FeedBackAct.class);

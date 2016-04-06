@@ -4,7 +4,6 @@ package com.beyonditsm.echinfo.view;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -149,18 +148,18 @@ public class MyAlertDialog {
 	}
 
 	public MyAlertDialog setNegativeButton(String text,
-			final OnClickListener listener,String textColor,boolean isClick) {
+			final OnClickListener listener) {
 		showNegBtn = true;
 		if ("".equals(text)) {
 			btn_neg.setText("取消");
 		} else {
 			btn_neg.setText(text);
 		}
-		if(textColor!=null){
-			btn_neg.setTextColor(Color.parseColor(textColor));
-		}
-		btn_neg.setClickable(isClick);
-		if(isClick){
+//		if(textColor!=null){
+//			btn_neg.setTextColor(Color.parseColor(textColor));
+//		}
+//		btn_neg.setClickable(isClick);
+//		if(isClick){
 		btn_neg.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -171,7 +170,7 @@ public class MyAlertDialog {
 				}
 			}
 		});
-		}
+//		}
 		return this;
 	}
 

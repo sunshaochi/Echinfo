@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/item_back"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_first_color"
+        android:textSize="14sp"
+        android:text="您关注的企业在上海市长宁区168弄3号楼3楼，上海博辕"
+        android:layout_marginTop="15dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/text_sec_color"
+        android:text="2016-3-27   16:00:00"
+        />
+
+    <View
+        style="@style/view_line"
+        android:layout_marginTop="15dp"
+        ></View>
+</LinearLayout>
