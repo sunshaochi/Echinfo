@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/title_act_layout"></include>
+    <TextView
+        android:textColor="#3c3c3c"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:text="选择信息有误的部分 (多选)"
+        style="@style/tv_third" />
+    <com.beyonditsm.echinfo.view.MyGridView
+       android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingTop="20dp"
+        android:id="@+id/gvHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="4"
+        android:verticalSpacing="8dp"></com.beyonditsm.echinfo.view.MyGridView>
+
+    <EditText
+        android:id="@+id/yw_et"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_white_gray"
+        android:gravity="top"
+        android:textColorHint="#ccc"
+        android:textColor="#333"
+        android:hint="我们手机您提交额请求，并在3-5个工作日回复"
+        android:lines="10"
+        android:maxLength="200"
+        android:padding="10dp"
+        android:textSize="14sp" />
+    <EditText
+        android:id="@+id/dh_et"
+        android:padding="10dp"
+        android:hint="137611111"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/btn_white_gray"
+        android:layout_width="match_parent"
+        android:layout_height="44dp" />
+
+    <TextView
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:text="提交纠错信息"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/btn_xjblue_bg"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+
+
+</LinearLayout>
