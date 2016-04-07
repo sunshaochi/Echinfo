@@ -47,7 +47,9 @@
                         android:hint="请输入公司名和注册名"
                         android:paddingLeft="10dp"
                         android:textColor="#c0c0c0"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:enabled="false"
+                        />
 
                        <View
                            android:id="@+id/searchView"
@@ -150,6 +152,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/llEnter"
                     style="@style/sy_LinearLayout"
                     android:background="#43BCC6">
 
@@ -166,6 +169,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llLegal"
                     style="@style/sy_LinearLayout"
                     android:background="#F68745">
                     <ImageView
@@ -182,6 +186,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llBadCre"
                     style="@style/sy_LinearLayout"
                     android:background="#4C7E54">
                     <ImageView
@@ -228,24 +233,25 @@
                     android:text="香港强悍信息科技有限公司"
                     style="@style/tv_second"/>
                 <RelativeLayout
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <ImageView
                         android:layout_centerVertical="true"
                         android:id="@+id/iv_tupian"
-                        android:src="@mipmap/zyserch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:src="@mipmap/company_list"
+                        android:layout_width="13dp"
+                        android:layout_height="14dp"
+                        />
                     <TextView
                         android:layout_marginLeft="5dp"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@id/iv_tupian"
-                        android:text="gognsifaren"
+                        android:text="公司法人：张飞"
                         style="@style/tv_third" />
                     <TextView
                         android:layout_centerVertical="true"
-                        android:text="women"
+                        android:text="在营企业"
                         android:layout_alignParentRight="true"
                         style="@style/tv_third" />
 
@@ -287,10 +293,9 @@
                     android:layout_marginTop="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <ImageView
-                       android:src="@mipmap/search"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                    <RatingBar
+                        android:rating="3"
+                       style="@style/mysRatingBar" />
                     <TextView
                         android:textColor="#ff5023"
                         android:layout_marginRight="5dp"

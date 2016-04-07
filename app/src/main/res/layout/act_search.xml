@@ -39,8 +39,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="gone"
-            >
+            android:visibility="visible">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -52,20 +51,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:text="试试在上面的搜索框中输入您想要搜索"
                 android:textColor="@color/text_sec_color"
-                android:textSize="16sp"
-                android:layout_marginTop="30dp"
-                />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="的企业名字例如“阿里巴巴”"
                 android:textColor="@color/text_sec_color"
-                android:textSize="16sp"
-                android:layout_marginTop="5dp"
-                />
+                android:textSize="16sp" />
         </LinearLayout>
 
 
@@ -75,116 +72,145 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:visibility="gone"
             >
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="44dp"
-               android:orientation="horizontal"
-               android:background="#ffffff"
-               >
-               <RelativeLayout
-                   android:layout_width="0dp"
-                   android:layout_height="match_parent"
-                   android:layout_weight="1">
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_centerInParent="true"
-                       android:text="企业"
-                       android:gravity="center"
-                       android:textSize="16sp"
-                       android:textColor="@color/main_color"
-                       />
 
-                   <View
-                       android:layout_width="match_parent"
-                       android:layout_height="2dp"
-                       android:background="@color/main_color"
-                       android:layout_alignParentBottom="true"
-                       ></View>
-               </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="#ffffff"
+                android:orientation="horizontal">
 
-               <RelativeLayout
-                   android:layout_width="0dp"
-                   android:layout_height="match_parent"
-                   android:layout_weight="1">
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_centerInParent="true"
-                       android:text="法人/股东"
-                       android:gravity="center"
-                       android:textSize="16sp"
-                       android:textColor="@color/text_first_color"
+                <RelativeLayout
+                    android:id="@+id/rlEnter"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
-                       />
+                    <TextView
+                        android:id="@+id/tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:text="企业"
+                        android:textColor="@color/main_color"
+                        android:textSize="16sp" />
 
-                   <View
-                       android:layout_width="match_parent"
-                       android:layout_height="2dp"
-                       android:background="@color/main_color"
-                       android:layout_alignParentBottom="true"
-                       android:visibility="gone"
-                       ></View>
-               </RelativeLayout>
+                    <View
+                        android:id="@+id/view1"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/main_color"></View>
+                </RelativeLayout>
 
-               <RelativeLayout
-                   android:layout_width="0dp"
-                   android:layout_height="match_parent"
-                   android:layout_weight="1">
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_centerInParent="true"
-                       android:text="失信"
-                       android:gravity="center"
-                       android:textSize="16sp"
-                       android:textColor="@color/text_first_color"
-                       />
+                <RelativeLayout
+                    android:id="@+id/rlLegal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
-                   <View
-                       android:layout_width="match_parent"
-                       android:layout_height="2dp"
-                       android:background="@color/main_color"
-                       android:layout_alignParentBottom="true"
-                       android:visibility="gone"
-                       ></View>
-               </RelativeLayout>
-           </LinearLayout>
-            <View
-               style="@style/view_line"></View>
+                    <TextView
+                        android:id="@+id/tv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:text="法人/股东"
+                        android:textColor="@color/text_first_color"
+                        android:textSize="16sp"
+
+                        />
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/main_color"
+                        android:visibility="gone"></View>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rlBadCre"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:text="失信"
+                        android:textColor="@color/text_first_color"
+                        android:textSize="16sp" />
+
+                    <View
+                        android:id="@+id/view3"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/main_color"
+                        android:visibility="gone"></View>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View style="@style/view_line"></View>
 
             <RelativeLayout
                 android:id="@+id/rlRegion"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                >
+                android:paddingRight="15dp">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_centerVertical="true"
-                    >
+                    android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="搜索范围："
-                        android:textSize="14sp"
                         android:textColor="@color/text_first_color"
-                        />
+                        android:textSize="14sp" />
+
                     <TextView
+                        android:id="@+id/tvCountry"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="全国"
-                        android:textSize="14sp"
                         android:textColor="@color/main_color"
-                        />
+                        android:textSize="14sp" />
                 </LinearLayout>
             </RelativeLayout>
-            <View
-                style="@style/view_line"></View>
+
+            <View style="@style/view_line"></View>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+
+                <ListView
+                    android:id="@+id/lvCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@null"
+                    android:background="@color/white"
+                    android:visibility="gone"
+                    ></ListView>
+
+            </FrameLayout>
 
         </LinearLayout>
 

@@ -3,9 +3,9 @@
 
     <item android:id="@android:id/background"
 
-        android:drawable="@mipmap/kstar"></item>
+        android:drawable="@mipmap/greystar"></item>
 
 
     <item android:id="@android:id/progress"
-        android:drawable="@mipmap/star_m"></item>
+        android:drawable="@mipmap/redstar"></item>
 </layer-list>

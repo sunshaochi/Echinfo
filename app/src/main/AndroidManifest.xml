@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- QQ、QQ空间所需权限 -->
     <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -113,6 +114,15 @@
             android:screenOrientation="portrait"></activity>
         <!-- 诉讼信息列表界面-->
         <activity android:name=".activity.LitigationAct"
+            android:screenOrientation="portrait"></activity>
+        <!-- 诉讼详情界面-->
+        <activity android:name=".activity.LitigtinfoAct"
+            android:screenOrientation="portrait"></activity>
+        <!-- 主要成员界面-->
+        <activity android:name=".activity.PeopleAct"
+            android:screenOrientation="portrait"></activity>
+        <!-- 热门企业界面-->
+        <activity android:name=".activity.ReqyAct"
             android:screenOrientation="portrait"></activity>
 
         <!-- ###################注册SDK使用的Activity###################### -->
