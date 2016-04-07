@@ -151,7 +151,7 @@
         <!-- Dialog进入及退出动画 -->
         <item name="android:windowAnimationStyle">@style/ActionSheetDialogAnimation</item>
     </style>
-    <!--ratingbar样式-->
+    <!--企业详情ratingbar样式-->
     <style name="myRatingBar" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/roomratingbar</item>
         <item name="android:isIndicator">true</item>
@@ -159,6 +159,16 @@
         <item name="android:stepSize">1</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">14dp</item>
+    </style>
+
+    <!--首页详情ratingbar样式-->
+    <style name="mysRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/syratingbar</item>
+        <item name="android:isIndicator">true</item>
+        <item name="android:numStars">5</item>
+        <item name="android:stepSize">1</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">21dp</item>
     </style>
 
     <!--企业详情页面顶部线性布局样式-->

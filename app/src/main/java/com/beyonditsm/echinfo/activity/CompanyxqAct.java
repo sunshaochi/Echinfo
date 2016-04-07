@@ -73,8 +73,8 @@ public class CompanyxqAct extends BaseActivity {
                     case 9://分支机构
                         openActivity(PamentAct.class);
                         break;
-                    case 10:
-
+                    case 10://主要成员
+                        openActivity(PeopleAct.class);
                         break;
                     case 11:
 

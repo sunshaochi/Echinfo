@@ -32,6 +32,7 @@ public class MainAct extends BaseActivity {
                 openActivity(MyFollowAct.class);
                 break;
             case R.id.rl_qy:
+                openActivity(ReqyAct.class);
 
                 break;
             case R.id.llEnter://查企业
