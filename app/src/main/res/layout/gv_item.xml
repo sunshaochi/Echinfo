@@ -4,10 +4,10 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:background="@drawable/blue_white"
         android:padding="5dp"
-        android:textColor="#a0a0a0"
+        android:textColor="#767676"
         android:id="@+id/tv_xx"
         android:text="工商信息"
        style="@style/tv_third"/>

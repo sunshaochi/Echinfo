@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/title_act_layout"></include>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/main_color"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/ll_qyxq"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/tv_qyxq"
+                    android:text="更新：" />
+
+                <TextView
+                    style="@style/tv_qyxq"
+                    android:text="2016-03-01"
+
+                    />
+
+                <TextView
+                    style="@style/tv_qyxq"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/btn_tm"
+                    android:paddingRight="5dp"
+                    android:text="续存" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/ll_qyxq">
+
+                <RatingBar
+                    android:id="@+id/rb_dpxx"
+                    style="@style/myRatingBar"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:rating="4" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/ll_qyxq">
+
+                <TextView
+                    style="@style/tv_third"
+                    android:background="@drawable/yellow_btn"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="3dp"
+                    android:text="关注"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ll_qyxq"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    style="@style/tv_qyxq"
+                    android:text="浏览：" />
+
+                <TextView
+                    style="@style/tv_qyxq"
+                    android:text="51" />
+
+                <TextView
+                    style="@style/tv_qyxq"
+                    android:layout_marginLeft="20dp"
+                    android:text="关注：" />
+
+                <TextView
+                    style="@style/tv_qyxq"
+                    android:text="1" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:background="#05A5DF"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                style="@style/sy_LinearLayout"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/tv_second"
+                    android:text="法定代表人"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    style="@style/tv_second"
+                    android:layout_marginTop="10dp"
+                    android:text="容立坤"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/white"></View>
+
+            <LinearLayout
+                style="@style/sy_LinearLayout"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/tv_second"
+                    android:text="注册资金"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    style="@style/tv_second"
+                    android:layout_marginTop="10dp"
+                    android:text="1000万人民币"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/white"></View>
+
+            <LinearLayout
+                style="@style/sy_LinearLayout"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/tv_second"
+                    android:text="成立日期"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    style="@style/tv_second"
+                    android:layout_marginTop="10dp"
+                    android:text="2015-3-18"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/white_hui"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <ImageView
+                android:id="@+id/iv_dt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:src="@mipmap/search" />
+
+            <TextView
+                style="@style/tv_second"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/iv_dt"
+                android:paddingRight="30dp"
+                android:text="显示雁荡区显示雁荡区显示雁荡区显示雁荡区显示雁荡区显示雁荡区"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/arrow_right" />
+        </RelativeLayout>
+
+        <com.beyonditsm.echinfo.view.MyGridView
+            android:id="@+id/gvqy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="4"
+            android:paddingTop="10dp"></com.beyonditsm.echinfo.view.MyGridView>
+
+
+    </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

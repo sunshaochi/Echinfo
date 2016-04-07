@@ -91,6 +91,13 @@
         <activity android:name=".activity.BadCreditAct"
             android:screenOrientation="portrait"
             ></activity>
+        <!-- 企业详情页面-->
+        <activity android:name=".activity.CompanyxqAct"
+            android:screenOrientation="portrait"></activity>
+        <!--查询-->
+        <activity android:name=".activity.SearchAct"
+            android:screenOrientation="portrait"
+            ></activity>
     </application>
 
 

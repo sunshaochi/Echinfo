@@ -24,21 +24,26 @@ public class MainAct extends BaseActivity {
 
     }
 
-    @OnClick({R.id.rl_gz,R.id.rl_qy,R.id.rl_sx,R.id.ivMine})
-    public void Onclick(View v) {
-        switch(v.getId()){
+    @OnClick({R.id.rl_gz, R.id.rl_qy, R.id.rl_sx, R.id.ivMine, R.id.searchView})
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.rl_gz:
                 openActivity(MyFollowAct.class);
-               break;
+                break;
             case R.id.rl_qy:
 
                 break;
             case R.id.ivMine:
                 openActivity(LoginAct.class);
                 break;
+            case R.id.rl_sx://失信榜单
+                openActivity(BadCreditAct.class);
+                break;
+            case R.id.searchView://搜索
+                openActivity(SearchAct.class);
+                break;
 
-           }
-
+        }
 
 
     }

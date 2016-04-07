@@ -31,12 +31,16 @@
                     <ImageView
                         style="@style/syimag"
                         android:src="@mipmap/system_message" />
-
+                   <FrameLayout
+                       android:layout_width="0dp"
+                       android:layout_height="30dp"
+                       android:layout_marginLeft="15dp"
+                       android:layout_weight="1"
+                       >
                     <com.beyonditsm.echinfo.view.ClearEditText
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_weight="1"
+                        android:id="@+id/ceSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:background="@drawable/white"
                         android:drawableLeft="@mipmap/zyserch"
                         android:drawablePadding="10dp"
@@ -45,6 +49,11 @@
                         android:textColor="#c0c0c0"
                         android:textSize="12sp" />
 
+                       <View
+                           android:id="@+id/searchView"
+                           android:layout_width="match_parent"
+                           android:layout_height="match_parent"></View>
+                   </FrameLayout>
                     <ImageView
                         android:id="@+id/ivMine"
                         style="@style/syimag"
@@ -190,15 +199,15 @@
             </LinearLayout>
 
             <RelativeLayout
-                android:onClick="Onclick"
                 android:id="@+id/rl_gz"
                 style="@style/rl_item"
+                android:layout_height="40dp"
                 >
 
                 <TextView
                     style="@style/tv_second"
-                    android:paddingBottom="10dp"
                     android:text="我的关注"
+                    android:layout_centerVertical="true"
                     android:textColor="#3c3c3c" />
 
                 <ImageView
@@ -247,13 +256,15 @@
 
             <RelativeLayout
                 android:id="@+id/rl_qy"
-                style="@style/rl_item">
+                style="@style/rl_item"
+                android:layout_height="40dp">
 
                 <TextView
                     style="@style/tv_second"
-                    android:paddingBottom="10dp"
                     android:text="热门企业"
-                    android:textColor="#3c3c3c" />
+                    android:textColor="#3c3c3c"
+                    android:layout_centerVertical="true"
+                    />
 
                 <ImageView
                     android:layout_width="6dp"
@@ -301,13 +312,16 @@
 
             <RelativeLayout
                 android:id="@+id/rl_sx"
-                style="@style/rl_item">
+                style="@style/rl_item"
+                android:layout_height="40dp"
+                >
 
                 <TextView
                     style="@style/tv_second"
-                    android:paddingBottom="10dp"
                     android:text="失信榜单"
-                    android:textColor="#3c3c3c" />
+                    android:textColor="#3c3c3c"
+                    android:layout_centerVertical="true"
+                    />
 
                 <ImageView
                     android:layout_width="6dp"

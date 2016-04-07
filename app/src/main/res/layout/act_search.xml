@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_height">
+
+        <include layout="@layout/title_act_layout"></include>
+
+        <com.beyonditsm.echinfo.view.ClearEditText
+            android:id="@+id/ceSearch"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/white"
+            android:drawableLeft="@mipmap/zyserch"
+            android:drawablePadding="10dp"
+            android:hint="请输入公司名和注册名"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/text_first_color"
+            android:textColorHint="@color/edit_hint_color"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/llNoHis"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="您还没有搜索记录"
+                android:textColor="@color/text_first_color"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="试试在上面的搜索框中输入您想要搜索"
+                android:textColor="@color/text_sec_color"
+                android:textSize="16sp"
+                android:layout_marginTop="30dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="的企业名字例如“阿里巴巴”"
+                android:textColor="@color/text_sec_color"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                />
+        </LinearLayout>
+
+
+        <!--搜索出数据-->
+        <LinearLayout
+            android:id="@+id/llS"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="44dp"
+               android:orientation="horizontal"
+               android:background="#ffffff"
+               >
+               <RelativeLayout
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1">
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_centerInParent="true"
+                       android:text="企业"
+                       android:gravity="center"
+                       android:textSize="16sp"
+                       android:textColor="@color/main_color"
+                       />
+
+                   <View
+                       android:layout_width="match_parent"
+                       android:layout_height="2dp"
+                       android:background="@color/main_color"
+                       android:layout_alignParentBottom="true"
+                       ></View>
+               </RelativeLayout>
+
+               <RelativeLayout
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1">
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_centerInParent="true"
+                       android:text="法人/股东"
+                       android:gravity="center"
+                       android:textSize="16sp"
+                       android:textColor="@color/text_first_color"
+
+                       />
+
+                   <View
+                       android:layout_width="match_parent"
+                       android:layout_height="2dp"
+                       android:background="@color/main_color"
+                       android:layout_alignParentBottom="true"
+                       android:visibility="gone"
+                       ></View>
+               </RelativeLayout>
+
+               <RelativeLayout
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1">
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_centerInParent="true"
+                       android:text="失信"
+                       android:gravity="center"
+                       android:textSize="16sp"
+                       android:textColor="@color/text_first_color"
+                       />
+
+                   <View
+                       android:layout_width="match_parent"
+                       android:layout_height="2dp"
+                       android:background="@color/main_color"
+                       android:layout_alignParentBottom="true"
+                       android:visibility="gone"
+                       ></View>
+               </RelativeLayout>
+           </LinearLayout>
+            <View
+               style="@style/view_line"></View>
+
+            <RelativeLayout
+                android:id="@+id/rlRegion"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_centerVertical="true"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="搜索范围："
+                        android:textSize="14sp"
+                        android:textColor="@color/text_first_color"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="全国"
+                        android:textSize="14sp"
+                        android:textColor="@color/main_color"
+                        />
+                </LinearLayout>
+            </RelativeLayout>
+            <View
+                style="@style/view_line"></View>
+
+        </LinearLayout>
+
+    </FrameLayout>
+</LinearLayout>
