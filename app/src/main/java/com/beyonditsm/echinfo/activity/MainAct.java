@@ -24,9 +24,9 @@ public class MainAct extends BaseActivity {
 
     }
 
-    @OnClick({R.id.rl_gz, R.id.rl_qy, R.id.rl_sx, R.id.ivMine, R.id.searchView})
+    @OnClick({R.id.rl_gz, R.id.rl_qy, R.id.rl_sx, R.id.ivMine, R.id.searchView,R.id.ll_qyxq})
     public void onClick(View v) {
-        switch (v.getId()) {
+        switch(v.getId()){
             case R.id.rl_gz:
                 openActivity(MyFollowAct.class);
                 break;
@@ -41,6 +41,8 @@ public class MainAct extends BaseActivity {
                 break;
             case R.id.searchView://搜索
                 openActivity(SearchAct.class);
+            case R.id.ll_qyxq:
+                openActivity(CompanyxqAct.class);
                 break;
 
         }
