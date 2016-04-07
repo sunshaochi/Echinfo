@@ -89,6 +89,9 @@
         <!-- 诉讼信息列表界面-->
         <activity android:name=".activity.LitigationAct"
             android:screenOrientation="portrait"></activity>
+        <!-- 诉讼详情界面-->
+        <activity android:name=".activity.LitigtinfoAct"
+            android:screenOrientation="portrait"></activity>
 
     </application>
 

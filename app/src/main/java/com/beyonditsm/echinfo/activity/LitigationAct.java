@@ -52,7 +52,7 @@ public class LitigationAct extends BaseActivity {
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               // openActivity(DetailsAct.class);
+                openActivity(LitigtinfoAct.class);
             }
         });
     }
