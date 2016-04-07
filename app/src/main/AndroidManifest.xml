@@ -113,6 +113,9 @@
         <!-- 诉讼详情界面-->
         <activity android:name=".activity.LitigtinfoAct"
             android:screenOrientation="portrait"></activity>
+        <!-- 主要成员界面-->
+        <activity android:name=".activity.PeopleAct"
+            android:screenOrientation="portrait"></activity>
 
     </application>
 

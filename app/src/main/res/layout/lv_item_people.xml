@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:padding="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.beyonditsm.echinfo.view.CircleImageView
+        android:id="@+id/iv_pp"
+        android:src="@mipmap/mine_head"
+        android:layout_width="94dp"
+        android:layout_height="94dp"></com.beyonditsm.echinfo.view.CircleImageView>
+<LinearLayout
+    android:layout_gravity="center_vertical"
+    android:layout_marginLeft="10dp"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:textSize="14sp"
+        android:textColor="@color/text_first_color"
+        android:text="柳传志"
+        style="@style/tv_second" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:textSize="12sp"
+        android:textColor="@color/text_sec_color"
+        android:text="董事"
+        style="@style/tv_second" />
+
+</LinearLayout>
+
+
+
+</LinearLayout>
