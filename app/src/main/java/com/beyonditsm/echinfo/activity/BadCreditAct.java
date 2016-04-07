@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.beyonditsm.echinfo.R;
-import com.beyonditsm.echinfo.adapter.FollowAdapter;
+import com.beyonditsm.echinfo.adapter.BadCreAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshBase;
@@ -14,20 +14,20 @@ import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 /**
- * 我的关注
- * Created by wangbin on 16/4/5.
+ * 不良信用查询系统
+ * Created by wangbin on 16/4/6.
  */
-public class MyFollowAct extends BaseActivity {
+public class BadCreditAct extends BaseActivity {
     @ViewInject(R.id.plv)
     private PullToRefreshListView plv;
     @Override
     public void setLayout() {
-        setContentView(R.layout.act_my_follow);
+        setContentView(R.layout.act_bad_credit);
     }
 
     @Override
     public void init(Bundle savedInstanceState) {
-        setTopTitle("我的关注");
+        setTopTitle("不良信用查询系统");
         plv.setPullRefreshEnabled(true);//下拉刷新
         plv.setScrollLoadEnabled(true);//滑动加载
         plv.setPullLoadEnabled(false);//上拉刷新
@@ -46,6 +46,6 @@ public class MyFollowAct extends BaseActivity {
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
             }
         });
-        plv.getRefreshableView().setAdapter(new FollowAdapter(this));
+        plv.getRefreshableView().setAdapter(new BadCreAdapter(this));
     }
 }

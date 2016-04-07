@@ -18,6 +18,7 @@
         <View style="@style/view_line"></View>
 
         <com.beyonditsm.echinfo.view.CircleImageView
+            android:id="@+id/civHead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -84,10 +85,12 @@
             android:layout_marginLeft="15dp"></View>
 
         <RelativeLayout
+            android:id="@+id/rlOccu"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
+            android:background="@drawable/item_back"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -95,11 +98,13 @@
                 />
 
             <TextView
+                android:id="@+id/tvOccu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:textColor="@color/edit_hint_color"
-                android:text="职业"
+                android:textColorHint="@color/edit_hint_color"
+                android:textColor="@color/text_first_color"
+                android:hint="职业"
                 android:layout_centerVertical="true"
                 />
             <ImageView
