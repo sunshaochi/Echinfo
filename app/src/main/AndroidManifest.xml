@@ -116,6 +116,9 @@
         <!-- 主要成员界面-->
         <activity android:name=".activity.PeopleAct"
             android:screenOrientation="portrait"></activity>
+        <!-- 热门企业界面-->
+        <activity android:name=".activity.ReqyAct"
+            android:screenOrientation="portrait"></activity>
 
     </application>
 

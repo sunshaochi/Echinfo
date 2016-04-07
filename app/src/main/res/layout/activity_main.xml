@@ -287,10 +287,9 @@
                     android:layout_marginTop="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <ImageView
-                       android:src="@mipmap/search"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                    <RatingBar
+                        android:rating="3"
+                       style="@style/mysRatingBar" />
                     <TextView
                         android:textColor="#ff5023"
                         android:layout_marginRight="5dp"
