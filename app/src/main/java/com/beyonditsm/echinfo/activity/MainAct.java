@@ -21,17 +21,33 @@ public class MainAct extends BaseActivity {
 
     @Override
     public void init(Bundle savedInstanceState) {
-
     }
 
-    @OnClick({R.id.rl_gz, R.id.rl_qy, R.id.rl_sx, R.id.ivMine, R.id.searchView,R.id.ll_qyxq})
+    @OnClick({R.id.rl_gz, R.id.rl_qy, R.id.rl_sx, R.id.ivMine, R.id.searchView, R.id.ll_qyxq,
+            R.id.llEnter, R.id.llLegal, R.id.llBadCre})
     public void onClick(View v) {
-        switch(v.getId()){
+        Bundle bundle=null;
+        switch (v.getId()) {
             case R.id.rl_gz:
                 openActivity(MyFollowAct.class);
                 break;
             case R.id.rl_qy:
 
+                break;
+            case R.id.llEnter://查企业
+                bundle=new Bundle();
+                bundle.putInt("search_type",0);
+                openActivity(SearchAct.class,bundle);
+                break;
+            case R.id.llLegal://查法人
+                bundle=new Bundle();
+                bundle.putInt("search_type",1);
+                openActivity(SearchAct.class,bundle);
+                break;
+            case R.id.llBadCre://查失信
+                bundle=new Bundle();
+                bundle.putInt("search_type",2);
+                openActivity(SearchAct.class,bundle);
                 break;
             case R.id.ivMine:
                 openActivity(LoginAct.class);
@@ -41,12 +57,12 @@ public class MainAct extends BaseActivity {
                 break;
             case R.id.searchView://搜索
                 openActivity(SearchAct.class);
+                break;
             case R.id.ll_qyxq:
                 openActivity(CompanyxqAct.class);
                 break;
 
         }
-
 
     }
 
