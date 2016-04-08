@@ -16,6 +16,7 @@ import com.beyonditsm.echinfo.adapter.CompanyAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.view.MyGridView;
 import com.beyonditsm.echinfo.view.MySelfSheetDialog;
+import com.beyonditsm.echinfo.widget.ShareDialog;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
@@ -125,7 +126,8 @@ public class CompanyxqAct extends BaseActivity {
         ll_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ShareDialog dialog=new ShareDialog(CompanyxqAct.this).builder();
+                dialog.show();
             }
         });
 

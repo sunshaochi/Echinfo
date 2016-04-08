@@ -124,6 +124,9 @@
         <!-- 热门企业界面-->
         <activity android:name=".activity.ReqyAct"
             android:screenOrientation="portrait"></activity>
+        <!--失信榜单详情-->
+        <activity android:name=".activity.DishonestyDetailAct"
+            android:screenOrientation="portrait"/>
 
         <!-- ###################注册SDK使用的Activity###################### -->
         <!--分享编辑页-->

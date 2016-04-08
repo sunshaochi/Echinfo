@@ -241,7 +241,7 @@ public class MainAct extends BaseActivity {
         noticeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                openActivity(CompanyxqAct.class);
+                openActivity(DishonestyDetailAct.class);
             }
         });
         if (followBad.getChildCount() > 1) {
