@@ -10,12 +10,15 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.adapter.CompanyAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.view.MyGridView;
 import com.beyonditsm.echinfo.view.MySelfSheetDialog;
+import com.beyonditsm.echinfo.widget.ShareDialog;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
@@ -27,6 +30,26 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 public class CompanyxqAct extends BaseActivity {
     @ViewInject(R.id.gvqy)
     private MyGridView gvqy;//企业详情界面里面的gridview
+    @ViewInject(R.id.gxtime)
+    private TextView gxtime;//更新时间
+    @ViewInject(R.id.xc)
+    private TextView xc;//续存
+    @ViewInject(R.id.rb_dpxx)
+    private RatingBar ratingBar;//星星数
+    @ViewInject(R.id.guanzhu)
+    private TextView guanzhu;//点击关注
+    @ViewInject(R.id.looknum)
+    private TextView looknum;//浏览数
+    @ViewInject(R.id.guanzhunum)
+    private TextView guanzhunum;//关注数
+    @ViewInject(R.id.dbname)
+    private TextView dbname;//法定代表人
+    @ViewInject(R.id.zczj)
+    private TextView zczj;//注册资金
+    @ViewInject(R.id.cltime)
+    private TextView cltime;//成立时间
+    @ViewInject(R.id.location)
+    private TextView locatime;//公司位置
 
     @Override
     public void setLayout() {
@@ -125,7 +148,8 @@ public class CompanyxqAct extends BaseActivity {
         ll_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ShareDialog dialog=new ShareDialog(CompanyxqAct.this).builder();
+                dialog.show();
             }
         });
 

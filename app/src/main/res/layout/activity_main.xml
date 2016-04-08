@@ -7,7 +7,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -224,42 +226,15 @@
 
 
             </RelativeLayout>
-            <LinearLayout
-                android:id="@+id/ll_qyxq"
-                android:background="@color/white"
-                style="@style/ll_item"
-                >
-                <TextView
-                    android:text="香港强悍信息科技有限公司"
-                    style="@style/tv_second"/>
-                <RelativeLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_centerVertical="true"
-                        android:id="@+id/iv_tupian"
-                        android:src="@mipmap/company_list"
-                        android:layout_width="13dp"
-                        android:layout_height="14dp"
-                        />
-                    <TextView
-                        android:layout_marginLeft="5dp"
-                        android:layout_centerVertical="true"
-                        android:layout_toRightOf="@id/iv_tupian"
-                        android:text="公司法人：张飞"
-                        style="@style/tv_third" />
-                    <TextView
-                        android:layout_centerVertical="true"
-                        android:text="在营企业"
-                        android:layout_alignParentRight="true"
-                        style="@style/tv_third" />
+            <View
+                style="@style/view_line"></View>
+            <FrameLayout
+                android:id="@+id/flFollow"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"></FrameLayout>
 
-                </RelativeLayout>
-
-            </LinearLayout>
-
-
+            <View
+                style="@style/view_line"></View>
 
             <RelativeLayout
                 android:id="@+id/rl_qy"
@@ -281,40 +256,16 @@
                     android:src="@mipmap/arrow_right" />
 
             </RelativeLayout>
+            <View
+                style="@style/view_line"></View>
 
-            <LinearLayout
-                android:background="@color/white"
-                style="@style/ll_item"
-                >
-                <TextView
-                    android:text="香港强悍信息科技有限公司"
-                    style="@style/tv_second"/>
-                <RelativeLayout
-                    android:layout_marginTop="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <RatingBar
-                        android:rating="3"
-                       style="@style/mysRatingBar" />
-                    <TextView
-                        android:textColor="#ff5023"
-                        android:layout_marginRight="5dp"
-                        android:layout_toLeftOf="@+id/iv_guanzhu"
-                        android:layout_centerVertical="true"
-                        android:text="20"
-                        style="@style/tv_third" />
-                    <TextView
-                        android:id="@+id/iv_guanzhu"
-                        android:layout_centerVertical="true"
-                        android:text="个人"
-                        android:layout_alignParentRight="true"
-                        style="@style/tv_third" />
+            <FrameLayout
+                android:id="@+id/flHotCom"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"></FrameLayout>
 
-                </RelativeLayout>
-
-            </LinearLayout>
-
-
+            <View
+                style="@style/view_line"></View>
 
             <RelativeLayout
                 android:id="@+id/rl_sx"
@@ -337,38 +288,18 @@
                     android:src="@mipmap/arrow_right" />
 
             </RelativeLayout>
+            <View
+                style="@style/view_line"></View>
 
-            <LinearLayout
-                android:background="@color/white"
-                android:padding="20dp"
+            <FrameLayout
+                android:id="@+id/flBadCredit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="90dp"></FrameLayout>
 
-                <LinearLayout
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/yuan"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/tv_third"
-                        android:text="1月" />
-
-                    <TextView
-                        style="@style/tv_third"
-                        android:text="2015年" />
-                </LinearLayout>
-                <TextView
-                    style="@style/tv_second"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
-                    android:text="hahahahah" />
-
-
-            </LinearLayout>
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="30dp"
+                ></View>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -121,6 +121,14 @@
 
     </style>
 
+    <style name="tv_top">
+        <item name="android:textSize">@dimen/fourteen</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+    <style name="tv_down">
+        <item name="android:textSize">@dimen/sixteen</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 
     <!--首页我的关注，热门企业 失信下面item布局样式-->
     <style name="ll_item">
