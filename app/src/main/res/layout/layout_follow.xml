@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+    <LinearLayout
+        android:id="@+id/ll_qyxq"
+        android:background="@color/white"
+        style="@style/ll_item"
+        >
+        <TextView
+            android:id="@+id/tvComName"
+            android:text="香港强悍信息科技有限公司"
+            style="@style/tv_second"/>
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:id="@+id/iv_tupian"
+                android:src="@mipmap/company_list"
+                android:layout_width="13dp"
+                android:layout_height="14dp"
+                />
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_marginLeft="5dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/iv_tupian"
+                android:text="公司法人：张飞"
+                style="@style/tv_third" />
+            <TextView
+                android:id="@+id/tvState"
+                android:layout_centerVertical="true"
+                android:text="在营企业"
+                android:layout_alignParentRight="true"
+                style="@style/tv_third" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

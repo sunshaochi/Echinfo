@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+    <LinearLayout
+        android:id="@+id/ll_qyxq"
+        android:background="@color/white"
+        style="@style/ll_item"
+        >
+        <TextView
+            android:text="香港强悍信息科技有限公司"
+            style="@style/tv_second"/>
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RatingBar
+                android:rating="3"
+                style="@style/mysRatingBar" />
+            <TextView
+                android:textColor="#ff5023"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/iv_guanzhu"
+                android:layout_centerVertical="true"
+                android:text="20"
+                style="@style/tv_third" />
+            <TextView
+                android:id="@+id/iv_guanzhu"
+                android:layout_centerVertical="true"
+                android:text="个人"
+                android:layout_alignParentRight="true"
+                style="@style/tv_third" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

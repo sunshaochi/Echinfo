@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        >
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/yuan"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            >
+
+            <TextView
+                style="@style/tv_third"
+                android:text="1月"
+                android:textColor="@color/main_color"
+                />
+
+            <TextView
+                style="@style/tv_third"
+                android:text="2015年"
+                android:textColor="@color/main_color"/>
+        </LinearLayout>
+        <TextView
+            style="@style/tv_second"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:text="电商浮躁，失业率大揭秘" />
+
+    </LinearLayout>
+</LinearLayout>
