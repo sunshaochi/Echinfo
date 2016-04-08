@@ -49,7 +49,7 @@ public class MainAct extends BaseActivity {
             case R.id.rl_gz://我的关注
                 openActivity(MyFollowAct.class);
                 break;
-            case R.id.rl_qy:
+            case R.id.rl_qy://热门企业
                 openActivity(ReqyAct.class);
 
                 break;
