@@ -50,7 +50,7 @@
         android:layout_marginLeft="15dp"
         android:background="@drawable/btn_white_gray"
         android:layout_width="match_parent"
-        android:layout_height="44dp" />
+        android:layout_height="35dp" />
 
     <TextView
         android:textSize="14sp"
@@ -62,7 +62,7 @@
         android:layout_marginLeft="15dp"
         android:background="@drawable/btn_xjblue_bg"
         android:layout_width="match_parent"
-        android:layout_height="44dp" />
+        android:layout_height="35dp" />
 
 
 

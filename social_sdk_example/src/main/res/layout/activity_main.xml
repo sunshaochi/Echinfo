@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context="com.umeng.soexample.activity.MainActivity"
+    android:orientation="vertical"
+    android:padding="60dp"
+    >
+    <!--android:paddingBottom="@dimen/activity_vertical_margin"-->
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="分享"
+        android:id="@+id/button_share"
+        android:onClick="onClick"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="授权登录"
+        android:id="@+id/button_oauth"
+        android:layout_marginTop="25dp"
+        android:onClick="onClick"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="摇一摇"
+        android:id="@+id/button_shake2share"
+        android:layout_marginTop="25dp"
+        android:onClick="onClick"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="评论点赞"
+        android:id="@+id/button_likecommnet"
+        android:layout_marginTop="25dp"
+        android:onClick="onClick"/>
+
+</LinearLayout>
