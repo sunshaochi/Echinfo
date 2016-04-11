@@ -35,13 +35,14 @@
         android:gravity="top"
         android:textColorHint="#c0c0c0"
         android:textColor="#3c3c3c"
-        android:hint="我们手机您提交额请求，并在3-5个工作日回复"
+        android:hint="我们收集您提交请求，并在3-5个工作日回复"
         android:lines="10"
         android:maxLength="200"
         android:padding="10dp"
         android:textSize="12sp" />
     <EditText
-
+        android:inputType="number"
+        android:maxLength="11"
         android:textSize="12sp"
         android:textColorHint="#c0c0c0"
         android:textColor="#3c3c3c"

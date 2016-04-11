@@ -130,7 +130,7 @@ public class CompanyxqAct extends BaseActivity {
         LinearLayout layout = (LinearLayout) LayoutInflater.from(this).inflate(
                 R.layout.popuwindows_dialog, null);
         // 实例化popupWindow
-        PopupWindow popupWindow = new PopupWindow(layout, 300, 800);
+         final PopupWindow popupWindow = new PopupWindow(layout, 300, 800);
         //控制键盘是否可以获得焦点
         popupWindow.setFocusable(true);
         //设置popupWindow弹出窗体的背景
@@ -148,6 +148,7 @@ public class CompanyxqAct extends BaseActivity {
         ll_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                popupWindow.dismiss();
                 ShareDialog dialog=new ShareDialog(CompanyxqAct.this).builder();
                 dialog.show();
             }
@@ -156,6 +157,7 @@ public class CompanyxqAct extends BaseActivity {
         ll_dh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                popupWindow.dismiss();
                 MySelfSheetDialog dialog = new MySelfSheetDialog(CompanyxqAct.this);
                 dialog.builder().addSheetItem("7-830940-7009",MySelfSheetDialog.SheetItemColor.Blue, new MySelfSheetDialog.OnSheetItemClickListener() {
                     @Override
@@ -169,7 +171,7 @@ public class CompanyxqAct extends BaseActivity {
                     public void onClick(int which) {
                         Intent phoneintent=new Intent();
                         phoneintent.setAction(Intent.ACTION_CALL);
-                        phoneintent.setData(Uri.parse("tel:110"));
+                        phoneintent.setData(Uri.parse("tel:7-830940-7009"));
                         startActivity(phoneintent);
 
                     }

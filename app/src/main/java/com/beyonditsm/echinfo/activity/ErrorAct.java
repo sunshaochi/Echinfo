@@ -1,15 +1,18 @@
 package com.beyonditsm.echinfo.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.adapter.JiucuoAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -47,13 +50,14 @@ public class ErrorAct extends BaseActivity {
 //    @ViewInject(R.id.ck_bgjl)
 //    private CheckBox ck_bgjl;
 
-    @ViewInject(R.id.et_cw)
+    @ViewInject(R.id.et_cw)//输入的错误内容；
     private EditText et_cw;
-    @ViewInject(R.id.et_sj)
+    @ViewInject(R.id.et_sj)//输入的手机号；
     private EditText et_sj;
 
     @ViewInject(R.id.gvHome)
     private com.beyonditsm.echinfo.view.MyGridView gvHome;
+    private Map<Integer,String>datamap;
 
 //    private CheckBox[] cbs;
 //    private List<String> selector ;//用来封装被选中的text
@@ -73,23 +77,62 @@ public class ErrorAct extends BaseActivity {
 
     @Override
     public void init(Bundle savedInstanceState) {
+        datamap=new HashMap<>();
         setTopTitle("纠错");
-        adapter=new JiucuoAdapter(getApplicationContext());
+        adapter=new JiucuoAdapter(getApplicationContext(),this);
         gvHome.setAdapter(adapter);
-
-
 
     }
     @OnClick({R.id.tv_tj})
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.tv_tj:
-
+            case R.id.tv_tj://提交
+                if(isValidate())
+                    MyToastUtils.showShortToast(getApplicationContext(),"提交成功");
                 break;
 
         }
 
 
+    }
+
+
+    public void setData(Map<Integer,String>datamap){
+        this.datamap=datamap;
+
+    }
+
+
+    /**
+     * 是否可提交
+     *
+     * @return
+     */
+    private boolean isValidate() {
+        cw=et_cw.getText().toString();
+        phone = et_sj.getText().toString().trim();
+        String connects="";//被点击的选项内容
+        for(int key:datamap.keySet()){
+            connects=connects.concat(datamap.get(key).toString()+"");
+
+        }
+
+        if (TextUtils.isEmpty(phone)) {
+            MyToastUtils.showShortToast(getApplicationContext(), "请输入手机号");
+            et_sj.requestFocus();
+            return false;
+        }
+        if(phone.length()!=11){
+            MyToastUtils.showShortToast(getApplicationContext(), "请输入正确的手机号");
+            et_sj.requestFocus();
+            et_sj.setSelection(et_sj.length());
+            return false;
+        }
+        if(TextUtils.isEmpty(connects)&&TextUtils.isEmpty(cw)){
+            MyToastUtils.showShortToast(getApplicationContext(),"请选择或输入错误内容");
+            return false;
+        }
+        return true;
     }
 
 
