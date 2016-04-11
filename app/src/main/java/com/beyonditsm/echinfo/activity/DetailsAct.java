@@ -3,7 +3,6 @@ package com.beyonditsm.echinfo.activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
@@ -12,6 +11,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 
 /**
  * Created by bitch-1 on 2016/4/6.
+ * 企业资讯详情
  */
 public class DetailsAct extends BaseActivity {
     @ViewInject(R.id.iv_cd)

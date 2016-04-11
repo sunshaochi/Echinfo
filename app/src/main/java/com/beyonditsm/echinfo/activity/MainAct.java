@@ -51,7 +51,6 @@ public class MainAct extends BaseActivity {
                 break;
             case R.id.rl_qy://热门企业
                 openActivity(ReqyAct.class);
-
                 break;
             case R.id.llEnter://查企业
                 bundle=new Bundle();
