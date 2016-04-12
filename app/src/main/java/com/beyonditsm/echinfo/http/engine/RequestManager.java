@@ -1,5 +1,6 @@
 package com.beyonditsm.echinfo.http.engine;
 
+import android.os.AsyncTask;
 import android.text.TextUtils;
 
 import com.android.volley.AuthFailureError;
@@ -17,6 +18,7 @@ import com.beyonditsm.echinfo.http.impl.EchinfoEngine;
 import com.beyonditsm.echinfo.http.util.VolleyErrorHelper;
 import com.beyonditsm.echinfo.util.MyLogUtils;
 import com.beyonditsm.echinfo.util.SpUtils;
+import com.lidroid.xutils.http.client.multipart.content.FileBody;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -104,6 +106,50 @@ public class RequestManager {
         request.setRetryPolicy(new DefaultRetryPolicy(5000, 1, 1.0f));
         MyApplication.getInstance().addToRequestQueue(request);
         MyApplication.getInstance().getRequestQueue().start();
+    }
+
+
+    /* 上传图片
+    *
+    * @param url
+    * @param
+    * @param fileMaps
+    * @param callBack
+    */
+    public void loadImage(final String url, final Map<String, FileBody> fileMaps, final CallBack callBack) {
+        MyLogUtils.info("地址:" + url);
+        final HttpManager manager = new HttpManager();
+        final Map<String, String> par = new HashMap<String, String>();
+        par.put("type", "img");
+        par.put("uploadLableName", "file");
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... params) {
+                return manager.upLoadFile(url, par, fileMaps);
+            }
+
+            @Override
+            protected void onPreExecute() {
+
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                MyLogUtils.info("上传图片：" + result);
+                JSONObject obj = null;
+                try {
+                    obj = new JSONObject(result);
+                    int status = obj.getInt("status");
+                    if (status == 200) {
+                        callBack.onSucess(obj.getString("data"));
+                    } else {
+                        callBack.onError( obj.getString("message"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.execute();
     }
 
 }
