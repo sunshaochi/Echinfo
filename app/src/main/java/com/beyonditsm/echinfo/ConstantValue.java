@@ -6,4 +6,5 @@ package com.beyonditsm.echinfo;
 public interface ConstantValue {
 
     public final boolean IS_SHOW_DEBUG=true;
+    public final String ENCODING="utf-8";
 }
