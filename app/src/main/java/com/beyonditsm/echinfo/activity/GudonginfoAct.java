@@ -16,6 +16,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 
 /**
  * Created by bitch-1 on 2016/4/6.
+ * 股东信息界面
  */
 public class GudonginfoAct extends BaseActivity {
     @ViewInject(R.id.plv)

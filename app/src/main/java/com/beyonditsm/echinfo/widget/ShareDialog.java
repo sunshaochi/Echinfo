@@ -83,6 +83,24 @@ public class ShareDialog implements OnClickListener {
         return this;
     }
 
+    public ShareDialog setContent(String title,String content,String codeUrl){
+        if ("".equals(title)) {
+            this.title="一起查";
+        } else {
+            this.title=title;
+        }
+        if ("".equals(content)) {
+            this.content="一起查";
+        } else {
+            this.content=content;
+        }
+        if ("".equals(codeUrl)) {
+            this.codeUrl="";
+        } else {
+            this.codeUrl=codeUrl;
+        }
+        return this;
+    }
     public ShareDialog setCancelable(boolean cancel) {
         dialog.setCancelable(cancel);
         return this;

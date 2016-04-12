@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/bg_color">
 
     <include layout="@layout/title_act_layout"></include>
 
@@ -39,6 +40,7 @@
 
 
                 <TextView
+                    android:id="@+id/bzxname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -73,6 +75,7 @@
 
 
                 <TextView
+                    android:id="@+id/idcard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -107,6 +110,7 @@
 
 
                 <TextView
+                    android:id="@+id/zxfy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -140,6 +144,7 @@
 
 
                 <TextView
+                    android:id="@+id/latime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -174,6 +179,7 @@
 
 
                 <TextView
+                    android:id="@+id/ahid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -207,6 +213,7 @@
 
 
                 <TextView
+                    android:id="@+id/zxbd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"

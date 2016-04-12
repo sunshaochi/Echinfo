@@ -138,6 +138,9 @@
         <!-- 地图-->
         <activity android:name=".activity.MapAct"
             android:screenOrientation="portrait"></activity>
+        <!--失信榜单详情-->
+        <activity android:name=".activity.DishonestyDetailAct"
+            android:screenOrientation="portrait"/>
 
         <!-- ###################注册SDK使用的Activity###################### -->
         <!--分享编辑页-->

@@ -3,6 +3,8 @@ package com.beyonditsm.echinfo.activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.beyonditsm.echinfo.R;
@@ -49,6 +51,12 @@ public class ReqyAct extends BaseActivity {
             }
         });
         plv.getRefreshableView().setAdapter(new ReqyAdapter(this));
+        plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                openActivity(CompanyxqAct.class);
+            }
+        });
     }
 
     }

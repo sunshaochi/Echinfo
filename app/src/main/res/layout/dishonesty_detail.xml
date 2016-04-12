@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_color">
+
+    <include layout="@layout/title_act_layout"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/company"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="辽宁腾虹有限公司"/>
+            <View style="@style/view_line"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white">
+                <TextView
+                    style="@style/tv_top"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="组织机构代码"
+                    />
+                <View style="@style/view_line"
+                    android:layout_marginLeft="15dp"/>
+                <TextView
+                    style="@style/tv_down"
+                    android:id="@+id/jgid"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="544932"/>
+            </LinearLayout>
+
+            <View style="@style/view_line"/>
+
+            <View style="@style/view_line"
+                android:layout_marginTop="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white">
+                <TextView
+                    style="@style/tv_top"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="省份"
+                    />
+                <View style="@style/view_line"
+                    android:layout_marginLeft="15dp"/>
+                <TextView
+                    style="@style/tv_down"
+                    android:id="@+id/province"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="辽宁"/>
+            </LinearLayout>
+
+            <View style="@style/view_line"/>
+            <View style="@style/view_line"
+                android:layout_marginTop="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white">
+                <TextView
+                    style="@style/tv_top"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="执行依据文号"
+                    />
+                <View style="@style/view_line"
+                    android:layout_marginLeft="15dp"/>
+                <TextView
+                    style="@style/tv_down"
+                    android:id="@+id/yjid"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="（2014）湘民一初字第155号"/>
+            </LinearLayout>
+
+            <View style="@style/view_line"/>
+            <View style="@style/view_line"
+                android:layout_marginTop="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white">
+                <TextView
+                    style="@style/tv_top"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="执行法案"
+                    />
+                <View style="@style/view_line"
+                    android:layout_marginLeft="15dp"/>
+                <TextView
+                    style="@style/tv_down"
+                    android:id="@+id/zxfa"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="34234"/>
+            </LinearLayout>
+
+            <View style="@style/view_line"/>
+            <View style="@style/view_line"
+                android:layout_marginTop="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white">
+                <TextView
+                    style="@style/tv_top"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="案号"
+                    />
+                <View style="@style/view_line"
+                    android:layout_marginLeft="15dp"/>
+                <TextView
+                    style="@style/tv_down"
+                    android:id="@+id/ahid"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="（2014）湘民一初字第155号"/>
+            </LinearLayout>
+
+            <View style="@style/view_line"/>
+            <View style="@style/view_line"
+                android:layout_marginTop="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white">
+                <TextView
+                    style="@style/tv_top"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="执行依据单位"
+                    />
+                <View style="@style/view_line"
+                    android:layout_marginLeft="15dp"/>
+                <TextView
+                    style="@style/tv_down"
+                    android:id="@+id/zxyj"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="辽中仲裁委员会"/>
+            </LinearLayout>
+
+            <View style="@style/view_line"/>
+            <View style="@style/view_line"
+                android:layout_marginTop="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white">
+                <TextView
+                    style="@style/tv_top"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="履行情况"
+                    />
+                <View style="@style/view_line"
+                    android:layout_marginLeft="15dp"/>
+                <TextView
+                    style="@style/tv_down"
+                    android:id="@+id/lxcon"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="全部未履行"/>
+            </LinearLayout>
+
+            <View style="@style/view_line"/>
+            <View style="@style/view_line"
+                android:layout_marginTop="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white">
+                <TextView
+                    style="@style/tv_top"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="文书确定义务"
+                    />
+                <View style="@style/view_line"
+                    android:layout_marginLeft="15dp"/>
+                <TextView
+                    style="@style/tv_down"
+                    android:id="@+id/pay"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="被申请人支付工资"/>
+            </LinearLayout>
+
+            <View style="@style/view_line"/>
+            <View style="@style/view_line"
+                android:layout_marginTop="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white">
+                <TextView
+                    style="@style/tv_top"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="失信行为详情"
+                    />
+                <View style="@style/view_line"
+                    android:layout_marginLeft="15dp"/>
+                <TextView
+                    style="@style/tv_down"
+                    android:id="@+id/detail"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="违反财产报告制度"/>
+            </LinearLayout>
+
+            <View style="@style/view_line"/>
+            <View style="@style/view_line"
+                android:layout_marginTop="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white">
+                <TextView
+                    style="@style/tv_top"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="发布时间"
+                    />
+                <View style="@style/view_line"
+                    android:layout_marginLeft="15dp"/>
+                <TextView
+                    style="@style/tv_down"
+                    android:id="@+id/time"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="2015年12月24日"/>
+            </LinearLayout>
+
+            <View style="@style/view_line"
+                android:layout_marginBottom="15dp"
+                />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

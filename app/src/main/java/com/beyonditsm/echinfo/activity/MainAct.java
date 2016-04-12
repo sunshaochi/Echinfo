@@ -49,9 +49,8 @@ public class MainAct extends BaseActivity {
             case R.id.rl_gz://我的关注
                 openActivity(MyFollowAct.class);
                 break;
-            case R.id.rl_qy:
+            case R.id.rl_qy://热门企业
                 openActivity(ReqyAct.class);
-
                 break;
             case R.id.llEnter://查企业
                 bundle=new Bundle();
@@ -243,7 +242,7 @@ public class MainAct extends BaseActivity {
         noticeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                openActivity(CompanyxqAct.class);
+                openActivity(DishonestyDetailAct.class);
             }
         });
         if (followBad.getChildCount() > 1) {

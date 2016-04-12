@@ -7,59 +7,64 @@
     <include layout="@layout/title_act_layout"></include>
     <TextView
         android:textSize="14sp"
-        android:textColor="#3c3c3c"
+        android:textColor="@color/black"
         android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="10dp"
         android:text="选择信息有误的部分 (多选)"
         style="@style/tv_third" />
     <com.beyonditsm.echinfo.view.MyGridView
-       android:paddingLeft="25dp"
-        android:paddingRight="25dp"
-        android:paddingTop="20dp"
+        android:layout_marginTop="15dp"
         android:id="@+id/gvHome"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:numColumns="4"
-        android:verticalSpacing="8dp"></com.beyonditsm.echinfo.view.MyGridView>
+        android:horizontalSpacing="10dp"
+        android:verticalSpacing="10dp">
+    </com.beyonditsm.echinfo.view.MyGridView>
 
     <EditText
-        android:id="@+id/yw_et"
+        android:id="@+id/et_cw"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/btn_white_gray"
         android:gravity="top"
         android:textColorHint="#c0c0c0"
         android:textColor="#3c3c3c"
-        android:hint="我们手机您提交额请求，并在3-5个工作日回复"
+        android:hint="我们收集您提交请求，并在3-5个工作日回复"
         android:lines="10"
         android:maxLength="200"
         android:padding="10dp"
         android:textSize="12sp" />
     <EditText
+        android:inputType="number"
+        android:maxLength="11"
         android:textSize="12sp"
         android:textColorHint="#c0c0c0"
         android:textColor="#3c3c3c"
-        android:id="@+id/dh_et"
+        android:id="@+id/et_sj"
         android:padding="10dp"
         android:hint="137611111"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:background="@drawable/btn_white_gray"
         android:layout_width="match_parent"
         android:layout_height="35dp" />
 
     <TextView
+        android:id="@+id/tv_tj"
         android:textSize="14sp"
         android:textColor="@color/white"
         android:text="提交纠错信息"
         android:gravity="center"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:background="@drawable/btn_xjblue_bg"
         android:layout_width="match_parent"
         android:layout_height="35dp" />

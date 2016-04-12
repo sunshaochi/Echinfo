@@ -10,12 +10,15 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.adapter.CompanyAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.view.MyGridView;
 import com.beyonditsm.echinfo.view.MySelfSheetDialog;
+import com.beyonditsm.echinfo.widget.ShareDialog;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
@@ -27,6 +30,26 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 public class CompanyxqAct extends BaseActivity {
     @ViewInject(R.id.gvqy)
     private MyGridView gvqy;//企业详情界面里面的gridview
+    @ViewInject(R.id.gxtime)
+    private TextView gxtime;//更新时间
+    @ViewInject(R.id.xc)
+    private TextView xc;//续存
+    @ViewInject(R.id.rb_dpxx)
+    private RatingBar ratingBar;//星星数
+    @ViewInject(R.id.guanzhu)
+    private TextView guanzhu;//点击关注
+    @ViewInject(R.id.looknum)
+    private TextView looknum;//浏览数
+    @ViewInject(R.id.guanzhunum)
+    private TextView guanzhunum;//关注数
+    @ViewInject(R.id.dbname)
+    private TextView dbname;//法定代表人
+    @ViewInject(R.id.zczj)
+    private TextView zczj;//注册资金
+    @ViewInject(R.id.cltime)
+    private TextView cltime;//成立时间
+    @ViewInject(R.id.location)
+    private TextView locatime;//公司位置
 
     @Override
     public void setLayout() {
@@ -60,7 +83,8 @@ public class CompanyxqAct extends BaseActivity {
                     case 4://诉讼信息
                         openActivity(LitigationAct.class);
                         break;
-                    case 5:
+                    case 5://对外投资
+                        openActivity(InvestmentAct.class);
 
                         break;
                     case 6://股东信息
@@ -111,7 +135,7 @@ public class CompanyxqAct extends BaseActivity {
         LinearLayout layout = (LinearLayout) LayoutInflater.from(this).inflate(
                 R.layout.popuwindows_dialog, null);
         // 实例化popupWindow
-        PopupWindow popupWindow = new PopupWindow(layout, 300, 800);
+         final PopupWindow popupWindow = new PopupWindow(layout, 300, 800);
         //控制键盘是否可以获得焦点
         popupWindow.setFocusable(true);
         //设置popupWindow弹出窗体的背景
@@ -129,13 +153,16 @@ public class CompanyxqAct extends BaseActivity {
         ll_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                popupWindow.dismiss();
+                ShareDialog dialog=new ShareDialog(CompanyxqAct.this).builder();
+                dialog.show();
             }
         });
 
         ll_dh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                popupWindow.dismiss();
                 MySelfSheetDialog dialog = new MySelfSheetDialog(CompanyxqAct.this);
                 dialog.builder().addSheetItem("7-830940-7009",MySelfSheetDialog.SheetItemColor.Blue, new MySelfSheetDialog.OnSheetItemClickListener() {
                     @Override
@@ -149,7 +176,7 @@ public class CompanyxqAct extends BaseActivity {
                     public void onClick(int which) {
                         Intent phoneintent=new Intent();
                         phoneintent.setAction(Intent.ACTION_CALL);
-                        phoneintent.setData(Uri.parse("tel:110"));
+                        phoneintent.setData(Uri.parse("tel:7-830940-7009"));
                         startActivity(phoneintent);
 
                     }
