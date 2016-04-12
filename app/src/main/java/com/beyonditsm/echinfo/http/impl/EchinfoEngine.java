@@ -71,5 +71,39 @@ public class EchinfoEngine extends RequestManager{
         map.put("userName", userName);
         doPost(IEchinfoUrl.UNLOGIN_URL, map, callBack);
     }
+    /**
+     * 修改密码
+     *
+     * @param password
+     * @param newPassword
+     * @param callBack
+     */
+    public void updatePwd(String password, String newPassword, CallBack callBack) {
+        Map<String,String> map=new HashMap<>();
+        map.put("password", password);
+        map.put("newPassword", newPassword);
+        doPost(IEchinfoUrl.MODIFYUSERPASSWORD_URL, map, callBack);
+    }
+
+
+
+
+
+
+    /**
+     * 忘记密码
+     *
+     * @param phoneNumber
+     * @param captcha
+     * @param newPassword
+     * @param callBack
+     */
+    public void forgetPwd(String phoneNumber, String captcha, String newPassword, CallBack callBack) {
+        Map<String,String> map=new HashMap<>();
+        map.put("phoneNumber",phoneNumber);
+        map.put("captcha",captcha);
+        map.put("newPassword", newPassword);
+        doPost(IEchinfoUrl.FORGETPASSWORD_URL,map, callBack);
+    }
 
 }

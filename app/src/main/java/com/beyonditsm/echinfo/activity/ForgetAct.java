@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.http.CallBack;
+import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
@@ -36,6 +38,7 @@ public class ForgetAct extends BaseActivity {
     private int i = 60;
     private Timer timer;
     private MyTimerTask myTask;
+    ;
 
     private void assignViews() {
         llForg = (LinearLayout) findViewById(R.id.llForg);
@@ -63,8 +66,17 @@ public class ForgetAct extends BaseActivity {
     @OnClick({R.id.tvCode, R.id.tvFPwd})
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tvFPwd://重置密码
+                if (isValidate()) {
+                    toFindPwd(phone, code, pwd);
+
+                }
+                break;
             case R.id.tvCode://获取验证码
                 phone = etPhone.getText().toString().trim();
+                code=etCode.getText().toString().trim();
+                pwd=etPwd.getText().toString().trim();
+
                 if (TextUtils.isEmpty(phone)) {
                     MyToastUtils.showShortToast(getApplicationContext(), "请输入手机号");
                     return;
@@ -73,18 +85,7 @@ public class ForgetAct extends BaseActivity {
                     MyToastUtils.showShortToast(getApplicationContext(), "请输入正确的手机号码");
                     return;
                 }
-                i = 60;
-                tvCode.setEnabled(false);
-                timer = new Timer();
-                myTask = new MyTimerTask();
-                timer.schedule(myTask, 0, 1000);
-                break;
-            case R.id.tvFPwd://重置密码
-                if (isValidate()) {
-                    llForg.setVisibility(View.GONE);
-                    llSucess.setVisibility(View.VISIBLE);
-                }
-                break;
+                sendSms(phone, "false");
         }
     }
 
@@ -121,6 +122,55 @@ public class ForgetAct extends BaseActivity {
             return false;
         }
         return true;
+    }
+
+    /**
+     * 发送验证码
+     * @param phoneNum
+     * @param isRegister
+     */
+    private void sendSms(String phoneNum,String isRegister) {
+        RequestManager.getCommManager().toSendSms(phoneNum, isRegister, new CallBack() {
+            @Override
+            public void onSucess(String result) {
+                tvCode.setEnabled(false);
+                i = 60;
+                timer = new Timer();
+                myTask = new MyTimerTask();
+                timer.schedule(myTask, 0, 1000);
+                MyToastUtils.showShortToast(getApplicationContext(),"获取验证码成功");
+
+            }
+
+            @Override
+            public void onError(String error) {
+                MyToastUtils.showShortToast(getApplicationContext(), error);
+
+            }
+        }) ;
+    }
+
+
+    /**
+     * 找回密码
+     * @param phoneNumber
+     * @param captcha
+     * @param newPassword
+     */
+    private void toFindPwd(String phoneNumber, String captcha, String newPassword){
+        RequestManager.getCommManager().forgetPwd(phoneNumber, captcha, newPassword, new CallBack() {
+            @Override
+            public void onSucess(String result) {
+                llForg.setVisibility(View.GONE);
+                llSucess.setVisibility(View.VISIBLE);
+                MyToastUtils.showShortToast(getApplicationContext(),"重置成功");
+            }
+
+            @Override
+            public void onError(String error) {
+                MyToastUtils.showShortToast(getApplicationContext(),error);
+            }
+        });
     }
 
     /**

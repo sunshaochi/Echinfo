@@ -15,6 +15,14 @@ public interface IEchinfoUrl {
     String LOGIN_URL=BASE_URL+"manager/unLogin/login.do";
     /*登出*/
     String UNLOGIN_URL=BASE_URL+"manager/unLogin/logout.do";
+    /*修改密码接口*/
+    String MODIFYUSERPASSWORD_URL=BASE_URL+"manager/login/modifyUserPassword.do";
+    /*忘记密码接口*/
+    String FORGETPASSWORD_URL=BASE_URL+"manager/unLogin/forgetPassword.do";
+    /*修改用户信息接口*/
+    String MODIFYUSERINFO_URL=BASE_URL+"manager/login/modifyUserInfo.do";
+
+
 
 
 }
