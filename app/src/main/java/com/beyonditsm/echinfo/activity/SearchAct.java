@@ -141,6 +141,22 @@ public class SearchAct extends BaseActivity {
         vpS.setAdapter(new SVpsAdapter(getSupportFragmentManager(), frgList));
         vpS.setCurrentItem(0);
 
+        vpS.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                setSelection(position+3);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
     }
 
     /**
@@ -165,9 +181,11 @@ public class SearchAct extends BaseActivity {
                 break;
             case R.id.rlSearchH://搜索历史
                 setSelection(3);
+                vpS.setCurrentItem(0);
                 break;
             case R.id.rlMyFollow://我的关注
                 setSelection(4);
+                vpS.setCurrentItem(1);
                 break;
             case R.id.rlRegion://搜索范围
                 lvCountry.setVisibility(View.VISIBLE);
