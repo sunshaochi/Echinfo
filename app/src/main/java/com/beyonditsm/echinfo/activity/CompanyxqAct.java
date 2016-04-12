@@ -92,12 +92,16 @@ public class CompanyxqAct extends BaseActivity {
     }
 
 
-    @OnClick({R.id.iv_cd})
-    public void Onclick(View v) {
+    @OnClick({R.id.iv_cd,R.id.rlMap})
+    public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_cd:
                 View view = findViewById(R.id.iv_cd);
                 showPopupWindow(view);
+                break;
+            case R.id.rlMap:
+                openActivity(MapAct.class);
+                break;
         }
 
 

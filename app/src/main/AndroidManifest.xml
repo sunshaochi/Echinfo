@@ -8,11 +8,22 @@
     <!-- QQ、QQ空间所需权限 -->
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <!--百度地图-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name=".MyApplication">
 
         <activity
             android:name=".activity.SplashAct"
@@ -124,6 +135,9 @@
         <!-- 热门企业界面-->
         <activity android:name=".activity.ReqyAct"
             android:screenOrientation="portrait"></activity>
+        <!-- 地图-->
+        <activity android:name=".activity.MapAct"
+            android:screenOrientation="portrait"></activity>
 
         <!-- ###################注册SDK使用的Activity###################### -->
         <!--分享编辑页-->
@@ -161,6 +175,10 @@
             android:name="UMENG_APPKEY"
             android:value="5705d89ce0f55aed4f000ee7" >
         </meta-data>
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="qPpZxkTPr44Z5FEcfZ7IRN4UQiu7qPo8" />
     </application>
 
 

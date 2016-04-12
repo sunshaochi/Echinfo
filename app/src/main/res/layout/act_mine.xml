@@ -5,6 +5,21 @@
     android:layout_height="match_parent"
     android:background="@color/bg_color"
     >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none"
+        android:layout_marginBottom="10dp"
+        android:background="@color/bg_color"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_height">
@@ -188,4 +203,19 @@
             style="@style/view_line"
             ></View>
     </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tvExit"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/main_color"
+        android:text="退出账号"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:textColor="#ffffff"
+        />
+
 </LinearLayout>

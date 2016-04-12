@@ -2,6 +2,7 @@ package com.beyonditsm.echinfo.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -14,8 +15,11 @@ import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.adapter.CountryAdapter;
+import com.beyonditsm.echinfo.adapter.SVpsAdapter;
 import com.beyonditsm.echinfo.adapter.SearchVpAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.fragment.MyFollowFrg;
+import com.beyonditsm.echinfo.fragment.SearchHisFrg;
 import com.beyonditsm.echinfo.view.ClearEditText;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -42,7 +46,8 @@ public class SearchAct extends BaseActivity {
     private LinearLayout llS;//搜索出结果
     private CountryAdapter countryAdapter;
 
-
+    @ViewInject(R.id.vpS)
+    private ViewPager vpS;//搜索记录，我的关注
 
     @ViewInject(R.id.tv1)
     private TextView tv1;
@@ -57,8 +62,19 @@ public class SearchAct extends BaseActivity {
     @ViewInject(R.id.view3)
     private View view3;
 
+    @ViewInject(R.id.tv4)
+    private TextView tv4;
+    @ViewInject(R.id.view4)
+    private View view4;
+    @ViewInject(R.id.tv5)
+    private TextView tv5;
+    @ViewInject(R.id.view5)
+    private View view5;
+
 
     private int SEARCH_TYPE;//0查企业 1、查股东 2、查失信
+
+    private List<Fragment>  frgList=new ArrayList<>();
 
     @Override
     public void setLayout() {
@@ -119,6 +135,12 @@ public class SearchAct extends BaseActivity {
                 tvCountry.setText(countryAdapter.getItem(position).toString());
             }
         });
+
+        frgList.add(new SearchHisFrg());
+        frgList.add(new MyFollowFrg());
+        vpS.setAdapter(new SVpsAdapter(getSupportFragmentManager(), frgList));
+        vpS.setCurrentItem(0);
+
     }
 
     /**
@@ -126,7 +148,7 @@ public class SearchAct extends BaseActivity {
      *
      * @param v
      */
-    @OnClick({R.id.rlEnter, R.id.rlLegal, R.id.rlBadCre, R.id.rlRegion})
+    @OnClick({R.id.rlEnter, R.id.rlLegal, R.id.rlBadCre, R.id.rlRegion,R.id.rlSearchH,R.id.rlMyFollow})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rlEnter:
@@ -140,6 +162,12 @@ public class SearchAct extends BaseActivity {
             case R.id.rlBadCre:
                 setSelection(2);
                 vp.setCurrentItem(2);
+                break;
+            case R.id.rlSearchH://搜索历史
+                setSelection(3);
+                break;
+            case R.id.rlMyFollow://我的关注
+                setSelection(4);
                 break;
             case R.id.rlRegion://搜索范围
                 lvCountry.setVisibility(View.VISIBLE);
@@ -172,6 +200,18 @@ public class SearchAct extends BaseActivity {
                 view2.setVisibility(View.GONE);
                 tv3.setTextColor(Color.parseColor("#00bbfb"));
                 view3.setVisibility(View.VISIBLE);
+                break;
+            case 3:
+                tv4.setTextColor(Color.parseColor("#00bbfb"));
+                view4.setVisibility(View.VISIBLE);
+                tv5.setTextColor(Color.parseColor("#3c3c3c"));
+                view5.setVisibility(View.GONE);
+                break;
+            case 4:
+                tv4.setTextColor(Color.parseColor("#3c3c3c"));
+                view4.setVisibility(View.GONE);
+                tv5.setTextColor(Color.parseColor("#00bbfb"));
+                view5.setVisibility(View.VISIBLE);
                 break;
         }
     }

@@ -42,7 +42,7 @@ public class MainAct extends BaseActivity {
     }
 
     @OnClick({R.id.rl_gz, R.id.rl_qy, R.id.rl_sx, R.id.ivMine, R.id.searchView,
-            R.id.llEnter, R.id.llLegal, R.id.llBadCre})
+            R.id.llEnter, R.id.llLegal, R.id.llBadCre,R.id.ivMsg})
     public void onClick(View v) {
         Bundle bundle=null;
         switch (v.getId()) {
@@ -77,7 +77,9 @@ public class MainAct extends BaseActivity {
             case R.id.searchView://搜索
                 openActivity(SearchAct.class);
                 break;
-
+            case R.id.ivMsg:
+                openActivity(MsgAct.class);
+                break;
         }
 
     }
@@ -105,7 +107,7 @@ public class MainAct extends BaseActivity {
             }
         };
         Timer timer = new Timer();
-        timer.schedule(task, 0, 4000);
+        timer.schedule(task, 0, 5000);
     }
 
     private void moveNext() {
@@ -164,7 +166,7 @@ public class MainAct extends BaseActivity {
             }
         };
         Timer timer = new Timer();
-        timer.schedule(task, 0, 4000);
+        timer.schedule(task, 0, 5000);
     }
 
 
@@ -219,7 +221,7 @@ public class MainAct extends BaseActivity {
             }
         };
         Timer timer = new Timer();
-        timer.schedule(task, 0, 4000);
+        timer.schedule(task, 0, 5000);
     }
 
 
