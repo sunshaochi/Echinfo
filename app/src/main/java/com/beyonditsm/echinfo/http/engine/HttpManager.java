@@ -1,7 +1,9 @@
 package com.beyonditsm.echinfo.http.engine;
 
 import com.beyonditsm.echinfo.ConstantValue;
+import com.beyonditsm.echinfo.MyApplication;
 import com.beyonditsm.echinfo.util.MyLogUtils;
+import com.beyonditsm.echinfo.util.SpUtils;
 import com.lidroid.xutils.http.client.multipart.MultipartEntity;
 import com.lidroid.xutils.http.client.multipart.content.FileBody;
 import com.lidroid.xutils.http.client.multipart.content.StringBody;
@@ -29,8 +31,7 @@ public class HttpManager {
 
     static {
         headers = new Header[1];
-        headers[0] = new BasicHeader("terminal", "0");
-
+        headers[0] = new BasicHeader("cookie", SpUtils.getCookie(MyApplication.getInstance()));
     }
 
     public HttpManager() {
