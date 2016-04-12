@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.http.CallBack;
+import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -80,6 +82,7 @@ public class LoginAct extends BaseActivity {
                 break;
             case R.id.tvLogin://登陆
                 if (isValidate()) {
+                    toLogin(phone,pwd,"","");
                     openActivity(MineAct.class);
                 }
                 break;
@@ -235,6 +238,27 @@ public class LoginAct extends BaseActivity {
         if (ssoHandler != null) {
             ssoHandler.authorizeCallBack(requestCode, resultCode, data);
         }
+    }
+
+    /**
+     * 登陆
+     *
+     * @param username 用户名
+     * @param password 密码
+     */
+    private void toLogin(final String username, final String password,String yzm,String key) {
+        RequestManager.getCommManager().toLogin(username, password, yzm, key, new CallBack() {
+
+            @Override
+            public void onSucess(String result) {
+
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
     }
 
 }

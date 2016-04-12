@@ -77,11 +77,12 @@ public class RegAct extends BaseActivity {
                 sendSms(phone, "true");
 
                 break;
-            case R.id.tvFPwd://重置密码
+            case R.id.tvFPwd://注册完成
                 if (isValidate()) {
-                    llForg.setVisibility(View.GONE);
-                    llSucess.setVisibility(View.VISIBLE);
-                    setTopTitle("注册完成");
+                    toRegister(phone,code,pwd);
+//                    llForg.setVisibility(View.GONE);
+//                    llSucess.setVisibility(View.VISIBLE);
+//                    setTopTitle("注册完成");
                 }
                 break;
             case R.id.tvService://服务协议
@@ -177,6 +178,28 @@ public class RegAct extends BaseActivity {
             @Override
             public void onError(String error) {
                 MyToastUtils.showShortToast(RegAct.this,error);
+            }
+        });
+    }
+    /**
+     * 注册
+     * @param phonenumber 手机号
+     * @param captcha 短信
+     * @param password 密码
+     */
+    private void toRegister(String phonenumber,String captcha,String password){
+        RequestManager.getCommManager().toRegister( phonenumber, captcha, password, new CallBack() {
+
+            @Override
+            public void onSucess(String result) {
+//                ResultData<UserDataEntity> rd = (ResultData<UserDataEntity>) GsonUtils.json(result, UserDataEntity.class);
+//                UserDataEntity userEntitty = rd.getData();
+//                UserEntity user = userEntitty.getUser();
+            }
+
+            @Override
+            public void onError(String error) {
+
             }
         });
     }
