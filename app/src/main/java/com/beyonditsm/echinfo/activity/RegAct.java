@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.http.CallBack;
+import com.beyonditsm.echinfo.http.engine.RequestManager;
+import com.beyonditsm.echinfo.http.impl.EchinfoEngine;
 import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
@@ -71,11 +74,8 @@ public class RegAct extends BaseActivity {
                     MyToastUtils.showShortToast(getApplicationContext(), "请输入正确的手机号码");
                     return;
                 }
-                i = 60;
-                tvCode.setEnabled(false);
-                timer = new Timer();
-                myTask = new MyTimerTask();
-                timer.schedule(myTask, 0, 1000);
+                sendSms(phone, "true");
+
                 break;
             case R.id.tvFPwd://重置密码
                 if (isValidate()) {
@@ -157,4 +157,27 @@ public class RegAct extends BaseActivity {
         }
 
     };
+
+    /**
+     * 发送验证码
+     * @param phoneNum
+     * @param isRegister
+     */
+    private void sendSms(String phoneNum,String isRegister) {
+        RequestManager.getCommManager().toSendSms(phoneNum, isRegister, new CallBack() {
+            @Override
+            public void onSucess(String result) {
+                i = 60;
+                tvCode.setEnabled(false);
+                timer = new Timer();
+                myTask = new MyTimerTask();
+                timer.schedule(myTask, 0, 1000);
+            }
+
+            @Override
+            public void onError(String error) {
+                MyToastUtils.showShortToast(RegAct.this,error);
+            }
+        });
+    }
 }
