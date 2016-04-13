@@ -31,4 +31,6 @@ public interface IEchinfoUrl {
     String GETTYPEBYKEY_URL=BASE_URL+"manager/unLogin/findTypesByKey.do";
 
 
+
+
 }

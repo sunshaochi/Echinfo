@@ -40,8 +40,10 @@ public class UpdatePwdAct extends BaseActivity {
         setRight("保存", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pwd= etPwd.getText().toString().trim();
+                nPwd=etNewP.getText().toString().trim();
                 if (isValidate()) {
-                    updatePwd(pwd, nPwd);
+                    updatePwd(pwd,nPwd);
                 }
             }
         });
@@ -85,7 +87,6 @@ public class UpdatePwdAct extends BaseActivity {
             public void onSucess(String result) {
                 MyToastUtils.showShortToast(getApplicationContext(), "修改密码成功");
                 finish();
-
             }
 
             @Override
