@@ -1,19 +1,47 @@
 package com.beyonditsm.echinfo.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.db.UserDao;
+import com.beyonditsm.echinfo.entity.UserEntity;
+import com.beyonditsm.echinfo.http.CallBack;
+import com.beyonditsm.echinfo.http.IEchinfoUrl;
+import com.beyonditsm.echinfo.http.engine.RequestManager;
+import com.beyonditsm.echinfo.util.MyLogUtils;
+import com.beyonditsm.echinfo.view.CircleImageView;
 import com.beyonditsm.echinfo.view.MyAlertDialog;
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.tandong.sa.zUImageLoader.core.DisplayImageOptions;
+import com.tandong.sa.zUImageLoader.core.ImageLoader;
 
 /**
  * 我的
  * Created by wangbin on 16/4/5.
  */
 public class MineAct extends BaseActivity {
+    @ViewInject(R.id.civHead)
+    private CircleImageView civHeadIcon;
+    @ViewInject(R.id.name)
+    private TextView tvUserName;
+    private DisplayImageOptions civOptions = new DisplayImageOptions.Builder()
+            .showStubImage(R.mipmap.mine_head) // 设置图片下载期间显示的图片
+            .showImageForEmptyUri(R.mipmap.mine_head) // 设置图片Uri为空或是错误的时候显示的图片
+            .showImageOnFail(R.mipmap.mine_head) // 设置图片加载或解码过程中发生错误显示的图片
+            .cacheInMemory(true) // 设置下载的图片是否缓存在内存中
+            .cacheOnDisc(true) // 设置下载的图片是否缓存在SD卡中
+            .build(); // 创建配置过得DisplayImageOption对象
 
+    private MyReceiver myReceiver;
     @Override
     public void setLayout() {
         setContentView(R.layout.act_mine);
@@ -22,6 +50,15 @@ public class MineAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("我的");
+        UserEntity userEntity = UserDao.getUser();
+        if (userEntity != null) {
+            if (!TextUtils.isEmpty(userEntity.getUsername())) {
+                tvUserName.setText(userEntity.getUsername());
+            }
+            if (!TextUtils.isEmpty(userEntity.getIcon())) {
+                ImageLoader.getInstance().displayImage(IEchinfoUrl.BASE_URL + userEntity.getIcon(), civHeadIcon, civOptions);
+            }
+        }
     }
 
     @OnClick({R.id.ivSet, R.id.rlHead, R.id.cvFollow, R.id.cvMsg, R.id.cvFeedBack, R.id.cvPro, R.id.tvExit})
@@ -50,10 +87,62 @@ public class MineAct extends BaseActivity {
                         .setPositiveButton("退出", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                finish();
+                                loginOut();
                             }
                         }, true).setNegativeButton("取消",null).show();
                 break;
+        }
+    }
+
+    /**
+     * 登出
+     */
+    private void loginOut(){
+        RequestManager.getCommManager().unLogin("", new CallBack() {
+            @Override
+            public void onSucess(String result) {
+                UserDao.deleteUser();
+                finish();
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+    }
+
+    public static final String USER_INFO = "com.update.user";
+    public class MyReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            UserEntity userEntity = UserDao.getUser();
+            if (userEntity != null) {
+                if (!TextUtils.isEmpty(userEntity.getUsername())) {
+                    tvUserName.setText(userEntity.getUsername());
+                }
+                if (!TextUtils.isEmpty(userEntity.getIcon())) {
+                    ImageLoader.getInstance().displayImage(IEchinfoUrl.BASE_URL + userEntity.getIcon(), civHeadIcon, civOptions);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (myReceiver==null) {
+            myReceiver = new MyReceiver();
+        }
+        registerReceiver(myReceiver, new IntentFilter(USER_INFO));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (myReceiver!=null){
+            unregisterReceiver(myReceiver);
         }
     }
 }

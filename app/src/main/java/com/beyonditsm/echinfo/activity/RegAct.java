@@ -12,9 +12,14 @@ import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.db.UserDao;
+import com.beyonditsm.echinfo.entity.ResultData;
+import com.beyonditsm.echinfo.entity.UserDataEntity;
+import com.beyonditsm.echinfo.entity.UserEntity;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.http.impl.EchinfoEngine;
+import com.beyonditsm.echinfo.util.GsonUtils;
 import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
@@ -173,6 +178,7 @@ public class RegAct extends BaseActivity {
                 timer = new Timer();
                 myTask = new MyTimerTask();
                 timer.schedule(myTask, 0, 1000);
+                MyToastUtils.showShortToast(getApplicationContext(), getResources().getString(R.string.sms_sucess));
             }
 
             @Override
@@ -192,14 +198,18 @@ public class RegAct extends BaseActivity {
 
             @Override
             public void onSucess(String result) {
-//                ResultData<UserDataEntity> rd = (ResultData<UserDataEntity>) GsonUtils.json(result, UserDataEntity.class);
-//                UserDataEntity userEntitty = rd.getData();
-//                UserEntity user = userEntitty.getUser();
+                ResultData<UserDataEntity> rd = (ResultData<UserDataEntity>) GsonUtils.json(result, UserDataEntity.class);
+                UserDataEntity userEntitty = rd.getData();
+                UserEntity user = userEntitty.getUser();
+                UserDao.saveUser(user);
+                openActivity(MainAct.class);
+                MyToastUtils.showShortToast(getApplicationContext(), rd.getMessage());
+                finish();
             }
 
             @Override
             public void onError(String error) {
-
+                MyToastUtils.showShortToast(getApplicationContext(), error);
             }
         });
     }

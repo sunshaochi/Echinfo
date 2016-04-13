@@ -13,9 +13,15 @@ import android.widget.Toast;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.db.UserDao;
+import com.beyonditsm.echinfo.entity.ResultData;
+import com.beyonditsm.echinfo.entity.UserDataEntity;
+import com.beyonditsm.echinfo.entity.UserEntity;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
+import com.beyonditsm.echinfo.util.GsonUtils;
 import com.beyonditsm.echinfo.util.MyToastUtils;
+import com.beyonditsm.echinfo.util.SpUtils;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.bean.SocializeEntity;
@@ -251,12 +257,18 @@ public class LoginAct extends BaseActivity {
 
             @Override
             public void onSucess(String result) {
-
+                ResultData<UserDataEntity> rd = (ResultData<UserDataEntity>) GsonUtils.json(result, UserDataEntity.class);
+                UserDataEntity userEntitty = rd.getData();
+                UserEntity user = userEntitty.getUser();
+                UserDao.saveUser(user);
+                openActivity(MainAct.class);
+                finish();
+                MyToastUtils.showShortToast(getApplicationContext(), "登录成功");
             }
 
             @Override
             public void onError(String error) {
-
+                MyToastUtils.showShortToast(getApplicationContext(), error);
             }
         });
     }

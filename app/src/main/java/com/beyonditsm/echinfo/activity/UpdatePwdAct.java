@@ -7,6 +7,8 @@ import android.widget.EditText;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.http.CallBack;
+import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.MyToastUtils;
 
 /**
@@ -39,7 +41,7 @@ public class UpdatePwdAct extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if (isValidate()) {
-                    finish();
+                    updatePwd(pwd, nPwd);
                 }
             }
         });
@@ -70,5 +72,26 @@ public class UpdatePwdAct extends BaseActivity {
             return false;
         }
         return true;
+    }
+
+    /**
+     * 修改密码
+     * @param password
+     * @param newPassword
+     */
+    private void updatePwd(String password,String newPassword){
+        RequestManager.getCommManager().updatePwd(password, newPassword, new CallBack() {
+            @Override
+            public void onSucess(String result) {
+                MyToastUtils.showShortToast(getApplicationContext(), "修改密码成功");
+                finish();
+
+            }
+
+            @Override
+            public void onError(String error) {
+                MyToastUtils.showShortToast(getApplicationContext(), error);
+            }
+        });
     }
 }

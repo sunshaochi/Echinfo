@@ -9,6 +9,7 @@ import android.widget.ViewFlipper;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.db.UserDao;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
@@ -68,7 +69,11 @@ public class MainAct extends BaseActivity {
                 openActivity(SearchAct.class,bundle);
                 break;
             case R.id.ivMine:
-                openActivity(LoginAct.class);
+                if(UserDao.getUser()==null) {
+                    openActivity(LoginAct.class);
+                }else {
+                    openActivity(MineAct.class);
+                }
                 break;
             case R.id.rl_sx://失信榜单
                 openActivity(BadCreditAct.class);

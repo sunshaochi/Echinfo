@@ -4,4 +4,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <!--短信验证码发送成功-->
+    <string name="sms_sucess">验证码发送成功</string>
 </resources>
