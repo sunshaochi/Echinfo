@@ -2,6 +2,7 @@ package com.beyonditsm.echinfo.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.beyonditsm.echinfo.entity.UserEntity;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.GsonUtils;
+import com.beyonditsm.echinfo.util.MyLogUtils;
 import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.beyonditsm.echinfo.util.SpUtils;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -54,7 +56,7 @@ public class LoginAct extends BaseActivity {
 
     private String phone, pwd;
 
-    UMSocialService mController;
+    public static UMSocialService mController;
 
     private void assignViews() {
         rlBack = (RelativeLayout) findViewById(R.id.rlBack);
@@ -207,35 +209,32 @@ public class LoginAct extends BaseActivity {
                 // showText = "获取用户信息失败";
                 // }
                 if (info != null) {
+                    String screen_name = (String) info.get("screen_name");
+                    String profile_image_url = (String) info.get("profile_image_url");
+                    saveLoginInfo(LoginAct.this,screen_name,profile_image_url);
                     openActivity(MineAct.class);
-                    Toast.makeText(LoginAct.this, info.toString(), Toast.LENGTH_SHORT).show();
+                    finish();
+                    MyLogUtils.degug(info.toString());
+//                    Toast.makeText(LoginAct.this, info.toString(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-
-    /**
-     * 注销本次登录</br>
-     */
-    private void logout(final SHARE_MEDIA platform) {
-        mController.deleteOauth(LoginAct.this, platform, new SocializeListeners.SocializeClientListener() {
-
-            @Override
-            public void onStart() {
-
-            }
-
-            @Override
-            public void onComplete(int status, SocializeEntity entity) {
-                String showText = "解除" + platform.toString() + "平台授权成功";
-                if (status != StatusCode.ST_CODE_SUCCESSED) {
-                    showText = "解除" + platform.toString() + "平台授权失败[" + status + "]";
-                }
-                Toast.makeText(LoginAct.this, showText, Toast.LENGTH_SHORT).show();
-            }
-        });
+    private void saveLoginInfo(Context context,String screen_name,String profile_image_url){
+        //获取SharedPreferences对象
+        SharedPreferences sharedPre=context.getSharedPreferences("config", context.MODE_PRIVATE);
+        //获取Editor对象
+        SharedPreferences.Editor editor=sharedPre.edit();
+        //设置参数
+        editor.putString("screen_name", screen_name);
+        editor.putString("profile_image_url", profile_image_url);
+        //提交
+        editor.commit();
+        MyLogUtils.degug(editor.toString());
     }
+
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

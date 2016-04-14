@@ -85,6 +85,38 @@ public class UserEntity implements Parcelable {
     @Column
     private String accredit;//0只能使用我的，其他所有工具都不能用
 
+    /**
+     * qq登录
+     * is_yellow_year_vip=0,
+     * vip=0,
+     * level=0,
+     * province=,
+     * yellow_vip_level=0,
+     * is_yellow_vip=0,
+     * gender=女,
+     * openid=AF7F61CFB79518DA8B7230CDD73DD67D,
+     * screen_name=所以愛┈━═☆,
+     * msg=,
+     * profile_image_url=http://q.qlogo.cn/qqapp/1105241351/AF7F61CFB79518DA8B7230CDD73DD67D/100,
+     * city=
+     * @return
+     */
+    /**
+     * 微博登录
+     * uid=3311587925,
+     * favourites_count=0,
+     * location=上海 长宁区,
+     * description=,
+     * verified=false,
+     * friends_count=63,
+     * gender=0,
+     * screen_name=唯美似夏花_75039,
+     * statuses_count=66,
+     * followers_count=2,
+     * profile_image_url=http://tp2.sinaimg.cn/3311587925/180/0/0,
+     * access_token=2.00TSFHcDpHY4nB2257683e6f0VT98B
+     * @return
+     */
 
 
     public String getAccredit() {

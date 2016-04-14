@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/white">
+
+    <TextView
+        android:textColor="@color/black"
+        android:id="@+id/name"
+        android:gravity="center|left"
+        android:layout_marginLeft="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:text="房地产开发经营"/>
+
+    <ProgressBar
+        android:progress="50"
+        android:layout_marginLeft="15dp"
+        android:layout_gravity="center_horizontal"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/progressBar" />
+    <TextView
+        android:id="@+id/num"
+        android:layout_marginLeft="15dp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="2,6666"/>
+</LinearLayout>

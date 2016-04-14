@@ -1,6 +1,9 @@
 package com.beyonditsm.echinfo.activity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -26,6 +29,9 @@ public class MainAct extends BaseActivity {
     @ViewInject(R.id.flFollow)
     private FrameLayout flFollow;//我的关注
     private int mCurrPos;
+    String name=null;
+    SharedPreferences sp ;
+
     @Override
     public void setLayout() {
         setContentView(R.layout.activity_main);
@@ -33,6 +39,9 @@ public class MainAct extends BaseActivity {
 
     @Override
     public void init(Bundle savedInstanceState) {
+        sp = getSharedPreferences("config", Context.MODE_PRIVATE);
+        name=sp.getString("screen_name","");
+
         titleList.add("1");
         titleList.add("2");
         titleList.add("3");
@@ -69,7 +78,7 @@ public class MainAct extends BaseActivity {
                 openActivity(SearchAct.class,bundle);
                 break;
             case R.id.ivMine:
-                if(UserDao.getUser()==null) {
+                if(UserDao.getUser()==null|| TextUtils.isEmpty(name)) {
                     openActivity(LoginAct.class);
                 }else {
                     openActivity(MineAct.class);
@@ -247,7 +256,8 @@ public class MainAct extends BaseActivity {
         noticeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                openActivity(DishonestyDetailAct.class);
+                openActivity(DishonestylistAct.class);
+//                openActivity(DishonestyDetailAct.class);
             }
         });
         if (followBad.getChildCount() > 1) {
