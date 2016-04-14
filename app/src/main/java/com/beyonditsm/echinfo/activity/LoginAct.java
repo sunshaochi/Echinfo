@@ -212,7 +212,7 @@ public class LoginAct extends BaseActivity {
                     String screen_name = (String) info.get("screen_name");
                     String profile_image_url = (String) info.get("profile_image_url");
                     saveLoginInfo(LoginAct.this,screen_name,profile_image_url);
-                    openActivity(MainAct.class);
+                    openActivity(MineAct.class);
                     finish();
                     MyLogUtils.degug(info.toString());
 //                    Toast.makeText(LoginAct.this, info.toString(), Toast.LENGTH_SHORT).show();

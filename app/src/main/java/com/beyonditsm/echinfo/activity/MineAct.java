@@ -102,21 +102,25 @@ public class MineAct extends BaseActivity {
                         .setPositiveButton("退出", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                if(!SHARE_MEDIA.SINA.isCustomPlatform()){
-                                    MyLogUtils.degug("新浪微博平台");
-                                    logout(SHARE_MEDIA.SINA);
-                                }
-                                else if(!SHARE_MEDIA.QQ.isCustomPlatform()){
-                                    MyLogUtils.degug("QQ平台");
-                                    logout(SHARE_MEDIA.QQ);
-                                }
-                                else if(!SHARE_MEDIA.WEIXIN.isCustomPlatform()){
-                                    MyLogUtils.degug("微信平台");
-                                    logout(SHARE_MEDIA.WEIXIN);
-
-                                }else {
+//                                MyLogUtils.degug(SHARE_MEDIA.SINA.isCustomPlatform()+"新浪微博");
+//                                MyLogUtils.degug(SHARE_MEDIA.QQ.isCustomPlatform()+"QQ");
+//                                MyLogUtils.degug(SHARE_MEDIA.WEIXIN.isCustomPlatform()+"微信");
+//                                if(!SHARE_MEDIA.SINA.isCustomPlatform()){
+//                                    MyLogUtils.degug("新浪微博平台");
+//                                    logout(SHARE_MEDIA.SINA);
+//                                }
+//                                else if(!SHARE_MEDIA.QQ.isCustomPlatform()){
+//                                    MyLogUtils.degug("QQ平台");
+//                                    logout(SHARE_MEDIA.QQ);
+//                                }
+//                                else if(!SHARE_MEDIA.WEIXIN.isCustomPlatform()){
+//                                    MyLogUtils.degug("微信平台");
+//                                    logout(SHARE_MEDIA.WEIXIN);
+//
+//                                }
+//                                else {
                                     loginOut();
-                                }
+//                                }
 
                             }
                         }, true).setNegativeButton("取消",null).show();
