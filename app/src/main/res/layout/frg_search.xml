@@ -5,10 +5,48 @@
     android:background="#ffffff"
     >
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView
         android:id="@+id/plv"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView>
 
+
+        <LinearLayout
+            android:id="@+id/llNoHis"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/text_first_color"
+                android:text="您还没有搜素记录"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/text_sec_color"
+                android:text="试试在上面的搜索框中输入您想要搜索"
+                android:layout_marginTop="30dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/text_sec_color"
+                android:text="的企业名字例如“阿里巴巴”"
+                />
+
+        </LinearLayout>
+
+    </FrameLayout>
 </LinearLayout>

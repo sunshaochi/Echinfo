@@ -47,10 +47,4 @@
             android:src="@mipmap/daohang_button" />
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="3dp"
-        android:src="@mipmap/location" />
 </LinearLayout>
