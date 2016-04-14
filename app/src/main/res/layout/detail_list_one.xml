@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/bg_color">
+
+    <TextView
+        android:id="@+id/title"
+        android:gravity="center|left"
+        android:layout_marginLeft="15dp"
+        android:layout_width="match_parent"
+        android:layout_weight="2"
+        android:layout_height="45dp"
+        android:text="失信行业TOP10"/>
+    <ImageView
+        android:id="@+id/image"
+        android:layout_marginRight="15dp"
+        android:src="@mipmap/arrow_right"
+        android:layout_gravity="center|right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

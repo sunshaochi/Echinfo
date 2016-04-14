@@ -5,6 +5,10 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
     <!-- QQ、QQ空间所需权限 -->
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.CALL_PHONE"/>
@@ -140,6 +144,9 @@
             android:screenOrientation="portrait"></activity>
         <!--失信榜单详情-->
         <activity android:name=".activity.DishonestyDetailAct"
+            android:screenOrientation="portrait"/>
+        <!--失信榜单列表详情-->
+        <activity android:name=".activity.DishonestylistAct"
             android:screenOrientation="portrait"/>
 
         <!-- ###################注册SDK使用的Activity###################### -->

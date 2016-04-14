@@ -52,7 +52,9 @@ public class BadCreditAct extends BaseActivity {
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                openActivity(DishonestyDetailAct.class);
+//                openActivity(DishonestyDetailAct.class);
+                openActivity(DishonestylistAct.class);
+
             }
         });
     }

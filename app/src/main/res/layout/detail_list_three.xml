@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/xh"
+            android:gravity="center|left"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:text="01"/>
+
+        <TextView
+            android:id="@+id/company"
+            android:layout_toRightOf="@+id/xh"
+            android:gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:text="黄石盛行海运有限公司"/>
+        <LinearLayout
+            android:gravity="right"
+            android:layout_marginRight="15dp"
+            android:layout_toRightOf="@+id/company"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:textSize="18sp"
+                android:id="@+id/num"
+                android:layout_marginLeft="15dp"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:textColor="@color/actionsheet_blue"
+                android:text="345"/>
+            <TextView
+                android:textColor="@color/gray"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:text="次"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+    <View
+        android:layout_marginLeft="15dp"
+        android:id="@+id/view"
+        style="@style/view_line"/>
+
+</LinearLayout>

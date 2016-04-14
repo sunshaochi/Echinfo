@@ -1,6 +1,8 @@
 package com.beyonditsm.echinfo.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,9 +14,16 @@ import android.widget.Toast;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.db.UserDao;
+import com.beyonditsm.echinfo.entity.ResultData;
+import com.beyonditsm.echinfo.entity.UserDataEntity;
+import com.beyonditsm.echinfo.entity.UserEntity;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
+import com.beyonditsm.echinfo.util.GsonUtils;
+import com.beyonditsm.echinfo.util.MyLogUtils;
 import com.beyonditsm.echinfo.util.MyToastUtils;
+import com.beyonditsm.echinfo.util.SpUtils;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.bean.SocializeEntity;
@@ -47,7 +56,7 @@ public class LoginAct extends BaseActivity {
 
     private String phone, pwd;
 
-    UMSocialService mController;
+    public static UMSocialService mController;
 
     private void assignViews() {
         rlBack = (RelativeLayout) findViewById(R.id.rlBack);
@@ -73,7 +82,7 @@ public class LoginAct extends BaseActivity {
         addPlatform();
     }
 
-    @OnClick({R.id.tvReg, R.id.tvLogin, R.id.tvFog, R.id.rlBack, R.id.llWeixin, R.id.llQq, R.id.llWeibo})
+    @OnClick({R.id.tvReg, R.id.tvLogin, R.id.tvFog, R.id.rlBack,R.id.llWeixin,R.id.llQq,R.id.llWeibo})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rlBack:
@@ -81,7 +90,8 @@ public class LoginAct extends BaseActivity {
                 break;
             case R.id.tvLogin://登陆
                 if (isValidate()) {
-                    toLogin(phone, pwd, "", "");
+                    toLogin(phone,pwd,"","");
+                    openActivity(MineAct.class);
                 }
                 break;
             case R.id.tvReg://注册
@@ -118,7 +128,7 @@ public class LoginAct extends BaseActivity {
             etPhone.requestFocus();
             return false;
         }
-        if (phone.length() != 11) {
+        if(phone.length()!=11){
             MyToastUtils.showShortToast(getApplicationContext(), "请输入正确的手机号");
             etPhone.requestFocus();
             etPhone.setSelection(etPhone.length());
@@ -135,18 +145,17 @@ public class LoginAct extends BaseActivity {
     /**
      * 添加平台
      */
-    private void addPlatform() {
+    private void addPlatform(){
         //参数1为当前Activity， 参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
         UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(LoginAct.this, "1105241351",
                 "gdYoPeGegmP0PzwC");
         qqSsoHandler.addToSocialSDK();
         // 添加微信平台
-        String appId = "wx82a8d922ed04d3fb";
-        String appSecret = "175ffde69beb52ac75ec781a1f11cc8b";
-        UMWXHandler wxHandler = new UMWXHandler(LoginAct.this, appId, appSecret);
+        String appId="wx82a8d922ed04d3fb";
+        String appSecret="175ffde69beb52ac75ec781a1f11cc8b";
+        UMWXHandler wxHandler = new UMWXHandler(LoginAct.this,appId,appSecret);
         wxHandler.addToSocialSDK();
     }
-
     /**
      * 授权。如果授权成功，则获取用户信息</br>
      */
@@ -200,35 +209,31 @@ public class LoginAct extends BaseActivity {
                 // showText = "获取用户信息失败";
                 // }
                 if (info != null) {
+                    String screen_name = (String) info.get("screen_name");
+                    String profile_image_url = (String) info.get("profile_image_url");
+                    saveLoginInfo(LoginAct.this,screen_name,profile_image_url);
                     openActivity(MineAct.class);
-                    Toast.makeText(LoginAct.this, info.toString(), Toast.LENGTH_SHORT).show();
+                    finish();
+                    MyLogUtils.degug(info.toString());
+//                    Toast.makeText(LoginAct.this, info.toString(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-
-    /**
-     * 注销本次登录</br>
-     */
-    private void logout(final SHARE_MEDIA platform) {
-        mController.deleteOauth(LoginAct.this, platform, new SocializeListeners.SocializeClientListener() {
-
-            @Override
-            public void onStart() {
-
-            }
-
-            @Override
-            public void onComplete(int status, SocializeEntity entity) {
-                String showText = "解除" + platform.toString() + "平台授权成功";
-                if (status != StatusCode.ST_CODE_SUCCESSED) {
-                    showText = "解除" + platform.toString() + "平台授权失败[" + status + "]";
-                }
-                Toast.makeText(LoginAct.this, showText, Toast.LENGTH_SHORT).show();
-            }
-        });
+    private void saveLoginInfo(Context context,String screen_name,String profile_image_url){
+        //获取SharedPreferences对象
+        SharedPreferences sharedPre=context.getSharedPreferences("config", context.MODE_PRIVATE);
+        //获取Editor对象
+        SharedPreferences.Editor editor=sharedPre.edit();
+        //设置参数
+        editor.putString("screen_name", screen_name);
+        editor.putString("profile_image_url", profile_image_url);
+        //提交
+        editor.commit();
+        MyLogUtils.degug(editor.toString());
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -246,12 +251,18 @@ public class LoginAct extends BaseActivity {
      * @param username 用户名
      * @param password 密码
      */
-    private void toLogin(final String username, final String password, String yzm, String key) {
+    private void toLogin(final String username, final String password,String yzm,String key) {
         RequestManager.getCommManager().toLogin(username, password, yzm, key, new CallBack() {
 
             @Override
             public void onSucess(String result) {
-                openActivity(MineAct.class);
+                ResultData<UserDataEntity> rd = (ResultData<UserDataEntity>) GsonUtils.json(result, UserDataEntity.class);
+                UserDataEntity userEntitty = rd.getData();
+                UserEntity user = userEntitty.getUser();
+                UserDao.saveUser(user);
+                openActivity(MainAct.class);
+                finish();
+                MyToastUtils.showShortToast(getApplicationContext(), "登录成功");
             }
 
             @Override
