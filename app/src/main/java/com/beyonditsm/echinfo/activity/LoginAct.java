@@ -1,6 +1,5 @@
 package com.beyonditsm.echinfo.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -74,7 +73,7 @@ public class LoginAct extends BaseActivity {
         addPlatform();
     }
 
-    @OnClick({R.id.tvReg, R.id.tvLogin, R.id.tvFog, R.id.rlBack,R.id.llWeixin,R.id.llQq,R.id.llWeibo})
+    @OnClick({R.id.tvReg, R.id.tvLogin, R.id.tvFog, R.id.rlBack, R.id.llWeixin, R.id.llQq, R.id.llWeibo})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rlBack:
@@ -82,8 +81,7 @@ public class LoginAct extends BaseActivity {
                 break;
             case R.id.tvLogin://登陆
                 if (isValidate()) {
-                    toLogin(phone,pwd,"","");
-                    openActivity(MineAct.class);
+                    toLogin(phone, pwd, "", "");
                 }
                 break;
             case R.id.tvReg://注册
@@ -120,7 +118,7 @@ public class LoginAct extends BaseActivity {
             etPhone.requestFocus();
             return false;
         }
-        if(phone.length()!=11){
+        if (phone.length() != 11) {
             MyToastUtils.showShortToast(getApplicationContext(), "请输入正确的手机号");
             etPhone.requestFocus();
             etPhone.setSelection(etPhone.length());
@@ -137,17 +135,18 @@ public class LoginAct extends BaseActivity {
     /**
      * 添加平台
      */
-    private void addPlatform(){
+    private void addPlatform() {
         //参数1为当前Activity， 参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
         UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(LoginAct.this, "1105241351",
                 "gdYoPeGegmP0PzwC");
         qqSsoHandler.addToSocialSDK();
         // 添加微信平台
-        String appId="wx82a8d922ed04d3fb";
-        String appSecret="175ffde69beb52ac75ec781a1f11cc8b";
-        UMWXHandler wxHandler = new UMWXHandler(LoginAct.this,appId,appSecret);
+        String appId = "wx82a8d922ed04d3fb";
+        String appSecret = "175ffde69beb52ac75ec781a1f11cc8b";
+        UMWXHandler wxHandler = new UMWXHandler(LoginAct.this, appId, appSecret);
         wxHandler.addToSocialSDK();
     }
+
     /**
      * 授权。如果授权成功，则获取用户信息</br>
      */
@@ -230,6 +229,7 @@ public class LoginAct extends BaseActivity {
             }
         });
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -246,17 +246,17 @@ public class LoginAct extends BaseActivity {
      * @param username 用户名
      * @param password 密码
      */
-    private void toLogin(final String username, final String password,String yzm,String key) {
+    private void toLogin(final String username, final String password, String yzm, String key) {
         RequestManager.getCommManager().toLogin(username, password, yzm, key, new CallBack() {
 
             @Override
             public void onSucess(String result) {
-
+                openActivity(MineAct.class);
             }
 
             @Override
             public void onError(String error) {
-
+                MyToastUtils.showShortToast(getApplicationContext(), error);
             }
         });
     }
