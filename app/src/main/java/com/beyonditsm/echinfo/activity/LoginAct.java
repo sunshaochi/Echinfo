@@ -56,7 +56,7 @@ public class LoginAct extends BaseActivity {
 
     private String phone, pwd;
 
-    public static UMSocialService mController;
+    private UMSocialService mController;
 
     private void assignViews() {
         rlBack = (RelativeLayout) findViewById(R.id.rlBack);
@@ -212,7 +212,7 @@ public class LoginAct extends BaseActivity {
                     String screen_name = (String) info.get("screen_name");
                     String profile_image_url = (String) info.get("profile_image_url");
                     saveLoginInfo(LoginAct.this,screen_name,profile_image_url);
-                    openActivity(MineAct.class);
+                    openActivity(MainAct.class);
                     finish();
                     MyLogUtils.degug(info.toString());
 //                    Toast.makeText(LoginAct.this, info.toString(), Toast.LENGTH_SHORT).show();

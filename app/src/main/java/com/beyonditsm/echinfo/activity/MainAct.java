@@ -13,6 +13,7 @@ import android.widget.ViewFlipper;
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.db.UserDao;
+import com.beyonditsm.echinfo.util.MyLogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
@@ -40,7 +41,7 @@ public class MainAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         sp = getSharedPreferences("config", Context.MODE_PRIVATE);
-        name=sp.getString("screen_name","");
+        name=sp.getString("screen_name", "");
 
         titleList.add("1");
         titleList.add("2");
@@ -78,10 +79,11 @@ public class MainAct extends BaseActivity {
                 openActivity(SearchAct.class,bundle);
                 break;
             case R.id.ivMine:
-                if(UserDao.getUser()==null|| TextUtils.isEmpty(name)) {
-                    openActivity(LoginAct.class);
-                }else {
+                if(UserDao.getUser()!=null||!TextUtils.isEmpty(name)) {
+                    MyLogUtils.degug(name);
                     openActivity(MineAct.class);
+                }else {
+                    openActivity(LoginAct.class);
                 }
                 break;
             case R.id.rl_sx://失信榜单
@@ -267,4 +269,9 @@ public class MainAct extends BaseActivity {
         mCurrPos = next;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        name=sp.getString("screen_name", "");
+    }
 }

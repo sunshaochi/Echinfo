@@ -1,6 +1,8 @@
 package com.beyonditsm.echinfo.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -85,6 +87,7 @@ public class UpdateAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("修改资料");
+        getUserInfo(UpdateAct.this);
         userentity = UserDao.getUser();
         if (userentity != null) {
             setUserInfo(userentity);
@@ -278,5 +281,18 @@ public class UpdateAct extends BaseActivity {
 
             }
         });
+    }
+
+    //获取保存在本地的用户信息
+    private void getUserInfo(Context context){
+        SharedPreferences sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
+        String name=sp.getString("screen_name","");
+        String url=sp.getString("profile_image_url","");
+        if (!TextUtils.isEmpty(name)) {
+            etname.setText(name);
+        }
+        if (!TextUtils.isEmpty(url)) {
+            ImageLoader.getInstance().displayImage(url, civHead, options);
+        }
     }
 }

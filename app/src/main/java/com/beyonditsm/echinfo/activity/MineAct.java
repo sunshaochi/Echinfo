@@ -30,6 +30,8 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.bean.SocializeConfig;
 import com.umeng.socialize.bean.SocializeEntity;
 import com.umeng.socialize.bean.StatusCode;
+import com.umeng.socialize.controller.UMServiceFactory;
+import com.umeng.socialize.controller.UMSocialService;
 import com.umeng.socialize.controller.listener.SocializeListeners;
 
 import java.util.Map;
@@ -52,6 +54,7 @@ public class MineAct extends BaseActivity {
             .build(); // 创建配置过得DisplayImageOption对象
 
     private MyReceiver myReceiver;
+    private UMSocialService mController;
     @Override
     public void setLayout() {
         setContentView(R.layout.act_mine);
@@ -60,6 +63,7 @@ public class MineAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("我的");
+        mController = UMServiceFactory.getUMSocialService("com.umeng.login");
         getUserInfo(MineAct.this);
         UserEntity userEntity = UserDao.getUser();
         if (userEntity != null) {
@@ -98,9 +102,22 @@ public class MineAct extends BaseActivity {
                         .setPositiveButton("退出", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                if(!SHARE_MEDIA.SINA.isCustomPlatform()){
+                                    MyLogUtils.degug("新浪微博平台");
+                                    logout(SHARE_MEDIA.SINA);
+                                }
+                                else if(!SHARE_MEDIA.QQ.isCustomPlatform()){
+                                    MyLogUtils.degug("QQ平台");
+                                    logout(SHARE_MEDIA.QQ);
+                                }
+                                else if(!SHARE_MEDIA.WEIXIN.isCustomPlatform()){
+                                    MyLogUtils.degug("微信平台");
+                                    logout(SHARE_MEDIA.WEIXIN);
 
-//                                logout(SHARE_MEDIA.SINA);
-                                loginOut();
+                                }else {
+                                    loginOut();
+                                }
+
                             }
                         }, true).setNegativeButton("取消",null).show();
                 break;
@@ -111,7 +128,7 @@ public class MineAct extends BaseActivity {
      * 注销本次登录</br>
      */
     private void logout(final SHARE_MEDIA platform) {
-        LoginAct.mController.deleteOauth(MineAct.this, platform, new SocializeListeners.SocializeClientListener() {
+        mController.deleteOauth(MineAct.this, platform, new SocializeListeners.SocializeClientListener() {
 
             @Override
             public void onStart() {
@@ -123,8 +140,9 @@ public class MineAct extends BaseActivity {
                 String showText = "解除" + platform.toString() + "平台授权成功";
                 if (status != StatusCode.ST_CODE_SUCCESSED) {
                     showText = "解除" + platform.toString() + "平台授权失败[" + status + "]";
+                }else {
+                    clearUserInfo(MineAct.this);
                 }
-
                 finish();
                 Toast.makeText(MineAct.this, showText, Toast.LENGTH_SHORT).show();
             }
@@ -139,7 +157,6 @@ public class MineAct extends BaseActivity {
             @Override
             public void onSucess(String result) {
                 UserDao.deleteUser();
-                clearUserInfo(MineAct.this);
                 finish();
             }
 
