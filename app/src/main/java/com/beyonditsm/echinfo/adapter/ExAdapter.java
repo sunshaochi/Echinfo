@@ -79,9 +79,9 @@ public class ExAdapter extends BaseExpandableListAdapter {
 //
         ImageView image=(ImageView) view.findViewById(R.id.image);
         //判断实例可以展开，如果可以则改变右侧的图标
-//        if(isExpanded)
-//            image.setBackgroundResource(R.drawable.umeng_socialize_at_normal);
-//        else image.setBackgroundResource(R.drawable.umeng_socialize_at_selected);
+        if(isExpanded)
+            image.setBackgroundResource(R.mipmap.topup);
+        else image.setBackgroundResource(R.mipmap.down);
 
         return view;
     }
@@ -97,6 +97,23 @@ public class ExAdapter extends BaseExpandableListAdapter {
                 TextView title = (TextView) view.findViewById(R.id.name);
 //                title.setText(childData.get(groupPosition).get(childPosition));
                 ProgressBar progressBar= (ProgressBar) view.findViewById(R.id.progressBar);
+                switch (childPosition){
+                    case 0:
+                        progressBar.setProgress(80);
+                        break;
+                    case 1:
+                        progressBar.setProgress(60);
+                        break;
+                    case 2:
+                        progressBar.setProgress(50);
+                        break;
+                    case 3:
+                        progressBar.setProgress(60);
+                        break;
+                    case 4:
+                        progressBar.setProgress(80);
+                        break;
+                }
                 TextView title2 = (TextView) view.findViewById(R.id.num);
 //                title2.setText(childData.get(groupPosition).get(childPosition));
                 break;

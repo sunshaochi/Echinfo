@@ -56,7 +56,7 @@ public class LoginAct extends BaseActivity {
 
     private String phone, pwd;
 
-    public static UMSocialService mController;
+    private UMSocialService mController;
 
     private void assignViews() {
         rlBack = (RelativeLayout) findViewById(R.id.rlBack);
