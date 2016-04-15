@@ -13,17 +13,26 @@
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="48dp">
 
         <include layout="@layout/title_act_layout"></include>
-            <ImageView
-                android:id="@+id/iv_cd"
-                android:layout_marginRight="10dp"
-                android:layout_centerVertical="true"
+            <RelativeLayout
+                android:id="@+id/rl_cd"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:src="@mipmap/more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                >
+
+                <ImageView
+                    android:id="@+id/iv_cd"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@mipmap/more"
+                    android:layout_width="25dp"
+                    android:layout_height="5dp" />
+            </RelativeLayout>
+
         </RelativeLayout>
 
         <LinearLayout
@@ -71,7 +80,7 @@
             <LinearLayout style="@style/ll_qyxq">
 
                 <TextView
-                    android:id="@+id/guanzhu"
+                    android:id="@+id/tvAttention"
                     style="@style/tv_third"
                     android:background="@drawable/yellow_btn"
                     android:paddingBottom="3dp"
