@@ -116,15 +116,18 @@ public class CompanyxqAct extends BaseActivity {
     }
 
 
-    @OnClick({R.id.iv_cd,R.id.rlMap})
+    @OnClick({R.id.rl_cd,R.id.rlMap,R.id.tvAttention})
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.iv_cd:
+            case R.id.rl_cd:
                 View view = findViewById(R.id.iv_cd);
                 showPopupWindow(view);
                 break;
             case R.id.rlMap:
                 openActivity(MapAct.class);
+                break;
+            case R.id.tvAttention://关注
+
                 break;
         }
 
