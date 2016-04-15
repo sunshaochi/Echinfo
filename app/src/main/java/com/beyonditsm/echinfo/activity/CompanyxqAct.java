@@ -103,8 +103,8 @@ public class CompanyxqAct extends BaseActivity {
                     case 10://主要成员
                         openActivity(PeopleAct.class);
                         break;
-                    case 11:
-
+                    case 11://变更记录
+                        openActivity(ChangecodeAct.class);
                         break;
 
 

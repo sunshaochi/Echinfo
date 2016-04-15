@@ -139,6 +139,9 @@
         <!-- 热门企业界面-->
         <activity android:name=".activity.ReqyAct"
             android:screenOrientation="portrait"></activity>
+        <!-- 变更记录界面-->
+        <activity android:name=".activity.ChangecodeAct"
+            android:screenOrientation="portrait"></activity>
         <!-- 地图-->
         <activity android:name=".activity.MapAct"
             android:screenOrientation="portrait"></activity>
