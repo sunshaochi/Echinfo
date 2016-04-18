@@ -40,6 +40,13 @@ public interface IEchinfoUrl {
     String CORRECTIONMANAGE_URL=BASE_URL+"companyInfo/addCorrectionManage.do";
 
 
+    /*诉讼列表*/
+    String LAWSUITMSG_URL=BASE_URL+"companyInfo/findLawsuitMsg.do";
+    /*诉讼详情*/
+    String LAWSUITDETAIL_URL=BASE_URL+"companyInfo/findLawsuitMsgById.do";
+    /*股东信息*/
+    String STOCKMSG_URL=BASE_URL+"companyInfo/findStockMsg.do";
+
 
 
 

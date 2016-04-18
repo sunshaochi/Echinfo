@@ -11,6 +11,7 @@
         android:text="张婷婷"
         style="@style/tv_second"/>
     <TextView
+        android:id="@+id/identity"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:textColor="@color/text_sec_color"
@@ -30,9 +31,10 @@
             <TextView
                 android:textColor="@color/text_sec_color"
                 android:textSize="12sp"
-                android:text="张婷婷"
+                android:text="出资时间"
                 style="@style/tv_second"/>
             <TextView
+                android:id="@+id/outtime"
                 android:layout_marginTop="10dp"
                 android:textColor="#3c3c3c"
                 android:textSize="12sp"
@@ -50,9 +52,10 @@
                 android:layout_marginLeft="15dp"
                 android:textColor="@color/text_sec_color"
                 android:textSize="12sp"
-                android:text="张婷婷"
+                android:text="认缴出资额"
                 style="@style/tv_second"/>
             <TextView
+                android:id="@+id/outmoney"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="15dp"
                 android:textColor="#3c3c3c"
@@ -78,9 +81,10 @@
             <TextView
                 android:textColor="@color/text_sec_color"
                 android:textSize="12sp"
-                android:text="张婷婷"
+                android:text="实缴时间"
                 style="@style/tv_second"/>
             <TextView
+                android:id="@+id/realtime"
                 android:layout_marginTop="10dp"
                 android:textColor="#3c3c3c"
                 android:textSize="12sp"
@@ -98,9 +102,10 @@
                 android:layout_marginLeft="15dp"
                 android:textColor="@color/text_sec_color"
                 android:textSize="12sp"
-                android:text="张婷婷"
+                android:text="实缴出资额"
                 style="@style/tv_second"/>
             <TextView
+                android:id="@+id/realmoney"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="15dp"
                 android:textColor="#3c3c3c"
@@ -118,9 +123,10 @@
         android:layout_marginLeft="10dp"
         android:textColor="@color/text_sec_color"
         android:textSize="12sp"
-        android:text="张婷婷"
+        android:text="出资方式"
         style="@style/tv_second"/>
     <TextView
+        android:id="@+id/payway"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:textColor="#3c3c3c"
