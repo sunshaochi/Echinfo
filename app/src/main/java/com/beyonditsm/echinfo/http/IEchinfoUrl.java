@@ -30,6 +30,13 @@ public interface IEchinfoUrl {
     /*根据key获取类型*/
     String GETTYPEBYKEY_URL=BASE_URL+"manager/unLogin/findTypesByKey.do";
 
+    /*企业列表信息*/
+    String ENTERPRISELIST_URL=BASE_URL+"companyInfo/login/findEnterpriseInfo.do";
+    /*企业基本信息*/
+    String ENTERPRISEINFO_URL=BASE_URL+"companyInfo/login/findEnterpriseInfoMsgById.do";
+    /*工商信息*/
+    String BUSINESSINFO_URL=BASE_URL+"companyInfo/login/findVietinbanhInfoByCompanyId.do";
+
 
 
 

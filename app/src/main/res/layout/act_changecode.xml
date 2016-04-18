@@ -1,7 +1,441 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <include layout="@layout/title_act_layout"></include>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout style="@style/ll_ggjl">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginTop="25dp"
+                        android:src="@mipmap/bluecircle" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@color/line_color"></View>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingTop="15sp">
+
+                    <TextView
+                        style="@style/tv_second"
+                        android:text="2015年4月21日"
+                        android:textColor="@color/text_sec_color"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        style="@style/tv_second"
+                        android:layout_marginTop="5dp"
+                        android:text="法定代表人"
+                        android:textColor="@color/text_first_color"
+                        android:textSize="14sp" />
+
+                    <View
+                        style="@style/view_line"
+                        android:layout_marginTop="15dp"></View>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout style="@style/ll_ggjl">
+
+                <LinearLayout
+                    android:layout_width="16dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@color/line_color"></View>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="20dp"
+                        android:paddingTop="20dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/tv_second"
+                                android:text="变更前"
+                                android:textColor="@color/text_sec_color"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                style="@style/tv_second"
+                                android:layout_marginTop="10dp"
+                                android:text="林制度"
+                                android:textColor="@color/text_first_color"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <View
+                            style="@style/view_line"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"></View>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/tv_second"
+                                android:text="变更后"
+                                android:textColor="@color/text_sec_color"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                style="@style/tv_second"
+                                android:layout_marginTop="10dp"
+                                android:text="成绩向"
+                                android:textColor="@color/text_first_color"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        style="@style/view_line"
+                        android:layout_marginLeft="10dp"></View>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout style="@style/ll_ggjl">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:background="@color/line_color"></View>
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@mipmap/bluecircle" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:background="@color/line_color"></View>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingTop="15sp">
+
+                    <TextView
+                        style="@style/tv_second"
+                        android:text="2015年4月21日"
+                        android:textColor="@color/text_sec_color"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        style="@style/tv_second"
+                        android:layout_marginTop="5dp"
+                        android:text="经营范围"
+                        android:textColor="@color/text_first_color"
+                        android:textSize="14sp" />
+
+                    <View
+                        style="@style/view_line"
+                        android:layout_marginTop="15dp"></View>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/ll_ggjl">
+
+                <LinearLayout
+                    android:layout_width="16dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@color/line_color"></View>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="20dp"
+                        android:paddingTop="20dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/tv_second"
+                                android:text="变更前"
+                                android:textColor="@color/text_sec_color"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                style="@style/tv_second"
+                                android:layout_marginTop="10dp"
+                                android:text="五金焦点，电子产品，电讯器材，电线电缆"
+                                android:textColor="@color/text_first_color"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <View
+                            style="@style/view_line"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"></View>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/tv_second"
+                                android:text="变更后"
+                                android:textColor="@color/text_sec_color"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                style="@style/tv_second"
+                                android:layout_marginTop="10dp"
+                                android:text="五金焦点，电子产品，电讯器材，电线电缆"
+                                android:textColor="@color/text_first_color"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        style="@style/view_line"
+                        android:layout_marginLeft="10dp"></View>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/ll_ggjl">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:background="@color/line_color"></View>
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@mipmap/bluecircle" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:background="@color/line_color"></View>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingTop="15sp">
+
+                    <TextView
+                        style="@style/tv_second"
+                        android:text="2015年4月21日"
+                        android:textColor="@color/text_sec_color"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        style="@style/tv_second"
+                        android:layout_marginTop="5dp"
+                        android:text="法定代表人"
+                        android:textColor="@color/text_first_color"
+                        android:textSize="14sp" />
+
+                    <View
+                        style="@style/view_line"
+                        android:layout_marginTop="15dp"></View>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/ll_ggjl">
+
+                <LinearLayout
+                    android:layout_width="16dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@color/line_color"></View>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="20dp"
+                        android:paddingTop="20dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/tv_second"
+                                android:text="变更前"
+                                android:textColor="@color/text_sec_color"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                style="@style/tv_second"
+                                android:layout_marginTop="10dp"
+                                android:text="林制度"
+                                android:textColor="@color/text_first_color"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <View
+                            style="@style/view_line"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"></View>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/tv_second"
+                                android:text="变更后"
+                                android:textColor="@color/text_sec_color"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                style="@style/tv_second"
+                                android:layout_marginTop="10dp"
+                                android:text="成绩向"
+                                android:textColor="@color/text_first_color"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        style="@style/view_line"
+                        android:layout_marginLeft="10dp"></View>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

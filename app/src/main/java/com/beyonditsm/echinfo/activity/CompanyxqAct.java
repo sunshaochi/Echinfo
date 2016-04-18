@@ -68,8 +68,8 @@ public class CompanyxqAct extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
-                    case 0:
-
+                    case 0://
+                        openActivity(BusinessinfoAct.class);
                         break;
                     case 1:
 
@@ -78,7 +78,7 @@ public class CompanyxqAct extends BaseActivity {
 
                         break;
                     case 3:
-
+                        openActivity(DishonestyInfoAct.class);
                         break;
                     case 4://诉讼信息
                         openActivity(LitigationAct.class);
@@ -103,8 +103,8 @@ public class CompanyxqAct extends BaseActivity {
                     case 10://主要成员
                         openActivity(PeopleAct.class);
                         break;
-                    case 11:
-
+                    case 11://变更记录
+                        openActivity(ChangecodeAct.class);
                         break;
 
 
