@@ -37,7 +37,11 @@ public class CompanyxqAct extends BaseActivity {
     @ViewInject(R.id.rb_dpxx)
     private RatingBar ratingBar;//星星数
     @ViewInject(R.id.tvAttention)
+
+    private TextView tvAttention;//点击关注
+
     private TextView guanzhu;//点击关注
+
     @ViewInject(R.id.looknum)
     private TextView looknum;//浏览数
     @ViewInject(R.id.guanzhunum)
