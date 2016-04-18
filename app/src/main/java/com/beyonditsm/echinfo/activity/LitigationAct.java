@@ -40,6 +40,7 @@ public class LitigationAct extends BaseActivity {
     private int rows=10;
     private List<LawsuitMsgEntity> list;
     private LitigationAdapter adapter;
+    String id="12";
     @Override
     public void setLayout() {
     setContentView(R.layout.act_litigation);
@@ -57,19 +58,19 @@ public class LitigationAct extends BaseActivity {
         plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
         plv.getRefreshableView().setDivider(null);
 
-        findLawsuitMsg(page, rows);
+        findLawsuitMsg(id,page, rows);
         plv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
                 page = 1;
-                findLawsuitMsg(page, rows);
+                findLawsuitMsg(id,page, rows);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 page++;
-                findLawsuitMsg(page, rows);
+                findLawsuitMsg(id,page, rows);
             }
         });
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -89,8 +90,8 @@ public class LitigationAct extends BaseActivity {
      * @param page
      * @param rows
      */
-    private void findLawsuitMsg(final int page,int rows){
-        RequestManager.getCommManager().findLawsuitMsg(page, rows, new CallBack() {
+    private void findLawsuitMsg(String id,final int page,int rows){
+        RequestManager.getCommManager().findLawsuitMsg(id,page, rows, new CallBack() {
             @Override
             public void onSucess(String result) {
                 plv.onPullUpRefreshComplete();

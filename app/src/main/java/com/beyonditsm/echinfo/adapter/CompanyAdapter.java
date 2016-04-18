@@ -19,7 +19,7 @@ public class CompanyAdapter extends BaseAdapter {
             R.mipmap.susong, R.mipmap.dwtz, R.mipmap.gdxx, R.mipmap.qyzx,
             R.mipmap.nbxx,R.mipmap.fzjg,R.mipmap.zycy,R.mipmap.bgjl};
     private final String TITLES[] = {"工商信息", "企业图谱", "行业分析", "失信信息", "诉讼信息",
-            "对外投资","股东信息","企业资讯","年报信息","分之机构","主要成员","变更记录"
+            "对外投资","股东信息","企业资讯","年报信息","分支机构","主要成员","变更记录"
     };
     private Context context;
 

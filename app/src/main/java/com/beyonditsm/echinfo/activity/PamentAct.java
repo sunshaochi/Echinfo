@@ -41,6 +41,7 @@ public class PamentAct extends BaseActivity {
     public void init(Bundle savedInstanceState) {
         setTopTitle("分之机构");
         setRight("纠错", new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 openActivity(ErrorAct.class);

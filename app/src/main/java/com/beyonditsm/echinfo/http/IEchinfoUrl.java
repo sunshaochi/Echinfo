@@ -56,6 +56,15 @@ public interface IEchinfoUrl {
 
 
 
+    /*年报列表*/
+    String ANNUALLIST_URL=BASE_URL+"annualPortsMsg/findAnnualPortsMsg.do";
+    /*企业资讯*/
+    String ENTERPRISENEWSLIST_URL=BASE_URL+"enterpriseNews/findEnterpriseNewsList.do";
+    /*企业资讯详情*/
+    String ENTERPRISEBYID_URL=BASE_URL+"enterpriseNews/findEnterpriseNewsById.do";
+    /*意见反馈*/
+    String ADDMSG_URL=BASE_URL+"ideaTicking/addIdeaTicking.do";
+
 
 
 
