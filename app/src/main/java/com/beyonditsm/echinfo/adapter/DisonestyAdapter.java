@@ -38,6 +38,7 @@ public class DisonestyAdapter extends BaseAdapter {
         ViewHolder holder=null;
         if(convertView==null) {
             convertView = View.inflate(context, R.layout.dishoeny_item, null);
+            holder=new ViewHolder();
             holder.company= (TextView) convertView.findViewById(R.id.company);
             holder.cid= (TextView) convertView.findViewById(R.id.cid);
             holder.location= (TextView) convertView.findViewById(R.id.location);
