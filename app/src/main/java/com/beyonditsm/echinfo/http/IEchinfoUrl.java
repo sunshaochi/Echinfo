@@ -36,6 +36,25 @@ public interface IEchinfoUrl {
     String ENTERPRISEINFO_URL=BASE_URL+"companyInfo/login/findEnterpriseInfoMsgById.do";
     /*工商信息*/
     String BUSINESSINFO_URL=BASE_URL+"companyInfo/login/findVietinbanhInfoByCompanyId.do";
+    /*纠错提交*/
+    String CORRECTIONMANAGE_URL=BASE_URL+"companyInfo/addCorrectionManage.do";
+
+
+    /*诉讼列表*/
+    String LAWSUITMSG_URL=BASE_URL+"companyInfo/findLawsuitMsg.do";
+    /*诉讼详情*/
+    String LAWSUITDETAIL_URL=BASE_URL+"companyInfo/findLawsuitMsgById.do";
+    /*股东信息*/
+    String STOCKMSG_URL=BASE_URL+"companyInfo/findStockMsg.do";
+
+    /*年报列表*/
+    String ANNUALLIST_URL=BASE_URL+"annualPortsMsg/findAnnualPortsMsg.do";
+    /*企业资讯*/
+    String ENTERPRISENEWSLIST_URL=BASE_URL+"enterpriseNews/findEnterpriseNewsList.do";
+    /*企业资讯详情*/
+    String ENTERPRISEBYID_URL=BASE_URL+"enterpriseNews/findEnterpriseNewsById.do";
+    /*意见反馈*/
+    String ADDMSG_URL=BASE_URL+"ideaTicking/addIdeaTicking.do";
 
 
 

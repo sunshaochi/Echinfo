@@ -37,7 +37,11 @@ public class CompanyxqAct extends BaseActivity {
     @ViewInject(R.id.rb_dpxx)
     private RatingBar ratingBar;//星星数
     @ViewInject(R.id.tvAttention)
+
+    private TextView tvAttention;//点击关注
+
     private TextView guanzhu;//点击关注
+
     @ViewInject(R.id.looknum)
     private TextView looknum;//浏览数
     @ViewInject(R.id.guanzhunum)
@@ -68,7 +72,7 @@ public class CompanyxqAct extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
-                    case 0://
+                    case 0://工商信息
                         openActivity(BusinessinfoAct.class);
                         break;
                     case 1:
@@ -94,8 +98,8 @@ public class CompanyxqAct extends BaseActivity {
                     case 7://企业资讯
                         openActivity(InformationAct.class);
                         break;
-                    case 8:
-
+                    case 8://年报信息
+                        openActivity(AnnualAct.class);
                         break;
                     case 9://分支机构
                         openActivity(PamentAct.class);

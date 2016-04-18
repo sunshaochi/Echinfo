@@ -1,15 +1,18 @@
 package com.beyonditsm.echinfo.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.adapter.AnnualAdapter;
-import com.beyonditsm.echinfo.adapter.InformationAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.entity.AnnualEntity;
 import com.beyonditsm.echinfo.http.CallBack;
@@ -30,18 +33,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by bitch-1 on 2016/4/6.
- * 企业资讯
+ * 年报列表
+ * Created by gxy on 2016/4/18.
  */
-public class InformationAct extends BaseActivity{
-
+public class AnnualAct extends BaseActivity{
+    private AnnualAdapter adapter;
     @ViewInject(R.id.plv)
     private PullToRefreshListView plv;
     private int page=1;
     private int rows=10;
     private String id="12";
     private List<AnnualEntity> list;
-    private InformationAdapter adapter;
     @Override
     public void setLayout() {
         setContentView(R.layout.act_my_follow);
@@ -49,14 +51,15 @@ public class InformationAct extends BaseActivity{
 
     @Override
     public void init(Bundle savedInstanceState) {
-        setTopTitle("企业资讯");
+        setTopTitle("年报列表");
         setRight("纠错", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openActivity(ErrorAct.class);
             }
         });
-        findEnterpriseNewsList(id, page, rows);
+        findAnnualPortsMsg(id, page, rows);
+
         plv.setPullRefreshEnabled(true);//下拉刷新
         plv.setScrollLoadEnabled(true);//滑动加载
         plv.setPullLoadEnabled(false);//上拉刷新
@@ -64,34 +67,39 @@ public class InformationAct extends BaseActivity{
         plv.getRefreshableView().setVerticalScrollBarEnabled(false);//设置右侧滑动
         plv.getRefreshableView().setSelector(new ColorDrawable(Color.TRANSPARENT));
         plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
-        plv.getRefreshableView().setDivider(null);
 
         plv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
+                page = 1;
+                findAnnualPortsMsg(id,page,rows);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                page++;
+                findAnnualPortsMsg(id,page,rows);
             }
         });
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                openActivity(DetailsAct.class);
+//                Intent intent=new Intent(AnnualAct.this,LitigtinfoAct.class);
+//                startActivity(intent);
             }
         });
     }
 
     private List<AnnualEntity> datas=new ArrayList<>();
     /**
-     * 查询企业资讯
+     * 根据企业的id查询出该企业下所有的年报信息
      * @param id
      * @param page
      * @param rows
      */
-    private void findEnterpriseNewsList(String id, final int page,int rows){
-        RequestManager.getCommManager().findEnterpriseNewsList(id, page, rows, new CallBack() {
+    private void findAnnualPortsMsg(String id, final int page,int rows){
+        RequestManager.getCommManager().findAnnualPortsMsg(id, page, rows, new CallBack() {
             @Override
             public void onSucess(String result) {
                 plv.onPullUpRefreshComplete();
@@ -112,7 +120,7 @@ public class InformationAct extends BaseActivity{
                             datas.addAll(list);
                             if (datas != null && datas.size() > 0) {
                                 if (adapter == null) {
-                                    adapter=new InformationAdapter(InformationAct.this,list);
+                                    adapter=new AnnualAdapter(AnnualAct.this,list);
                                     plv.getRefreshableView().setAdapter(adapter);
                                 } else {
                                     adapter.notify(datas);
@@ -125,7 +133,7 @@ public class InformationAct extends BaseActivity{
                         }
 
                     } else {
-                        MyToastUtils.showShortToast(InformationAct.this, "暂无数据");
+                        MyToastUtils.showShortToast(AnnualAct.this, "暂无数据");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

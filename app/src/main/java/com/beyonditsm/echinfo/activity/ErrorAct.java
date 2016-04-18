@@ -8,6 +8,8 @@ import android.widget.EditText;
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.adapter.JiucuoAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.http.CallBack;
+import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -55,6 +57,8 @@ public class ErrorAct extends BaseActivity {
     @ViewInject(R.id.et_sj)//输入的手机号；
     private EditText et_sj;
 
+    private String connects;
+
     @ViewInject(R.id.gvHome)
     private com.beyonditsm.echinfo.view.MyGridView gvHome;
     private Map<Integer,String>datamap;
@@ -88,7 +92,19 @@ public class ErrorAct extends BaseActivity {
         switch (v.getId()){
             case R.id.tv_tj://提交
                 if(isValidate())
-                    MyToastUtils.showShortToast(getApplicationContext(),"提交成功");
+                    RequestManager.getCommManager().comJiucuo(connects, cw, phone, new CallBack() {
+                        @Override
+                        public void onSucess(String result) {
+                            finish();
+                            MyToastUtils.showShortToast(ErrorAct.this,"提交成功");
+                            finish();
+                        }
+
+                        @Override
+                        public void onError(String error) {
+                            MyToastUtils.showShortToast(ErrorAct.this,error);
+                        }
+                    });
                 break;
 
         }
@@ -111,7 +127,7 @@ public class ErrorAct extends BaseActivity {
     private boolean isValidate() {
         cw=et_cw.getText().toString();
         phone = et_sj.getText().toString().trim();
-        String connects="";//被点击的选项内容
+        connects="";//被点击的选项内容
         for(int key:datamap.keySet()){
             connects=connects.concat(datamap.get(key).toString()+"");
 

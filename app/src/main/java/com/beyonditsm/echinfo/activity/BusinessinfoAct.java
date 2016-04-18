@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.http.CallBack;
+import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.leaf.library.widget.MyListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -64,6 +66,23 @@ public class BusinessinfoAct extends BaseActivity{
         listView.setAdapter(adapter);
     }
 
+    /**
+     *工商信息
+     * @param companyId
+     */
+    private void findVietinbanhInfoByCompanyId(String companyId){
+        RequestManager.getCommManager().findVietinbanhInfoByCompanyId(companyId, new CallBack() {
+            @Override
+            public void onSucess(String result) {
+
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+    }
     private class MyAdapter extends BaseAdapter{
 
         @Override

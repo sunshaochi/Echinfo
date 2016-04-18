@@ -1,6 +1,7 @@
 package com.beyonditsm.echinfo.adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -12,25 +13,19 @@ import com.beyonditsm.echinfo.entity.AnnualEntity;
 import java.util.List;
 
 /**
- * Created by bitch-1 on 2016/4/6.
- * 企业资讯适配器
+ * Created by gxy on 2016/4/18.
  */
-public class InformationAdapter extends BaseAdapter {
+public class AnnualAdapter extends BaseAdapter {
     private Context context;
     private List<AnnualEntity> list;
-    public InformationAdapter(Context context){
-        this.context=context;
-    }
-    public InformationAdapter(Context context,List<AnnualEntity> list){
+    public AnnualAdapter(Context context,List<AnnualEntity> list){
         this.context=context;
         this.list=list;
     }
-
     public void notify(List<AnnualEntity> list){
         this.list=list;
         notifyDataSetChanged();
     }
-
     @Override
     public int getCount() {
         return list.size();
@@ -50,23 +45,21 @@ public class InformationAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder=null;
         if(convertView==null) {
-            convertView = View.inflate(context, R.layout.lv_item_info, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.annual_item, null);
             holder=new ViewHolder();
-            holder.title= (TextView) convertView.findViewById(R.id.title);
-            holder.come= (TextView) convertView.findViewById(R.id.come);
-            holder.time= (TextView) convertView.findViewById(R.id.time);
+            holder.name= (TextView) convertView.findViewById(R.id.name);
+            holder.company= (TextView) convertView.findViewById(R.id.company);
             convertView.setTag(holder);
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
-        holder.title.setText(list.get(position).getNewsName());
-        holder.come.setText("来源："+list.get(position).getNewsFrom());
-        holder.time.setText(list.get(position).getNewsTime());
+        holder.name.setText(list.get(position).getYear()+"年年报");
+        holder.company.setText(list.get(position).getCompanyName());
         return convertView;
     }
+
     class ViewHolder{
-        private TextView title;
-        private TextView come;
-        private TextView time;
+        private TextView name;
+        private TextView company;
     }
 }

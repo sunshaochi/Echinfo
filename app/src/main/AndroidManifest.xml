@@ -157,7 +157,11 @@
         <!--失信榜单-->
         <activity android:name=".activity.DishonestyInfoAct"
             android:screenOrientation="portrait"/>
+        <!--失信详情-->
         <activity android:name=".activity.DisinfodetailAct"
+            android:screenOrientation="portrait"/>
+        <!--年报列表-->
+        <activity android:name=".activity.AnnualAct"
             android:screenOrientation="portrait"/>
 
         <!-- ###################注册SDK使用的Activity###################### -->

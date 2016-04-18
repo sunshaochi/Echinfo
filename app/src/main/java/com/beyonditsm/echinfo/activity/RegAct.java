@@ -19,7 +19,6 @@ import com.beyonditsm.echinfo.entity.UserDataEntity;
 import com.beyonditsm.echinfo.entity.UserEntity;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
-import com.beyonditsm.echinfo.http.impl.EchinfoEngine;
 import com.beyonditsm.echinfo.util.GsonUtils;
 import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -39,6 +38,9 @@ public class RegAct extends BaseActivity {
     private EditText etPwd;
     private TextView tvFPwd;
     private LinearLayout llSucess;
+
+
+
 
     private String phone, code, pwd;
     private int i = 60;
