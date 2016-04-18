@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.beyonditsm.echinfo.AppManager;
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.db.UserDao;
@@ -77,6 +78,7 @@ public class LoginAct extends BaseActivity {
 
     @Override
     public void init(Bundle savedInstanceState) {
+        AppManager.getAppManager().addActivity(LoginAct.this);
         assignViews();
         mController = UMServiceFactory.getUMSocialService("com.umeng.login");
         addPlatform();
@@ -91,7 +93,6 @@ public class LoginAct extends BaseActivity {
             case R.id.tvLogin://登陆
                 if (isValidate()) {
                     toLogin(phone,pwd,"","");
-                    openActivity(MineAct.class);
                 }
                 break;
             case R.id.tvReg://注册
@@ -212,7 +213,6 @@ public class LoginAct extends BaseActivity {
                     String screen_name = (String) info.get("screen_name");
                     String profile_image_url = (String) info.get("profile_image_url");
                     saveLoginInfo(LoginAct.this,screen_name,profile_image_url);
-                    openActivity(MineAct.class);
                     finish();
                     MyLogUtils.degug(info.toString());
 //                    Toast.makeText(LoginAct.this, info.toString(), Toast.LENGTH_SHORT).show();
@@ -260,7 +260,6 @@ public class LoginAct extends BaseActivity {
                 UserDataEntity userEntitty = rd.getData();
                 UserEntity user = userEntitty.getUser();
                 UserDao.saveUser(user);
-                openActivity(MainAct.class);
                 finish();
                 MyToastUtils.showShortToast(getApplicationContext(), "登录成功");
             }

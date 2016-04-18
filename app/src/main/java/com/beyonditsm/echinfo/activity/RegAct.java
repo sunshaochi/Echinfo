@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.beyonditsm.echinfo.AppManager;
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.db.UserDao;
@@ -204,8 +205,9 @@ public class RegAct extends BaseActivity {
                 UserDataEntity userEntitty = rd.getData();
                 UserEntity user = userEntitty.getUser();
                 UserDao.saveUser(user);
-                openActivity(MainAct.class);
+//                openActivity(MineAct.class);
                 MyToastUtils.showShortToast(getApplicationContext(), rd.getMessage());
+                AppManager.getAppManager().finishActivity(LoginAct.class);
                 finish();
             }
 

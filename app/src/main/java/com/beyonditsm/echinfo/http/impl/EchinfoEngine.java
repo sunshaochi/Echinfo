@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * Created by wangbin on 16/4/12.
  */
-public class EchinfoEngine extends RequestManager{
+public class EchinfoEngine extends RequestManager {
 
     /**
      * 发送验证码
@@ -32,10 +32,10 @@ public class EchinfoEngine extends RequestManager{
      * @param callBack
      */
     public void toSendSms(String phoneNumber, String isRegister, CallBack callBack) {
-        Map<String,String> map=new HashMap<>();
-        map.put("phoneNumber",phoneNumber);
-        map.put("isRegister",isRegister);
-        doPost(IEchinfoUrl.SEND_SMS_URL,map,callBack);
+        Map<String, String> map = new HashMap<>();
+        map.put("phoneNumber", phoneNumber);
+        map.put("isRegister", isRegister);
+        doPost(IEchinfoUrl.SEND_SMS_URL, map, callBack);
     }
 
     /**
@@ -45,14 +45,15 @@ public class EchinfoEngine extends RequestManager{
      * @param callBack
      * @param password
      */
-    public void toRegister( String phoneNumber, String captcha,String password, CallBack callBack) {
-        Map<String,String> map=new HashMap<>();
+    public void toRegister(String phoneNumber, String captcha, String password, CallBack callBack) {
+        Map<String, String> map = new HashMap<>();
         map.put("username", phoneNumber);
         map.put("phoneNumber", phoneNumber);
         map.put("captcha", captcha);
 //        map.put("password", password);
         doPost(IEchinfoUrl.REGISTE_URL, map, callBack);
     }
+
     /**
      * 登陆
      *
@@ -60,14 +61,14 @@ public class EchinfoEngine extends RequestManager{
      * @param password
      * @param callBack
      */
-    public void toLogin(String username, String password,String yzm,String key, CallBack callBack) {
-        Map<String,String> map=new HashMap<>();
+    public void toLogin(String username, String password, String yzm, String key, CallBack callBack) {
+        Map<String, String> map = new HashMap<>();
         map.put("username", username);
         map.put("password", password);
-        if(!TextUtils.isEmpty(yzm)){
+        if (!TextUtils.isEmpty(yzm)) {
             map.put("captcha", yzm);
         }
-        if(!TextUtils.isEmpty(key)) {
+        if (!TextUtils.isEmpty(key)) {
             map.put("mobilePhoneKey", key);
         }
         doPost(IEchinfoUrl.LOGIN_URL, map, callBack);
@@ -78,9 +79,9 @@ public class EchinfoEngine extends RequestManager{
      *
      * @param callBack
      */
-    public void unLogin(String userName,CallBack callBack) {
-        Map<String,String> map=new HashMap<>();
-        if(!TextUtils.isEmpty(userName)) {
+    public void unLogin(String userName, CallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        if (!TextUtils.isEmpty(userName)) {
             map.put("userName", userName);
         }
         doPost(IEchinfoUrl.UNLOGIN_URL, map, callBack);
@@ -94,7 +95,7 @@ public class EchinfoEngine extends RequestManager{
      * @param callBack
      */
     public void updatePwd(String password, String newPassword, CallBack callBack) {
-        Map<String,String> map=new HashMap<>();
+        Map<String, String> map = new HashMap<>();
         map.put("password", password);
         map.put("newPassword", newPassword);
         doPost(IEchinfoUrl.MODIFY_PWD_URL, map, callBack);
@@ -109,11 +110,11 @@ public class EchinfoEngine extends RequestManager{
      * @param callBack
      */
     public void forgetPwd(String phoneNumber, String captcha, String newPassword, CallBack callBack) {
-        Map<String,String> map=new HashMap<>();
+        Map<String, String> map = new HashMap<>();
         map.put("phoneNumber", phoneNumber);
         map.put("captcha", captcha);
         map.put("newPassword", newPassword);
-        doPost(IEchinfoUrl.FORGET_PWD_URL,map, callBack);
+        doPost(IEchinfoUrl.FORGET_PWD_URL, map, callBack);
     }
 
     /**
@@ -123,7 +124,7 @@ public class EchinfoEngine extends RequestManager{
      * @param callBack
      */
     public void modifyUserInfo(UserEntity userEntitty, CallBack callBack) {
-        Map<String,String> map=new HashMap<>();
+        Map<String, String> map = new HashMap<>();
         Gson gson = new Gson();
         String json = gson.toJson(userEntitty);
         try {
@@ -154,6 +155,7 @@ public class EchinfoEngine extends RequestManager{
 
     /**
      * 更新用户头像
+     *
      * @param fileMaps
      * @param callBack
      */
@@ -163,21 +165,23 @@ public class EchinfoEngine extends RequestManager{
 
     /**
      * 版本更新
+     *
      * @param currentVersion
      * @param platform
      * @param callBack
      */
-    public void findVersion(int currentVersion,String platform,CallBack callBack){
-        Map<String,String> map=new HashMap<>();
-        map.put("currentVersion",currentVersion+"");
-        map.put("platform",platform);
+    public void findVersion(int currentVersion, String platform, CallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("currentVersion", currentVersion + "");
+        map.put("platform", platform);
         doPost(IEchinfoUrl.CHECK_UPDATE_URL, map, callBack);
     }
+
     //获取机构列表
-    public void getTypes(CallBack callBack){
-        Map<String,String> map=new HashMap<>();
-        map.put("key","ep_institution_001");
-        doPost(IEchinfoUrl.GETTYPEBYKEY_URL,map,callBack);
+    public void getTypes(CallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("key", "ep_institution_001");
+        doPost(IEchinfoUrl.GETTYPEBYKEY_URL, map, callBack);
     }
 
 }
