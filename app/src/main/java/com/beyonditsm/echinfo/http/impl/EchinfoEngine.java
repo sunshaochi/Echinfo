@@ -9,15 +9,11 @@ import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.lidroid.xutils.http.client.multipart.content.FileBody;
 import com.tandong.sa.json.Gson;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -182,6 +178,15 @@ public class EchinfoEngine extends RequestManager {
         Map<String, String> map = new HashMap<>();
         map.put("key", "ep_institution_001");
         doPost(IEchinfoUrl.GETTYPEBYKEY_URL, map, callBack);
+    }
+
+    //纠错提交
+    public void comJiucuo(String errorParts,String errorContent,String mobileNo,CallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("errorParts", errorParts);
+        map.put("errorContent", errorContent);
+        map.put("mobileNo", mobileNo);
+        doPost(IEchinfoUrl.CORRECTIONMANAGE_URL, map, callBack);
     }
 
 }
