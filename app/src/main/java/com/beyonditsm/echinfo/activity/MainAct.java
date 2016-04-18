@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.beyonditsm.echinfo.R;
@@ -33,6 +34,12 @@ public class MainAct extends BaseActivity {
     String name=null;
     SharedPreferences sp ;
 
+    /**
+     * 按两次退出键时间小于2秒退出
+     */
+    private final static long WAITTIME = 2000;
+    private long touchTime = 0;
+
     @Override
     public void setLayout() {
         setContentView(R.layout.activity_main);
@@ -52,6 +59,16 @@ public class MainAct extends BaseActivity {
         initBadCre();//初始化失信榜单
     }
 
+    @Override
+    public void onBackPressed() {
+        long currentTime = System.currentTimeMillis();
+        if ((currentTime - touchTime) >= WAITTIME) {
+            Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+            touchTime = currentTime;
+        } else {
+            finish();
+        }
+    }
     @OnClick({R.id.rl_gz, R.id.rl_qy, R.id.rl_sx, R.id.ivMine, R.id.searchView,
             R.id.llEnter, R.id.llLegal, R.id.llBadCre,R.id.ivMsg})
     public void onClick(View v) {
