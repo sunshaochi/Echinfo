@@ -5,8 +5,9 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.beyonditsm.echinfo.R;
-import com.beyonditsm.echinfo.adapter.PeopleAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.http.CallBack;
+import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 /**
@@ -16,6 +17,9 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 public class PeopleAct extends BaseActivity{
     @ViewInject(R.id.pp_lv)
     private ListView pp_lv;
+
+    private int page=1;
+    private int rows=10;
     @Override
     public void setLayout() {
         setContentView(R.layout.act_people);
@@ -31,7 +35,23 @@ public class PeopleAct extends BaseActivity{
                 openActivity(ErrorAct.class);
             }
         });
-        pp_lv.setAdapter(new PeopleAdapter(PeopleAct.this));
+        findAnnualPortsMsg("12",page,rows);
+//        pp_lv.setAdapter(new PeopleAdapter(PeopleAct.this));
 
+    }
+
+    private void findAnnualPortsMsg(String companyId,int page,int rows){
+
+        RequestManager.getCommManager().findAnnualPortsMsg(companyId, page, rows, new CallBack() {
+            @Override
+            public void onSucess(String result) {
+
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
     }
 }

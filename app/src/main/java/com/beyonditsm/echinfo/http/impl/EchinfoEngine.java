@@ -267,9 +267,11 @@ public class EchinfoEngine extends RequestManager {
      * @param
      * @param
      */
-    public void findAnnualPortsMsg(String companyId,CallBack callBack) {
+    public void findAnnualPortsMsg(String companyId,Integer page, Integer rows,CallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("companyId",companyId);
+        map.put("page", page + "");
+        map.put("rows", rows + "");
         doPost(IEchinfoUrl.FINDMAINMEMBERMSG_URL, map, callBack);
     }
 
