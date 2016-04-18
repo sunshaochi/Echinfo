@@ -95,6 +95,7 @@ public class ErrorAct extends BaseActivity {
                     RequestManager.getCommManager().comJiucuo(connects, cw, phone, new CallBack() {
                         @Override
                         public void onSucess(String result) {
+                            finish();
                             MyToastUtils.showShortToast(ErrorAct.this,"提交成功");
                         }
 

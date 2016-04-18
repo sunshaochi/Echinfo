@@ -197,8 +197,9 @@ public class EchinfoEngine extends RequestManager {
      * @param rows
      * @param callBack
      */
-    public void findLawsuitMsg(int page,int rows,CallBack callBack){
+    public void findLawsuitMsg(String companyId,int page,int rows,CallBack callBack){
         Map<String,String> map=new HashMap<>();
+        map.put("companyId",companyId);
         map.put("page",page+"");
         map.put("rows",rows+"");
         doPost(IEchinfoUrl.LAWSUITMSG_URL,map,callBack);
@@ -220,8 +221,9 @@ public class EchinfoEngine extends RequestManager {
      * @param rows
      * @param callBack
      */
-    public void findStockMsg(int page,int rows,CallBack callBack) {
+    public void findStockMsg(String companyId, int page,int rows,CallBack callBack) {
         Map<String, String> map = new HashMap<>();
+        map.put("companyId",companyId);
         map.put("page", page + "");
         map.put("rows", rows + "");
         doPost(IEchinfoUrl.STOCKMSG_URL, map, callBack);
@@ -233,6 +235,60 @@ public class EchinfoEngine extends RequestManager {
         map.put("errorContent", errorContent);
         map.put("mobileNo", mobileNo);
         doPost(IEchinfoUrl.CORRECTIONMANAGE_URL, map, callBack);
+    }
+
+
+    /**
+     * 根据企业的id查询出该企业下所有的年报信息
+     * @param companyId
+     * @param page
+     * @param rows
+     * @param callBack
+     */
+    public void findAnnualPortsMsg(String companyId,int page,int rows,CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        map.put("companyId",companyId);
+        map.put("page",page+"");
+        map.put("rows",rows+"");
+        doPost(IEchinfoUrl.ANNUALLIST_URL,map,callBack);
+    }
+    /**
+     * 根据企业的id查询出该企业下所有的企业资讯
+     * @param companyId
+     * @param page
+     * @param rows
+     * @param callBack
+     */
+    public void findEnterpriseNewsList(String companyId,int page,int rows,CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        map.put("companyId",companyId);
+        map.put("page",page+"");
+        map.put("rows",rows+"");
+        doPost(IEchinfoUrl.ENTERPRISENEWSLIST_URL,map,callBack);
+    }
+
+    /**
+     * 查询资讯详情
+     * @param id
+     * @param callBack
+     */
+    public void findEnterpriseNewsById(String id,CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        map.put("id",id);
+        doPost(IEchinfoUrl.ENTERPRISEBYID_URL,map,callBack);
+    }
+
+    /**
+     * 意见反馈
+     * @param content
+     * @param phonenumber
+     * @param callBack
+     */
+    public void addIdeaTicking(String content,String phonenumber,CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        map.put("content",content);
+        map.put("mobileNo",phonenumber);
+        doPost(IEchinfoUrl.ADDMSG_URL,map,callBack);
     }
 
 }

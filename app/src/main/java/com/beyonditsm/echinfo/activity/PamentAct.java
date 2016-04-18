@@ -28,7 +28,7 @@ public class PamentAct extends BaseActivity {
 
     @Override
     public void init(Bundle savedInstanceState) {
-        setTopTitle("分之机构");
+        setTopTitle("分支机构");
         setRight("纠错",new View.OnClickListener() {
             @Override
             public void onClick(View v) {

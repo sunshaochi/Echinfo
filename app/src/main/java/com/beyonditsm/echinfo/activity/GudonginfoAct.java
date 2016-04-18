@@ -38,6 +38,7 @@ public class GudonginfoAct extends BaseActivity {
     private int page=1;
     private int rows=10;
     private GudonginfoAdapter adapter;
+    String id="12";
     @Override
     public void setLayout() {
         setContentView(R.layout.act_gudonginfo);
@@ -61,19 +62,19 @@ public class GudonginfoAct extends BaseActivity {
         plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
         plv.getRefreshableView().setDivider(null);
 
-        findStockMsg(page,rows);
+        findStockMsg(id,page,rows);
         plv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
                 page = 1;
-                findStockMsg(page, rows);
+                findStockMsg(id,page, rows);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 page++;
-                findStockMsg(page, rows);
+                findStockMsg(id,page, rows);
             }
         });
     }
@@ -86,8 +87,8 @@ public class GudonginfoAct extends BaseActivity {
      * @param page
      * @param rows
      */
-    private void findStockMsg(final int page,int rows){
-        RequestManager.getCommManager().findStockMsg(page, rows, new CallBack() {
+    private void findStockMsg(String id,final int page,int rows){
+        RequestManager.getCommManager().findStockMsg(id,page, rows, new CallBack() {
             @Override
             public void onSucess(String result) {
                 plv.onPullUpRefreshComplete();
