@@ -97,6 +97,7 @@ public class ErrorAct extends BaseActivity {
                         public void onSucess(String result) {
                             finish();
                             MyToastUtils.showShortToast(ErrorAct.this,"提交成功");
+                            finish();
                         }
 
                         @Override
