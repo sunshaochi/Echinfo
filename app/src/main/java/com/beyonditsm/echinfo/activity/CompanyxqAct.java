@@ -68,7 +68,7 @@ public class CompanyxqAct extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
-                    case 0://
+                    case 0://工商信息
                         openActivity(BusinessinfoAct.class);
                         break;
                     case 1:

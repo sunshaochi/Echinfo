@@ -184,4 +184,51 @@ public class EchinfoEngine extends RequestManager {
         doPost(IEchinfoUrl.GETTYPEBYKEY_URL, map, callBack);
     }
 
+    /**
+     * 查询企业工商信息
+     * @param companyId
+     * @param callBack
+     */
+    public void findVietinbanhInfoByCompanyId(String companyId,CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        map.put("companyId",companyId);
+        doPost(IEchinfoUrl.BUSINESSINFO_URL,map,callBack);
+    }
+
+    /**
+     * 诉讼列表
+     * @param page
+     * @param rows
+     * @param callBack
+     */
+    public void findLawsuitMsg(int page,int rows,CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        map.put("page",page+"");
+        map.put("rows",rows+"");
+        doPost(IEchinfoUrl.LAWSUITMSG_URL,map,callBack);
+    }
+
+    /**
+     * 查询诉讼详情
+     * @param id
+     * @param callBack
+     */
+    public void findLawsuitMsgById(String id,CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        map.put("id",id);
+        doPost(IEchinfoUrl.LAWSUITDETAIL_URL,map,callBack);
+    }
+    /**
+     * 股东列表
+     * @param page
+     * @param rows
+     * @param callBack
+     */
+    public void findStockMsg(int page,int rows,CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        map.put("page",page+"");
+        map.put("rows",rows+"");
+        doPost(IEchinfoUrl.STOCKMSG_URL,map,callBack);
+    }
+
 }
