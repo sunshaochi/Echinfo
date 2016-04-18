@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.beyonditsm.echinfo.R;
-import com.beyonditsm.echinfo.adapter.FollowAdapter;
 import com.beyonditsm.echinfo.base.BaseFragment;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView;
@@ -36,6 +35,6 @@ public class MyFollowFrg extends BaseFragment{
         plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
 
         plv.getRefreshableView().setDivider(null);
-        plv.getRefreshableView().setAdapter(new FollowAdapter(getContext()));
+     //   plv.getRefreshableView().setAdapter(new FollowAdapter(getContext()));
     }
 }
