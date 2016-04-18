@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvNum"
+        android:layout_width="38dp"
+        android:layout_height="53dp"
+        android:background="@mipmap/paizi"
+        android:textSize="40sp"
+        android:textColor="#2582CE"
+        android:gravity="center"
+        android:text="3"
+        />
+</LinearLayout>

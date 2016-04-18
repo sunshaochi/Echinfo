@@ -9,15 +9,11 @@ import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.lidroid.xutils.http.client.multipart.content.FileBody;
 import com.tandong.sa.json.Gson;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 /**
