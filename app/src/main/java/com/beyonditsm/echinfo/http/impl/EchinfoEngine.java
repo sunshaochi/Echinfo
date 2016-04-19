@@ -267,7 +267,7 @@ public class EchinfoEngine extends RequestManager {
      * @param
      * @param
      */
-    public void findAnnualPortsMsg(String companyId,Integer page, Integer rows,CallBack callBack) {
+    public void findpeoplePortsMsg(String companyId,Integer page, Integer rows,CallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("companyId",companyId);
         map.put("page", page + "");
