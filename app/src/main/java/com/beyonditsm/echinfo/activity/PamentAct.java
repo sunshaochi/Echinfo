@@ -74,8 +74,8 @@ public class PamentAct extends BaseActivity {
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-//                page++;
-//                findSonEnterpriseInterMsg("12", page, rows);
+                page++;
+                findSonEnterpriseInterMsg("12", page, rows);
             }
         });
       //  plv.getRefreshableView().setAdapter(new FollowAdapter(this));

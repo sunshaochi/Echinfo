@@ -277,7 +277,7 @@ public class EchinfoEngine extends RequestManager {
      * @param
      * @param
      */
-    public void findAnnualPortsMsg(String companyId,Integer page, Integer rows,CallBack callBack) {
+    public void findpeoplePortsMsg(String companyId,Integer page, Integer rows,CallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("companyId",companyId);
         map.put("page", page + "");
@@ -292,9 +292,11 @@ public class EchinfoEngine extends RequestManager {
      * @param
      * @param
      */
-    public void findAnPortsMsg(String accountId,CallBack callBack) {
+    public void findgzPortsMsg(String accountId,int page,int rows,CallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("accountId",accountId);
+        map.put("page", page + "");
+        map.put("rows", rows + "");
         doPost(IEchinfoUrl.MYATTENTTIONMSG_URL, map, callBack);
     }
 

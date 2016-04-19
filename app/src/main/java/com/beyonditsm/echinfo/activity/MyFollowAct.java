@@ -8,7 +8,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.beyonditsm.echinfo.R;
-import com.beyonditsm.echinfo.adapter.FollowAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
@@ -30,7 +29,8 @@ public class MyFollowAct extends BaseActivity {
     @ViewInject(R.id.plv)
     private PullToRefreshListView plv;
 
-    private String id;
+    private int page=1;
+    private int rows=10;
     @Override
     public void setLayout() {
         setContentView(R.layout.act_my_follow);
@@ -46,7 +46,7 @@ public class MyFollowAct extends BaseActivity {
         plv.getRefreshableView().setVerticalScrollBarEnabled(false);//设置右侧滑动
         plv.getRefreshableView().setSelector(new ColorDrawable(Color.TRANSPARENT));
         plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
-
+        findgzPortsMsg("admin", page, rows);
         plv.getRefreshableView().setDivider(null);
         plv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
@@ -57,7 +57,10 @@ public class MyFollowAct extends BaseActivity {
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
             }
         });
-        plv.getRefreshableView().setAdapter(new FollowAdapter(this));
+
+
+
+       // plv.getRefreshableView().setAdapter(new FollowAdapter(this));
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -66,9 +69,8 @@ public class MyFollowAct extends BaseActivity {
         });
     }
 
-    public void findAnPortsMsg(String accountId){
-
-        RequestManager.getCommManager().findAnPortsMsg(accountId, new CallBack() {
+    public void findgzPortsMsg(String accountId,int page,int rows){
+        RequestManager.getCommManager().findgzPortsMsg(accountId, page, rows, new CallBack() {
             @Override
             public void onSucess(String result) {
                 plv.onPullUpRefreshComplete();

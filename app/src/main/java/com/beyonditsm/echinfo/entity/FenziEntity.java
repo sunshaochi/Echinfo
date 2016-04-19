@@ -3,7 +3,7 @@ package com.beyonditsm.echinfo.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
+/**分之机构实体类
  * Created by bitch-1 on 2016/4/18.
  */
 public class FenziEntity implements Parcelable {

@@ -4,9 +4,9 @@
     android:background="@color/white"
     android:layout_height="match_parent">
     <include layout="@layout/title_act_layout"></include>
-    <ListView
-        android:id="@+id/pp_lv"
+    <com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView
+        android:id="@+id/plv"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </ListView>
+    </com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView>
 </LinearLayout>
