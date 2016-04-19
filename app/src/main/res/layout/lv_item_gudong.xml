@@ -136,7 +136,8 @@
 
     <View
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
        style="@style/view_line"></View>
 
 

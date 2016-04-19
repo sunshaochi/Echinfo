@@ -1,42 +1,26 @@
 package com.beyonditsm.echinfo.adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
-import com.beyonditsm.echinfo.entity.CompanyEntity;
-
-import java.util.List;
 
 /**
- * Created by wangbin on 16/4/5.
+ * 对外提供担保信息
+ * Created by gxy on 2016/4/19.
  */
-public class FollowAdapter extends BaseAdapter{
+public class AdetailfiveAdapter extends BaseAdapter {
     private Context context;
-    List<CompanyEntity> list;
-    public FollowAdapter(Context context){
+    public AdetailfiveAdapter(Context context){
         this.context=context;
     }
-    public FollowAdapter(Context context,List<CompanyEntity> list){
-        this.context=context;
-        this.list=list;
-    }
-    public void notify(List<CompanyEntity> list){
-        this.list=list;
-        notifyDataSetChanged();
-    }
-
-
     @Override
     public int getCount() {
-        if(list!=null){
-            return list.size();
-        }else {
-            return 10;
-        }
+        return 3;
     }
 
     @Override
@@ -53,11 +37,11 @@ public class FollowAdapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder=null;
         if(convertView==null) {
-            convertView = View.inflate(context, R.layout.lv_item_follow, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.annual_list_five, null);
             holder=new ViewHolder();
             holder.company= (TextView) convertView.findViewById(R.id.company);
-            holder.lename= (TextView) convertView.findViewById(R.id.lename);
-            holder.status= (TextView) convertView.findViewById(R.id.status);
+            holder.money= (TextView) convertView.findViewById(R.id.money);
+            holder.time= (TextView) convertView.findViewById(R.id.time);
             convertView.setTag(holder);
         }else {
             holder= (ViewHolder) convertView.getTag();
@@ -66,7 +50,7 @@ public class FollowAdapter extends BaseAdapter{
     }
     class ViewHolder{
         private TextView company;
-        private TextView lename;
-        private TextView status;
+        private TextView money;
+        private TextView time;
     }
 }

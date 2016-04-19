@@ -32,7 +32,11 @@ public class GudonginfoAdapter  extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return list.size();
+        if(list!=null) {
+            return list.size();
+        }else {
+            return 3;
+        }
     }
 
     @Override
@@ -61,12 +65,14 @@ public class GudonginfoAdapter  extends BaseAdapter {
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
-        holder.identity.setText(list.get(position).getStockType());
-        holder.outtime.setText(list.get(position).getSubcribeTime());
-        holder.outmoney.setText(list.get(position).getSubcribe()+"");
-        holder.realtime.setText(list.get(position).getRealSubcribeTime());
-        holder.realmoney.setText(list.get(position).getRealSubcribe()+"");
-        holder.payway.setText(list.get(position).getRealSubcribeType());
+        if(list!=null) {
+            holder.identity.setText(list.get(position).getStockType());
+            holder.outtime.setText(list.get(position).getSubcribeTime());
+            holder.outmoney.setText(list.get(position).getSubcribe() + "");
+            holder.realtime.setText(list.get(position).getRealSubcribeTime());
+            holder.realmoney.setText(list.get(position).getRealSubcribe() + "");
+            holder.payway.setText(list.get(position).getRealSubcribeType());
+        }
         return convertView;
     }
 

@@ -9,8 +9,11 @@ import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.entity.BusinessEntity;
+import com.beyonditsm.echinfo.entity.ResultData;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
+import com.beyonditsm.echinfo.util.GsonUtils;
 import com.leaf.library.widget.MyListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -47,6 +50,9 @@ public class BusinessinfoAct extends BaseActivity{
     private TextView range;//经营范围
     private MyAdapter adapter;
 
+    private String id="12";
+    private BusinessEntity entity;
+
     @Override
     public void setLayout() {
         setContentView(R.layout.bunisnessinfo);
@@ -58,9 +64,10 @@ public class BusinessinfoAct extends BaseActivity{
         setRight("纠错", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                openActivity(ErrorAct.class);
             }
         });
+        findVietinbanhInfoByCompanyId(id);
         adapter=new MyAdapter();
         listView.setDivider(null);
         listView.setAdapter(adapter);
@@ -74,7 +81,20 @@ public class BusinessinfoAct extends BaseActivity{
         RequestManager.getCommManager().findVietinbanhInfoByCompanyId(companyId, new CallBack() {
             @Override
             public void onSucess(String result) {
-
+                ResultData<BusinessEntity> rd = (ResultData<BusinessEntity>) GsonUtils.json(result, BusinessEntity.class);
+                entity = rd.getData();
+                money.setText(entity.getRegistCapital());
+                people.setText(entity.getLegalRepPersion());
+                datecl.setText(entity.getCompanyCreatTime());
+                datefz.setText(entity.getCompanyCreatTime());
+                busireg.setText(entity.getRegistNo());
+                orgId.setText(entity.getCreditNo());
+                type.setText(entity.getCompanyType());
+                state.setText(entity.getRecordStatus());
+                address.setText(entity.getAddress());
+                time.setText(entity.getBusinessDeadline());
+                org.setText(entity.getManageScope());
+                range.setText(entity.getApproveMsg());
             }
 
             @Override

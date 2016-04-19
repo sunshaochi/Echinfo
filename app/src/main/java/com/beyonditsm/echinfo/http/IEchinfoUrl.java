@@ -33,9 +33,9 @@ public interface IEchinfoUrl {
     /*企业列表信息*/
     String ENTERPRISELIST_URL=BASE_URL+"companyInfo/login/findEnterpriseInfo.do";
     /*企业基本信息*/
-    String ENTERPRISEINFO_URL=BASE_URL+"companyInfo/login/findEnterpriseInfoMsgById.do";
+    String ENTERPRISEINFO_URL=BASE_URL+"companyInfo/findEnterpriseInfoMsgById.do";
     /*工商信息*/
-    String BUSINESSINFO_URL=BASE_URL+"companyInfo/login/findVietinbanhInfoByCompanyId.do";
+    String BUSINESSINFO_URL=BASE_URL+"companyInfo/findVietinbanhInfoByCompanyId.do";
     /*纠错提交*/
     String CORRECTIONMANAGE_URL=BASE_URL+"companyInfo/addCorrectionManage.do";
 
@@ -58,12 +58,23 @@ public interface IEchinfoUrl {
 
     /*年报列表*/
     String ANNUALLIST_URL=BASE_URL+"annualPortsMsg/findAnnualPortsMsg.do";
+    /*年报详细*/
+    String ANNUALDETAIL_URL=BASE_URL+"annualPortsMsg/findEnterpriseInfoOfAnnual.do";
     /*企业资讯*/
     String ENTERPRISENEWSLIST_URL=BASE_URL+"enterpriseNews/findEnterpriseNewsList.do";
     /*企业资讯详情*/
     String ENTERPRISEBYID_URL=BASE_URL+"enterpriseNews/findEnterpriseNewsById.do";
     /*意见反馈*/
     String ADDMSG_URL=BASE_URL+"ideaTicking/addIdeaTicking.do";
+
+    /*关注企业*/
+    String ATTENTION_URL=BASE_URL+"companyInfo/addMyAttention.do";
+    /*取消关注*/
+    String REMOVEATTENTION_URL=BASE_URL+"companyInfo/removeMyAttention.do";
+    /*对外投资企业列表*/
+    String INVESTMENT_URL=BASE_URL+"companyInfo/findAbroadInvestment.do";
+    /*变更记录*/
+    String URL=BASE_URL+"editRecordMsg/findEditRecord.do";
 
 
 

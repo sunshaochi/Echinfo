@@ -181,6 +181,16 @@ public class EchinfoEngine extends RequestManager {
     }
 
     /**
+     * 查询企业详细信息
+     * @param id
+     * @param callBack
+     */
+    public void findEnterpriseInfoMsgById(String id,CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        map.put("id",id);
+        doPost(IEchinfoUrl.ENTERPRISEINFO_URL,map,callBack);
+    }
+    /**
      * 查询企业工商信息
      * @param companyId
      * @param callBack
@@ -305,6 +315,17 @@ public class EchinfoEngine extends RequestManager {
         map.put("rows",rows+"");
         doPost(IEchinfoUrl.ANNUALLIST_URL,map,callBack);
     }
+
+    /**
+     * 根据年报id查询年报详细信息
+     * @param id
+     * @param callBack
+     */
+    public void findEnterpriseInfoOfAnnual(String id,CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        map.put("companyId",id);
+        doPost(IEchinfoUrl.ANNUALDETAIL_URL,map,callBack);
+    }
     /**
      * 根据企业的id查询出该企业下所有的企业资讯
      * @param companyId
@@ -344,5 +365,56 @@ public class EchinfoEngine extends RequestManager {
         doPost(IEchinfoUrl.ADDMSG_URL,map,callBack);
     }
 
+    /**
+     * 关注企业
+     * @param accountId
+     * @param companyId
+     * @param callBack
+     */
+    public void addMyAttention(String accountId,String companyId,CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        map.put("accountId",accountId);
+        map.put("companyId",companyId);
+        doPost(IEchinfoUrl.ATTENTION_URL,map,callBack);
+    }
+
+    /**
+     * 取消关注
+     * @param id
+     * @param callBack
+     */
+    public void removeMyAttention(String id,CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        map.put("id",id);
+        doPost(IEchinfoUrl.REMOVEATTENTION_URL,map,callBack);
+    }
+
+    /**
+     * 对外投资
+     * @param companyId
+     * @param callBack
+     */
+    public void findAbroadInvestment(String companyId,int page,int rows,CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        map.put("companyId",companyId);
+        map.put("page",page+"");
+        map.put("rows",rows+"");
+        doPost(IEchinfoUrl.INVESTMENT_URL,map,callBack);
+    }
+
+    /**
+     * 变更记录
+     * @param companyId
+     * @param page
+     * @param rows
+     * @param callBack
+     */
+    public void findAnnualPortsMsgTest(String companyId,int page,int rows,CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        map.put("companyId",companyId);
+        map.put("page",page+"");
+        map.put("rows",rows+"");
+        doPost(IEchinfoUrl.INVESTMENT_URL,map,callBack);
+    }
 
 }

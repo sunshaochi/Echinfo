@@ -85,6 +85,8 @@ public class AnnualAct extends BaseActivity{
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                findEnterpriseInfoOfAnnual(datas.get(position).getCompanyId());
+                openActivity(AnnualDetaillistAct.class);
 //                Intent intent=new Intent(AnnualAct.this,LitigtinfoAct.class);
 //                startActivity(intent);
             }
@@ -144,6 +146,24 @@ public class AnnualAct extends BaseActivity{
             public void onError(String error) {
                 plv.onPullUpRefreshComplete();
                 plv.onPullDownRefreshComplete();
+            }
+        });
+    }
+
+    /**
+     * 根据id获取年报详细信息
+     * @param id
+     */
+    private void findEnterpriseInfoOfAnnual(String id){
+        RequestManager.getCommManager().findEnterpriseInfoOfAnnual(id, new CallBack() {
+            @Override
+            public void onSucess(String result) {
+
+            }
+
+            @Override
+            public void onError(String error) {
+
             }
         });
     }

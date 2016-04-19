@@ -163,6 +163,9 @@
         <!--年报列表-->
         <activity android:name=".activity.AnnualAct"
             android:screenOrientation="portrait"/>
+        <!--年报详情-->
+        <activity android:name=".activity.AnnualDetaillistAct"
+            android:screenOrientation="portrait"/>
 
         <!-- ###################注册SDK使用的Activity###################### -->
         <!--分享编辑页-->
