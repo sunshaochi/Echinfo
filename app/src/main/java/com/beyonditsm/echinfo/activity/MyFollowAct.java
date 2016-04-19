@@ -10,10 +10,17 @@ import android.widget.ListView;
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.adapter.FollowAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.http.CallBack;
+import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshBase;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.tandong.sa.json.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * 我的关注
@@ -22,6 +29,8 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 public class MyFollowAct extends BaseActivity {
     @ViewInject(R.id.plv)
     private PullToRefreshListView plv;
+
+    private String id;
     @Override
     public void setLayout() {
         setContentView(R.layout.act_my_follow);
@@ -55,5 +64,33 @@ public class MyFollowAct extends BaseActivity {
                 openActivity(CompanyxqAct.class);
             }
         });
+    }
+
+    public void findAnPortsMsg(String accountId){
+
+        RequestManager.getCommManager().findAnPortsMsg(accountId, new CallBack() {
+            @Override
+            public void onSucess(String result) {
+                plv.onPullUpRefreshComplete();
+                plv.onPullDownRefreshComplete();
+                Gson gson = new Gson();
+                JSONObject json = null;
+                try {
+                    json = new JSONObject(result);
+                    JSONObject data = json.getJSONObject("data");
+                    JSONArray rows = data.getJSONArray("rows");
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+
     }
 }

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/item_back"
+    >
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/text_first_color"
+        android:text="华东电网有限公司"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_marginTop="10dp"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerVertical="true"
+            >
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="14dp"
+                android:src="@mipmap/wo_follow"/>
+
+            <TextView
+                android:id="@+id/tv_faren"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="公司法人：马云"
+                android:textSize="12sp"
+                android:textColor="@color/text_sec_color"
+                android:layout_marginLeft="10dp"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_zhuantai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="登记成立"
+            android:textSize="12sp"
+            android:textColor="@color/text_sec_color"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
+
+    <View
+        style="@style/view_line"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        ></View>
+</LinearLayout>

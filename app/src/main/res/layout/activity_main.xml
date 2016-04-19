@@ -135,9 +135,15 @@
                             style="@style/tv_qygx"
                             android:text="3" />
 
-                        <TextView
-                            style="@style/tv_qygx"
-                            android:text="3" />
+                        <!--<TextView-->
+                            <!--style="@style/tv_qygx"-->
+                            <!--android:text="3" />-->
+                        
+                        <com.beyonditsm.echinfo.view.flip.FlipViewController
+                            android:id="@+id/fcView"
+                            android:layout_width="38dp"
+                            android:layout_height="53dp"
+                            ></com.beyonditsm.echinfo.view.flip.FlipViewController>
 
 
                     </LinearLayout>

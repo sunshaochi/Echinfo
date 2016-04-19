@@ -46,6 +46,15 @@ public interface IEchinfoUrl {
     String LAWSUITDETAIL_URL=BASE_URL+"companyInfo/findLawsuitMsgById.do";
     /*股东信息*/
     String STOCKMSG_URL=BASE_URL+"companyInfo/findStockMsg.do";
+    /*分之机构*/
+    String INTERMSG_URL=BASE_URL+"sonEnterpriseInterMsg/findSonEnterpriseInterMsg.do";
+    /*主要成员*/
+    String FINDMAINMEMBERMSG_URL=BASE_URL+"mainMemberMsg/findMainMemberMsg.do";
+    /*关注企业信息列表*/
+    String MYATTENTTIONMSG_URL=BASE_URL+"myAttenttionMsg/findMyAttenttionMsg.do";
+
+
+
 
     /*年报列表*/
     String ANNUALLIST_URL=BASE_URL+"annualPortsMsg/findAnnualPortsMsg.do";

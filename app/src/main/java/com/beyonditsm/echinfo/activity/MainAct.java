@@ -12,9 +12,11 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.beyonditsm.echinfo.R;
+import com.beyonditsm.echinfo.adapter.FlipAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.db.UserDao;
 import com.beyonditsm.echinfo.util.MyLogUtils;
+import com.beyonditsm.echinfo.view.flip.FlipViewController;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
@@ -30,6 +32,8 @@ import java.util.TimerTask;
 public class MainAct extends BaseActivity {
     @ViewInject(R.id.flFollow)
     private FrameLayout flFollow;//我的关注
+    @ViewInject(R.id.fcView)
+    private FlipViewController fcView;
     private int mCurrPos;
     String name=null;
     SharedPreferences sp ;
@@ -57,6 +61,16 @@ public class MainAct extends BaseActivity {
         initFlipView();//我的关注
         initHotCom();//初始化热门
         initBadCre();//初始化失信榜单
+
+        fcView.setAdapter(new FlipAdapter(this));
+
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        fcView.onPause();
     }
 
     @Override
@@ -290,5 +304,6 @@ public class MainAct extends BaseActivity {
     protected void onResume() {
         super.onResume();
         name=sp.getString("screen_name", "");
+        fcView.onResume();
     }
 }

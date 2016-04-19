@@ -202,7 +202,7 @@ public class EchinfoEngine extends RequestManager {
         map.put("companyId",companyId);
         map.put("page",page+"");
         map.put("rows",rows+"");
-        doPost(IEchinfoUrl.LAWSUITMSG_URL,map,callBack);
+        doPost(IEchinfoUrl.LAWSUITMSG_URL, map, callBack);
     }
 
     /**
@@ -228,7 +228,13 @@ public class EchinfoEngine extends RequestManager {
         map.put("rows", rows + "");
         doPost(IEchinfoUrl.STOCKMSG_URL, map, callBack);
     }
-    //纠错提交
+    /**
+     * 纠错
+     * @param errorParts 错误部分
+     * @param errorContent 错误内容
+     * @param mobileNo 手机号码
+     * @param callBack
+     */
     public void comJiucuo(String errorParts,String errorContent,String mobileNo,CallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("errorParts", errorParts);
@@ -236,6 +242,53 @@ public class EchinfoEngine extends RequestManager {
         map.put("mobileNo", mobileNo);
         doPost(IEchinfoUrl.CORRECTIONMANAGE_URL, map, callBack);
     }
+
+
+    /**
+     * 分之机构
+     * @param
+     * @param
+     * @param
+     * @param
+     */
+    public void findSonEnterpriseInterMsg(String companyId,int page,int rows,CallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("companyId",companyId);
+        map.put("page", page + "");
+        map.put("rows", rows + "");
+        doPost(IEchinfoUrl.INTERMSG_URL, map, callBack);
+    }
+
+
+    /**
+     * 主要成员
+     * @param
+     * @param
+     * @param
+     * @param
+     */
+    public void findAnnualPortsMsg(String companyId,Integer page, Integer rows,CallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("companyId",companyId);
+        map.put("page", page + "");
+        map.put("rows", rows + "");
+        doPost(IEchinfoUrl.FINDMAINMEMBERMSG_URL, map, callBack);
+    }
+
+    /**
+     * 关注列表
+     * @param
+     * @param
+     * @param
+     * @param
+     */
+    public void findAnPortsMsg(String accountId,CallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("accountId",accountId);
+        doPost(IEchinfoUrl.MYATTENTTIONMSG_URL, map, callBack);
+    }
+
+
 
 
     /**
@@ -290,5 +343,6 @@ public class EchinfoEngine extends RequestManager {
         map.put("mobileNo",phonenumber);
         doPost(IEchinfoUrl.ADDMSG_URL,map,callBack);
     }
+
 
 }
