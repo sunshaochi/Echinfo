@@ -12,6 +12,7 @@ import java.util.List;
  */
 public class SVpsAdapter extends FragmentPagerAdapter {
     private List<Fragment> list;
+    private final String[] titles={"搜索记录","我的关注"};
 
     public SVpsAdapter(FragmentManager fm, List<Fragment> list) {
         super(fm);
@@ -26,5 +27,10 @@ public class SVpsAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return list.size();
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return titles[position];
     }
 }
