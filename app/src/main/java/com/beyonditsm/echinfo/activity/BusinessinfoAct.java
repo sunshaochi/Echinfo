@@ -100,62 +100,62 @@ public class BusinessinfoAct extends BaseActivity{
             if(!TextUtils.isEmpty(entity.getRegistCapital())) {
                 money.setText(entity.getRegistCapital()+"万元");
             }else {
-                money.setText("0万元");
+                money.setText("");
             }
             if(!TextUtils.isEmpty(entity.getLegalRepPersion())) {
                 people.setText(entity.getLegalRepPersion());
             }else {
-                people.setText("暂无数据");
+                people.setText("");
             }
             if(!TextUtils.isEmpty(entity.getCompanyCreatTime())) {
                 datecl.setText(entity.getCompanyCreatTime());
             }else {
-                datecl.setText("暂无数据");
+                datecl.setText("");
             }
             if(!TextUtils.isEmpty(entity.getCompanyCreatTime())) {
                 datefz.setText(entity.getCompanyCreatTime());//发照日期
             }else {
-                datefz.setText("暂无数据");
+                datefz.setText("");
             }
             if(!TextUtils.isEmpty(entity.getRegistNo())) {
                 busireg.setText(entity.getRegistNo());
             }else {
-                busireg.setText("暂无数据");
+                busireg.setText("");
             }
             if(!TextUtils.isEmpty(entity.getCreditNo())) {
                 orgId.setText(entity.getCreditNo());
             }else {
-                orgId.setText("暂无数据");
+                orgId.setText("");
             }
             if(!TextUtils.isEmpty(entity.getCompanyType())) {
                 type.setText(entity.getCompanyType());
             }else {
-                type.setText("暂无数据");
+                type.setText("");
             }
             if(!TextUtils.isEmpty(entity.getRecordStatus())) {
                 state.setText(entity.getRecordStatus());
             }else {
-                state.setText("暂无数据");
+                state.setText("");
             }
             if(!TextUtils.isEmpty(entity.getAddress())) {
                 address.setText(entity.getAddress());
             }else {
-                address.setText("暂无数据");
+                address.setText("");
             }
             if(!TextUtils.isEmpty(entity.getBusinessDeadline())) {
                 time.setText(entity.getBusinessDeadline());
             }else {
-                time.setText("暂无数据");
+                time.setText("");
             }
             if(!TextUtils.isEmpty(entity.getManageScope())) {
                 org.setText(entity.getManageScope());
             }else {
-                org.setText("暂无数据");
+                org.setText("");
             }
             if(!TextUtils.isEmpty(entity.getApproveMsg())) {
                 range.setText(entity.getApproveMsg());
             }else {
-                range.setText("暂无数据");
+                range.setText("");
             }
         }
     }

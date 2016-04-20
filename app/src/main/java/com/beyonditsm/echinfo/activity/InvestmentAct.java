@@ -135,6 +135,7 @@ public class InvestmentAct extends BaseActivity {
             public void onError(String error) {
                 plv.onPullUpRefreshComplete();
                 plv.onPullDownRefreshComplete();
+                MyToastUtils.showShortToast(InvestmentAct.this, error);
             }
         });
     }

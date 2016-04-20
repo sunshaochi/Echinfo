@@ -299,8 +299,8 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
                         MyToastUtils.showShortToast(context,"暂无数据");
                     }
                 } catch (JSONException e) {
-                e.printStackTrace();
-            }
+                    e.printStackTrace();
+                }
             }
 
             @Override

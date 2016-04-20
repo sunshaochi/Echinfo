@@ -242,7 +242,7 @@ public class CompanyxqAct extends BaseActivity {
             if(!TextUtils.isEmpty(entity.getManagementStatus())) {
                 xc.setText(entity.getManagementStatus());
             }else {
-                xc.setText("暂无");
+                xc.setText("");
             }
             if(!TextUtils.isEmpty(entity.getBrowseCount())) {
                 looknum.setText(entity.getBrowseCount());
@@ -258,7 +258,7 @@ public class CompanyxqAct extends BaseActivity {
             if(!TextUtils.isEmpty(entity.getCompanyInverstment())) {
                 zczj.setText(entity.getCompanyInverstment()+"万人民币");
             }else {
-                zczj.setText("0万人民币");
+                zczj.setText("");
             }
 //                cltime.setText(entity.get);
             if(!TextUtils.isEmpty(entity.getAddress())&&!TextUtils.isEmpty(entity.getCoords())) {
@@ -269,7 +269,7 @@ public class CompanyxqAct extends BaseActivity {
                 }else if(!TextUtils.isEmpty(entity.getCoords())){
                     location.setText(entity.getCoords());
                 }else {
-                    location.setText("暂无");
+                    location.setText("");
                 }
             }
             if (!TextUtils.isEmpty(entity.getLevel())) {
