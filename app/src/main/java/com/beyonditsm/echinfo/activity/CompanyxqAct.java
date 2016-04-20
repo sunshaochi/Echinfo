@@ -258,7 +258,7 @@ public class CompanyxqAct extends BaseActivity {
             if(!TextUtils.isEmpty(entity.getCompanyInverstment())) {
                 zczj.setText(entity.getCompanyInverstment()+"万人民币");
             }else {
-                zczj.setText("");
+                zczj.setText("0万人民币");
             }
 //                cltime.setText(entity.get);
             if(!TextUtils.isEmpty(entity.getAddress())&&!TextUtils.isEmpty(entity.getCoords())) {
@@ -312,14 +312,15 @@ public class CompanyxqAct extends BaseActivity {
             public void onClick(View v) {
                 popupWindow.dismiss();
                 MySelfSheetDialog dialog = new MySelfSheetDialog(CompanyxqAct.this);
-                dialog.builder().addSheetItem("7-830940-7009",MySelfSheetDialog.SheetItemColor.Blue, new MySelfSheetDialog.OnSheetItemClickListener() {
-                    @Override
-                    public void onClick(int which) {
-                        Intent phoneintent=new Intent("android.intent.action.CALL", Uri.parse("tel:" + "7-830940-7009"));
-                        startActivity(phoneintent);
+                if(!TextUtils.isEmpty(entity.getCompanyPhoneNo())) {
+                    dialog.builder().addSheetItem(entity.getCompanyPhoneNo(), MySelfSheetDialog.SheetItemColor.Blue, new MySelfSheetDialog.OnSheetItemClickListener() {
+                        @Override
+                        public void onClick(int which) {
+                            Intent phoneintent = new Intent("android.intent.action.CALL", Uri.parse("tel:" + entity.getCompanyPhoneNo()));
+                            startActivity(phoneintent);
 
-                    }
-                }).addSheetItem("7-830940-7009",MySelfSheetDialog.SheetItemColor.Blue, new MySelfSheetDialog.OnSheetItemClickListener() {
+                        }
+                    })/*.addSheetItem("7-830940-7009",MySelfSheetDialog.SheetItemColor.Blue, new MySelfSheetDialog.OnSheetItemClickListener() {
                     @Override
                     public void onClick(int which) {
                         Intent phoneintent=new Intent();
@@ -328,7 +329,10 @@ public class CompanyxqAct extends BaseActivity {
                         startActivity(phoneintent);
 
                     }
-                }).show();
+                })*/.show();
+                }else {
+                    MyToastUtils.showShortToast(CompanyxqAct.this,"暂时没有企业电话！");
+                }
 
             }
         });

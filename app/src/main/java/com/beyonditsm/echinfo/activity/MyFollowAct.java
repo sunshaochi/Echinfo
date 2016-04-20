@@ -8,18 +8,25 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.beyonditsm.echinfo.R;
+import com.beyonditsm.echinfo.adapter.FollowAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.entity.CompanyEntity;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
+import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshBase;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.tandong.sa.json.Gson;
+import com.tandong.sa.json.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 我的关注
@@ -29,6 +36,8 @@ public class MyFollowAct extends BaseActivity {
     @ViewInject(R.id.plv)
     private PullToRefreshListView plv;
 
+    private List<CompanyEntity> list;
+    private FollowAdapter adapter;
     private int page=1;
     private int rows=10;
     @Override
@@ -69,7 +78,14 @@ public class MyFollowAct extends BaseActivity {
         });
     }
 
-    public void findgzPortsMsg(String accountId,int page,int rows){
+    private List<CompanyEntity> datas=new ArrayList<>();
+    /**
+     *
+     * @param accountId
+     * @param page
+     * @param rows
+     */
+    public void findgzPortsMsg(String accountId, final int page,int rows){
         RequestManager.getCommManager().findgzPortsMsg(accountId, page, rows, new CallBack() {
             @Override
             public void onSucess(String result) {
@@ -81,6 +97,36 @@ public class MyFollowAct extends BaseActivity {
                     json = new JSONObject(result);
                     JSONObject data = json.getJSONObject("data");
                     JSONArray rows = data.getJSONArray("rows");
+                    if (rows.length() > 0) {
+                        list = gson.fromJson(rows.toString(),
+                                new TypeToken<List<CompanyEntity>>() {
+                                }.getType());
+                        if (list.size() > 0) {
+                            if (page == 1) {
+                                datas.clear();
+                            }
+                            datas.addAll(list);
+                            if (datas != null && datas.size() > 0) {
+                                if (adapter == null) {
+                                    adapter = new FollowAdapter(MyFollowAct.this, datas);
+                                    plv.getRefreshableView().setAdapter(adapter);
+                                } else {
+                                    adapter.notify(datas);
+                                }
+                            } else {
+
+                            }
+                        } else {
+                            plv.setHasMoreData(false);
+                        }
+
+                    } else {
+                        if(page==1) {
+                            MyToastUtils.showShortToast(MyFollowAct.this, "暂无数据");
+                        }else {
+                            plv.setHasMoreData(false);
+                        }
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
