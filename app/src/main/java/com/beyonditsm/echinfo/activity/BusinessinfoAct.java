@@ -1,6 +1,7 @@
 package com.beyonditsm.echinfo.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +51,7 @@ public class BusinessinfoAct extends BaseActivity{
     private TextView range;//经营范围
     private MyAdapter adapter;
 
-    private String id="12";
+    private String id=null;
     private BusinessEntity entity;
 
     @Override
@@ -61,6 +62,7 @@ public class BusinessinfoAct extends BaseActivity{
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("工商信息");
+        id=getIntent().getStringExtra("id");
         setRight("纠错", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,18 +85,7 @@ public class BusinessinfoAct extends BaseActivity{
             public void onSucess(String result) {
                 ResultData<BusinessEntity> rd = (ResultData<BusinessEntity>) GsonUtils.json(result, BusinessEntity.class);
                 entity = rd.getData();
-                money.setText(entity.getRegistCapital());
-                people.setText(entity.getLegalRepPersion());
-                datecl.setText(entity.getCompanyCreatTime());
-                datefz.setText(entity.getCompanyCreatTime());
-                busireg.setText(entity.getRegistNo());
-                orgId.setText(entity.getCreditNo());
-                type.setText(entity.getCompanyType());
-                state.setText(entity.getRecordStatus());
-                address.setText(entity.getAddress());
-                time.setText(entity.getBusinessDeadline());
-                org.setText(entity.getManageScope());
-                range.setText(entity.getApproveMsg());
+                setInfo(entity);
             }
 
             @Override
@@ -102,6 +93,71 @@ public class BusinessinfoAct extends BaseActivity{
 
             }
         });
+    }
+
+    private void setInfo(BusinessEntity entity){
+        if(entity!=null){
+            if(!TextUtils.isEmpty(entity.getRegistCapital())) {
+                money.setText(entity.getRegistCapital()+"万元");
+            }else {
+                money.setText("0万元");
+            }
+            if(!TextUtils.isEmpty(entity.getLegalRepPersion())) {
+                people.setText(entity.getLegalRepPersion());
+            }else {
+                people.setText("暂无数据");
+            }
+            if(!TextUtils.isEmpty(entity.getCompanyCreatTime())) {
+                datecl.setText(entity.getCompanyCreatTime());
+            }else {
+                datecl.setText("暂无数据");
+            }
+            if(!TextUtils.isEmpty(entity.getCompanyCreatTime())) {
+                datefz.setText(entity.getCompanyCreatTime());//发照日期
+            }else {
+                datefz.setText("暂无数据");
+            }
+            if(!TextUtils.isEmpty(entity.getRegistNo())) {
+                busireg.setText(entity.getRegistNo());
+            }else {
+                busireg.setText("暂无数据");
+            }
+            if(!TextUtils.isEmpty(entity.getCreditNo())) {
+                orgId.setText(entity.getCreditNo());
+            }else {
+                orgId.setText("暂无数据");
+            }
+            if(!TextUtils.isEmpty(entity.getCompanyType())) {
+                type.setText(entity.getCompanyType());
+            }else {
+                type.setText("暂无数据");
+            }
+            if(!TextUtils.isEmpty(entity.getRecordStatus())) {
+                state.setText(entity.getRecordStatus());
+            }else {
+                state.setText("暂无数据");
+            }
+            if(!TextUtils.isEmpty(entity.getAddress())) {
+                address.setText(entity.getAddress());
+            }else {
+                address.setText("暂无数据");
+            }
+            if(!TextUtils.isEmpty(entity.getBusinessDeadline())) {
+                time.setText(entity.getBusinessDeadline());
+            }else {
+                time.setText("暂无数据");
+            }
+            if(!TextUtils.isEmpty(entity.getManageScope())) {
+                org.setText(entity.getManageScope());
+            }else {
+                org.setText("暂无数据");
+            }
+            if(!TextUtils.isEmpty(entity.getApproveMsg())) {
+                range.setText(entity.getApproveMsg());
+            }else {
+                range.setText("暂无数据");
+            }
+        }
     }
     private class MyAdapter extends BaseAdapter{
 

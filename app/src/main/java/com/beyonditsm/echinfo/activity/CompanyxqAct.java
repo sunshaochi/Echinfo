@@ -63,6 +63,7 @@ public class CompanyxqAct extends BaseActivity {
 
     private CompanyEntity entity;
     private boolean flag=false;
+    String companyId="12";
     @Override
     public void setLayout() {
         setContentView(R.layout.act_companyxq);
@@ -72,7 +73,7 @@ public class CompanyxqAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("华东控股集团有限公司");
-        findEnterpriseInfoMsgById("12");
+        findEnterpriseInfoMsgById(companyId);
         gvqy.setAdapter(new CompanyAdapter(CompanyxqAct.this));
         gvqy.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             //            private final String TITLES[] = {"工商信息", "企业图谱", "行业分析", "失业信息", "诉讼信息",
@@ -80,10 +81,12 @@ public class CompanyxqAct extends BaseActivity {
 //            };
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=null;
+                Intent intent = null;
                 switch (position) {
                     case 0://工商信息
-                        openActivity(BusinessinfoAct.class);
+                        intent = new Intent(CompanyxqAct.this, BusinessinfoAct.class);
+                        intent.putExtra("id", companyId);
+                        startActivity(intent);
                         break;
                     case 1:
 
@@ -92,35 +95,50 @@ public class CompanyxqAct extends BaseActivity {
 
                         break;
                     case 3://失信信息
-                        openActivity(DishonestyInfoAct.class);
+                        intent = new Intent(CompanyxqAct.this, DishonestyInfoAct.class);
+                        intent.putExtra("id", companyId);
+                        startActivity(intent);
                         break;
                     case 4://诉讼信息
-                        openActivity(LitigationAct.class);
+                        intent = new Intent(CompanyxqAct.this, LitigationAct.class);
+                        intent.putExtra("id", companyId);
+                        startActivity(intent);
                         break;
                     case 5://对外投资
-                        openActivity(InvestmentAct.class);
-
+                        intent = new Intent(CompanyxqAct.this, InvestmentAct.class);
+                        intent.putExtra("id", companyId);
+                        startActivity(intent);
                         break;
                     case 6://股东信息
-
-                        openActivity(GudonginfoAct.class);
-
+                        intent = new Intent(CompanyxqAct.this, GudonginfoAct.class);
+                        intent.putExtra("id", companyId);
+                        startActivity(intent);
                         break;
                     case 7://企业资讯
-                        openActivity(InformationAct.class);
+                        intent = new Intent(CompanyxqAct.this, InformationAct.class);
+                        intent.putExtra("id", companyId);
+                        startActivity(intent);
                         break;
                     case 8://年报信息
-//                        openActivity(AnnualDetaillistAct.class);
-                        openActivity(AnnualAct.class);
+                        intent = new Intent(CompanyxqAct.this, AnnualAct.class);
+                        intent.putExtra("id", companyId);
+                        startActivity(intent);
                         break;
                     case 9://分支机构
-                        openActivity(PamentAct.class);
+                        intent = new Intent(CompanyxqAct.this, PamentAct.class);
+                        intent.putExtra("id", companyId);
+                        startActivity(intent);
                         break;
                     case 10://主要成员
-                        openActivity(PeopleAct.class);
+                        intent = new Intent(CompanyxqAct.this, PeopleAct.class);
+                        intent.putExtra("id", companyId);
+                        startActivity(intent);
                         break;
                     case 11://变更记录
-                        openActivity(ChangecodeAct.class);
+                        intent = new Intent(CompanyxqAct.this, ChangecodeAct.class);
+                        intent.putExtra("id", companyId);
+                        startActivity(intent);
+//                        openActivity(ChangecodeAct.class);
                         break;
 
 
@@ -144,9 +162,9 @@ public class CompanyxqAct extends BaseActivity {
                 break;
             case R.id.tvAttention://关注
                 if(!flag) {
-                    addMyAttention(UserDao.getUser().getId(), "12");
+                    addMyAttention(companyId);
                 }else {
-                    removeMyAttention("2");
+                    removeMyAttention(companyId);
                 }
                 break;
         }
@@ -156,11 +174,10 @@ public class CompanyxqAct extends BaseActivity {
 
     /**
      * 关注企业
-     * @param accountId
      * @param companyId
      */
-    private void addMyAttention(String accountId,String companyId){
-        RequestManager.getCommManager().addMyAttention(accountId, companyId, new CallBack() {
+    private void addMyAttention(String companyId){
+        RequestManager.getCommManager().addMyAttention(companyId, new CallBack() {
             @Override
             public void onSucess(String result) {
                 tvAttention.setText("已关注");
@@ -183,8 +200,9 @@ public class CompanyxqAct extends BaseActivity {
         RequestManager.getCommManager().removeMyAttention(id, new CallBack() {
             @Override
             public void onSucess(String result) {
-                flag=false;
+                flag = false;
                 tvAttention.setText("关注");
+                MyToastUtils.showShortToast(CompanyxqAct.this,"取消关注成功");
             }
 
             @Override
@@ -204,17 +222,7 @@ public class CompanyxqAct extends BaseActivity {
             public void onSucess(String result) {
                 ResultData<CompanyEntity> rd = (ResultData<CompanyEntity>) GsonUtils.json(result, CompanyEntity.class);
                 entity = rd.getData();
-//                gxtime.setText();
-//                xc.setText(entity.get);
-                looknum.setText(entity.getBrowseCount());
-                guanzhunum.setText(entity.getFocus());
-//                dbname.setText();
-//                zczj.setText();
-//                cltime.setText(entity.get);
-                location.setText(entity.getAddress());
-                if(!TextUtils.isEmpty(entity.getLevel())) {
-                    ratingBar.setProgress(Integer.valueOf(entity.getLevel()));
-                }
+                setBusiness(entity);
             }
 
             @Override
@@ -222,6 +230,54 @@ public class CompanyxqAct extends BaseActivity {
 
             }
         });
+    }
+
+    //设置企业信息
+    private void setBusiness(CompanyEntity entity){
+        if(entity!=null){
+            if(!TextUtils.isEmpty(entity.getCompanyName())){
+                setTopTitle(entity.getCompanyName());
+            }
+//                gxtime.setText();
+            if(!TextUtils.isEmpty(entity.getManagementStatus())) {
+                xc.setText(entity.getManagementStatus());
+            }else {
+                xc.setText("暂无");
+            }
+            if(!TextUtils.isEmpty(entity.getBrowseCount())) {
+                looknum.setText(entity.getBrowseCount());
+            }else {
+                looknum.setText("0");
+            }
+            if(!TextUtils.isEmpty(entity.getFocus())) {
+                guanzhunum.setText(entity.getFocus());
+            }else {
+                guanzhunum.setText("0");
+            }
+//                dbname.setText();
+            if(!TextUtils.isEmpty(entity.getCompanyInverstment())) {
+                zczj.setText(entity.getCompanyInverstment()+"万人民币");
+            }else {
+                zczj.setText("0万人民币");
+            }
+//                cltime.setText(entity.get);
+            if(!TextUtils.isEmpty(entity.getAddress())&&!TextUtils.isEmpty(entity.getCoords())) {
+                location.setText(entity.getAddress()+entity.getCoords());
+            }else {
+                if(!TextUtils.isEmpty(entity.getAddress())){
+                    location.setText(entity.getAddress());
+                }else if(!TextUtils.isEmpty(entity.getCoords())){
+                    location.setText(entity.getCoords());
+                }else {
+                    location.setText("暂无");
+                }
+            }
+            if (!TextUtils.isEmpty(entity.getLevel())) {
+                ratingBar.setProgress(Integer.valueOf(entity.getLevel()));
+            }else {
+                ratingBar.setProgress(0);
+            }
+        }
     }
     private void showPopupWindow(View parent) {
         LinearLayout layout = (LinearLayout) LayoutInflater.from(this).inflate(

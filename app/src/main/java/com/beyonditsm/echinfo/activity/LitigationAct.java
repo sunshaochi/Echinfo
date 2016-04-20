@@ -40,7 +40,7 @@ public class LitigationAct extends BaseActivity {
     private int rows=10;
     private List<LawsuitMsgEntity> list;
     private LitigationAdapter adapter;
-    String id="12";
+    String id=null;
     @Override
     public void setLayout() {
     setContentView(R.layout.act_litigation);
@@ -49,6 +49,7 @@ public class LitigationAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("诉讼信息");
+        id=getIntent().getStringExtra("id");
         plv.setPullRefreshEnabled(true);//下拉刷新
         plv.setScrollLoadEnabled(true);//滑动加载
         plv.setPullLoadEnabled(false);//上拉刷新
@@ -112,20 +113,23 @@ public class LitigationAct extends BaseActivity {
                             datas.addAll(list);
                             if (datas != null && datas.size() > 0) {
                                 if (adapter == null) {
-                                    adapter=new LitigationAdapter(LitigationAct.this,list);
+                                    adapter=new LitigationAdapter(LitigationAct.this,datas);
                                     plv.getRefreshableView().setAdapter(adapter);
                                 } else {
                                     adapter.notify(datas);
                                 }
                             } else {
-
+                                plv.setHasMoreData(false);
                             }
                         }else{
-                            plv.setHasMoreData(false);
                         }
 
                     } else {
-                        MyToastUtils.showShortToast(LitigationAct.this, "暂无数据");
+                        if(page==1) {
+                            MyToastUtils.showShortToast(LitigationAct.this, "暂无数据");
+                        }else {
+                            plv.setHasMoreData(false);
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

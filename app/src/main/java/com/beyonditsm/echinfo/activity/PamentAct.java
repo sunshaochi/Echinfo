@@ -37,7 +37,7 @@ public class PamentAct extends BaseActivity {
 
     private int page=1;
     private int rows=10;
-    private String id="12";
+    private String id=null;
     private List<FenziEntity>list;
     private PamentAdapter adapter;
     @Override
@@ -47,7 +47,8 @@ public class PamentAct extends BaseActivity {
 
     @Override
     public void init(Bundle savedInstanceState) {
-        setTopTitle("分之机构");
+        setTopTitle("分支机构");
+        id=getIntent().getStringExtra("id");
         setRight("纠错", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,7 +118,11 @@ public class PamentAct extends BaseActivity {
                         }
 
                     } else {
-                        MyToastUtils.showShortToast(PamentAct.this, "暂无数据");
+                        if(page==1) {
+                            MyToastUtils.showShortToast(PamentAct.this, "暂无数据");
+                        }else {
+                            plv.setHasMoreData(false);
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

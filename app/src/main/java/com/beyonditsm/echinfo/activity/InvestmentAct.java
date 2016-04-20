@@ -36,7 +36,7 @@ public class InvestmentAct extends BaseActivity {
     private PullToRefreshListView plv;
     private int page=1;
     private int rows=10;
-    String id="13";
+    String id=null;
     private List<CompanyEntity> list;
     private FollowAdapter adapter;
     @Override
@@ -47,6 +47,7 @@ public class InvestmentAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("对外投资");
+        id=getIntent().getStringExtra("id");
         setRight("纠错", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,7 +107,7 @@ public class InvestmentAct extends BaseActivity {
                             datas.addAll(list);
                             if (datas != null && datas.size() > 0) {
                                 if (adapter == null) {
-                                    adapter = new FollowAdapter(InvestmentAct.this, list);
+                                    adapter = new FollowAdapter(InvestmentAct.this, datas);
                                     plv.getRefreshableView().setAdapter(adapter);
                                 } else {
                                     adapter.notify(datas);
@@ -119,7 +120,11 @@ public class InvestmentAct extends BaseActivity {
                         }
 
                     } else {
-                        MyToastUtils.showShortToast(InvestmentAct.this, "暂无数据");
+                        if(page==1) {
+                            MyToastUtils.showShortToast(InvestmentAct.this, "暂无数据");
+                        }else {
+                            plv.setHasMoreData(false);
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

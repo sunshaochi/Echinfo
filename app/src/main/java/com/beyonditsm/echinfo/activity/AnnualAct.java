@@ -42,7 +42,7 @@ public class AnnualAct extends BaseActivity{
     private PullToRefreshListView plv;
     private int page=1;
     private int rows=10;
-    private String id="12";
+    private String id=null;
     private List<AnnualEntity> list;
     @Override
     public void setLayout() {
@@ -52,6 +52,7 @@ public class AnnualAct extends BaseActivity{
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("年报列表");
+        id=getIntent().getStringExtra("id");
         setRight("纠错", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,7 +136,11 @@ public class AnnualAct extends BaseActivity{
                         }
 
                     } else {
-                        MyToastUtils.showShortToast(AnnualAct.this, "暂无数据");
+                        if(page==1) {
+                            MyToastUtils.showShortToast(AnnualAct.this, "暂无数据");
+                        }else {
+                            plv.setHasMoreData(false);
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

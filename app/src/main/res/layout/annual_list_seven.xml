@@ -12,7 +12,9 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <View android:layout_width="1dp"
+            <View
+                android:id="@+id/view"
+                android:layout_width="1dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_height="28dp"
                 android:background="@color/line_color"/>

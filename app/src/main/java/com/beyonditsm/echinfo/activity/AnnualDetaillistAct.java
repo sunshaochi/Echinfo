@@ -60,9 +60,9 @@ public class AnnualDetaillistAct extends BaseActivity {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 //                if (groupPosition == 0 || groupPosition == 3) {
-                    listView.setClickable(false);
+//                    listView.setClickable(false);
 //                } else {
-                    openActivity(DishonestyDetailAct.class);
+//                    openActivity(DishonestyDetailAct.class);
 //                }
                 return true;
             }

@@ -22,6 +22,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 public class DishonestyInfoAct extends BaseActivity {
     @ViewInject(R.id.plv)
     private PullToRefreshListView plv;
+    String id=null;
     @Override
     public void setLayout() {
         setContentView(R.layout.act_my_follow);
@@ -30,6 +31,7 @@ public class DishonestyInfoAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("失信榜单");
+        id=getIntent().getStringExtra("id");
         plv.setPullRefreshEnabled(true);//下拉刷新
         plv.setScrollLoadEnabled(true);//滑动加载
         plv.setPullLoadEnabled(false);//上拉刷新

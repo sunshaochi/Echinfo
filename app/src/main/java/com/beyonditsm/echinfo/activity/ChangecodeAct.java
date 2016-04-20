@@ -13,6 +13,7 @@ import com.beyonditsm.echinfo.http.engine.RequestManager;
  * 变更记录
  */
 public class ChangecodeAct extends BaseActivity {
+    String id=null;
     @Override
     public void setLayout() {
         setContentView(R.layout.act_changecode);
@@ -21,6 +22,7 @@ public class ChangecodeAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("变更记录");
+        id=getIntent().getStringExtra("id");
         setRight("纠错", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -28,7 +30,7 @@ public class ChangecodeAct extends BaseActivity {
             }
         });
 
-        findAnnualPortsMsgTest("12",1,10);
+        findAnnualPortsMsgTest(id,1,10);
     }
 
     /**

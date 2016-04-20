@@ -39,7 +39,7 @@ public class InformationAct extends BaseActivity{
     private PullToRefreshListView plv;
     private int page=1;
     private int rows=10;
-    private String id="12";
+    private String id=null;
     private List<AnnualEntity> list;
     private InformationAdapter adapter;
     @Override
@@ -50,6 +50,7 @@ public class InformationAct extends BaseActivity{
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("企业资讯");
+        id=getIntent().getStringExtra("id");
         setRight("纠错", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,7 +126,11 @@ public class InformationAct extends BaseActivity{
                         }
 
                     } else {
-                        MyToastUtils.showShortToast(InformationAct.this, "暂无数据");
+                        if(page==1) {
+                            MyToastUtils.showShortToast(InformationAct.this, "暂无数据");
+                        }else {
+                            plv.setHasMoreData(false);
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

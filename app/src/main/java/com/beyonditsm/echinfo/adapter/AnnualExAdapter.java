@@ -11,8 +11,21 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
+import com.beyonditsm.echinfo.activity.GudonginfoAct;
+import com.beyonditsm.echinfo.entity.CompanyEntity;
+import com.beyonditsm.echinfo.entity.StockMsg;
+import com.beyonditsm.echinfo.http.CallBack;
+import com.beyonditsm.echinfo.http.engine.RequestManager;
+import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.leaf.library.widget.MyListView;
+import com.tandong.sa.json.Gson;
+import com.tandong.sa.json.reflect.TypeToken;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +35,7 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<String> groupData;
     private List<List<String>> childData;
+    private MyListView lv1,lv2,lv3,lv5,lv6,lv7;
     public AnnualExAdapter(Context context){
         this.context=context;
     }
@@ -111,22 +125,23 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
             case 1://网站或网店信息
                 LayoutInflater inflater1 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 view = inflater1.inflate(R.layout.listview_item, null);
-                MyListView lv= (MyListView) view.findViewById(R.id.lv);
-                lv.setAdapter(new AdetailtwoAdapter(context));
+                lv1= (MyListView) view.findViewById(R.id.lv);
+                lv1.setAdapter(new AdetailtwoAdapter(context));
                 break;
             case 2://股东信息
                 //填充视图
                 LayoutInflater inflater2 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 view = inflater2.inflate(R.layout.listview_item, null);
-                MyListView lv2= (MyListView) view.findViewById(R.id.lv);
-                lv2.setAdapter(new GudonginfoAdapter(context));
+                lv2= (MyListView) view.findViewById(R.id.lv);
+                findStockMsg("12",-1,-1);
                 break;
             case 3://对外投资
                 //填充视图
                 LayoutInflater inflater3 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 view = inflater3.inflate(R.layout.listview_item, null);
-                MyListView lv3= (MyListView) view.findViewById(R.id.lv);
-                lv3.setAdapter(new FollowAdapter(context));
+                lv3= (MyListView) view.findViewById(R.id.lv);
+                findAbroadInvestment("12",-1,-1);
+//                lv3.setAdapter(new FollowAdapter(context));
                 break;
             case 4://企业资产状况信息
                 LayoutInflater inflater4 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -143,20 +158,21 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
             case 5://对外提供保证担保信息
                 LayoutInflater inflater5 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 view = inflater5.inflate(R.layout.listview_item, null);
-                MyListView lv5= (MyListView) view.findViewById(R.id.lv);
+                lv5= (MyListView) view.findViewById(R.id.lv);
                 lv5.setAdapter(new AdetailfiveAdapter(context));
                 break;
             case 6://股权变更信息
                 LayoutInflater inflater6 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 view = inflater6.inflate(R.layout.listview_item, null);
-                MyListView lv6= (MyListView) view.findViewById(R.id.lv);
+                lv6= (MyListView) view.findViewById(R.id.lv);
                 lv6.setAdapter(new AdetailsixAdapter(context));
                 break;
             case 7://修改记录
                 LayoutInflater inflater7 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 view = inflater7.inflate(R.layout.listview_item, null);
-                MyListView lv7= (MyListView) view.findViewById(R.id.lv);
-                lv7.setAdapter(new AdetailsevenAdapter(context));
+                lv7= (MyListView) view.findViewById(R.id.lv);
+                findAnnualPortsMsgChange("12",-1,-1);
+//                lv7.setAdapter(new AdetailsevenAdapter(context));
                 break;
             default:
                 break;
@@ -169,5 +185,128 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
+    }
+
+
+    private GudonginfoAdapter adapter;
+    private List<StockMsg> list;
+    /**
+     * 股东信息
+     * @param page
+     * @param rows
+     */
+    private void findStockMsg(String id,final int page,int rows){
+        RequestManager.getCommManager().findStockMsg(id, page, rows, new CallBack() {
+            @Override
+            public void onSucess(String result) {
+                Gson gson = new Gson();
+                try {
+                    JSONObject json = new JSONObject(result);
+                    JSONObject data = json.getJSONObject("data");
+                    JSONArray rows = data.getJSONArray("rows");
+                    if (rows.length() > 0) {
+                        list = gson.fromJson(rows.toString(),
+                                new TypeToken<List<StockMsg>>() {
+                                }.getType());
+
+                        if (list != null && list.size() > 0) {
+                            adapter = new GudonginfoAdapter(context, list);
+                            lv2.setAdapter(adapter);
+                        }
+
+                    } else {
+                        MyToastUtils.showShortToast(context, "暂无数据");
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onError(String error) {
+                MyToastUtils.showShortToast(context, error);
+
+            }
+        });
+    }
+    private List<CompanyEntity> listInvestment;
+    private FollowAdapter adapterInvestment;
+    /**
+     * 对外投资
+     * @param companyId
+     */
+    private void findAbroadInvestment(String companyId, final int page,int rows){
+        RequestManager.getCommManager().findAbroadInvestment(companyId, page, rows, new CallBack() {
+            @Override
+            public void onSucess(String result) {
+                Gson gson = new Gson();
+                try {
+                    JSONObject json = new JSONObject(result);
+                    JSONObject data = json.getJSONObject("data");
+                    JSONArray rows = data.getJSONArray("rows");
+                    if (rows.length() > 0) {
+                        listInvestment = gson.fromJson(rows.toString(),
+                                new TypeToken<List<CompanyEntity>>() {
+                                }.getType());
+                        if (listInvestment != null && listInvestment.size() > 0) {
+                            adapterInvestment = new FollowAdapter(context, listInvestment);
+                                lv3.setAdapter(adapterInvestment);
+                        }
+                    } else {
+                        MyToastUtils.showShortToast(context,"暂无数据");
+                    }
+                }
+
+            catch(JSONException e){
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+            public void onError(String error) {
+            }
+        });
+    }
+
+    private List<CompanyEntity> listChange;
+    private AdetailsevenAdapter adapterChange;
+    /**
+     * 修改记录
+     * @param id
+     * @param page
+     * @param rows
+     */
+    private void findAnnualPortsMsgChange(String id,int page,int rows){
+        RequestManager.getCommManager().findAnnualPortsMsgTest(id, page, rows, new CallBack() {
+            @Override
+            public void onSucess(String result) {
+                Gson gson = new Gson();
+                try {
+                    JSONObject json = new JSONObject(result);
+                    JSONObject data = json.getJSONObject("data");
+                    JSONArray rows = data.getJSONArray("rows");
+                    if (rows.length() > 0) {
+                        listChange = gson.fromJson(rows.toString(),
+                                new TypeToken<List<CompanyEntity>>() {
+                                }.getType());
+                        if (listChange != null && listChange.size() > 0) {
+                            adapterChange = new AdetailsevenAdapter(context, listChange);
+                            lv7.setAdapter(adapterChange);
+                        }
+                    } else {
+                        MyToastUtils.showShortToast(context,"暂无数据");
+                    }
+                } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
     }
 }

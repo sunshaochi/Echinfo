@@ -40,6 +40,7 @@ public class PeopleAct extends BaseActivity{
 
     private List<PeopleEntity> list;
     private PeopleAdapter adapter;
+    String id=null;
     @Override
     public void setLayout() {
         setContentView(R.layout.act_people);
@@ -49,6 +50,7 @@ public class PeopleAct extends BaseActivity{
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("主要成员");
+        id=getIntent().getStringExtra("id");
         setRight("纠错", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,22 +67,21 @@ public class PeopleAct extends BaseActivity{
         plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
         plv.getRefreshableView().setDivider(null);
 
-        findpeoplePortsMsg("12", page, rows);
+        findpeoplePortsMsg(id, page, rows);
         plv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
                 page = 1;
-                findpeoplePortsMsg("12", page, rows);
+                findpeoplePortsMsg(id, page, rows);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 page++;
-                findpeoplePortsMsg("12", page, rows);
+                findpeoplePortsMsg(id, page, rows);
             }
         });
-        findpeoplePortsMsg("12", page, rows);
       //  pp_lv.setAdapter(new PeopleAdapter(PeopleAct.this,list));
 
     }
@@ -123,7 +124,11 @@ public class PeopleAct extends BaseActivity{
                         }
 
                     } else {
-                        MyToastUtils.showShortToast(PeopleAct.this, "暂无数据");
+                        if(page==1) {
+                            MyToastUtils.showShortToast(PeopleAct.this, "暂无数据");
+                        }else {
+                            plv.setHasMoreData(false);
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

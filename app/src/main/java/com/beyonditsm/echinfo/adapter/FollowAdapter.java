@@ -62,6 +62,11 @@ public class FollowAdapter extends BaseAdapter{
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
+        if(list!=null){
+            holder.company.setText(list.get(position).getCompanyName());
+            holder.lename.setText("公司法人："+list.get(position).getLegalRepPersion());
+            holder.status.setText(list.get(position).getRecordStatus());
+        }
         return convertView;
     }
     class ViewHolder{

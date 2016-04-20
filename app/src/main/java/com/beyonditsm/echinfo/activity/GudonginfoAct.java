@@ -38,7 +38,7 @@ public class GudonginfoAct extends BaseActivity {
     private int page=1;
     private int rows=10;
     private GudonginfoAdapter adapter;
-    String id="12";
+    String id=null;
     @Override
     public void setLayout() {
         setContentView(R.layout.act_gudonginfo);
@@ -47,6 +47,7 @@ public class GudonginfoAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("股东信息");
+        id=getIntent().getStringExtra("id");
         setRight("纠错", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +84,7 @@ public class GudonginfoAct extends BaseActivity {
     private List<StockMsg> datas=new ArrayList<>();
 
     /**
-     * 诉讼列表
+     * 股东信息
      * @param page
      * @param rows
      */
@@ -109,7 +110,7 @@ public class GudonginfoAct extends BaseActivity {
                             datas.addAll(list);
                             if (datas != null && datas.size() > 0) {
                                 if (adapter == null) {
-                                    adapter = new GudonginfoAdapter(GudonginfoAct.this, list);
+                                    adapter = new GudonginfoAdapter(GudonginfoAct.this, datas);
                                     plv.getRefreshableView().setAdapter(adapter);
                                 } else {
                                     adapter.notify(datas);
@@ -122,7 +123,11 @@ public class GudonginfoAct extends BaseActivity {
                         }
 
                     } else {
-                        MyToastUtils.showShortToast(GudonginfoAct.this, "暂无数据");
+                        if(page==1) {
+                            MyToastUtils.showShortToast(GudonginfoAct.this, "暂无数据");
+                        }else {
+                            plv.setHasMoreData(false);
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

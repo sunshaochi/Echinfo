@@ -55,34 +55,42 @@ public class GudonginfoAdapter  extends BaseAdapter {
         if(convertView==null) {
             convertView = View.inflate(context, R.layout.lv_item_gudong, null);
             holder=new ViewHolder();
+            holder.name= (TextView) convertView.findViewById(R.id.name);
             holder.identity= (TextView) convertView.findViewById(R.id.identity);
             holder.outtime= (TextView) convertView.findViewById(R.id.outtime);
             holder.outmoney= (TextView) convertView.findViewById(R.id.outmoney);
             holder.realtime= (TextView) convertView.findViewById(R.id.realtime);
             holder.realmoney= (TextView) convertView.findViewById(R.id.realmoney);
             holder.payway= (TextView) convertView.findViewById(R.id.payway);
+            holder.view=convertView.findViewById(R.id.view);
             convertView.setTag(holder);
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
         if(list!=null) {
+            holder.name.setText(list.get(position).getName());
             holder.identity.setText(list.get(position).getStockType());
             holder.outtime.setText(list.get(position).getSubcribeTime());
             holder.outmoney.setText(list.get(position).getSubcribe() + "");
             holder.realtime.setText(list.get(position).getRealSubcribeTime());
             holder.realmoney.setText(list.get(position).getRealSubcribe() + "");
             holder.payway.setText(list.get(position).getRealSubcribeType());
+//            if(position==(list.size()-1)){
+//                holder.view.setVisibility(View.GONE);
+//            }
         }
         return convertView;
     }
 
     class ViewHolder{
+        private TextView name;
         private TextView identity;
         private TextView outtime;
         private TextView outmoney;
         private TextView realtime;
         private TextView realmoney;
         private TextView payway;
+        private View view;
 
     }
 

@@ -24,6 +24,18 @@ public class CompanyEntity {
      * "browseCount":null,
      * "industry":null
      */
+    /**
+     * "id":"1",
+     * "editType":"1",
+     * "editTime":"2016-04-16 00：00：00",
+     * "companyId":"12",
+     * "beforeEdit":"变更前的你",
+     * "afterEdit":"变更后的我"
+     */
+    private String editType;
+    private String editTime;
+    private String beforeEdit;
+    private String afterEdit;
     private String	companyId;//企业ID
     private String	legalRepPersion;//法定代表人
     private String	recordStatus;//登记状态
@@ -45,6 +57,38 @@ public class CompanyEntity {
     private String coords;
     private String browseCount;
     private String industry;
+
+    public String getEditType() {
+        return editType;
+    }
+
+    public void setEditType(String editType) {
+        this.editType = editType;
+    }
+
+    public String getEditTime() {
+        return editTime;
+    }
+
+    public void setEditTime(String editTime) {
+        this.editTime = editTime;
+    }
+
+    public String getBeforeEdit() {
+        return beforeEdit;
+    }
+
+    public void setBeforeEdit(String beforeEdit) {
+        this.beforeEdit = beforeEdit;
+    }
+
+    public String getAfterEdit() {
+        return afterEdit;
+    }
+
+    public void setAfterEdit(String afterEdit) {
+        this.afterEdit = afterEdit;
+    }
 
     public String getCompanyId() {
         return companyId;

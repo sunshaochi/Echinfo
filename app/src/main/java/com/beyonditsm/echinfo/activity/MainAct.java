@@ -15,6 +15,8 @@ import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.adapter.FlipAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.db.UserDao;
+import com.beyonditsm.echinfo.util.EchinfoUtils;
+import com.beyonditsm.echinfo.util.GeneralUtils;
 import com.beyonditsm.echinfo.util.MyLogUtils;
 import com.beyonditsm.echinfo.view.flip.FlipViewController;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -38,6 +40,10 @@ public class MainAct extends BaseActivity {
     String name=null;
     SharedPreferences sp ;
 
+    private GeneralUtils generalUtils;
+    public static final String ISLOADING = "com.Main.isloading";
+    private boolean isStart = false;
+    private boolean isUploading = false;
     /**
      * 按两次退出键时间小于2秒退出
      */
@@ -53,6 +59,7 @@ public class MainAct extends BaseActivity {
     public void init(Bundle savedInstanceState) {
         sp = getSharedPreferences("config", Context.MODE_PRIVATE);
         name=sp.getString("screen_name", "");
+        generalUtils=new GeneralUtils();
 
         titleList.add("1");
         titleList.add("2");
@@ -63,6 +70,8 @@ public class MainAct extends BaseActivity {
         initBadCre();//初始化失信榜单
 
         fcView.setAdapter(new FlipAdapter(this));
+        generalUtils.toVersion(MainAct.this, EchinfoUtils.getAppVer(MainAct.this), 0);
+//
 
     }
 

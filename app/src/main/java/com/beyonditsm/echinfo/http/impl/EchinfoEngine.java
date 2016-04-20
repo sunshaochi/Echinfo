@@ -369,13 +369,11 @@ public class EchinfoEngine extends RequestManager {
 
     /**
      * 关注企业
-     * @param accountId
      * @param companyId
      * @param callBack
      */
-    public void addMyAttention(String accountId,String companyId,CallBack callBack){
+    public void addMyAttention(String companyId,CallBack callBack){
         Map<String,String> map=new HashMap<>();
-        map.put("accountId",accountId);
         map.put("companyId",companyId);
         doPost(IEchinfoUrl.ATTENTION_URL,map,callBack);
     }
@@ -387,7 +385,7 @@ public class EchinfoEngine extends RequestManager {
      */
     public void removeMyAttention(String id,CallBack callBack){
         Map<String,String> map=new HashMap<>();
-        map.put("id",id);
+        map.put("companyId",id);
         doPost(IEchinfoUrl.REMOVEATTENTION_URL,map,callBack);
     }
 
@@ -416,7 +414,7 @@ public class EchinfoEngine extends RequestManager {
         map.put("companyId",companyId);
         map.put("page",page+"");
         map.put("rows",rows+"");
-        doPost(IEchinfoUrl.INVESTMENT_URL,map,callBack);
+        doPost(IEchinfoUrl.URL,map,callBack);
     }
 
 }
