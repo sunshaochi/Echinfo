@@ -24,7 +24,7 @@ public class SearchFragment extends BaseFragment {
     @ViewInject(R.id.plv)
     private PullToRefreshListView plv;
 
-    private  int position;
+    private  int position;//0企业，1法人/股东 2、失信
 
     @Override
     public View initView(LayoutInflater inflater) {

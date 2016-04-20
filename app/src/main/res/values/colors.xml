@@ -34,4 +34,6 @@
     <color name="navpage">#FFE1E8EB</color>
     <!--首页弹出菜单-->
     <color name="sydiago">#424649</color>
+
+    <color name="background_tab_pressed">#8833B5E5</color>
 </resources>

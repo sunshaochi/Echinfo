@@ -33,7 +33,9 @@
                     <ImageView
                         android:id="@+id/ivMsg"
                         style="@style/syimag"
-                        android:src="@mipmap/system_message" />
+                        android:src="@mipmap/system_message"
+                        android:visibility="gone"
+                        />
                    <FrameLayout
                        android:layout_width="0dp"
                        android:layout_height="30dp"

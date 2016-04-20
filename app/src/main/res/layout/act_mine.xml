@@ -161,12 +161,14 @@
         <View
             style="@style/view_line"
             android:layout_marginLeft="52dp"
+            android:visibility="gone"
             ></View>
         <com.beyonditsm.echinfo.view.CommonView
             android:id="@+id/cvMsg"
             style="@style/mine_item_style"
             app:desText="系统消息"
             app:statusImage="@mipmap/xitongxiaoxi"
+            android:visibility="gone"
             ></com.beyonditsm.echinfo.view.CommonView>
         <View
             style="@style/view_line"

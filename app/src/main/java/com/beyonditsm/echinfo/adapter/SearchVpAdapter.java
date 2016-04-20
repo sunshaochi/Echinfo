@@ -12,6 +12,8 @@ import com.beyonditsm.echinfo.fragment.SearchFragment;
  */
 public class SearchVpAdapter extends FragmentPagerAdapter{
 
+    private final String titles[]={"企业","法人/股东","失信"};
+
     public SearchVpAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -28,5 +30,10 @@ public class SearchVpAdapter extends FragmentPagerAdapter{
     @Override
     public int getCount() {
         return 3;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return titles[position];
     }
 }

@@ -1,6 +1,5 @@
 package com.beyonditsm.echinfo.activity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -21,6 +20,7 @@ import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.fragment.MyFollowFrg;
 import com.beyonditsm.echinfo.fragment.SearchHisFrg;
 import com.beyonditsm.echinfo.view.ClearEditText;
+import com.beyonditsm.echinfo.view.PagerSlidingTabStrip;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
@@ -49,27 +49,11 @@ public class SearchAct extends BaseActivity {
     @ViewInject(R.id.vpS)
     private ViewPager vpS;//搜索记录，我的关注
 
-    @ViewInject(R.id.tv1)
-    private TextView tv1;
-    @ViewInject(R.id.view1)
-    private View view1;
-    @ViewInject(R.id.tv2)
-    private TextView tv2;
-    @ViewInject(R.id.view2)
-    private View view2;
-    @ViewInject(R.id.tv3)
-    private TextView tv3;
-    @ViewInject(R.id.view3)
-    private View view3;
+    @ViewInject(R.id.tabsSearch)
+    private PagerSlidingTabStrip tabsSearch;
+    @ViewInject(R.id.tabS)
+    private PagerSlidingTabStrip tabS;//企业、法人、失信
 
-    @ViewInject(R.id.tv4)
-    private TextView tv4;
-    @ViewInject(R.id.view4)
-    private View view4;
-    @ViewInject(R.id.tv5)
-    private TextView tv5;
-    @ViewInject(R.id.view5)
-    private View view5;
 
 
     private int SEARCH_TYPE;//0查企业 1、查股东 2、查失信
@@ -97,35 +81,23 @@ public class SearchAct extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (!TextUtils.isEmpty(s)){
+                if (!TextUtils.isEmpty(s)) {
                     llNoHis.setVisibility(View.GONE);
                     llS.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     llNoHis.setVisibility(View.VISIBLE);
                     llS.setVisibility(View.GONE);
                 }
 
             }
         });
+        //企业、法人、失信
         vp.setAdapter(new SearchVpAdapter(getSupportFragmentManager()));
         vp.setCurrentItem(SEARCH_TYPE);
-        setSelection(SEARCH_TYPE);
-        vp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        tabS.setViewPager(vp);
 
-            }
 
-            @Override
-            public void onPageSelected(int position) {
-                setSelection(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+        //选择城市
         countryAdapter=new CountryAdapter(this, getCountrys(getResources().getStringArray(R.array.country)));
         lvCountry.setAdapter(countryAdapter);
         lvCountry.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -140,23 +112,8 @@ public class SearchAct extends BaseActivity {
         frgList.add(new MyFollowFrg());
         vpS.setAdapter(new SVpsAdapter(getSupportFragmentManager(), frgList));
         vpS.setCurrentItem(0);
+        tabsSearch.setViewPager(vpS);
 
-        vpS.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                setSelection(position+3);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-
-            }
-        });
     }
 
     /**
@@ -164,75 +121,15 @@ public class SearchAct extends BaseActivity {
      *
      * @param v
      */
-    @OnClick({R.id.rlEnter, R.id.rlLegal, R.id.rlBadCre, R.id.rlRegion,R.id.rlSearchH,R.id.rlMyFollow})
+    @OnClick({ R.id.rlRegion})
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.rlEnter:
-                setSelection(0);
-                vp.setCurrentItem(0);
-                break;
-            case R.id.rlLegal:
-                setSelection(1);
-                vp.setCurrentItem(1);
-                break;
-            case R.id.rlBadCre:
-                setSelection(2);
-                vp.setCurrentItem(2);
-                break;
-            case R.id.rlSearchH://搜索历史
-                setSelection(3);
-                vpS.setCurrentItem(0);
-                break;
-            case R.id.rlMyFollow://我的关注
-                setSelection(4);
-                vpS.setCurrentItem(1);
-                break;
             case R.id.rlRegion://搜索范围
                 lvCountry.setVisibility(View.VISIBLE);
                 break;
         }
     }
 
-    private void setSelection(int position) {
-        switch (position) {
-            case 0:
-                tv1.setTextColor(Color.parseColor("#00bbfb"));
-                view1.setVisibility(View.VISIBLE);
-                tv2.setTextColor(Color.parseColor("#3c3c3c"));
-                view2.setVisibility(View.GONE);
-                tv3.setTextColor(Color.parseColor("#3c3c3c"));
-                view3.setVisibility(View.GONE);
-                break;
-            case 1:
-                tv1.setTextColor(Color.parseColor("#3c3c3c"));
-                view1.setVisibility(View.GONE);
-                tv2.setTextColor(Color.parseColor("#00bbfb"));
-                view2.setVisibility(View.VISIBLE);
-                tv3.setTextColor(Color.parseColor("#3c3c3c"));
-                view3.setVisibility(View.GONE);
-                break;
-            case 2:
-                tv1.setTextColor(Color.parseColor("#3c3c3c"));
-                view1.setVisibility(View.GONE);
-                tv2.setTextColor(Color.parseColor("#3c3c3c"));
-                view2.setVisibility(View.GONE);
-                tv3.setTextColor(Color.parseColor("#00bbfb"));
-                view3.setVisibility(View.VISIBLE);
-                break;
-            case 3:
-                tv4.setTextColor(Color.parseColor("#00bbfb"));
-                view4.setVisibility(View.VISIBLE);
-                tv5.setTextColor(Color.parseColor("#3c3c3c"));
-                view5.setVisibility(View.GONE);
-                break;
-            case 4:
-                tv4.setTextColor(Color.parseColor("#3c3c3c"));
-                view4.setVisibility(View.GONE);
-                tv5.setTextColor(Color.parseColor("#00bbfb"));
-                view5.setVisibility(View.VISIBLE);
-                break;
-        }
-    }
 
     /**
      * 获取che
