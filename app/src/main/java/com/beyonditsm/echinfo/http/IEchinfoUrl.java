@@ -74,6 +74,9 @@ public interface IEchinfoUrl {
     /*变更记录*/
     String URL=BASE_URL+"editRecordMsg/findEditRecord.do";
 
+    /*行业*/
+    String INDUSTRY_URL=BASE_URL+"industryMsg/findIndustryByFatherId.do";
+
 
 
 

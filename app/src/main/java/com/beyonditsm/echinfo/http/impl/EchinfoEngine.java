@@ -417,4 +417,15 @@ public class EchinfoEngine extends RequestManager {
         doPost(IEchinfoUrl.URL,map,callBack);
     }
 
+    /**
+     * 查询行业
+     * @param fatherSectorId
+     * @param callBack
+     */
+    public void findIndustryByFatherId(String fatherSectorId,CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        map.put("fatherSectorId",fatherSectorId);
+        doPost(IEchinfoUrl.INDUSTRY_URL,map,callBack);
+    }
+
 }

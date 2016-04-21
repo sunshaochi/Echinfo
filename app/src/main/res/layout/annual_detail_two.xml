@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:text="9876小游戏（网站）"/>
     <ImageView
+        android:id="@+id/iv"
         android:layout_marginLeft="15dp"
         android:src="@mipmap/line"
         android:layout_width="wrap_content"

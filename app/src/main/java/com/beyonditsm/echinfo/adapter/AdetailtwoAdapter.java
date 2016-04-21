@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
@@ -41,6 +42,7 @@ public class AdetailtwoAdapter extends BaseAdapter {
             holder=new ViewHolder();
             holder.website= (TextView) convertView.findViewById(R.id.website);
             holder.intro= (TextView) convertView.findViewById(R.id.intro);
+            holder.iv= (ImageView) convertView.findViewById(R.id.iv);
             convertView.setTag(holder);
         }else {
             holder= (ViewHolder) convertView.getTag();
@@ -50,5 +52,6 @@ public class AdetailtwoAdapter extends BaseAdapter {
     class ViewHolder{
         private TextView website;
         private TextView intro;
+        private ImageView iv;
     }
 }
