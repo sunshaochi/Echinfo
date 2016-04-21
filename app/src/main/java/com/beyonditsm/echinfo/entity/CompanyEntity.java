@@ -32,6 +32,7 @@ public class CompanyEntity {
      * "beforeEdit":"变更前的你",
      * "afterEdit":"变更后的我"
      */
+    private String accountId;
     private String editType;
     private String editTime;
     private String beforeEdit;
@@ -57,6 +58,14 @@ public class CompanyEntity {
     private String coords;
     private String browseCount;
     private String industry;
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
 
     public String getEditType() {
         return editType;

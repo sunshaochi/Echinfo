@@ -123,7 +123,7 @@ public class AnnualAct extends BaseActivity{
                             datas.addAll(list);
                             if (datas != null && datas.size() > 0) {
                                 if (adapter == null) {
-                                    adapter=new AnnualAdapter(AnnualAct.this,list);
+                                    adapter=new AnnualAdapter(AnnualAct.this,datas);
                                     plv.getRefreshableView().setAdapter(adapter);
                                 } else {
                                     adapter.notify(datas);
@@ -151,6 +151,7 @@ public class AnnualAct extends BaseActivity{
             public void onError(String error) {
                 plv.onPullUpRefreshComplete();
                 plv.onPullDownRefreshComplete();
+                MyToastUtils.showShortToast(AnnualAct.this, error);
             }
         });
     }

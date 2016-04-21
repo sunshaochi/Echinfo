@@ -26,6 +26,10 @@ public class AdetailsevenAdapter extends BaseAdapter {
         this.context=context;
         this.list=list;
     }
+    public void notify(List<CompanyEntity> list){
+        this.list=list;
+        notifyDataSetChanged();
+    }
 
     @Override
     public int getCount() {

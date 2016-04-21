@@ -16,7 +16,7 @@
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="170dp"
                 android:orientation="vertical"
                 android:background="@color/main_color">
                 <ImageView
@@ -51,7 +51,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="6600万元"/>
+                                android:text=""/>
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -69,7 +69,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="2012-12-12"/>
+                                android:text=""/>
                         </LinearLayout>
                     </LinearLayout>
                     <LinearLayout
@@ -93,9 +93,10 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="李邦运"/>
+                                android:text=""/>
                         </LinearLayout>
                         <LinearLayout
+                            android:visibility="gone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
@@ -111,7 +112,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="2012-12-12"/>
+                                android:text=""/>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -131,9 +132,10 @@
                         android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="330200000000000003583"/>
+                        android:text=""/>
                 </LinearLayout>
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -149,10 +151,11 @@
                         android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="75323779-6"/>
+                        android:text=""/>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
+                android:visibility="gone"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -199,7 +202,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="其他有限责任公司"/>
+                        android:text=""/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -219,7 +222,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="存续"/>
+                        android:text=""/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -239,7 +242,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="西安市雁塔区长安中路123号B2层2267号"/>
+                        android:text=""/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -259,7 +262,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2012-12-12至****"/>
+                        android:text=""/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -280,7 +283,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="工商管理局"/>
+                        android:text=""/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -305,11 +308,13 @@
                     android:id="@+id/range"
                     android:textColor="@color/sydiago"
                     style="@style/tv_qygsxx"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="15dp"
                     android:gravity="center"
                     android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:text="法律法规法律法规法律法规法律法规法律法规法律法规法律法规法律法规"/>
+                    android:layout_height="wrap_content"
+                    android:text=""/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

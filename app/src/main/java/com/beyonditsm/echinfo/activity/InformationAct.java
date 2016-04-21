@@ -70,10 +70,15 @@ public class InformationAct extends BaseActivity{
         plv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
+                page=1;
+                findEnterpriseNewsList(id,page,rows);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                page++;
+                findEnterpriseNewsList(id,page,rows);
             }
         });
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -113,7 +118,7 @@ public class InformationAct extends BaseActivity{
                             datas.addAll(list);
                             if (datas != null && datas.size() > 0) {
                                 if (adapter == null) {
-                                    adapter=new InformationAdapter(InformationAct.this,list);
+                                    adapter=new InformationAdapter(InformationAct.this,datas);
                                     plv.getRefreshableView().setAdapter(adapter);
                                 } else {
                                     adapter.notify(datas);
@@ -141,6 +146,7 @@ public class InformationAct extends BaseActivity{
             public void onError(String error) {
                 plv.onPullUpRefreshComplete();
                 plv.onPullDownRefreshComplete();
+                MyToastUtils.showShortToast(InformationAct.this,error);
             }
         });
     }

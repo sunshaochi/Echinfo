@@ -105,7 +105,7 @@ public class PamentAct extends BaseActivity {
                             datas.addAll(list);
                             if (datas != null && datas.size() > 0) {
                                 if (adapter == null) {
-                                    adapter = new PamentAdapter(PamentAct.this, list);
+                                    adapter = new PamentAdapter(PamentAct.this, datas);
                                     plv.getRefreshableView().setAdapter(adapter);
                                 } else {
                                     adapter.notify(datas);
