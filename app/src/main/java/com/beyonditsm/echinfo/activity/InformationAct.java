@@ -70,10 +70,15 @@ public class InformationAct extends BaseActivity{
         plv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
+                page=1;
+                findEnterpriseNewsList(id,page,rows);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                page++;
+                findEnterpriseNewsList(id,page,rows);
             }
         });
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {

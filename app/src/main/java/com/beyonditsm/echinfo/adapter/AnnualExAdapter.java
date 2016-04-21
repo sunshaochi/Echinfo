@@ -1,6 +1,8 @@
 package com.beyonditsm.echinfo.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +15,11 @@ import android.widget.TextView;
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.activity.GudonginfoAct;
 import com.beyonditsm.echinfo.entity.CompanyEntity;
+import com.beyonditsm.echinfo.entity.ResultData;
 import com.beyonditsm.echinfo.entity.StockMsg;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
+import com.beyonditsm.echinfo.util.GsonUtils;
 import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.leaf.library.widget.MyListView;
 import com.tandong.sa.json.Gson;
@@ -36,6 +40,10 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
     private List<String> groupData;
     private List<List<String>> childData;
     private MyListView lv1,lv2,lv3,lv5,lv6,lv7;
+    //企业基本信息
+    private TextView company,regId,phone,zipCode,address,email,gqzr,state,online,tzxx,number;
+    //企业资产状况信息
+    private TextView money,qyAll,moneyAll,profit,moneyMain,netProfit,paytaxes,liabilities;
     public AnnualExAdapter(Context context){
         this.context=context;
     }
@@ -95,9 +103,14 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
 //
         ImageView image=(ImageView) view.findViewById(R.id.image);
         //判断实例可以展开，如果可以则改变右侧的图标
-        if(isExpanded)
+        if(isExpanded) {
+            view.setBackgroundColor(Color.WHITE);
             image.setBackgroundResource(R.mipmap.topup);
-        else image.setBackgroundResource(R.mipmap.down);
+        }
+        else {
+            view.setBackgroundColor(context.getResources().getColor(R.color.bg_color));
+            image.setBackgroundResource(R.mipmap.down);
+        }
 
         return view;
     }
@@ -110,17 +123,18 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
                 //填充视图
                 LayoutInflater inflater0 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 view = inflater0.inflate(R.layout.annual_list_one, null);
-                TextView company= (TextView) view.findViewById(R.id.company);//企业名称
-                TextView regId= (TextView) view.findViewById(R.id.regId);//注册号
-                TextView phone= (TextView) view.findViewById(R.id.phone);//企业联系电话
-                TextView zipCode= (TextView) view.findViewById(R.id.zipCode);//邮政编码
-                TextView address= (TextView) view.findViewById(R.id.address);//企业通信地址
-                TextView email= (TextView) view.findViewById(R.id.email);//电子邮箱
-                TextView gqzr= (TextView) view.findViewById(R.id.gqzr);//有限责任公司本年度是否发生股权转让
-                TextView state= (TextView) view.findViewById(R.id.state);//营业状况
-                TextView online= (TextView) view.findViewById(R.id.online);//是否有网站或网店
-                TextView tzxx= (TextView) view.findViewById(R.id.tzxx);//企业是否有投资信息或购买其它公司股权
-                TextView number= (TextView) view.findViewById(R.id.number);//从业人数
+                company= (TextView) view.findViewById(R.id.company);//企业名称
+                regId= (TextView) view.findViewById(R.id.regId);//注册号
+                phone= (TextView) view.findViewById(R.id.phone);//企业联系电话
+                zipCode= (TextView) view.findViewById(R.id.zipCode);//邮政编码
+                address= (TextView) view.findViewById(R.id.address);//企业通信地址
+                email= (TextView) view.findViewById(R.id.email);//电子邮箱
+                gqzr= (TextView) view.findViewById(R.id.gqzr);//有限责任公司本年度是否发生股权转让
+                state= (TextView) view.findViewById(R.id.state);//营业状况
+                online= (TextView) view.findViewById(R.id.online);//是否有网站或网店
+                tzxx= (TextView) view.findViewById(R.id.tzxx);//企业是否有投资信息或购买其它公司股权
+                number= (TextView) view.findViewById(R.id.number);//从业人数
+                findEnterpriseInfoMsgById("12");
                 break;
             case 1://网站或网店信息
                 LayoutInflater inflater1 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -141,19 +155,18 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
                 view = inflater3.inflate(R.layout.listview_item, null);
                 lv3= (MyListView) view.findViewById(R.id.lv);
                 findAbroadInvestment("12",-1,-1);
-//                lv3.setAdapter(new FollowAdapter(context));
                 break;
             case 4://企业资产状况信息
                 LayoutInflater inflater4 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 view = inflater4.inflate(R.layout.annual_list_four, null);
-                TextView money= (TextView) view.findViewById(R.id.money);//资产总额
-                TextView qyAll= (TextView) view.findViewById(R.id.qyAll);//所有者权益合计
-                TextView moneyAll= (TextView) view.findViewById(R.id.moneyAll);//营收总收入
-                TextView profit= (TextView) view.findViewById(R.id.profit);//利润总额
-                TextView moneyMain= (TextView) view.findViewById(R.id.moneyMain);//营业总收入中主营业务收入
-                TextView netProfit= (TextView) view.findViewById(R.id.netProfit);//净利润
-                TextView paytaxes= (TextView) view.findViewById(R.id.paytaxes);//纳税总额
-                TextView liabilities= (TextView) view.findViewById(R.id.liabilities);//负债总额
+                money= (TextView) view.findViewById(R.id.money);//资产总额
+                qyAll= (TextView) view.findViewById(R.id.qyAll);//所有者权益合计
+                moneyAll= (TextView) view.findViewById(R.id.moneyAll);//营收总收入
+                profit= (TextView) view.findViewById(R.id.profit);//利润总额
+                moneyMain= (TextView) view.findViewById(R.id.moneyMain);//营业总收入中主营业务收入
+                netProfit= (TextView) view.findViewById(R.id.netProfit);//净利润
+                paytaxes= (TextView) view.findViewById(R.id.paytaxes);//纳税总额
+                liabilities= (TextView) view.findViewById(R.id.liabilities);//负债总额
                 break;
             case 5://对外提供保证担保信息
                 LayoutInflater inflater5 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -172,7 +185,6 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
                 view = inflater7.inflate(R.layout.listview_item, null);
                 lv7= (MyListView) view.findViewById(R.id.lv);
                 findAnnualPortsMsgChange("12",-1,-1);
-//                lv7.setAdapter(new AdetailsevenAdapter(context));
                 break;
             default:
                 break;
@@ -188,6 +200,96 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
     }
 
 
+    private CompanyEntity entity;
+    /**
+     * 查询企业信息
+     * @param id
+     */
+    private void findEnterpriseInfoMsgById(String id){
+        RequestManager.getCommManager().findEnterpriseInfoMsgById(id, new CallBack() {
+            @Override
+            public void onSucess(String result) {
+                ResultData<CompanyEntity> rd = (ResultData<CompanyEntity>) GsonUtils.json(result, CompanyEntity.class);
+                entity = rd.getData();
+                setBusiness(entity);
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+    }
+    //设置企业信息
+    private void setBusiness(CompanyEntity entity){
+        if(entity!=null){
+            if(!TextUtils.isEmpty(entity.getCompanyName())){
+                company.setText(entity.getCompanyName());
+            }
+            if(!TextUtils.isEmpty(entity.getRegistNo())) {
+                regId.setText(entity.getRegistNo());
+            }else {
+                regId.setText("");
+            }
+            if(!TextUtils.isEmpty(entity.getCompanyPhoneNo())) {
+                phone.setText(entity.getCompanyPhoneNo());
+            }else {
+                phone.setText("");
+            }
+            if(!TextUtils.isEmpty(entity.getPostcode())) {
+                zipCode.setText(entity.getPostcode());
+            }else {
+                zipCode.setText("");
+            }
+            if(!TextUtils.isEmpty(entity.getAddress())) {
+                address.setText(entity.getAddress());
+            }else {
+                address.setText("");
+            }
+            if(!TextUtils.isEmpty(entity.getEmail())) {
+                email.setText(entity.getEmail());
+            }else {
+                email.setText("");
+            }
+            if (!TextUtils.isEmpty(entity.getStockTransfer())) {
+                if(entity.getStockTransfer().equals("0")) {
+                    gqzr.setText("否");
+                }else if(entity.getStockTransfer().equals("1")){
+                    gqzr.setText("是");
+                }
+            }else {
+                gqzr.setText("");
+            }
+            if(!TextUtils.isEmpty(entity.getManagementStatus())){
+                state.setText(entity.getManagementStatus());
+            }else {
+                state.setText("");
+            }
+            if(!TextUtils.isEmpty(entity.getIsHaveWeb())){
+                if(entity.getIsHaveWeb().equals("0")) {
+                    online.setText("否");
+                }else if(entity.getIsHaveWeb().equals("1")){
+                    online.setText("是");
+                }
+            }else {
+                online.setText("");
+            }
+            if(!TextUtils.isEmpty(entity.getCompanyInverstment())){
+                if(entity.getCompanyInverstment().equals("0")) {
+                    tzxx.setText("否");
+                }else if(entity.getCompanyInverstment().equals("1")){
+                    tzxx.setText("是");
+                }
+            }else {
+                tzxx.setText("");
+            }
+            if(!TextUtils.isEmpty(entity.getEmployeeCount())){
+                number.setText(entity.getEmployeeCount());
+            }else {
+                number.setText("");
+            }
+        }
+    }
     private GudonginfoAdapter adapter;
     private List<StockMsg> list;
     /**

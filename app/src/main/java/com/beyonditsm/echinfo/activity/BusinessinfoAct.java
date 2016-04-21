@@ -113,7 +113,7 @@ public class BusinessinfoAct extends BaseActivity{
                 datecl.setText("");
             }
             if(!TextUtils.isEmpty(entity.getCompanyCreatTime())) {
-                datefz.setText(entity.getCompanyCreatTime());//发照日期
+                datefz.setText("");//发照日期
             }else {
                 datefz.setText("");
             }
@@ -123,7 +123,7 @@ public class BusinessinfoAct extends BaseActivity{
                 busireg.setText("");
             }
             if(!TextUtils.isEmpty(entity.getCreditNo())) {
-                orgId.setText(entity.getCreditNo());
+                orgId.setText(entity.getCreditNo());//组织机构代码
             }else {
                 orgId.setText("");
             }
@@ -147,13 +147,13 @@ public class BusinessinfoAct extends BaseActivity{
             }else {
                 time.setText("");
             }
-            if(!TextUtils.isEmpty(entity.getManageScope())) {
-                org.setText(entity.getManageScope());
+            if(!TextUtils.isEmpty(entity.getRecordDept())) {
+                org.setText(entity.getRecordDept());
             }else {
                 org.setText("");
             }
-            if(!TextUtils.isEmpty(entity.getApproveMsg())) {
-                range.setText(entity.getApproveMsg());
+            if(!TextUtils.isEmpty(entity.getManageScope())) {
+                range.setText(entity.getManageScope());
             }else {
                 range.setText("");
             }
