@@ -134,7 +134,7 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
                 online= (TextView) view.findViewById(R.id.online);//是否有网站或网店
                 tzxx= (TextView) view.findViewById(R.id.tzxx);//企业是否有投资信息或购买其它公司股权
                 number= (TextView) view.findViewById(R.id.number);//从业人数
-                findEnterpriseInfoMsgById("12");
+                findEnterpriseInfoMsgById("1");
                 break;
             case 1://网站或网店信息
                 LayoutInflater inflater1 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

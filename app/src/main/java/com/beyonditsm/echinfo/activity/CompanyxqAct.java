@@ -63,7 +63,7 @@ public class CompanyxqAct extends BaseActivity {
 
     private CompanyEntity entity;
     private boolean flag=false;
-    String companyId="12";
+    String companyId="1";
     @Override
     public void setLayout() {
         setContentView(R.layout.act_companyxq);
