@@ -34,15 +34,23 @@
                 android:layout_width="12dp"
                 android:layout_height="14dp"
                 android:src="@mipmap/wo_follow"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="公司法人:"
+                android:textSize="12sp"
+                android:textColor="@color/text_sec_color"
+                android:layout_marginLeft="10dp"
+                />
 
             <TextView
                 android:id="@+id/tv_faren"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="公司法人：马云"
+                android:text="马云"
                 android:textSize="12sp"
                 android:textColor="@color/text_sec_color"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="5dp"
                 />
 
         </LinearLayout>
