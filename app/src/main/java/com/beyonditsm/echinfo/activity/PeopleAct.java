@@ -59,7 +59,7 @@ public class PeopleAct extends BaseActivity{
         });
 
         plv.setPullRefreshEnabled(true);//下拉刷新
-        plv.setScrollLoadEnabled(true);//滑动加载
+        plv.setScrollLoadEnabled(false);//滑动加载
         plv.setPullLoadEnabled(false);//上拉刷新
         plv.setHasMoreData(true);//是否有更多数据
         plv.getRefreshableView().setVerticalScrollBarEnabled(false);//设置右侧滑动

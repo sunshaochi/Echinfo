@@ -6,6 +6,7 @@
     >
 
     <TextView
+        android:id="@+id/tvComName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
@@ -35,9 +36,10 @@
                 android:src="@mipmap/company_list"/>
 
             <TextView
+                android:id="@+id/tvPerson"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="公司法人：马云"
+                android:text="公司法人："
                 android:textSize="12sp"
                 android:textColor="@color/text_sec_color"
                 android:layout_marginLeft="10dp"
@@ -46,9 +48,10 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tvState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="登记成立"
+            android:text=""
             android:textSize="12sp"
             android:textColor="@color/text_sec_color"
             android:layout_alignParentRight="true"

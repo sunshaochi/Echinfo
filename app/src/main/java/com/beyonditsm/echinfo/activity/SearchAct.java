@@ -1,5 +1,6 @@
 package com.beyonditsm.echinfo.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -18,6 +19,7 @@ import com.beyonditsm.echinfo.adapter.SVpsAdapter;
 import com.beyonditsm.echinfo.adapter.SearchVpAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.fragment.MyFollowFrg;
+import com.beyonditsm.echinfo.fragment.SearchFragment;
 import com.beyonditsm.echinfo.fragment.SearchHisFrg;
 import com.beyonditsm.echinfo.view.ClearEditText;
 import com.beyonditsm.echinfo.view.PagerSlidingTabStrip;
@@ -76,18 +78,21 @@ public class SearchAct extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                if(TextUtils.isEmpty(s.toString())){
+                    llNoHis.setVisibility(View.VISIBLE);
+                    llS.setVisibility(View.GONE);
+                }else if(s.length()>=2){
+                    llNoHis.setVisibility(View.GONE);
+                    llS.setVisibility(View.VISIBLE);
+                    Intent intent=new Intent(SearchFragment.SEARCH_RECEIVER);
+                    intent.putExtra("search",s.toString());
+                    sendBroadcast(intent);
+                }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (!TextUtils.isEmpty(s)) {
-                    llNoHis.setVisibility(View.GONE);
-                    llS.setVisibility(View.VISIBLE);
-                } else {
-                    llNoHis.setVisibility(View.VISIBLE);
-                    llS.setVisibility(View.GONE);
-                }
+
 
             }
         });
