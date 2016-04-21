@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
 
@@ -33,8 +35,23 @@ public class ReqyAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView=View.inflate(context, R.layout.lv_item_rmqy,null);
+        ViewHolder holder=null;
+        if(convertView==null) {
+            convertView = View.inflate(context, R.layout.lv_item_rmqy, null);
+            holder=new ViewHolder();
+            holder.company= (TextView) convertView.findViewById(R.id.company);
+            holder.ratingBar= (RatingBar) convertView.findViewById(R.id.rating);
+            holder.number= (TextView) convertView.findViewById(R.id.number);
+            convertView.setTag(holder);
+        }else {
+            holder= (ViewHolder) convertView.getTag();
+        }
         return convertView;
+    }
+    class ViewHolder{
+        private TextView company;
+        private RatingBar ratingBar;
+        private TextView number;
     }
 }
 

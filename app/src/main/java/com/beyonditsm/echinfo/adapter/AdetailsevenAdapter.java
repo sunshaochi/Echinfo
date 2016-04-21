@@ -1,6 +1,7 @@
 package com.beyonditsm.echinfo.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,10 +67,14 @@ public class AdetailsevenAdapter extends BaseAdapter {
             holder= (ViewHolder) convertView.getTag();
         }
         if(list!=null){
-            holder.time.setText(list.get(position).getEditTime());
-            holder.type.setText(list.get(position).getEditType());
-            holder.before.setText(list.get(position).getBeforeEdit());
-            holder.after.setText(list.get(position).getAfterEdit());
+            if(!TextUtils.isEmpty(list.get(position).getEditTime()))
+                holder.time.setText(list.get(position).getEditTime());
+            if(!TextUtils.isEmpty(list.get(position).getEditType()))
+                holder.type.setText(list.get(position).getEditType());
+            if(!TextUtils.isEmpty(list.get(position).getBeforeEdit()))
+                holder.before.setText(list.get(position).getBeforeEdit());
+            if(!TextUtils.isEmpty(list.get(position).getAfterEdit()))
+                holder.after.setText(list.get(position).getAfterEdit());
         }
         if(position==0){
             holder.view.setVisibility(View.INVISIBLE);

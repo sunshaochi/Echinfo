@@ -88,11 +88,15 @@ public class CompanyxqAct extends BaseActivity {
                         intent.putExtra("id", companyId);
                         startActivity(intent);
                         break;
-                    case 1:
-
+                    case 1://企业图谱
+                        intent=new Intent(CompanyxqAct.this,WebAct.class);
+                        intent.putExtra(WebAct.WEB_TYPE,1);
+                        startActivity(intent);
                         break;
-                    case 2:
-
+                    case 2://行业分析
+                        intent=new Intent(CompanyxqAct.this,WebAct.class);
+                        intent.putExtra(WebAct.WEB_TYPE,2);
+                        startActivity(intent);
                         break;
                     case 3://失信信息
                         intent = new Intent(CompanyxqAct.this, DishonestyInfoAct.class);
@@ -187,7 +191,7 @@ public class CompanyxqAct extends BaseActivity {
 
             @Override
             public void onError(String error) {
-
+                MyToastUtils.showShortToast(CompanyxqAct.this,error);
             }
         });
     }
@@ -207,7 +211,7 @@ public class CompanyxqAct extends BaseActivity {
 
             @Override
             public void onError(String error) {
-
+                MyToastUtils.showShortToast(CompanyxqAct.this,error);
             }
         });
     }

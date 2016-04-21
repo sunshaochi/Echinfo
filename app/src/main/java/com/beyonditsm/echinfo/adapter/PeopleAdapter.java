@@ -1,6 +1,7 @@
 package com.beyonditsm.echinfo.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -56,8 +57,10 @@ public class PeopleAdapter  extends BaseAdapter {
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
-        holder.tv_nm.setText(list.get(position).getPersionName());
-        holder.tv_jobnm.setText(list.get(position).getJobName());
+        if(!TextUtils.isEmpty(list.get(position).getPersionName()))
+            holder.tv_nm.setText(list.get(position).getPersionName());
+        if(!TextUtils.isEmpty(list.get(position).getJobName()))
+            holder.tv_jobnm.setText(list.get(position).getJobName());
       //  holder.iv_pp.setText(list.get(position).getRecordStatus());
         return convertView;
     }

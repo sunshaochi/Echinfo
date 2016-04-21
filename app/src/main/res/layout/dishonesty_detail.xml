@@ -42,7 +42,7 @@
                     android:gravity="center_vertical"
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="544932"/>
             </LinearLayout>
 
@@ -71,7 +71,7 @@
                     android:gravity="center_vertical"
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="辽宁"/>
             </LinearLayout>
 
@@ -99,7 +99,7 @@
                     android:gravity="center_vertical"
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="（2014）湘民一初字第155号"/>
             </LinearLayout>
 
@@ -127,7 +127,7 @@
                     android:gravity="center_vertical"
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="34234"/>
             </LinearLayout>
 
@@ -155,7 +155,7 @@
                     android:gravity="center_vertical"
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="（2014）湘民一初字第155号"/>
             </LinearLayout>
 
@@ -183,7 +183,7 @@
                     android:gravity="center_vertical"
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="辽中仲裁委员会"/>
             </LinearLayout>
 
@@ -211,7 +211,7 @@
                     android:gravity="center_vertical"
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="全部未履行"/>
             </LinearLayout>
 
@@ -239,7 +239,7 @@
                     android:gravity="center_vertical"
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="被申请人支付工资"/>
             </LinearLayout>
 
@@ -267,7 +267,7 @@
                     android:gravity="center_vertical"
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="违反财产报告制度"/>
             </LinearLayout>
 
@@ -295,7 +295,7 @@
                     android:gravity="center_vertical"
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="2015年12月24日"/>
             </LinearLayout>
 

@@ -1,6 +1,7 @@
 package com.beyonditsm.echinfo.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -63,12 +64,19 @@ public class GudonginfoAdapter  extends BaseAdapter {
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
+        if(!TextUtils.isEmpty(list.get(position).getName()))
             holder.name.setText(list.get(position).getName());
+        if(!TextUtils.isEmpty(list.get(position).getStockType()))
             holder.identity.setText(list.get(position).getStockType());
+        if(!TextUtils.isEmpty(list.get(position).getSubcribeTime()))
             holder.outtime.setText(list.get(position).getSubcribeTime());
+        if(!TextUtils.isEmpty(list.get(position).getSubcribe()+""))
             holder.outmoney.setText(list.get(position).getSubcribe() + "");
+        if(!TextUtils.isEmpty(list.get(position).getRealSubcribeTime()))
             holder.realtime.setText(list.get(position).getRealSubcribeTime());
+        if(!TextUtils.isEmpty(list.get(position).getRealSubcribe() + ""))
             holder.realmoney.setText(list.get(position).getRealSubcribe() + "");
+        if(!TextUtils.isEmpty(list.get(position).getRealSubcribeType()))
             holder.payway.setText(list.get(position).getRealSubcribeType());
         return convertView;
     }

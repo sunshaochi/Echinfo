@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
 
@@ -35,7 +36,24 @@ public class BadCAdaper extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView=View.inflate(context, R.layout.lv_badc_item,null);
+        ViewHolder holder=null;
+        if(convertView==null) {
+            convertView = View.inflate(context, R.layout.lv_badc_item, null);
+            holder=new ViewHolder();
+            holder.company= (TextView) convertView.findViewById(R.id.company);
+            holder.cid= (TextView) convertView.findViewById(R.id.cid);
+            holder.location= (TextView) convertView.findViewById(R.id.location);
+            holder.idname= (TextView) convertView.findViewById(R.id.idname);
+            convertView.setTag(holder);
+        }else {
+            holder= (ViewHolder) convertView.getTag();
+        }
         return convertView;
+    }
+    class ViewHolder{
+        private TextView company;
+        private TextView cid;
+        private TextView location;
+        private TextView idname;
     }
 }

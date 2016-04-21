@@ -55,7 +55,7 @@ public class MyFollowAct extends BaseActivity {
         plv.getRefreshableView().setVerticalScrollBarEnabled(false);//设置右侧滑动
         plv.getRefreshableView().setSelector(new ColorDrawable(Color.TRANSPARENT));
         plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
-        findgzPortsMsg("admin", page, rows);
+        findgzPortsMsg( page, rows);
         plv.getRefreshableView().setDivider(null);
         plv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
@@ -80,13 +80,12 @@ public class MyFollowAct extends BaseActivity {
 
     private List<CompanyEntity> datas=new ArrayList<>();
     /**
-     *
-     * @param accountId
+     * 我的关注
      * @param page
      * @param rows
      */
-    public void findgzPortsMsg(String accountId, final int page,int rows){
-        RequestManager.getCommManager().findgzPortsMsg(accountId, page, rows, new CallBack() {
+    public void findgzPortsMsg(final int page,int rows){
+        RequestManager.getCommManager().findgzPortsMsg(page, rows, new CallBack() {
             @Override
             public void onSucess(String result) {
                 plv.onPullUpRefreshComplete();

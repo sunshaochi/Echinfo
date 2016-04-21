@@ -1,6 +1,7 @@
 package com.beyonditsm.echinfo.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -59,9 +60,12 @@ public class InformationAdapter extends BaseAdapter {
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
-        holder.title.setText(list.get(position).getNewsName());
-        holder.come.setText("来源："+list.get(position).getNewsFrom());
-        holder.time.setText(list.get(position).getNewsTime());
+        if(!TextUtils.isEmpty(list.get(position).getNewsName()))
+            holder.title.setText(list.get(position).getNewsName());
+        if(!TextUtils.isEmpty(list.get(position).getNewsFrom()))
+            holder.come.setText("来源："+list.get(position).getNewsFrom());
+        if(!TextUtils.isEmpty(list.get(position).getNewsTime()))
+            holder.time.setText(list.get(position).getNewsTime());
         return convertView;
     }
     class ViewHolder{

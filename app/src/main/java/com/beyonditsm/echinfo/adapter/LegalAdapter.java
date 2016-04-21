@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
 
@@ -35,7 +36,22 @@ public class LegalAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView=View.inflate(context, R.layout.lv_item_legal,null);
+        ViewHolder holder=null;
+        if(convertView==null) {
+            convertView = View.inflate(context, R.layout.lv_item_legal, null);
+            holder=new ViewHolder();
+            holder.company= (TextView) convertView.findViewById(R.id.company);
+            holder.name= (TextView) convertView.findViewById(R.id.name);
+            holder.status= (TextView) convertView.findViewById(R.id.status);
+            convertView.setTag(holder);
+        }else {
+            holder= (ViewHolder) convertView.getTag();
+        }
         return convertView;
+    }
+    class ViewHolder{
+        private TextView company;
+        private TextView name;
+        private TextView status;
     }
 }

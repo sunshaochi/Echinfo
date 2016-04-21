@@ -16,6 +16,7 @@
         android:orientation="vertical"
         >
     <TextView
+        android:id="@+id/company"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
@@ -41,6 +42,8 @@
                 android:src="@mipmap/number"/>
 
             <TextView
+                android:id="@+id/cid"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="51335253523523523"
@@ -65,6 +68,8 @@
             android:src="@mipmap/qiyehao"/>
 
         <TextView
+            android:id="@+id/idname"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="(2013)宜宾执字第1037号"
@@ -91,6 +96,8 @@
             android:src="@mipmap/address"/>
 
         <TextView
+            android:id="@+id/location"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="四川"

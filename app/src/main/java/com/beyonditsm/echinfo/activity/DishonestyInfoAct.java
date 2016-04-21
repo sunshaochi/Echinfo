@@ -8,7 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.beyonditsm.echinfo.R;
-import com.beyonditsm.echinfo.adapter.DisonestyAdapter;
+import com.beyonditsm.echinfo.adapter.BadCAdaper;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshBase;
@@ -50,7 +50,7 @@ public class DishonestyInfoAct extends BaseActivity {
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
             }
         });
-        plv.getRefreshableView().setAdapter(new DisonestyAdapter(this));
+        plv.getRefreshableView().setAdapter(new BadCAdaper(this));
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

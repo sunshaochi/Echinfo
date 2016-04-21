@@ -1,6 +1,7 @@
 package com.beyonditsm.echinfo.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -56,9 +57,12 @@ public class PamentAdapter extends BaseAdapter {
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
-        holder.tv_name.setText(list.get(position).getCompanyName());
-        holder.tv_faren.setText(list.get(position).getLegalRepPersion());
-        holder.tv_zhuantai.setText(list.get(position).getRecordStatus());
+        if(!TextUtils.isEmpty(list.get(position).getCompanyName()))
+            holder.tv_name.setText(list.get(position).getCompanyName());
+        if(!TextUtils.isEmpty(list.get(position).getLegalRepPersion()))
+            holder.tv_faren.setText(list.get(position).getLegalRepPersion());
+        if(!TextUtils.isEmpty(list.get(position).getRecordStatus()))
+            holder.tv_zhuantai.setText(list.get(position).getRecordStatus());
         return convertView;
     }
 

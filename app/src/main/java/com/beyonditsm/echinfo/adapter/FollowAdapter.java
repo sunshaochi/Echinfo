@@ -1,6 +1,7 @@
 package com.beyonditsm.echinfo.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -63,9 +64,12 @@ public class FollowAdapter extends BaseAdapter{
             holder= (ViewHolder) convertView.getTag();
         }
         if(list!=null){
-            holder.company.setText(list.get(position).getCompanyName());
-            holder.lename.setText("公司法人："+list.get(position).getLegalRepPersion());
-            holder.status.setText(list.get(position).getRecordStatus());
+            if(!TextUtils.isEmpty(list.get(position).getCompanyName()))
+                holder.company.setText(list.get(position).getCompanyName());
+            if(!TextUtils.isEmpty(list.get(position).getLegalRepPersion()))
+                holder.lename.setText("公司法人："+list.get(position).getLegalRepPersion());
+            if(!TextUtils.isEmpty(list.get(position).getRecordStatus()))
+                holder.status.setText(list.get(position).getRecordStatus());
         }
         return convertView;
     }

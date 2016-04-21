@@ -252,9 +252,9 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
                 email.setText("");
             }
             if (!TextUtils.isEmpty(entity.getStockTransfer())) {
-                if(entity.getStockTransfer().equals("0")) {
+                if("0".equals(entity.getStockTransfer())) {
                     gqzr.setText("否");
-                }else if(entity.getStockTransfer().equals("1")){
+                }else if("1".equals(entity.getStockTransfer())){
                     gqzr.setText("是");
                 }
             }else {
@@ -266,18 +266,18 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
                 state.setText("");
             }
             if(!TextUtils.isEmpty(entity.getIsHaveWeb())){
-                if(entity.getIsHaveWeb().equals("0")) {
+                if("0".equals(entity.getIsHaveWeb())) {
                     online.setText("否");
-                }else if(entity.getIsHaveWeb().equals("1")){
+                }else if("".equals(entity.getIsHaveWeb())){
                     online.setText("是");
                 }
             }else {
                 online.setText("");
             }
             if(!TextUtils.isEmpty(entity.getCompanyInverstment())){
-                if(entity.getCompanyInverstment().equals("0")) {
+                if("0".equals(entity.getCompanyInverstment())) {
                     tzxx.setText("否");
-                }else if(entity.getCompanyInverstment().equals("1")){
+                }else if("1".equals(entity.getCompanyInverstment())){
                     tzxx.setText("是");
                 }
             }else {
@@ -334,7 +334,7 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
         });
     }
     private List<CompanyEntity> listInvestment;
-    private FollowAdapter adapterInvestment;
+    private EnterPAdapter adapterInvestment;
     /**
      * 对外投资
      * @param companyId
@@ -353,7 +353,7 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
                                 new TypeToken<List<CompanyEntity>>() {
                                 }.getType());
                         if (listInvestment != null && listInvestment.size() > 0) {
-                            adapterInvestment = new FollowAdapter(context, listInvestment);
+                            adapterInvestment = new EnterPAdapter(context, listInvestment);
                                 lv3.setAdapter(adapterInvestment);
                         }
                     } else {

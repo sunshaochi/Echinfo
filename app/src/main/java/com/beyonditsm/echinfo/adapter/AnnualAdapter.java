@@ -1,6 +1,7 @@
 package com.beyonditsm.echinfo.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,8 +54,10 @@ public class AnnualAdapter extends BaseAdapter {
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
-        holder.name.setText(list.get(position).getYear()+"年年报");
-        holder.company.setText(list.get(position).getCompanyName());
+        if(!TextUtils.isEmpty(list.get(position).getYear()))
+            holder.name.setText(list.get(position).getYear()+"年年报");
+        if(!TextUtils.isEmpty(list.get(position).getCompanyName()))
+            holder.company.setText(list.get(position).getCompanyName());
         return convertView;
     }
 

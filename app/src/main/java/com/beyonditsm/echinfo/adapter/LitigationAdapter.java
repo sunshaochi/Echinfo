@@ -1,6 +1,7 @@
 package com.beyonditsm.echinfo.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -59,9 +60,12 @@ public class LitigationAdapter extends BaseAdapter {
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
-        holder.fyname.setText(list.get(position).getCourt());
-        holder.qiyehao.setText(list.get(position).getCaseNo());
-        holder.time.setText(list.get(position).getRegistrineTime());
+        if(!TextUtils.isEmpty(list.get(position).getCourt()))
+            holder.fyname.setText(list.get(position).getCourt());
+        if(!TextUtils.isEmpty(list.get(position).getCaseNo()))
+            holder.qiyehao.setText(list.get(position).getCaseNo());
+        if(!TextUtils.isEmpty(list.get(position).getRegistrineTime()))
+            holder.time.setText(list.get(position).getRegistrineTime());
         return convertView;
     }
 
