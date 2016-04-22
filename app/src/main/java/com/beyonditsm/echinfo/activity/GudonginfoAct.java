@@ -38,7 +38,7 @@ public class GudonginfoAct extends BaseActivity {
     private int page=1;
     private int rows=10;
     private GudonginfoAdapter adapter;
-    String id=null;
+    String companyId=null;
     @Override
     public void setLayout() {
         setContentView(R.layout.act_gudonginfo);
@@ -47,7 +47,7 @@ public class GudonginfoAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("股东信息");
-        id=getIntent().getStringExtra("id");
+        companyId=getIntent().getStringExtra(CompanyxqAct.COMPANYID);
         setRight("纠错", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,19 +63,19 @@ public class GudonginfoAct extends BaseActivity {
         plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
         plv.getRefreshableView().setDivider(null);
 
-        findStockMsg(id,page,rows);
+        findStockMsg(companyId,page,rows);
         plv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
                 page = 1;
-                findStockMsg(id,page, rows);
+                findStockMsg(companyId,page, rows);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 page++;
-                findStockMsg(id,page, rows);
+                findStockMsg(companyId,page, rows);
             }
         });
     }
@@ -88,8 +88,8 @@ public class GudonginfoAct extends BaseActivity {
      * @param page
      * @param rows
      */
-    private void findStockMsg(String id,final int page,int rows){
-        RequestManager.getCommManager().findStockMsg(id,page, rows, new CallBack() {
+    private void findStockMsg(String companyId,final int page,int rows){
+        RequestManager.getCommManager().findStockMsg(companyId,page, rows, new CallBack() {
             @Override
             public void onSucess(String result) {
                 plv.onPullUpRefreshComplete();

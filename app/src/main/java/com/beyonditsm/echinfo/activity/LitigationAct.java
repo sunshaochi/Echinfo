@@ -40,7 +40,7 @@ public class LitigationAct extends BaseActivity {
     private int rows=10;
     private List<LawsuitMsgEntity> list;
     private LitigationAdapter adapter;
-    String id=null;
+    String companyId=null;
     @Override
     public void setLayout() {
     setContentView(R.layout.act_litigation);
@@ -49,7 +49,7 @@ public class LitigationAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("诉讼信息");
-        id=getIntent().getStringExtra("id");
+        companyId=getIntent().getStringExtra(CompanyxqAct.COMPANYID);
         plv.setPullRefreshEnabled(true);//下拉刷新
         plv.setScrollLoadEnabled(true);//滑动加载
         plv.setPullLoadEnabled(false);//上拉刷新
@@ -59,19 +59,19 @@ public class LitigationAct extends BaseActivity {
         plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
         plv.getRefreshableView().setDivider(null);
 
-        findLawsuitMsg(id,page, rows);
+        findLawsuitMsg(companyId,page, rows);
         plv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
                 page = 1;
-                findLawsuitMsg(id,page, rows);
+                findLawsuitMsg(companyId,page, rows);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 page++;
-                findLawsuitMsg(id,page, rows);
+                findLawsuitMsg(companyId,page, rows);
             }
         });
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -91,8 +91,8 @@ public class LitigationAct extends BaseActivity {
      * @param page
      * @param rows
      */
-    private void findLawsuitMsg(String id,final int page,int rows){
-        RequestManager.getCommManager().findLawsuitMsg(id,page, rows, new CallBack() {
+    private void findLawsuitMsg(String companyId,final int page,int rows){
+        RequestManager.getCommManager().findLawsuitMsg(companyId,page, rows, new CallBack() {
             @Override
             public void onSucess(String result) {
                 plv.onPullUpRefreshComplete();

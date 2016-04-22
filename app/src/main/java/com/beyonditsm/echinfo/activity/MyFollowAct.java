@@ -1,5 +1,6 @@
 package com.beyonditsm.echinfo.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -60,20 +61,26 @@ public class MyFollowAct extends BaseActivity {
         plv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
+                page=1;
+                findgzPortsMsg(page,rows);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                page++;
+                findgzPortsMsg(page,rows);
             }
         });
 
 
 
-       // plv.getRefreshableView().setAdapter(new FollowAdapter(this));
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                openActivity(CompanyxqAct.class);
+                Intent intent=new Intent(MyFollowAct.this,CompanyxqAct.class);
+                intent.putExtra(CompanyxqAct.ID, datas.get(position).getId());
+                startActivity(intent);
             }
         });
     }

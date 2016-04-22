@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.adapter.CompanyAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
-import com.beyonditsm.echinfo.db.UserDao;
 import com.beyonditsm.echinfo.entity.CompanyEntity;
 import com.beyonditsm.echinfo.entity.ResultData;
 import com.beyonditsm.echinfo.http.CallBack;
@@ -63,7 +62,9 @@ public class CompanyxqAct extends BaseActivity {
 
     private CompanyEntity entity;
     private boolean flag=false;
-    String companyId="1";
+    String iId =null;
+    public static final String ID ="id";
+    public static final String COMPANYID ="companyId";
     @Override
     public void setLayout() {
         setContentView(R.layout.act_companyxq);
@@ -73,7 +74,11 @@ public class CompanyxqAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("华东控股集团有限公司");
-        findEnterpriseInfoMsgById(companyId);
+        iId =getIntent().getStringExtra(ID);
+        if(TextUtils.isEmpty(iId)){
+            iId ="1";
+        }
+        findEnterpriseInfoMsgById(iId);
         gvqy.setAdapter(new CompanyAdapter(CompanyxqAct.this));
         gvqy.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             //            private final String TITLES[] = {"工商信息", "企业图谱", "行业分析", "失业信息", "诉讼信息",
@@ -85,71 +90,62 @@ public class CompanyxqAct extends BaseActivity {
                 switch (position) {
                     case 0://工商信息
                         intent = new Intent(CompanyxqAct.this, BusinessinfoAct.class);
-                        companyId="2";
-                        intent.putExtra("id", companyId);
+                        intent.putExtra(COMPANYID, iId);
                         startActivity(intent);
                         break;
                     case 1://企业图谱
-                        intent=new Intent(CompanyxqAct.this,WebAct.class);
-                        intent.putExtra(WebAct.WEB_TYPE,1);
+                        intent = new Intent(CompanyxqAct.this, WebAct.class);
+                        intent.putExtra(WebAct.WEB_TYPE, 1);
                         startActivity(intent);
                         break;
                     case 2://行业分析
-                        intent=new Intent(CompanyxqAct.this,WebAct.class);
-                        intent.putExtra(WebAct.WEB_TYPE,2);
+                        intent = new Intent(CompanyxqAct.this, WebAct.class);
+                        intent.putExtra(WebAct.WEB_TYPE, 2);
                         startActivity(intent);
                         break;
                     case 3://失信信息
                         intent = new Intent(CompanyxqAct.this, DishonestyInfoAct.class);
-                        intent.putExtra("id", companyId);
+                        intent.putExtra(COMPANYID, iId);
                         startActivity(intent);
                         break;
                     case 4://诉讼信息
                         intent = new Intent(CompanyxqAct.this, LitigationAct.class);
-                        companyId="12";
-                        intent.putExtra("id", companyId);
+                        intent.putExtra(COMPANYID, iId);
                         startActivity(intent);
                         break;
                     case 5://对外投资
                         intent = new Intent(CompanyxqAct.this, InvestmentAct.class);
-                        companyId="3";
-                        intent.putExtra("id", companyId);
+                        intent.putExtra(COMPANYID, iId);
                         startActivity(intent);
                         break;
                     case 6://股东信息
                         intent = new Intent(CompanyxqAct.this, GudonginfoAct.class);
-                        companyId="12";
-                        intent.putExtra("id", companyId);
+                        intent.putExtra(COMPANYID, iId);
                         startActivity(intent);
                         break;
                     case 7://企业资讯
                         intent = new Intent(CompanyxqAct.this, InformationAct.class);
-                        companyId="4";
-                        intent.putExtra("id", companyId);
+                        intent.putExtra(COMPANYID, iId);
                         startActivity(intent);
                         break;
                     case 8://年报信息
                         intent = new Intent(CompanyxqAct.this, AnnualAct.class);
-                        companyId="12";
-                        intent.putExtra("id", companyId);
+                        intent.putExtra(COMPANYID, iId);
                         startActivity(intent);
                         break;
                     case 9://分支机构
                         intent = new Intent(CompanyxqAct.this, PamentAct.class);
-                        companyId="2";
-                        intent.putExtra("id", companyId);
+                        intent.putExtra(COMPANYID, iId);
                         startActivity(intent);
                         break;
                     case 10://主要成员
                         intent = new Intent(CompanyxqAct.this, PeopleAct.class);
-                        companyId="4";
-                        intent.putExtra("id", companyId);
+                        intent.putExtra(COMPANYID, iId);
                         startActivity(intent);
                         break;
                     case 11://变更记录
                         intent = new Intent(CompanyxqAct.this, ChangecodeAct.class);
-                        companyId="12";
-                        intent.putExtra("id", companyId);
+                        intent.putExtra(COMPANYID, iId);
                         startActivity(intent);
                         break;
 
@@ -174,9 +170,9 @@ public class CompanyxqAct extends BaseActivity {
                 break;
             case R.id.tvAttention://关注
                 if(!flag) {
-                    addMyAttention(companyId);
+                    addMyAttention(iId);
                 }else {
-                    removeMyAttention(companyId);
+                    removeMyAttention(iId);
                 }
                 break;
         }

@@ -124,7 +124,7 @@ public class GeneralUtils {
 
     private NotificationManager mNotificationManager = null;
     private Notification mNotification;
-    private String fileName = "/sdcard/bill.apk";
+    private String fileName = "/sdcard/echinfo.apk";
     private int result, fileSize, downLoadFileSize;
     private boolean isStart;
 

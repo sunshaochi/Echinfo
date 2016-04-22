@@ -1,13 +1,16 @@
 package com.beyonditsm.echinfo.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.beyonditsm.echinfo.R;
+import com.beyonditsm.echinfo.activity.CompanyxqAct;
 import com.beyonditsm.echinfo.adapter.FollowAdapter;
 import com.beyonditsm.echinfo.base.BaseFragment;
 import com.beyonditsm.echinfo.entity.CompanyEntity;
@@ -60,15 +63,23 @@ public class MyFollowFrg extends BaseFragment{
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
-                page=1;
-                findgzPortsMsg(page,rows);
+                page = 1;
+                findgzPortsMsg(page, rows);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 page++;
-                findgzPortsMsg(page,rows);
+                findgzPortsMsg(page, rows);
 
+            }
+        });
+        plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(getActivity(), CompanyxqAct.class);
+                intent.putExtra(CompanyxqAct.ID,datas.get(position).getId());
+                getActivity().startActivity(intent);
             }
         });
     }

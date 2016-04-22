@@ -40,7 +40,7 @@ public class PeopleAct extends BaseActivity{
 
     private List<PeopleEntity> list;
     private PeopleAdapter adapter;
-    String id=null;
+    String companyId=null;
     @Override
     public void setLayout() {
         setContentView(R.layout.act_people);
@@ -50,7 +50,7 @@ public class PeopleAct extends BaseActivity{
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("主要成员");
-        id=getIntent().getStringExtra("id");
+        companyId=getIntent().getStringExtra(CompanyxqAct.COMPANYID);
         setRight("纠错", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,22 +67,21 @@ public class PeopleAct extends BaseActivity{
         plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
 //        plv.getRefreshableView().setDivider(null);
 
-        findpeoplePortsMsg(id, page, rows);
+        findpeoplePortsMsg(companyId, page, rows);
         plv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
                 page = 1;
-                findpeoplePortsMsg(id, page, rows);
+                findpeoplePortsMsg(companyId, page, rows);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 page++;
-                findpeoplePortsMsg(id, page, rows);
+                findpeoplePortsMsg(companyId, page, rows);
             }
         });
-      //  pp_lv.setAdapter(new PeopleAdapter(PeopleAct.this,list));
 
     }
 
