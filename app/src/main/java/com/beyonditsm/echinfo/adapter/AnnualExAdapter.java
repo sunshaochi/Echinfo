@@ -70,21 +70,21 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        int i=0;
-        switch (groupPosition){
-            case 0:
-                i=1;
-                break;
-            case 4:
-                i=1;
-                break;
-            default:
-                i=((List)childData.get(groupPosition)).size();
-                break;
-
-        }
-//        return 1;
-        return i;
+//        int i=0;
+//        switch (groupPosition){
+//            case 0:
+//                i=1;
+//                break;
+//            case 4:
+//                i=1;
+//                break;
+//            default:
+//                i=((List)childData.get(groupPosition)).size();
+//                break;
+//
+//        }
+        return 1;
+//        return i;
     }
 
     @Override
