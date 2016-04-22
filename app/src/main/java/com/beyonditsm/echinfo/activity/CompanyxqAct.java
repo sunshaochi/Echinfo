@@ -105,16 +105,22 @@ public class CompanyxqAct extends BaseActivity {
                         break;
                     case 4://诉讼信息
                         intent = new Intent(CompanyxqAct.this, LitigationAct.class);
+                        companyId="12";
+
                         intent.putExtra("id", companyId);
                         startActivity(intent);
                         break;
                     case 5://对外投资
                         intent = new Intent(CompanyxqAct.this, InvestmentAct.class);
+                        companyId="12";
+
                         intent.putExtra("id", companyId);
                         startActivity(intent);
                         break;
                     case 6://股东信息
                         intent = new Intent(CompanyxqAct.this, GudonginfoAct.class);
+                        companyId="12";
+
                         intent.putExtra("id", companyId);
                         startActivity(intent);
                         break;
@@ -125,11 +131,14 @@ public class CompanyxqAct extends BaseActivity {
                         break;
                     case 8://年报信息
                         intent = new Intent(CompanyxqAct.this, AnnualAct.class);
+                        companyId="12";
+
                         intent.putExtra("id", companyId);
                         startActivity(intent);
                         break;
                     case 9://分支机构
                         intent = new Intent(CompanyxqAct.this, PamentAct.class);
+                        companyId="2";
                         intent.putExtra("id", companyId);
                         startActivity(intent);
                         break;
@@ -140,6 +149,8 @@ public class CompanyxqAct extends BaseActivity {
                         break;
                     case 11://变更记录
                         intent = new Intent(CompanyxqAct.this, ChangecodeAct.class);
+                        companyId="12";
+
                         intent.putExtra("id", companyId);
                         startActivity(intent);
 //                        openActivity(ChangecodeAct.class);

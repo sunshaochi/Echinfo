@@ -20,6 +20,7 @@ import com.beyonditsm.echinfo.entity.StockMsg;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.GsonUtils;
+import com.beyonditsm.echinfo.util.MyLogUtils;
 import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.leaf.library.widget.MyListView;
 import com.tandong.sa.json.Gson;
@@ -31,6 +32,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 /**
  * Created by gxy on 2016/4/19.
@@ -38,7 +40,7 @@ import java.util.List;
 public class AnnualExAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<String> groupData;
-    private List<List<String>> childData;
+    private Vector<Object> childData;
     private MyListView lv1,lv2,lv3,lv5,lv6,lv7;
     //企业基本信息
     private TextView company,regId,phone,zipCode,address,email,gqzr,state,online,tzxx,number;
@@ -47,11 +49,20 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
     public AnnualExAdapter(Context context){
         this.context=context;
     }
-    public AnnualExAdapter(Context context, List<String> groupData, List<List<String>> childData){
+    public AnnualExAdapter(Context context, List<String> groupData, Vector<Object> childData){
         this.context=context;
         this.groupData=groupData;
         this.childData=childData;
     }
+
+    public Vector<Object> getChildData() {
+        return childData;
+    }
+
+    public void setChildData(Vector<Object> childData) {
+        this.childData = childData;
+    }
+
     @Override
     public int getGroupCount() {
         return groupData.size();
@@ -59,8 +70,21 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return 1;
-//        return childData.get(groupPosition).size();
+        int i=0;
+        switch (groupPosition){
+            case 0:
+                i=1;
+                break;
+            case 4:
+                i=1;
+                break;
+            default:
+                i=((List)childData.get(groupPosition)).size();
+                break;
+
+        }
+//        return 1;
+        return i;
     }
 
     @Override
@@ -70,7 +94,7 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return childData.get(groupPosition).get(childPosition);
+        return childData.get(groupPosition);
 
     }
 
@@ -118,6 +142,8 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         View view = convertView;
+        MyLogUtils.degug("childData"+childData.toString());
+
         switch (groupPosition){
             case 0://企业基本信息
                 //填充视图
