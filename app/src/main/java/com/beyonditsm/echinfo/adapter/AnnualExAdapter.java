@@ -83,8 +83,8 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
 //                break;
 //
 //        }
+////        return i;
         return 1;
-//        return i;
     }
 
     @Override
@@ -174,6 +174,34 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
                 view = inflater2.inflate(R.layout.listview_item, null);
                 lv2= (MyListView) view.findViewById(R.id.lv);
                 findStockMsg("12",-1,-1);
+//
+//                view = inflater2.inflate(R.layout.lv_item_gudong, null);
+//                TextView name= (TextView) view.findViewById(R.id.name);
+//                TextView identity= (TextView) view.findViewById(R.id.identity);
+//                TextView outtime= (TextView) view.findViewById(R.id.outtime);
+//                TextView outmoney= (TextView) view.findViewById(R.id.outmoney);
+//                TextView realtime= (TextView) view.findViewById(R.id.realtime);
+//                TextView realmoney= (TextView) view.findViewById(R.id.realmoney);
+//                TextView payway= (TextView) view.findViewById(R.id.payway);
+//                View view2=view.findViewById(R.id.view);
+//                MyLogUtils.degug("childData"+childData.toString());
+//                List<StockMsg> stockMsgs= (List<StockMsg>) childData.get(2);
+//                if(stockMsgs!=null&&stockMsgs.size()>0) {
+//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getName()))
+//                        name.setText(stockMsgs.get(childPosition).getName());
+//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getStockType()))
+//                        identity.setText(stockMsgs.get(childPosition).getStockType());
+//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getSubcribeTime()))
+//                        outtime.setText(stockMsgs.get(childPosition).getSubcribeTime());
+//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getSubcribe() + ""))
+//                        outmoney.setText(stockMsgs.get(childPosition).getSubcribe() + "");
+//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getRealSubcribeTime()))
+//                        realtime.setText(stockMsgs.get(childPosition).getRealSubcribeTime());
+//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getRealSubcribe() + ""))
+//                        realmoney.setText(stockMsgs.get(childPosition).getRealSubcribe() + "");
+//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getRealSubcribeType()))
+//                        payway.setText(stockMsgs.get(childPosition).getRealSubcribeType());
+//                }
                 break;
             case 3://对外投资
                 //填充视图
