@@ -1,5 +1,6 @@
 package com.beyonditsm.echinfo.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -39,7 +40,7 @@ public class InformationAct extends BaseActivity{
     private PullToRefreshListView plv;
     private int page=1;
     private int rows=10;
-    private String id=null;
+    private String companyId=null;
     private List<AnnualEntity> list;
     private InformationAdapter adapter;
     @Override
@@ -50,14 +51,14 @@ public class InformationAct extends BaseActivity{
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("企业资讯");
-        id=getIntent().getStringExtra("id");
+        companyId=getIntent().getStringExtra(CompanyxqAct.COMPANYID);
         setRight("纠错", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openActivity(ErrorAct.class);
             }
         });
-        findEnterpriseNewsList(id, page, rows);
+        findEnterpriseNewsList(companyId, page, rows);
         plv.setPullRefreshEnabled(true);//下拉刷新
         plv.setScrollLoadEnabled(true);//滑动加载
         plv.setPullLoadEnabled(false);//上拉刷新
@@ -72,19 +73,21 @@ public class InformationAct extends BaseActivity{
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
                 page=1;
-                findEnterpriseNewsList(id,page,rows);
+                findEnterpriseNewsList(companyId,page,rows);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 page++;
-                findEnterpriseNewsList(id,page,rows);
+                findEnterpriseNewsList(companyId,page,rows);
             }
         });
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                openActivity(DetailsAct.class);
+                Intent intent=new Intent(InformationAct.this,DetailsAct.class);
+                intent.putExtra("id",datas.get(position).getId());
+                startActivity(intent);
             }
         });
     }

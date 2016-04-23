@@ -32,7 +32,7 @@ import java.util.List;
  * 变更记录
  */
 public class ChangecodeAct extends BaseActivity {
-    String id=null;
+    String companyId=null;
     @ViewInject(R.id.plv)
     private PullToRefreshListView plv;
     private List<CompanyEntity> list;
@@ -47,7 +47,7 @@ public class ChangecodeAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("变更记录");
-        id=getIntent().getStringExtra("id");
+        companyId=getIntent().getStringExtra(CompanyxqAct.COMPANYID);
         setRight("纠错", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,27 +69,27 @@ public class ChangecodeAct extends BaseActivity {
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
                 page = 1;
-                findAnnualPortsMsgTest(id,page,rows);
+                findAnnualPortsMsgTest(companyId,page,rows);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 page++;
-                findAnnualPortsMsgTest(id,page,rows);
+                findAnnualPortsMsgTest(companyId,page,rows);
             }
         });
-        findAnnualPortsMsgTest(id,page,rows);
+        findAnnualPortsMsgTest(companyId,page,rows);
     }
 
     private List<CompanyEntity> datas=new ArrayList<>();
     /**
      * 变更查询
-     * @param id
+     * @param companyId
      * @param page
      * @param rows
      */
-    private void findAnnualPortsMsgTest(String id, final int page,int rows){
-        RequestManager.getCommManager().findAnnualPortsMsgTest(id, page, rows, new CallBack() {
+    private void findAnnualPortsMsgTest(String companyId, final int page,int rows){
+        RequestManager.getCommManager().findAnnualPortsMsgTest(companyId, page, rows, new CallBack() {
             @Override
             public void onSucess(String result) {
                 plv.onPullUpRefreshComplete();

@@ -37,7 +37,7 @@ public class PamentAct extends BaseActivity {
 
     private int page=1;
     private int rows=10;
-    private String id=null;
+    private String companyId=null;
     private List<FenziEntity>list;
     private PamentAdapter adapter;
     @Override
@@ -48,7 +48,7 @@ public class PamentAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("分支机构");
-        id=getIntent().getStringExtra("id");
+        companyId=getIntent().getStringExtra(CompanyxqAct.COMPANYID);
         setRight("纠错", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,22 +64,21 @@ public class PamentAct extends BaseActivity {
         plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
         plv.getRefreshableView().setDivider(null);
 
-        findSonEnterpriseInterMsg(id,page,rows);
+        findSonEnterpriseInterMsg(companyId,page,rows);
         plv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
                 page = 1;
-                findSonEnterpriseInterMsg("12", page, rows);
+                findSonEnterpriseInterMsg(companyId, page, rows);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 page++;
-                findSonEnterpriseInterMsg("12", page, rows);
+                findSonEnterpriseInterMsg(companyId, page, rows);
             }
         });
-      //  plv.getRefreshableView().setAdapter(new FollowAdapter(this));
     }
 
     private List<FenziEntity> datas=new ArrayList<>();

@@ -53,6 +53,8 @@ public class AnnualDetaillistAct extends BaseActivity{
     private List<Object> childList5;
     private List<Object> childList6;
     private List<Object> childList7;
+    private String id=null;
+    private String title=null;
 
     @Override
     public void setLayout() {
@@ -61,7 +63,10 @@ public class AnnualDetaillistAct extends BaseActivity{
 
     @Override
     public void init(Bundle savedInstanceState) {
-        setTopTitle("2015年年报详情");
+//        setTopTitle("2015年年报详情");
+        id=getIntent().getStringExtra("id");
+        title=getIntent().getStringExtra("title");
+        setTopTitle(title);
         setRight("纠错", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +91,10 @@ public class AnnualDetaillistAct extends BaseActivity{
         childList6=new ArrayList<>();
         childList7=new ArrayList<>();
         childList8=new ArrayList<>();
+//        findEnterpriseInfoMsgById("12");
+//        findStockMsg("12",-1,-1);
+//        findAbroadInvestment("12",-1,-1);
+//        findAnnualPortsMsgChange("12",-1,-1);
         childlist.add(entity);
         childlist.add(childList2);
         childlist.add(childList3);
@@ -94,12 +103,9 @@ public class AnnualDetaillistAct extends BaseActivity{
         childlist.add(childList6);
         childlist.add(childList7);
         childlist.add(childList8);
-//        findEnterpriseInfoMsgById("12");
-//        findStockMsg("12",-1,-1);
-//        findAbroadInvestment("12",-1,-1);
-//        findAnnualPortsMsgChange("12",-1,-1);
 
-        adapter=new AnnualExAdapter(AnnualDetaillistAct.this,list,childlist);
+
+        adapter=new AnnualExAdapter(AnnualDetaillistAct.this,list,childlist,id);
         listView.setAdapter(adapter);
         listView.setChildDivider(new ColorDrawable(Color.WHITE));
         //item点击事件

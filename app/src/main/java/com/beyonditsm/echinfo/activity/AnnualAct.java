@@ -42,7 +42,7 @@ public class AnnualAct extends BaseActivity{
     private PullToRefreshListView plv;
     private int page=1;
     private int rows=10;
-    private String id=null;
+    private String companyId=null;
     private List<AnnualEntity> list;
     @Override
     public void setLayout() {
@@ -52,14 +52,14 @@ public class AnnualAct extends BaseActivity{
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("年报列表");
-        id=getIntent().getStringExtra("id");
+        companyId=getIntent().getStringExtra(CompanyxqAct.COMPANYID);
         setRight("纠错", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openActivity(ErrorAct.class);
             }
         });
-        findAnnualPortsMsg(id, page, rows);
+        findAnnualPortsMsg(companyId, page, rows);
 
         plv.setPullRefreshEnabled(true);//下拉刷新
         plv.setScrollLoadEnabled(true);//滑动加载
@@ -74,22 +74,23 @@ public class AnnualAct extends BaseActivity{
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
                 page = 1;
-                findAnnualPortsMsg(id,page,rows);
+                findAnnualPortsMsg(companyId,page,rows);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 page++;
-                findAnnualPortsMsg(id,page,rows);
+                findAnnualPortsMsg(companyId,page,rows);
             }
         });
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 findEnterpriseInfoOfAnnual(datas.get(position).getCompanyId());
-                openActivity(AnnualDetaillistAct.class);
-//                Intent intent=new Intent(AnnualAct.this,LitigtinfoAct.class);
-//                startActivity(intent);
+                Intent intent=new Intent(AnnualAct.this,AnnualDetaillistAct.class);
+                intent.putExtra("id",datas.get(position).getCompanyId());
+                intent.putExtra("title",datas.get(position).getYear()+"年年报详情");
+                startActivity(intent);
             }
         });
     }
@@ -97,12 +98,12 @@ public class AnnualAct extends BaseActivity{
     private List<AnnualEntity> datas=new ArrayList<>();
     /**
      * 根据企业的id查询出该企业下所有的年报信息
-     * @param id
+     * @param companyId
      * @param page
      * @param rows
      */
-    private void findAnnualPortsMsg(String id, final int page,int rows){
-        RequestManager.getCommManager().findAnnualPortsMsg(id, page, rows, new CallBack() {
+    private void findAnnualPortsMsg(String companyId, final int page,int rows){
+        RequestManager.getCommManager().findAnnualPortsMsg(companyId, page, rows, new CallBack() {
             @Override
             public void onSucess(String result) {
                 plv.onPullUpRefreshComplete();

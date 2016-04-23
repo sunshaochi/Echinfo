@@ -51,7 +51,7 @@ public class BusinessinfoAct extends BaseActivity{
     private TextView range;//经营范围
     private MyAdapter adapter;
 
-    private String id=null;
+    private String companyId=null;
     private BusinessEntity entity;
 
     @Override
@@ -62,14 +62,14 @@ public class BusinessinfoAct extends BaseActivity{
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("工商信息");
-        id=getIntent().getStringExtra("id");
+        companyId=getIntent().getStringExtra(CompanyxqAct.COMPANYID);
         setRight("纠错", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openActivity(ErrorAct.class);
             }
         });
-        findVietinbanhInfoByCompanyId(id);
+        findVietinbanhInfoByCompanyId(companyId);
         adapter=new MyAdapter();
         listView.setDivider(null);
         listView.setAdapter(adapter);

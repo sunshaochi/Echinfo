@@ -9,9 +9,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.beyonditsm.echinfo.R;
+import com.beyonditsm.echinfo.activity.CompanyxqAct;
 import com.beyonditsm.echinfo.adapter.BadCAdaper;
 import com.beyonditsm.echinfo.adapter.EnterPAdapter;
 import com.beyonditsm.echinfo.adapter.LegalAdapter;
@@ -83,6 +85,14 @@ public class SearchFragment extends BaseFragment {
             }
         });
 
+        plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(getActivity(), CompanyxqAct.class);
+                intent.putExtra(CompanyxqAct.ID,comList.get(position).getId());
+                getActivity().startActivity(intent);
+            }
+        });
         switch (position) {
             case 0:
 //                searchCompany("阿里",currentPage);

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -39,20 +40,32 @@ import java.util.Vector;
  */
 public class AnnualExAdapter extends BaseExpandableListAdapter {
     private Context context;
+    private LayoutInflater inflater;
     private List<String> groupData;
     private Vector<Object> childData;
     private MyListView lv1,lv2,lv3,lv5,lv6,lv7;
+    private View view0,view1,view2,view3,view4,view5,view6,view7;
+    private String companyId;
     //企业基本信息
     private TextView company,regId,phone,zipCode,address,email,gqzr,state,online,tzxx,number;
     //企业资产状况信息
     private TextView money,qyAll,moneyAll,profit,moneyMain,netProfit,paytaxes,liabilities;
     public AnnualExAdapter(Context context){
         this.context=context;
+        // 通过getSystemService方法实例化一个视图的填充器
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
-    public AnnualExAdapter(Context context, List<String> groupData, Vector<Object> childData){
+    public AnnualExAdapter(Context context, List<String> groupData, Vector<Object> childData,String companyId){
         this.context=context;
         this.groupData=groupData;
         this.childData=childData;
+        this.companyId=companyId;
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        findEnterpriseInfoMsgById(companyId);
+        findStockMsg(companyId, -1, -1);
+        findAbroadInvestment(companyId, -1, -1);
+        findAnnualPortsMsgChange(companyId, -1, -1);
     }
 
     public Vector<Object> getChildData() {
@@ -70,21 +83,21 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        int i=0;
-        switch (groupPosition){
-            case 0:
-                i=1;
-                break;
-            case 4:
-                i=1;
-                break;
-            default:
-                i=((List)childData.get(groupPosition)).size();
-                break;
-
-        }
-//        return 1;
-        return i;
+//        int i=0;
+//        switch (groupPosition){
+//            case 0:
+//                i=1;
+//                break;
+//            case 4:
+//                i=1;
+//                break;
+//            default:
+//                i=((List)getChildData().get(groupPosition)).size();
+//                break;
+//
+//        }
+//        return i;
+        return 1;
     }
 
     @Override
@@ -117,9 +130,6 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         View view = convertView;
         if (view == null) {
-            // 通过getSystemService方法实例化一个视图的填充器
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService
-                    (Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.detail_list_one, null);
         }
         TextView title = (TextView) view.findViewById(R.id.title);
@@ -142,49 +152,92 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         View view = convertView;
-        MyLogUtils.degug("childData"+childData.toString());
-
         switch (groupPosition){
             case 0://企业基本信息
                 //填充视图
-                LayoutInflater inflater0 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                view = inflater0.inflate(R.layout.annual_list_one, null);
-                company= (TextView) view.findViewById(R.id.company);//企业名称
-                regId= (TextView) view.findViewById(R.id.regId);//注册号
-                phone= (TextView) view.findViewById(R.id.phone);//企业联系电话
-                zipCode= (TextView) view.findViewById(R.id.zipCode);//邮政编码
-                address= (TextView) view.findViewById(R.id.address);//企业通信地址
-                email= (TextView) view.findViewById(R.id.email);//电子邮箱
-                gqzr= (TextView) view.findViewById(R.id.gqzr);//有限责任公司本年度是否发生股权转让
-                state= (TextView) view.findViewById(R.id.state);//营业状况
-                online= (TextView) view.findViewById(R.id.online);//是否有网站或网店
-                tzxx= (TextView) view.findViewById(R.id.tzxx);//企业是否有投资信息或购买其它公司股权
-                number= (TextView) view.findViewById(R.id.number);//从业人数
-                findEnterpriseInfoMsgById("1");
+                view = inflater.inflate(R.layout.annual_list_one, null);
+//                company= (TextView) view.findViewById(R.id.company);//企业名称
+//                regId= (TextView) view.findViewById(R.id.regId);//注册号
+//                phone= (TextView) view.findViewById(R.id.phone);//企业联系电话
+//                zipCode= (TextView) view.findViewById(R.id.zipCode);//邮政编码
+//                address= (TextView) view.findViewById(R.id.address);//企业通信地址
+//                email= (TextView) view.findViewById(R.id.email);//电子邮箱
+//                gqzr= (TextView) view.findViewById(R.id.gqzr);//有限责任公司本年度是否发生股权转让
+//                state= (TextView) view.findViewById(R.id.state);//营业状况
+//                online= (TextView) view.findViewById(R.id.online);//是否有网站或网店
+//                tzxx= (TextView) view.findViewById(R.id.tzxx);//企业是否有投资信息或购买其它公司股权
+//                number= (TextView) view.findViewById(R.id.number);//从业人数
+//                findEnterpriseInfoMsgById("1");
                 break;
             case 1://网站或网店信息
-                LayoutInflater inflater1 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                view = inflater1.inflate(R.layout.listview_item, null);
+                view = inflater.inflate(R.layout.listview_item, null);
                 lv1= (MyListView) view.findViewById(R.id.lv);
                 lv1.setAdapter(new AdetailtwoAdapter(context));
                 break;
             case 2://股东信息
                 //填充视图
-                LayoutInflater inflater2 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                view = inflater2.inflate(R.layout.listview_item, null);
+                view = inflater.inflate(R.layout.listview_item, null);
                 lv2= (MyListView) view.findViewById(R.id.lv);
-                findStockMsg("12",-1,-1);
+//                findStockMsg("12",-1,-1);
+                if (list != null && list.size() > 0) {
+                    adapter = new GudonginfoAdapter(context, list);
+                    lv2.setAdapter(adapter);
+                }else {
+                    findStockMsg("12",-1,-1);
+                }
+//                if(list!=null&&list.size()>0) {
+//                    LinearLayout layout2 = (LinearLayout) lv2.getChildAt(list.size() - 1);
+//                    View viewl2 = layout2.findViewById(R.id.view);
+//                    viewl2.setVisibility(View.GONE);
+//                }
+
+//                view = inflater2.inflate(R.layout.lv_item_gudong, null);
+//                TextView name= (TextView) view.findViewById(R.id.name);
+//                TextView identity= (TextView) view.findViewById(R.id.identity);
+//                TextView outtime= (TextView) view.findViewById(R.id.outtime);
+//                TextView outmoney= (TextView) view.findViewById(R.id.outmoney);
+//                TextView realtime= (TextView) view.findViewById(R.id.realtime);
+//                TextView realmoney= (TextView) view.findViewById(R.id.realmoney);
+//                TextView payway= (TextView) view.findViewById(R.id.payway);
+//                View view2=view.findViewById(R.id.view);
+//                MyLogUtils.degug("childData2"+getChildData().toString());
+//                List<StockMsg> stockMsgs= (List<StockMsg>) getChildData().get(2);
+//                if(stockMsgs!=null&&stockMsgs.size()>0) {
+//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getName()))
+//                        name.setText(stockMsgs.get(childPosition).getName());
+//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getStockType()))
+//                        identity.setText(stockMsgs.get(childPosition).getStockType());
+//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getSubcribeTime()))
+//                        outtime.setText(stockMsgs.get(childPosition).getSubcribeTime());
+//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getSubcribe() + ""))
+//                        outmoney.setText(stockMsgs.get(childPosition).getSubcribe() + "");
+//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getRealSubcribeTime()))
+//                        realtime.setText(stockMsgs.get(childPosition).getRealSubcribeTime());
+//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getRealSubcribe() + ""))
+//                        realmoney.setText(stockMsgs.get(childPosition).getRealSubcribe() + "");
+//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getRealSubcribeType()))
+//                        payway.setText(stockMsgs.get(childPosition).getRealSubcribeType());
+//                }
                 break;
             case 3://对外投资
                 //填充视图
-                LayoutInflater inflater3 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                view = inflater3.inflate(R.layout.listview_item, null);
+                view = inflater.inflate(R.layout.listview_item, null);
                 lv3= (MyListView) view.findViewById(R.id.lv);
-                findAbroadInvestment("12",-1,-1);
+//                findAbroadInvestment("12",-1,-1);
+                if (listInvestment != null && listInvestment.size() > 0) {
+                    adapterInvestment = new EnterPAdapter(context, listInvestment);
+                    lv3.setAdapter(adapterInvestment);
+                }else {
+                    findAbroadInvestment("3",-1,-1);
+                }
+//                if(listInvestment!=null&&listInvestment.size()>0) {
+//                    LinearLayout layout3 = (LinearLayout) lv3.getChildAt(list.size() - 1);
+//                    View viewl3 = layout3.findViewById(R.id.view);
+//                    viewl3.setVisibility(View.GONE);
+//                }
                 break;
             case 4://企业资产状况信息
-                LayoutInflater inflater4 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                view = inflater4.inflate(R.layout.annual_list_four, null);
+                view = inflater.inflate(R.layout.annual_list_four, null);
                 money= (TextView) view.findViewById(R.id.money);//资产总额
                 qyAll= (TextView) view.findViewById(R.id.qyAll);//所有者权益合计
                 moneyAll= (TextView) view.findViewById(R.id.moneyAll);//营收总收入
@@ -195,22 +248,25 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
                 liabilities= (TextView) view.findViewById(R.id.liabilities);//负债总额
                 break;
             case 5://对外提供保证担保信息
-                LayoutInflater inflater5 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                view = inflater5.inflate(R.layout.listview_item, null);
+                view = inflater.inflate(R.layout.listview_item, null);
                 lv5= (MyListView) view.findViewById(R.id.lv);
                 lv5.setAdapter(new AdetailfiveAdapter(context));
                 break;
             case 6://股权变更信息
-                LayoutInflater inflater6 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                view = inflater6.inflate(R.layout.listview_item, null);
+                view = inflater.inflate(R.layout.listview_item, null);
                 lv6= (MyListView) view.findViewById(R.id.lv);
                 lv6.setAdapter(new AdetailsixAdapter(context));
                 break;
             case 7://修改记录
-                LayoutInflater inflater7 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                view = inflater7.inflate(R.layout.listview_item, null);
+                view = inflater.inflate(R.layout.listview_item, null);
                 lv7= (MyListView) view.findViewById(R.id.lv);
-                findAnnualPortsMsgChange("12",-1,-1);
+//                findAnnualPortsMsgChange("12",-1,-1);
+                if (listChange != null && listChange.size() > 0) {
+                    adapterChange = new AdetailsevenAdapter(context, listChange);
+                    lv7.setAdapter(adapterChange);
+                }else {
+                    findAnnualPortsMsgChange("12",-1,-1);
+                }
                 break;
             default:
                 break;
@@ -248,6 +304,18 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
     }
     //设置企业信息
     private void setBusiness(CompanyEntity entity){
+        view1 = inflater.inflate(R.layout.annual_list_one, null);
+        company= (TextView) view1.findViewById(R.id.company);//企业名称
+        regId= (TextView) view1.findViewById(R.id.regId);//注册号
+        phone= (TextView) view1.findViewById(R.id.phone);//企业联系电话
+        zipCode= (TextView) view1.findViewById(R.id.zipCode);//邮政编码
+        address= (TextView) view1.findViewById(R.id.address);//企业通信地址
+        email= (TextView) view1.findViewById(R.id.email);//电子邮箱
+        gqzr= (TextView) view1.findViewById(R.id.gqzr);//有限责任公司本年度是否发生股权转让
+        state= (TextView) view1.findViewById(R.id.state);//营业状况
+        online= (TextView) view1.findViewById(R.id.online);//是否有网站或网店
+        tzxx= (TextView) view1.findViewById(R.id.tzxx);//企业是否有投资信息或购买其它公司股权
+        number= (TextView) view1.findViewById(R.id.number);//从业人数
         if(entity!=null){
             if(!TextUtils.isEmpty(entity.getCompanyName())){
                 company.setText(entity.getCompanyName());
@@ -324,6 +392,10 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
      * @param rows
      */
     private void findStockMsg(String id,final int page,int rows){
+        if(view2==null) {
+            view2 = inflater.inflate(R.layout.listview_item, null);
+            lv2 = (MyListView) view2.findViewById(R.id.lv);
+        }
         RequestManager.getCommManager().findStockMsg(id, page, rows, new CallBack() {
             @Override
             public void onSucess(String result) {
@@ -343,7 +415,7 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
                         }
 
                     } else {
-                        MyToastUtils.showShortToast(context, "暂无数据");
+//                        MyToastUtils.showShortToast(context, "暂无数据");
 
                     }
                 } catch (JSONException e) {
@@ -366,6 +438,10 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
      * @param companyId
      */
     private void findAbroadInvestment(String companyId, final int page,int rows){
+        if(view3==null) {
+            view3 = inflater.inflate(R.layout.listview_item, null);
+            lv3 = (MyListView) view3.findViewById(R.id.lv);
+        }
         RequestManager.getCommManager().findAbroadInvestment(companyId, page, rows, new CallBack() {
             @Override
             public void onSucess(String result) {
@@ -380,19 +456,17 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
                                 }.getType());
                         if (listInvestment != null && listInvestment.size() > 0) {
                             adapterInvestment = new EnterPAdapter(context, listInvestment);
-                                lv3.setAdapter(adapterInvestment);
+                            lv3.setAdapter(adapterInvestment);
                         }
                     } else {
-                        MyToastUtils.showShortToast(context,"暂无数据");
+//                        MyToastUtils.showShortToast(context,"暂无数据");
                     }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-
-            catch(JSONException e){
-                e.printStackTrace();
             }
-        }
 
-        @Override
+            @Override
             public void onError(String error) {
             }
         });
@@ -407,6 +481,10 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
      * @param rows
      */
     private void findAnnualPortsMsgChange(String id,int page,int rows){
+        if(view7==null) {
+            view7 = inflater.inflate(R.layout.listview_item, null);
+            lv7 = (MyListView) view7.findViewById(R.id.lv);
+        }
         RequestManager.getCommManager().findAnnualPortsMsgTest(id, page, rows, new CallBack() {
             @Override
             public void onSucess(String result) {
@@ -424,7 +502,7 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
                             lv7.setAdapter(adapterChange);
                         }
                     } else {
-                        MyToastUtils.showShortToast(context,"暂无数据");
+//                        MyToastUtils.showShortToast(context,"暂无数据");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

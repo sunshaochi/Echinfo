@@ -30,7 +30,7 @@ public class DetailsAct extends BaseActivity {
     private TextView time;
     @ViewInject(R.id.content)
     private TextView content;
-    private String id="1";
+    private String id=null;
     private AnnualEntity entity;
     @Override
     public void setLayout() {
@@ -41,6 +41,7 @@ public class DetailsAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("详情");
+        id=getIntent().getStringExtra("id");
         ivcd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

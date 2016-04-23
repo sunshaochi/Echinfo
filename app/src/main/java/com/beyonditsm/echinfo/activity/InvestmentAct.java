@@ -36,7 +36,7 @@ public class InvestmentAct extends BaseActivity {
     private PullToRefreshListView plv;
     private int page=1;
     private int rows=10;
-    String id=null;
+    String companyId=null;
     private List<CompanyEntity> list;
     private FollowAdapter adapter;
     @Override
@@ -47,14 +47,14 @@ public class InvestmentAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("对外投资");
-        id=getIntent().getStringExtra("id");
+        companyId=getIntent().getStringExtra(CompanyxqAct.COMPANYID);
         setRight("纠错", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openActivity(ErrorAct.class);
             }
         });
-        findAbroadInvestment(id,page,rows);
+        findAbroadInvestment(companyId,page,rows);
         plv.setPullRefreshEnabled(true);//下拉刷新
         plv.setScrollLoadEnabled(true);//滑动加载
         plv.setPullLoadEnabled(false);//上拉刷新
@@ -69,13 +69,13 @@ public class InvestmentAct extends BaseActivity {
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
                 page = 1;
-                findAbroadInvestment(id,page,rows);
+                findAbroadInvestment(companyId,page,rows);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 page++;
-                findAbroadInvestment(id,page,rows);
+                findAbroadInvestment(companyId,page,rows);
             }
         });
     }
