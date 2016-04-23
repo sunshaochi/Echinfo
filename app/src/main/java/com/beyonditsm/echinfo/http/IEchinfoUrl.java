@@ -90,6 +90,9 @@ public interface IEchinfoUrl {
     String STOCKMSGBYNAME_URL=BASE_URL+"companyInfo/findStockMsgByCompanyName.do";
     /*失信列表*/
     String COURTITEMMSG_URL=BASE_URL+"courtitemMsg/findOccupationList.do";
+    /*热门企业列表*/
+    String HOTENTERPRISE_URL=BASE_URL+"companyInfo/hotEnterprise.do";
+
 
 
 
