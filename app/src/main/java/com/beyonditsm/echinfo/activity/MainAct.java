@@ -1,12 +1,14 @@
 package com.beyonditsm.echinfo.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -15,12 +17,21 @@ import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.adapter.FlipAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.db.UserDao;
+import com.beyonditsm.echinfo.entity.CompanyEntity;
+import com.beyonditsm.echinfo.http.CallBack;
+import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
 import com.beyonditsm.echinfo.util.GeneralUtils;
 import com.beyonditsm.echinfo.util.MyLogUtils;
 import com.beyonditsm.echinfo.view.flip.FlipViewController;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.tandong.sa.json.Gson;
+import com.tandong.sa.json.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,14 +76,54 @@ public class MainAct extends BaseActivity {
         titleList.add("2");
         titleList.add("3");
         titleList.add("4");
+
+        initHotComlist();
+
         initFlipView();//我的关注
-        initHotCom();//初始化热门
+//        initHotCom();//初始化热门
         initBadCre();//初始化失信榜单
+
+
 
         fcView.setAdapter(new FlipAdapter(this));
         generalUtils.toVersion(MainAct.this, EchinfoUtils.getAppVer(MainAct.this), 0);
 //
 
+    }
+
+
+
+    /**
+     * 先获取热门企业列表
+     */
+    private void initHotComlist() {
+        RequestManager.getCommManager().hotEnterprise(new CallBack() {
+            @Override
+            public void onSucess(String result) {
+                Gson gson = new Gson();
+                JSONObject json =null;
+                try {
+                    json = new JSONObject(result);
+                    JSONObject data=json.getJSONObject("data");
+                    JSONArray rows = data.getJSONArray("rows");
+                    if(rows.length()>0){
+                        list=gson.fromJson(rows.toString(),new TypeToken<List<CompanyEntity>>(){}.getType());
+                        if(list.size()>0){
+                            datas.addAll(list);}
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                initHotCom();
+
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
     }
 
 
@@ -188,6 +239,7 @@ public class MainAct extends BaseActivity {
 
             @Override
             public void onClick(View arg0) {
+
                 openActivity(CompanyxqAct.class);
             }
         });
@@ -201,6 +253,10 @@ public class MainAct extends BaseActivity {
 
     private LinearLayout llHot;
     private ViewFlipper followHot;
+
+    private List<CompanyEntity>list;
+    private List<CompanyEntity>datas=new ArrayList<>();
+
     //初始化热门企业
     private void initHotCom() {
         FrameLayout main_notice = (FrameLayout)findViewById(R.id.flHotCom);
@@ -232,18 +288,31 @@ public class MainAct extends BaseActivity {
         this.followHot.showNext();
     }
 
-    private void setHotView(int curr, int next) {
+    private void setHotView(final int curr, int next) {
+
         View noticeView = getLayoutInflater().inflate(R.layout.layou_main_hot,
                 null);
-        if ((curr < next) && (next > (titleList.size() - 1))) {
+
+        TextView tvComName = (TextView) noticeView.findViewById(R.id.tv_companyname);
+        TextView tvrensu = (TextView) noticeView.findViewById(R.id.tv_rs);
+        RatingBar rb_hot = (RatingBar) noticeView.findViewById(R.id.rb_hot);
+
+        tvComName.setText(datas.get(curr).getCompanyName());
+        tvrensu.setText(datas.get(curr).getFocus());
+        rb_hot.setRating(Float.parseFloat(datas.get(curr).getLevel()));
+
+
+        if ((curr < next) && (next > (datas.size() - 1))) {
             next = 0;
         } else if ((curr > next) && (next < 0)) {
-            next = titleList.size() - 1;
+            next = datas.size() - 1;
         }
         noticeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                openActivity(CompanyxqAct.class);
+                Intent intent=new Intent(MainAct.this,CompanyxqAct.class);
+                intent.putExtra(CompanyxqAct.ID,datas.get(curr).getId());
+                startActivity(intent);
             }
         });
         if (followHot.getChildCount() > 1) {
