@@ -215,6 +215,7 @@
             </LinearLayout>
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/rl_gz"
                 style="@style/rl_item"
                 android:layout_height="40dp"
@@ -236,13 +237,18 @@
 
             </RelativeLayout>
             <View
+                android:visibility="gone"
+                android:id="@+id/top"
                 style="@style/view_line"></View>
             <FrameLayout
+                android:visibility="gone"
                 android:id="@+id/flFollow"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"></FrameLayout>
 
             <View
+                android:visibility="gone"
+                android:id="@+id/down"
                 style="@style/view_line"></View>
 
             <RelativeLayout
@@ -277,6 +283,7 @@
                 style="@style/view_line"></View>
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/rl_sx"
                 style="@style/rl_item"
                 android:layout_height="40dp"
@@ -298,14 +305,17 @@
 
             </RelativeLayout>
             <View
+                android:visibility="gone"
                 style="@style/view_line"></View>
 
             <FrameLayout
+                android:visibility="gone"
                 android:id="@+id/flBadCredit"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"></FrameLayout>
 
             <View
+                android:visibility="gone"
                 style="@style/view_line"
                 android:layout_marginBottom="30dp"
                 ></View>

@@ -78,6 +78,18 @@ public interface IEchinfoUrl {
     /*行业*/
     String INDUSTRY_URL=BASE_URL+"industryMsg/findIndustryByFatherId.do";
 
+    /*企业查询状态，企业详情gridview是否可点击*/
+    String ENTEPRISESTS_URL=BASE_URL+"companyInfo/selectStatus.do";
+    /*职业类别*/
+    String OCCUPACTION_URL=BASE_URL+"occupationMsg/findOccupationList.do";
+    /*常见问题*/
+    String PROBLEM_URL="http://139.196.50.38:8081/questions";
+    /*行业分析*/
+    String ANALY_URL="http://139.196.50.38:8081/indana";
+    /*根据企业名称精确查询股东信息*/
+    String STOCKMSGBYNAME_URL=BASE_URL+"companyInfo/findStockMsgByCompanyName.do";
+    /*失信列表*/
+    String COURTITEMMSG_URL=BASE_URL+"courtitemMsg/findOccupationList.do";
     /*热门企业列表*/
     String HOTENTERPRISE_URL=BASE_URL+"companyInfo/hotEnterprise.do";
 

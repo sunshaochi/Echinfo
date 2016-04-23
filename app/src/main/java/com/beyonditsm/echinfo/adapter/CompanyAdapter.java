@@ -8,12 +8,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
+import com.beyonditsm.echinfo.entity.StatusEntity;
+
+import java.util.List;
 
 /**
  * Created by bitch-1 on 2016/4/6.
  * 公司详情页面
  */
 public class CompanyAdapter extends BaseAdapter {
+    private StatusEntity entity;
+    private List<Integer> list;
 
     private final int IMAGES[] = {R.mipmap.gongshang, R.mipmap.qytp, R.mipmap.hyfx,R.mipmap.sxxx,
             R.mipmap.susong, R.mipmap.dwtz, R.mipmap.gdxx, R.mipmap.qyzx,
@@ -25,6 +30,11 @@ public class CompanyAdapter extends BaseAdapter {
 
     public CompanyAdapter(Context context) {
         this.context = context;
+    }
+    public CompanyAdapter(Context context,StatusEntity entity) {
+        this.context = context;
+        this.entity=entity;
+
     }
 
     @Override
@@ -54,6 +64,105 @@ public class CompanyAdapter extends BaseAdapter {
         }
         viewHolder.ivQy.setImageResource(IMAGES[position]);
         viewHolder.tvQy.setText(TITLES[position]);
+
+        switch (position){
+            case 0:
+                if("0".equals(entity.getGongshangStatus())){
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
+                }else{
+//                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
+                }
+                break;
+            case 1:
+                if("0".equals(entity.getTupuStatus())){
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
+                }else{
+//                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
+                }
+                break;
+            case 2:
+                if("0".equals(entity.getHangyeStatus())){
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
+                }else{
+//                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
+                }
+                break;
+            case 3:
+                if ("0".equals(entity.getCourtitemStatus())){
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
+                }else{
+//                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
+                }
+                break;
+            case 4:
+                if("0".equals(entity.getLawsuitmsgStatus())){
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
+                }else{
+//                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
+                }
+                break;
+            case 5:
+                if("0".equals(entity.getAbroadinvestmenttatus())){
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
+                }else{
+//                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
+                }
+                break;
+            case 6:
+                if("0".equals(entity.getStockmsgStatus())){
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
+                }else{
+//                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
+                }
+                break;
+            case 7:
+                if("0".equals(entity.getEnenewterprissStatus())){
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
+                }else{
+//                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
+                }
+                break;
+            case 8:
+                if("0".equals(entity.getAnnualportsmsgStatus())){
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
+                }else{
+//                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
+                }
+                break;
+            case 9:
+                if("0".equals(entity.getSonenterpriseStatus())){
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
+                }else{
+//                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
+                }
+                break;
+            case 10:
+                if("0".equals(entity.getMainmemberStatus())){
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
+                }else{
+//                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
+                }
+                break;
+            case 11:
+                if("0".equals(entity.getEditrecordStatus())){
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
+                }else{
+//                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
+                    viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
+                }
+                break;
+        }
 
         return convertView;
 

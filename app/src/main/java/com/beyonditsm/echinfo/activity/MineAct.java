@@ -95,7 +95,9 @@ public class MineAct extends BaseActivity {
                 openActivity(FeedBackAct.class);
                 break;
             case R.id.cvPro://常见问题
-
+                Intent intent=new Intent(MineAct.this,WebAct.class);
+                intent.putExtra(WebAct.WEB_TYPE,3);
+                startActivity(intent);
                 break;
             case R.id.tvExit://退出
                 new MyAlertDialog(MineAct.this).builder().setTitle("提示").setMsg("确认退出吗？", true)
@@ -161,6 +163,7 @@ public class MineAct extends BaseActivity {
             @Override
             public void onSucess(String result) {
                 UserDao.deleteUser();
+                sendBroadcast(new Intent(MainAct.UNLOGIN));
                 finish();
             }
 

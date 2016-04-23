@@ -17,6 +17,24 @@ public class StockMsg {
     private Double	subcribe;//认缴出资
     private String	subcribeTime;//出资时间
     private String	subcribeType;//认缴出资方式
+    private String legalRepPersion;//企业法人
+    private String recordStatus;//状态
+
+    public String getLegalRepPersion() {
+        return legalRepPersion;
+    }
+
+    public void setLegalRepPersion(String legalRepPersion) {
+        this.legalRepPersion = legalRepPersion;
+    }
+
+    public String getRecordStatus() {
+        return recordStatus;
+    }
+
+    public void setRecordStatus(String recordStatus) {
+        this.recordStatus = recordStatus;
+    }
 
     public String getCardNo() {
         return cardNo;

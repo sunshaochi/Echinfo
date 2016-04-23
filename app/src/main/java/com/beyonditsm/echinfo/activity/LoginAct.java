@@ -260,6 +260,7 @@ public class LoginAct extends BaseActivity {
                 UserDataEntity userEntitty = rd.getData();
                 UserEntity user = userEntitty.getUser();
                 UserDao.saveUser(user);
+                sendBroadcast(new Intent(MainAct.LOGIN));
                 finish();
                 MyToastUtils.showShortToast(getApplicationContext(), "登录成功");
             }

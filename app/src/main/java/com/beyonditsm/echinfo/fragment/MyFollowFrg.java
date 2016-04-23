@@ -140,7 +140,8 @@ public class MyFollowFrg extends BaseFragment{
 
             @Override
             public void onError(String error) {
-
+                plv.onPullUpRefreshComplete();
+                plv.onPullDownRefreshComplete();
             }
         });
 

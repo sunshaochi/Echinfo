@@ -1,6 +1,5 @@
 package com.beyonditsm.echinfo.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,9 +28,10 @@ import java.util.List;
  * 职业选择
  * Created by wangbin on 16/4/6.
  */
-public class OccupationAct extends BaseActivity {
+public class OccupationChildAct extends BaseActivity {
     @ViewInject(R.id.lv)
     private ListView lv;
+    private String id=null;
     @Override
     public void setLayout() {
         setContentView(R.layout.act_occupation);
@@ -39,16 +39,15 @@ public class OccupationAct extends BaseActivity {
 
     @Override
     public void init(Bundle savedInstanceState) {
-        AppManager.getAppManager().addActivity(OccupationAct.this);
         setTopTitle("职业");
-        findOccupationList();
+        id=getIntent().getStringExtra("id");
+        findOccupationList(id);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                EventBus.getDefault().post(new OccuEvent("客户服务助理"));
-                Intent intent=new Intent(OccupationAct.this,OccupationChildAct.class);
-                intent.putExtra("id",list.get(position).getfOccupationId());
-                startActivity(intent);
+                EventBus.getDefault().post(new OccuEvent(list.get(position).getOccupationName()));
+                finish();
+                AppManager.getAppManager().finishActivity(OccupationAct.class);
             }
         });
     }
@@ -56,8 +55,8 @@ public class OccupationAct extends BaseActivity {
     private List<OccuaptionEntity> list;
 
     //查询职业列表
-    private void findOccupationList(){
-        RequestManager.getCommManager().findOccupationList(null, new CallBack() {
+    private void findOccupationList(String id){
+        RequestManager.getCommManager().findOccupationList(id, new CallBack() {
             @Override
             public void onSucess(String result) {
                 Gson gson=new Gson();
@@ -67,7 +66,8 @@ public class OccupationAct extends BaseActivity {
                     JSONObject data=json.getJSONObject("data");
                     JSONArray rows = data.getJSONArray("rows");
                     list = gson.fromJson(rows.toString(), new TypeToken<List<OccuaptionEntity>>() {}.getType());
-                    lv.setAdapter(new OccuAdapter(OccupationAct.this,list));
+                    lv.setAdapter(new OccuAdapter(OccupationChildAct.this,list));
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();

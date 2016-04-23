@@ -17,8 +17,10 @@ import android.widget.TextView;
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.adapter.CompanyAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.db.UserDao;
 import com.beyonditsm.echinfo.entity.CompanyEntity;
 import com.beyonditsm.echinfo.entity.ResultData;
+import com.beyonditsm.echinfo.entity.StatusEntity;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.GsonUtils;
@@ -28,6 +30,14 @@ import com.beyonditsm.echinfo.view.MySelfSheetDialog;
 import com.beyonditsm.echinfo.widget.ShareDialog;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.tandong.sa.json.Gson;
+import com.tandong.sa.json.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
 
 /**
  * Created by bitch-1 on 2016/4/6.
@@ -61,10 +71,10 @@ public class CompanyxqAct extends BaseActivity {
     private TextView location;//公司位置
 
     private CompanyEntity entity;
-    private boolean flag=false;
+    private boolean flag;
     String iId =null;
-    public static final String ID ="id";
-    public static final String COMPANYID ="companyId";
+    public static final String ID ="id";//企业详情
+    public static final String COMPANYID ="companyId";//企业详情中gridview的item
     @Override
     public void setLayout() {
         setContentView(R.layout.act_companyxq);
@@ -78,8 +88,8 @@ public class CompanyxqAct extends BaseActivity {
         if(TextUtils.isEmpty(iId)){
             iId ="1";
         }
+        selectStatus(iId);
         findEnterpriseInfoMsgById(iId);
-        gvqy.setAdapter(new CompanyAdapter(CompanyxqAct.this));
         gvqy.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             //            private final String TITLES[] = {"工商信息", "企业图谱", "行业分析", "失业信息", "诉讼信息",
 //                    "对外投资","股东信息","企业资讯","年报信息","分子机构","主要成员","变更记录"
@@ -89,64 +99,90 @@ public class CompanyxqAct extends BaseActivity {
                 Intent intent = null;
                 switch (position) {
                     case 0://工商信息
-                        intent = new Intent(CompanyxqAct.this, BusinessinfoAct.class);
-                        intent.putExtra(COMPANYID, iId);
-                        startActivity(intent);
+                        if ("0".equals(statusEntity.getGongshangStatus())) {
+                            intent = new Intent(CompanyxqAct.this, BusinessinfoAct.class);
+                            intent.putExtra(COMPANYID, iId);
+                            startActivity(intent);
+                        }
                         break;
                     case 1://企业图谱
-                        intent = new Intent(CompanyxqAct.this, WebAct.class);
-                        intent.putExtra(WebAct.WEB_TYPE, 1);
-                        startActivity(intent);
+                        if ("0".equals(statusEntity.getTupuStatus())) {
+                            intent = new Intent(CompanyxqAct.this, WebAct.class);
+                            intent.putExtra(WebAct.WEB_TYPE, 1);
+                            startActivity(intent);
+                        }
                         break;
                     case 2://行业分析
-                        intent = new Intent(CompanyxqAct.this, WebAct.class);
-                        intent.putExtra(WebAct.WEB_TYPE, 2);
-                        startActivity(intent);
+                        if ("0".equals(statusEntity.getHangyeStatus())) {
+                            intent = new Intent(CompanyxqAct.this, WebAct.class);
+                            intent.putExtra(WebAct.WEB_TYPE, 2);
+                            intent.putExtra(WebAct.ID,iId);
+                            startActivity(intent);
+                        }
                         break;
                     case 3://失信信息
-                        intent = new Intent(CompanyxqAct.this, DishonestyInfoAct.class);
-                        intent.putExtra(COMPANYID, iId);
-                        startActivity(intent);
+                        if ("0".equals(statusEntity.getCourtitemStatus())) {
+                            intent = new Intent(CompanyxqAct.this, DishonestyInfoAct.class);
+                            intent.putExtra(COMPANYID, iId);
+                            intent.putExtra("iname",entity.getCompanyName());
+                            startActivity(intent);
+                        }
                         break;
                     case 4://诉讼信息
-                        intent = new Intent(CompanyxqAct.this, LitigationAct.class);
-                        intent.putExtra(COMPANYID, iId);
-                        startActivity(intent);
+                        if ("0".equals(statusEntity.getLawsuitmsgStatus())) {
+                            intent = new Intent(CompanyxqAct.this, LitigationAct.class);
+                            intent.putExtra(COMPANYID, iId);
+                            startActivity(intent);
+                        }
                         break;
                     case 5://对外投资
-                        intent = new Intent(CompanyxqAct.this, InvestmentAct.class);
-                        intent.putExtra(COMPANYID, iId);
-                        startActivity(intent);
+                        if ("0".equals(statusEntity.getAbroadinvestmenttatus())) {
+                            intent = new Intent(CompanyxqAct.this, InvestmentAct.class);
+                            intent.putExtra(COMPANYID, iId);
+                            startActivity(intent);
+                        }
                         break;
                     case 6://股东信息
-                        intent = new Intent(CompanyxqAct.this, GudonginfoAct.class);
-                        intent.putExtra(COMPANYID, iId);
-                        startActivity(intent);
+                        if ("0".equals(statusEntity.getStockmsgStatus())) {
+                            intent = new Intent(CompanyxqAct.this, GudonginfoAct.class);
+                            intent.putExtra(COMPANYID, iId);
+                            startActivity(intent);
+                        }
                         break;
                     case 7://企业资讯
-                        intent = new Intent(CompanyxqAct.this, InformationAct.class);
-                        intent.putExtra(COMPANYID, iId);
-                        startActivity(intent);
+                        if ("0".equals(statusEntity.getEnenewterprissStatus())) {
+                            intent = new Intent(CompanyxqAct.this, InformationAct.class);
+                            intent.putExtra(COMPANYID, iId);
+                            startActivity(intent);
+                        }
                         break;
                     case 8://年报信息
-                        intent = new Intent(CompanyxqAct.this, AnnualAct.class);
-                        intent.putExtra(COMPANYID, iId);
-                        startActivity(intent);
+                        if ("0".equals(statusEntity.getAnnualportsmsgStatus())) {
+                            intent = new Intent(CompanyxqAct.this, AnnualAct.class);
+                            intent.putExtra(COMPANYID, iId);
+                            startActivity(intent);
+                        }
                         break;
                     case 9://分支机构
-                        intent = new Intent(CompanyxqAct.this, PamentAct.class);
-                        intent.putExtra(COMPANYID, iId);
-                        startActivity(intent);
+                        if ("0".equals(statusEntity.getSonenterpriseStatus())) {
+                            intent = new Intent(CompanyxqAct.this, PamentAct.class);
+                            intent.putExtra(COMPANYID, iId);
+                            startActivity(intent);
+                        }
                         break;
                     case 10://主要成员
-                        intent = new Intent(CompanyxqAct.this, PeopleAct.class);
-                        intent.putExtra(COMPANYID, iId);
-                        startActivity(intent);
+                        if ("0".equals(statusEntity.getMainmemberStatus())) {
+                            intent = new Intent(CompanyxqAct.this, PeopleAct.class);
+                            intent.putExtra(COMPANYID, iId);
+                            startActivity(intent);
+                        }
                         break;
                     case 11://变更记录
-                        intent = new Intent(CompanyxqAct.this, ChangecodeAct.class);
-                        intent.putExtra(COMPANYID, iId);
-                        startActivity(intent);
+                        if ("0".equals(statusEntity.getEditrecordStatus())) {
+                            intent = new Intent(CompanyxqAct.this, ChangecodeAct.class);
+                            intent.putExtra(COMPANYID, iId);
+                            startActivity(intent);
+                        }
                         break;
 
 
@@ -169,10 +205,14 @@ public class CompanyxqAct extends BaseActivity {
                 openActivity(MapAct.class);
                 break;
             case R.id.tvAttention://关注
-                if(!flag) {
-                    addMyAttention(iId);
+                if (UserDao.getUser()!=null) {
+                    if (!flag) {
+                        addMyAttention(iId);
+                    } else {
+                        removeMyAttention(iId);
+                    }
                 }else {
-                    removeMyAttention(iId);
+                    openActivity(LoginAct.class);
                 }
                 break;
         }
@@ -189,13 +229,13 @@ public class CompanyxqAct extends BaseActivity {
             @Override
             public void onSucess(String result) {
                 tvAttention.setText("已关注");
-                flag=true;
-                MyToastUtils.showShortToast(CompanyxqAct.this,"关注企业成功");
+                flag = true;
+                MyToastUtils.showShortToast(CompanyxqAct.this, "关注企业成功");
             }
 
             @Override
             public void onError(String error) {
-                MyToastUtils.showShortToast(CompanyxqAct.this,error);
+                MyToastUtils.showShortToast(CompanyxqAct.this, error);
             }
         });
     }
@@ -210,12 +250,12 @@ public class CompanyxqAct extends BaseActivity {
             public void onSucess(String result) {
                 flag = false;
                 tvAttention.setText("关注");
-                MyToastUtils.showShortToast(CompanyxqAct.this,"取消关注成功");
+                MyToastUtils.showShortToast(CompanyxqAct.this, "取消关注成功");
             }
 
             @Override
             public void onError(String error) {
-                MyToastUtils.showShortToast(CompanyxqAct.this,error);
+                MyToastUtils.showShortToast(CompanyxqAct.this, error);
             }
         });
     }
@@ -243,6 +283,18 @@ public class CompanyxqAct extends BaseActivity {
     //设置企业信息
     private void setBusiness(CompanyEntity entity){
         if(entity!=null){
+            if(!TextUtils.isEmpty(entity.getSts())){
+                if("1".equals(entity.getSts())){
+                    flag=true;
+                    tvAttention.setText("已关注");
+                }else {
+                    flag=false;
+                    tvAttention.setText("关注");
+                }
+            }else {
+                flag=false;
+                tvAttention.setText("关注");
+            }
             if(!TextUtils.isEmpty(entity.getCompanyName())){
                 setTopTitle(entity.getCompanyName());
             }
@@ -286,6 +338,27 @@ public class CompanyxqAct extends BaseActivity {
                 ratingBar.setProgress(0);
             }
         }
+    }
+
+    private StatusEntity statusEntity;
+    /**
+     * 查询企业状态
+     * @param companyId
+     */
+    private void selectStatus(String companyId){
+        RequestManager.getCommManager().selectStatus(companyId, new CallBack() {
+            @Override
+            public void onSucess(String result) {
+                ResultData<StatusEntity> rd = (ResultData<StatusEntity>) GsonUtils.json(result, StatusEntity.class);
+                statusEntity = rd.getData();
+                gvqy.setAdapter(new CompanyAdapter(CompanyxqAct.this,statusEntity));
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
     }
     private void showPopupWindow(View parent) {
         LinearLayout layout = (LinearLayout) LayoutInflater.from(this).inflate(

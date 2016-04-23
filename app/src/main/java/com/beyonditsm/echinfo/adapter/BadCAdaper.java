@@ -7,6 +7,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
+import com.beyonditsm.echinfo.entity.BadCreditEntity;
+
+import java.util.List;
 
 /**
  * 搜索失信适配器
@@ -15,13 +18,18 @@ import com.beyonditsm.echinfo.R;
 public class BadCAdaper extends BaseAdapter{
 
     private Context context;
+    private List<BadCreditEntity> list;
     public BadCAdaper(Context context){
         this.context=context;
+    }
+    public BadCAdaper(Context context,List<BadCreditEntity> list){
+        this.context=context;
+        this.list=list;
     }
 
     @Override
     public int getCount() {
-        return 10;
+        return list.size();
     }
 
     @Override
@@ -48,6 +56,10 @@ public class BadCAdaper extends BaseAdapter{
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
+        holder.company.setText(list.get(position).getIname());
+        holder.cid.setText(list.get(position).getCardnum());
+        holder.location.setText(list.get(position).getAreaname());
+        holder.idname.setText(list.get(position).getCasecode());
         return convertView;
     }
     class ViewHolder{

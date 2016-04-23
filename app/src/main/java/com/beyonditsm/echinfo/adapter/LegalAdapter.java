@@ -7,6 +7,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
+import com.beyonditsm.echinfo.entity.StockMsg;
+
+import java.util.List;
 
 /**
  * 企业法人适配器
@@ -15,13 +18,18 @@ import com.beyonditsm.echinfo.R;
 public class LegalAdapter extends BaseAdapter{
 
     private Context context;
+    private List<StockMsg> list;
     public LegalAdapter(Context context){
         this.context=context;
+    }
+    public LegalAdapter(Context context,List<StockMsg> list){
+        this.context=context;
+        this.list=list;
     }
 
     @Override
     public int getCount() {
-        return 10;
+        return list.size();
     }
 
     @Override
@@ -47,6 +55,9 @@ public class LegalAdapter extends BaseAdapter{
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
+        holder.company.setText(list.get(position).getName());
+        holder.name.setText(list.get(position).getStockType());
+//        holder.status.setText(list.get(position).);
         return convertView;
     }
     class ViewHolder{
