@@ -166,6 +166,10 @@
         <!--年报详情-->
         <activity android:name=".activity.AnnualDetaillistAct"
             android:screenOrientation="portrait"/>
+        <!--子职业-->
+        <activity android:name=".activity.OccupationChildAct"
+            android:screenOrientation="portrait"/>
+        <!--股东详情-->
 
         <!-- ###################注册SDK使用的Activity###################### -->
         <!--分享编辑页-->

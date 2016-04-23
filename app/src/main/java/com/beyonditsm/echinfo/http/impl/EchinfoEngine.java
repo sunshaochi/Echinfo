@@ -439,4 +439,50 @@ public class EchinfoEngine extends RequestManager {
         doPost(IEchinfoUrl.SEARCH_CPMPANY_URL,map,callBack);
     }
 
+    /**
+     * 查询企业状态
+     * @param companyId
+     * @param callBack
+     */
+    public void selectStatus(String companyId,CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        map.put("companyId",companyId);
+        doPost(IEchinfoUrl.ENTEPRISESTS_URL,map,callBack);
+    }
+
+    /**
+     * 根据职业的id查询出职业的信息 如果id为null 则查询出所有的根职业 如果id不为空则查询出该id下的子职业
+     * @param id
+     * @param callBack
+     */
+    public void findOccupationList(String id,CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        if(!TextUtils.isEmpty(id)) {
+            map.put("id", id);
+        }
+        doPost(IEchinfoUrl.OCCUPACTION_URL,map,callBack);
+    }
+
+    /**
+     * 根据企业名称精确查询股东信息
+     * @param companyName
+     * @param callBack
+     */
+    public void findStockMsgByCompanyName(String companyName,CallBack callBack ){
+        Map<String,String> map=new HashMap<>();
+        map.put("companyName",companyName);
+        doPost(IEchinfoUrl.STOCKMSGBYNAME_URL,map,callBack);
+    }
+
+    /**
+     * 失信列表
+     * @param iname
+     * @param callBack
+     */
+    public void findCourtitemList(String iname ,CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        map.put("iname",iname);
+        doPost(IEchinfoUrl.COURTITEMMSG_URL,map,callBack);
+    }
+
 }

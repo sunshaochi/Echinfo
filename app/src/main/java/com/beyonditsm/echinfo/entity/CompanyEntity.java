@@ -23,6 +23,7 @@ public class CompanyEntity {
      * "coords":null,
      * "browseCount":null,
      * "industry":null
+     * "sts"
      */
     /**
      * "id":"1",
@@ -32,6 +33,16 @@ public class CompanyEntity {
      * "beforeEdit":"变更前的你",
      * "afterEdit":"变更后的我"
      */
+    /**
+     * "id":null,
+     * "companyId":null,
+     * "accountId":null,
+     * "companyName":"上海鸿日投资管理有限公司",
+     * "repPersion":"李启孟",
+     * "recordStatus":"存续"
+     */
+    private String sts;
+    private String repPersion;
     private String accountId;
     private String editType;
     private String editTime;
@@ -58,6 +69,22 @@ public class CompanyEntity {
     private String coords;
     private String browseCount;
     private String industry;
+
+    public String getSts() {
+        return sts;
+    }
+
+    public void setSts(String sts) {
+        this.sts = sts;
+    }
+
+    public String getRepPersion() {
+        return repPersion;
+    }
+
+    public void setRepPersion(String repPersion) {
+        this.repPersion = repPersion;
+    }
 
     public String getAccountId() {
         return accountId;

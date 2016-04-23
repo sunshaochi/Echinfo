@@ -18,10 +18,13 @@ import com.beyonditsm.echinfo.adapter.BadCAdaper;
 import com.beyonditsm.echinfo.adapter.EnterPAdapter;
 import com.beyonditsm.echinfo.adapter.LegalAdapter;
 import com.beyonditsm.echinfo.base.BaseFragment;
+import com.beyonditsm.echinfo.entity.BadCreditEntity;
 import com.beyonditsm.echinfo.entity.CompanyEntity;
+import com.beyonditsm.echinfo.entity.StockMsg;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
+import com.beyonditsm.echinfo.util.MyLogUtils;
 import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshBase;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView;
@@ -98,10 +101,10 @@ public class SearchFragment extends BaseFragment {
 //                searchCompany("阿里",currentPage);
                 break;
             case 1:
-                plv.getRefreshableView().setAdapter(new LegalAdapter(getContext()));
+//                plv.getRefreshableView().setAdapter(new LegalAdapter(getContext()));
                 break;
             case 2:
-                plv.getRefreshableView().setAdapter(new BadCAdaper(getContext()));
+//                plv.getRefreshableView().setAdapter(new BadCAdaper(getContext()));
                 break;
         }
     }
@@ -153,7 +156,81 @@ public class SearchFragment extends BaseFragment {
 
             @Override
             public void onError(String error) {
+                plv.onPullUpRefreshComplete();
+                plv.onPullDownRefreshComplete();
+            }
+        });
+    }
 
+    private List<StockMsg> stockMsgList;
+    /**
+     * 查法人，查股东（公司）
+     * @param companyName
+     */
+    private void findStockMsgByCompanyName(String companyName){
+        RequestManager.getCommManager().findStockMsgByCompanyName(companyName, new CallBack() {
+            @Override
+            public void onSucess(String result) {
+                plv.onPullUpRefreshComplete();
+                plv.onPullDownRefreshComplete();
+                Gson gson = new Gson();
+                try {
+                    JSONObject json = new JSONObject(result);
+                    JSONObject data = json.getJSONObject("data");
+                    JSONArray rows = data.getJSONArray("rows");
+                    if (rows.length() > 0) {
+                        stockMsgList = gson.fromJson(rows.toString(),
+                                new TypeToken<List<StockMsg>>() {
+                                }.getType());
+                        plv.getRefreshableView().setAdapter(new LegalAdapter(getActivity(),stockMsgList));
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+                plv.onPullUpRefreshComplete();
+                plv.onPullDownRefreshComplete();
+            }
+        });
+    }
+
+    private List<BadCreditEntity> badCreditEntityList;
+    /**
+     * 失信列表(公司)
+     * @param iname
+     */
+    private void findCourtitemList(String iname){
+        MyLogUtils.degug(iname);
+        RequestManager.getCommManager().findCourtitemList(iname, new CallBack() {
+            @Override
+            public void onSucess(String result) {
+                plv.onPullUpRefreshComplete();
+                plv.onPullDownRefreshComplete();
+                Gson gson = new Gson();
+                try {
+                    JSONObject json = new JSONObject(result);
+                    JSONObject data = json.getJSONObject("data");
+                    JSONArray rows = data.getJSONArray("rows");
+                    if (rows.length() > 0) {
+                        badCreditEntityList = gson.fromJson(rows.toString(),
+                                new TypeToken<List<BadCreditEntity>>() {
+                                }.getType());
+                        plv.getRefreshableView().setAdapter(new BadCAdaper(getActivity(),badCreditEntityList));
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+                plv.onPullUpRefreshComplete();
+                plv.onPullDownRefreshComplete();
             }
         });
     }
@@ -196,6 +273,12 @@ public class SearchFragment extends BaseFragment {
         switch (position) {
             case 0:
                 searchCompany(searchContent, currentP);
+                break;
+            case 1:
+                findStockMsgByCompanyName(searchContent);
+                break;
+            case 2:
+                findCourtitemList(searchContent);
                 break;
         }
     }

@@ -1,6 +1,7 @@
 package com.beyonditsm.echinfo.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.entity.BadCreditEntity;
 import com.beyonditsm.echinfo.widget.ShareDialog;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -45,6 +47,8 @@ public class DisinfodetailAct extends BaseActivity {
     @ViewInject(R.id.time)
     private TextView time;//发布时间
 
+    private BadCreditEntity entity;
+
     @Override
     public void setLayout() {
         setContentView(R.layout.dishonestyinfo_detail);
@@ -53,6 +57,8 @@ public class DisinfodetailAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("失信信息");
+        entity=getIntent().getParcelableExtra("entity");
+        setInfo(entity);
         ivShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,5 +67,33 @@ public class DisinfodetailAct extends BaseActivity {
                 dialog.show();
             }
         });
+    }
+    private void setInfo(BadCreditEntity entity){
+        if(entity!=null){
+            if(!TextUtils.isEmpty(entity.getIname()))
+                bzxr.setText(entity.getIname());
+            if(!TextUtils.isEmpty(entity.getCardnum()))
+                bzxrId.setText(entity.getCardnum());
+            if(!TextUtils.isEmpty(entity.getDuty()))
+                pc.setText(entity.getDuty());
+            if(!TextUtils.isEmpty(entity.getPerformance()))
+                lxqk.setText(entity.getPerformance());
+            if(!TextUtils.isEmpty(entity.getDisrupttypename()))
+                jtqk.setText(entity.getDisrupttypename());
+            if(!TextUtils.isEmpty(entity.getGistunit()))
+                zxfy.setText(entity.getGistunit());
+            if(!TextUtils.isEmpty(entity.getAreaname()))
+                province.setText(entity.getAreaname());
+            if(!TextUtils.isEmpty(entity.getGistid()))
+                yjwh.setText(entity.getGistid());
+            if(!TextUtils.isEmpty(entity.getRegdate()))
+                latime.setText(entity.getRegdate());
+            if(!TextUtils.isEmpty(entity.getCasecode()))
+                anhaoid.setText(entity.getCasecode());
+            if(!TextUtils.isEmpty(entity.getCourtname()))
+                zxyjdw.setText(entity.getCourtname());
+            if(!TextUtils.isEmpty(entity.getPublishdate()))
+                time.setText(entity.getPublishdate());
+        }
     }
 }
