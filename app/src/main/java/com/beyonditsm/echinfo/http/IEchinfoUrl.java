@@ -78,6 +78,10 @@ public interface IEchinfoUrl {
     /*行业*/
     String INDUSTRY_URL=BASE_URL+"industryMsg/findIndustryByFatherId.do";
 
+    /*热门企业列表*/
+    String HOTENTERPRISE_URL=BASE_URL+"companyInfo/hotEnterprise.do";
+
+
 
 
 
