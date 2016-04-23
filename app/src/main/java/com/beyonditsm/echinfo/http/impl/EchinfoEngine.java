@@ -439,4 +439,17 @@ public class EchinfoEngine extends RequestManager {
         doPost(IEchinfoUrl.SEARCH_CPMPANY_URL,map,callBack);
     }
 
+
+    /**
+     * 热门企业列表
+     * @param callBack
+     */
+    public void hotEnterprise(CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        doPost(IEchinfoUrl.HOTENTERPRISE_URL,map,callBack);
+
+    }
+
+
+
 }

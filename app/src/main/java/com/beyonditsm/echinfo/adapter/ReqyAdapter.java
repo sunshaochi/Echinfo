@@ -1,6 +1,7 @@
 package com.beyonditsm.echinfo.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -8,19 +9,30 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
+import com.beyonditsm.echinfo.entity.CompanyEntity;
+
+import java.util.List;
 
 /**
  * Created by bitch-1 on 2016/4/7.
  */
 public class ReqyAdapter extends BaseAdapter {
     private Context context;
-    public ReqyAdapter(Context context){
+    private List<CompanyEntity>list;
+    public ReqyAdapter(Context context,List<CompanyEntity>list){
         this.context=context;
+        this.list=list;
     }
+
+    public void notify(List<CompanyEntity> list){
+        this.list=list;
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public int getCount() {
-        return 10;
+        return list.size();
     }
 
     @Override
@@ -45,6 +57,15 @@ public class ReqyAdapter extends BaseAdapter {
             convertView.setTag(holder);
         }else {
             holder= (ViewHolder) convertView.getTag();
+        }
+        if(list!=null){
+            if(!TextUtils.isEmpty(list.get(position).getCompanyName()))
+                holder.company.setText(list.get(position).getCompanyName());
+            if(!TextUtils.isEmpty(list.get(position).getLevel()))
+            holder.ratingBar.setRating(Float.parseFloat(list.get(position).getLevel()));
+            if (!TextUtils.isEmpty(list.get(position).getFocus()))
+                holder.number.setText(list.get(position).getFocus());
+
         }
         return convertView;
     }
