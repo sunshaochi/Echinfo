@@ -44,7 +44,7 @@ public class MyFollowFrg extends BaseFragment{
     private int rows=10;
     @Override
     public View initView(LayoutInflater inflater) {
-        return inflater.inflate(R.layout.frg_search,null);
+        return inflater.inflate(R.layout.frg_my_floww,null);
     }
 
     @Override

@@ -8,11 +8,23 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView
-        android:id="@+id/plv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView>
+
+        <LinearLayout
+            android:id="@+id/llHasHis"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <com.leaf.library.widget.MyListView
+                android:id="@+id/lvHis"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:dividerHeight="1px"
+                >
+            </com.leaf.library.widget.MyListView>
+
+        </LinearLayout>
+
 
 
         <LinearLayout

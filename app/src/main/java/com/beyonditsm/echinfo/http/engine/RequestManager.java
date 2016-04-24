@@ -138,6 +138,7 @@ public class RequestManager {
                 MyLogUtils.info("上传图片：" + result);
                 JSONObject obj = null;
                 try {
+                    if(result!=null)
                     obj = new JSONObject(result);
                     int status = obj.getInt("status");
                     if (status == 200) {

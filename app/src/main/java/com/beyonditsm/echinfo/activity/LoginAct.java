@@ -24,11 +24,8 @@ import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.GsonUtils;
 import com.beyonditsm.echinfo.util.MyLogUtils;
 import com.beyonditsm.echinfo.util.MyToastUtils;
-import com.beyonditsm.echinfo.util.SpUtils;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.umeng.socialize.bean.SHARE_MEDIA;
-import com.umeng.socialize.bean.SocializeEntity;
-import com.umeng.socialize.bean.StatusCode;
 import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;
 import com.umeng.socialize.controller.listener.SocializeListeners;
@@ -260,7 +257,7 @@ public class LoginAct extends BaseActivity {
                 UserDataEntity userEntitty = rd.getData();
                 UserEntity user = userEntitty.getUser();
                 UserDao.saveUser(user);
-                sendBroadcast(new Intent(MainAct.LOGIN));
+                sendBroadcast(new Intent(MainAct.MAIN_RECEIVER));
                 finish();
                 MyToastUtils.showShortToast(getApplicationContext(), "登录成功");
             }

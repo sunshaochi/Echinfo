@@ -58,7 +58,7 @@ public class SearchFragment extends BaseFragment {
 
     @Override
     public View initView(LayoutInflater inflater) {
-        return inflater.inflate(R.layout.frg_search, null);
+        return inflater.inflate(R.layout.frg_my_floww, null);
     }
 
     @Override

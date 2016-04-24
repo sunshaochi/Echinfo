@@ -18,8 +18,6 @@ import com.beyonditsm.echinfo.entity.UserEntity;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.IEchinfoUrl;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
-import com.beyonditsm.echinfo.util.MyLogUtils;
-import com.beyonditsm.echinfo.util.SpUtils;
 import com.beyonditsm.echinfo.view.CircleImageView;
 import com.beyonditsm.echinfo.view.MyAlertDialog;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -27,14 +25,11 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.tandong.sa.zUImageLoader.core.DisplayImageOptions;
 import com.tandong.sa.zUImageLoader.core.ImageLoader;
 import com.umeng.socialize.bean.SHARE_MEDIA;
-import com.umeng.socialize.bean.SocializeConfig;
 import com.umeng.socialize.bean.SocializeEntity;
 import com.umeng.socialize.bean.StatusCode;
 import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;
 import com.umeng.socialize.controller.listener.SocializeListeners;
-
-import java.util.Map;
 
 /**
  * 我的
@@ -163,7 +158,7 @@ public class MineAct extends BaseActivity {
             @Override
             public void onSucess(String result) {
                 UserDao.deleteUser();
-                sendBroadcast(new Intent(MainAct.UNLOGIN));
+                sendBroadcast(new Intent(MainAct.MAIN_RECEIVER));
                 finish();
             }
 

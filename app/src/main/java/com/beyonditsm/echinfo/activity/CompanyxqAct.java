@@ -30,14 +30,6 @@ import com.beyonditsm.echinfo.view.MySelfSheetDialog;
 import com.beyonditsm.echinfo.widget.ShareDialog;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.tandong.sa.json.Gson;
-import com.tandong.sa.json.reflect.TypeToken;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.List;
 
 /**
  * Created by bitch-1 on 2016/4/6.
@@ -230,6 +222,7 @@ public class CompanyxqAct extends BaseActivity {
             public void onSucess(String result) {
                 tvAttention.setText("已关注");
                 flag = true;
+                sendBroadcast(new Intent(MainAct.MAIN_RECEIVER));
                 MyToastUtils.showShortToast(CompanyxqAct.this, "关注企业成功");
             }
 
@@ -250,6 +243,7 @@ public class CompanyxqAct extends BaseActivity {
             public void onSucess(String result) {
                 flag = false;
                 tvAttention.setText("关注");
+                sendBroadcast(new Intent(MainAct.MAIN_RECEIVER));
                 MyToastUtils.showShortToast(CompanyxqAct.this, "取消关注成功");
             }
 
