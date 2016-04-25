@@ -62,6 +62,8 @@ public class SearchAct extends BaseActivity {
 
     private List<Fragment>  frgList=new ArrayList<>();
 
+    public static String SEARCH_CONTENT;
+
     @Override
     public void setLayout() {
         setContentView(R.layout.act_search);
