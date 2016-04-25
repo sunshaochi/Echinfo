@@ -165,10 +165,11 @@ public class SearchFragment extends BaseFragment {
     private List<StockMsg> stockMsgList;
     /**
      * 查法人，查股东（公司）
-     * @param companyName
+     * @param name
      */
-    private void findStockMsgByCompanyName(String companyName){
-        RequestManager.getCommManager().findStockMsgByCompanyName(companyName, new CallBack() {
+    private void findStockMsgByCompanyName(String name){
+        MyLogUtils.degug("name:"+name);
+        RequestManager.getCommManager().findStockMsgByCompanyName(name, new CallBack() {
             @Override
             public void onSucess(String result) {
                 plv.onPullUpRefreshComplete();
@@ -177,14 +178,14 @@ public class SearchFragment extends BaseFragment {
                 try {
                     JSONObject json = new JSONObject(result);
                     JSONObject data = json.getJSONObject("data");
-                    JSONArray rows = data.getJSONArray("rows");
-                    if (rows.length() > 0) {
-                        stockMsgList = gson.fromJson(rows.toString(),
-                                new TypeToken<List<StockMsg>>() {
-                                }.getType());
-                        plv.getRefreshableView().setAdapter(new LegalAdapter(getActivity(),stockMsgList));
-
-                    }
+//                    JSONArray rows = data.getJSONArray("rows");
+//                    if (rows.length() > 0) {
+//                        stockMsgList = gson.fromJson(rows.toString(),
+//                                new TypeToken<List<StockMsg>>() {
+//                                }.getType());
+//                        plv.getRefreshableView().setAdapter(new LegalAdapter(getActivity(),stockMsgList));
+//
+//                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -272,13 +273,13 @@ public class SearchFragment extends BaseFragment {
     private void searchData(final String searchContent, final int currentP) {
         switch (position) {
             case 0:
-                searchCompany(searchContent, currentP);
+//                searchCompany(searchContent, currentP);
                 break;
             case 1:
                 findStockMsgByCompanyName(searchContent);
                 break;
             case 2:
-                findCourtitemList(searchContent);
+//                findCourtitemList(searchContent);
                 break;
         }
     }

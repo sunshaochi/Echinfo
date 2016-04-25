@@ -86,8 +86,8 @@ public interface IEchinfoUrl {
     String PROBLEM_URL="http://139.196.50.38:8081/questions";
     /*行业分析*/
     String ANALY_URL="http://139.196.50.38:8081/indana";
-    /*根据企业名称精确查询股东信息*/
-    String STOCKMSGBYNAME_URL=BASE_URL+"companyInfo/findStockMsgByCompanyName.do";
+    /*根据股东名称精确查询行业信息*/
+    String STOCKMSGBYNAME_URL=BASE_URL+"companyInfo/findStockMsgByName.do";
     /*失信列表*/
     String COURTITEMMSG_URL=BASE_URL+"courtitemMsg/findOccupationList.do";
     /*热门企业列表*/

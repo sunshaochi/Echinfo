@@ -464,14 +464,14 @@ public class EchinfoEngine extends RequestManager {
     }
 
     /**
-     * 根据企业名称精确查询股东信息
-     * @param companyName
+     * 根据股东名称精确查询行业信息
+     * @param name
      * @param callBack
      */
-    public void findStockMsgByCompanyName(String companyName,CallBack callBack ){
-        Map<String,String> map=new HashMap<>();
-        map.put("companyName",companyName);
-        doPost(IEchinfoUrl.STOCKMSGBYNAME_URL,map,callBack);
+    public void findStockMsgByCompanyName(String name,CallBack callBack ){
+//        Map<String,String> map=new HashMap<>();
+//        map.put("name",name);
+        doPost(IEchinfoUrl.STOCKMSGBYNAME_URL+"?name="+name,null,callBack);
     }
 
     /**
