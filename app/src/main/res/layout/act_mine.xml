@@ -100,6 +100,7 @@
                     android:layout_height="wrap_content"
                     android:src="@mipmap/zhiwei"/>
                 <TextView
+                    android:id="@+id/occur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="质量管理工程师"
@@ -129,6 +130,7 @@
                     android:layout_height="wrap_content"
                     android:src="@mipmap/company"/>
                 <TextView
+                    android:id="@+id/company"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="科技有限公司"

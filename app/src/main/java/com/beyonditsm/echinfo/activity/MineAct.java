@@ -40,6 +40,10 @@ public class MineAct extends BaseActivity {
     private CircleImageView civHeadIcon;
     @ViewInject(R.id.name)
     private TextView tvUserName;
+    @ViewInject(R.id.occur)
+    private TextView occur;
+    @ViewInject(R.id.company)
+    private TextView company;
     private DisplayImageOptions civOptions = new DisplayImageOptions.Builder()
             .showStubImage(R.mipmap.mine_head) // 设置图片下载期间显示的图片
             .showImageForEmptyUri(R.mipmap.mine_head) // 设置图片Uri为空或是错误的时候显示的图片
@@ -67,6 +71,12 @@ public class MineAct extends BaseActivity {
             }
             if (!TextUtils.isEmpty(userEntity.getIcon())) {
                 ImageLoader.getInstance().displayImage(IEchinfoUrl.BASE_URL + userEntity.getIcon(), civHeadIcon, civOptions);
+            }
+            if(!TextUtils.isEmpty(userEntity.getJob())){
+                occur.setText(userEntity.getJob());
+            }
+            if(!TextUtils.isEmpty(userEntity.getCompanyName())){
+                company.setText(userEntity.getCompanyName());
             }
         }
     }
