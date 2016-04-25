@@ -480,9 +480,9 @@ public class EchinfoEngine extends RequestManager {
      * @param callBack
      */
     public void findCourtitemList(String iname ,CallBack callBack){
-        Map<String,String> map=new HashMap<>();
-        map.put("iname",iname);
-        doPost(IEchinfoUrl.COURTITEMMSG_URL,map,callBack);
+//        Map<String,String> map=new HashMap<>();
+//        map.put("iname",iname);
+        doPost(IEchinfoUrl.COURTITEMMSG_URL+"?iname="+iname,null,callBack);
     }
 
     /**

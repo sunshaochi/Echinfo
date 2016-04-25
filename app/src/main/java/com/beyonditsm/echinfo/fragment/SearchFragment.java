@@ -14,6 +14,7 @@ import android.widget.ListView;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.activity.CompanyxqAct;
+import com.beyonditsm.echinfo.activity.DisinfodetailAct;
 import com.beyonditsm.echinfo.adapter.BadCAdaper;
 import com.beyonditsm.echinfo.adapter.EnterPAdapter;
 import com.beyonditsm.echinfo.adapter.LegalAdapter;
@@ -90,9 +91,21 @@ public class SearchFragment extends BaseFragment {
 
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
                 Intent intent=new Intent(getActivity(), CompanyxqAct.class);
-                intent.putExtra(CompanyxqAct.ID,comList.get(position).getId());
+                switch (position){
+                    case 0:
+                        intent.putExtra(CompanyxqAct.ID,comList.get(i).getId());
+                        break;
+                    case 1:
+                        intent.putExtra(CompanyxqAct.ID,stockMsgList.get(i).getId());
+                        break;
+                    case 2:
+                        intent=new Intent(getActivity(), DisinfodetailAct.class);
+                        intent.putExtra("entity",badCreditEntityList.get(i));
+//                        intent.putExtra(CompanyxqAct.ID,badCreditEntityList.get(i).get);
+                        break;
+                }
                 getActivity().startActivity(intent);
             }
         });
@@ -168,7 +181,7 @@ public class SearchFragment extends BaseFragment {
      * @param name
      */
     private void findStockMsgByCompanyName(String name){
-        MyLogUtils.degug("name:"+name);
+        MyLogUtils.degug("name:" + name);
         RequestManager.getCommManager().findStockMsgByCompanyName(name, new CallBack() {
             @Override
             public void onSucess(String result) {
@@ -178,14 +191,16 @@ public class SearchFragment extends BaseFragment {
                 try {
                     JSONObject json = new JSONObject(result);
                     JSONObject data = json.getJSONObject("data");
-//                    JSONArray rows = data.getJSONArray("rows");
-//                    if (rows.length() > 0) {
-//                        stockMsgList = gson.fromJson(rows.toString(),
-//                                new TypeToken<List<StockMsg>>() {
-//                                }.getType());
-//                        plv.getRefreshableView().setAdapter(new LegalAdapter(getActivity(),stockMsgList));
-//
-//                    }
+                    JSONArray rows = data.getJSONArray("rows");
+                    if (rows.length() > 0) {
+                        stockMsgList = gson.fromJson(rows.toString(),
+                                new TypeToken<List<StockMsg>>() {
+                                }.getType());
+                        plv.getRefreshableView().setAdapter(new LegalAdapter(getActivity(), stockMsgList));
+
+                    } else {
+                        MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -222,6 +237,8 @@ public class SearchFragment extends BaseFragment {
                                 }.getType());
                         plv.getRefreshableView().setAdapter(new BadCAdaper(getActivity(),badCreditEntityList));
 
+                    }else {
+                        MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -273,13 +290,13 @@ public class SearchFragment extends BaseFragment {
     private void searchData(final String searchContent, final int currentP) {
         switch (position) {
             case 0:
-//                searchCompany(searchContent, currentP);
+                searchCompany(searchContent, currentP);
                 break;
             case 1:
                 findStockMsgByCompanyName(searchContent);
                 break;
             case 2:
-//                findCourtitemList(searchContent);
+                findCourtitemList(searchContent);
                 break;
         }
     }
