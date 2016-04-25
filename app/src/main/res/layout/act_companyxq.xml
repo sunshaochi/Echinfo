@@ -269,7 +269,6 @@
                 style="@style/tv_second"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/iv_dt"
-                android:text="显示雁荡区显示雁荡区显示雁荡区显示雁荡区显示雁荡区显示雁荡区"
                 android:textSize="14sp" />
 
             <ImageView

@@ -1,10 +1,13 @@
 package com.beyonditsm.echinfo.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * 公司详情
  * Created by gxy on 2016/4/19.
  */
-public class CompanyEntity {
+public class CompanyEntity implements Parcelable {
     /**
      * "id":"12",
      * "companyName":"李建的1公司",
@@ -69,6 +72,24 @@ public class CompanyEntity {
     private String coords;
     private String browseCount;
     private String industry;
+    private float longitude;//经度
+    private float latitude;// 纬度
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
+    }
+
+    public float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
+    }
 
     public String getSts() {
         return sts;
@@ -293,4 +314,89 @@ public class CompanyEntity {
     public void setIndustry(String industry) {
         this.industry = industry;
     }
+
+    public CompanyEntity() {
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.sts);
+        dest.writeString(this.repPersion);
+        dest.writeString(this.accountId);
+        dest.writeString(this.editType);
+        dest.writeString(this.editTime);
+        dest.writeString(this.beforeEdit);
+        dest.writeString(this.afterEdit);
+        dest.writeString(this.companyId);
+        dest.writeString(this.legalRepPersion);
+        dest.writeString(this.recordStatus);
+        dest.writeString(this.toCompanyId);
+        dest.writeString(this.id);
+        dest.writeString(this.companyName);
+        dest.writeString(this.registNo);
+        dest.writeString(this.companyPhoneNo);
+        dest.writeString(this.postcode);
+        dest.writeString(this.address);
+        dest.writeString(this.email);
+        dest.writeString(this.stockTransfer);
+        dest.writeString(this.managementStatus);
+        dest.writeString(this.isHaveWeb);
+        dest.writeString(this.companyInverstment);
+        dest.writeString(this.employeeCount);
+        dest.writeString(this.focus);
+        dest.writeString(this.level);
+        dest.writeString(this.coords);
+        dest.writeString(this.browseCount);
+        dest.writeString(this.industry);
+        dest.writeFloat(this.longitude);
+        dest.writeFloat(this.latitude);
+    }
+
+    protected CompanyEntity(Parcel in) {
+        this.sts = in.readString();
+        this.repPersion = in.readString();
+        this.accountId = in.readString();
+        this.editType = in.readString();
+        this.editTime = in.readString();
+        this.beforeEdit = in.readString();
+        this.afterEdit = in.readString();
+        this.companyId = in.readString();
+        this.legalRepPersion = in.readString();
+        this.recordStatus = in.readString();
+        this.toCompanyId = in.readString();
+        this.id = in.readString();
+        this.companyName = in.readString();
+        this.registNo = in.readString();
+        this.companyPhoneNo = in.readString();
+        this.postcode = in.readString();
+        this.address = in.readString();
+        this.email = in.readString();
+        this.stockTransfer = in.readString();
+        this.managementStatus = in.readString();
+        this.isHaveWeb = in.readString();
+        this.companyInverstment = in.readString();
+        this.employeeCount = in.readString();
+        this.focus = in.readString();
+        this.level = in.readString();
+        this.coords = in.readString();
+        this.browseCount = in.readString();
+        this.industry = in.readString();
+        this.longitude = in.readFloat();
+        this.latitude = in.readFloat();
+    }
+
+    public static final Creator<CompanyEntity> CREATOR = new Creator<CompanyEntity>() {
+        public CompanyEntity createFromParcel(Parcel source) {
+            return new CompanyEntity(source);
+        }
+
+        public CompanyEntity[] newArray(int size) {
+            return new CompanyEntity[size];
+        }
+    };
 }

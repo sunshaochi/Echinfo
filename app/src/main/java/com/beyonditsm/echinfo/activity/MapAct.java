@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
@@ -17,6 +18,7 @@ import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.entity.CompanyEntity;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
 import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.beyonditsm.echinfo.view.MySelfSheetDialog;
@@ -31,9 +33,14 @@ import java.net.URISyntaxException;
 public class MapAct extends BaseActivity {
     @ViewInject(R.id.mapView)
     private MapView mapView;
+    private TextView tvCoun;
+    private TextView tvAddress;
     private BaiduMap mBaiduMap;// 地图实例
-    private double lat = 39.963175;
-    private double lng = 116.400244;
+    private double lat = 0.0;
+    private double lng = 0.0;
+
+    public static final String ADDRESS="address";
+    CompanyEntity entity;
 
     @Override
     public void setLayout() {
@@ -43,12 +50,20 @@ public class MapAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("公司所在地");
+         entity=getIntent().getParcelableExtra(ADDRESS);
+
         mBaiduMap = mapView.getMap();
+        lat=entity.getLatitude();
+        lng=entity.getLongitude();
         LatLng ll = new LatLng(lat, lng);
         MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);
         mBaiduMap.animateMapStatus(u);
 
         View view = View.inflate(MapAct.this, R.layout.mymarker, null);
+        tvCoun= (TextView) view.findViewById(R.id.tvCoun);
+        tvAddress= (TextView) view.findViewById(R.id.tvAddress);
+        tvCoun.setText(entity.getAddress());
+        tvAddress.setText(entity.getCoords());
         ImageView ivNavigaion = (ImageView) view.findViewById(R.id.ivNavigaion);
         ivNavigaion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,8 +78,8 @@ public class MapAct extends BaseActivity {
                             @Override
                             public void onClick(int which) {
                                 try {
-                                    Intent intent = Intent.getIntent("intent://map/marker?location=40.047669,116.313082&title=" +
-                                            "我的位置&content=\"\"&src=yourCompanyName|一企查#Intent;scheme=bdapp;package=com.baidu.BaiduMap;end");
+                                    Intent intent = Intent.getIntent("intent://map/marker?location="+lat+","+lng+"&title=" +entity.getAddress()+
+                                            "&content=\"\"&src=yourCompanyName|一企查#Intent;scheme=bdapp;package=com.baidu.BaiduMap;end");
                                     startActivity(intent); //启动调用
                                 } catch (URISyntaxException e) {
                                     e.printStackTrace();
@@ -133,7 +148,7 @@ public class MapAct extends BaseActivity {
     {
         try
         {
-            Intent intent = Intent.getIntent("androidamap://viewMap?sourceApplication=厦门通&poiname=百度奎科大厦&lat=40.047669&lon=116.313082&dev=0");
+            Intent intent = Intent.getIntent("androidamap://viewMap?sourceApplication=一企查&poiname="+entity.getAddress()+"&lat="+lat+"&lon="+lng+"&dev=0");
             startActivity(intent);
         } catch (URISyntaxException e)
         {

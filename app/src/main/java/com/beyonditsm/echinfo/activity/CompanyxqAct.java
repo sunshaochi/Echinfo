@@ -194,7 +194,9 @@ public class CompanyxqAct extends BaseActivity {
                 showPopupWindow(view);
                 break;
             case R.id.rlMap:
-                openActivity(MapAct.class);
+                Bundle bundle=new Bundle();
+                bundle.putParcelable(MapAct.ADDRESS,entity);
+                openActivity(MapAct.class,bundle);
                 break;
             case R.id.tvAttention://关注
                 if (UserDao.getUser()!=null) {
