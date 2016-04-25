@@ -78,7 +78,7 @@ public class MyFollowFrg extends BaseFragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent=new Intent(getActivity(), CompanyxqAct.class);
-                intent.putExtra(CompanyxqAct.ID,datas.get(position).getId());
+                intent.putExtra(CompanyxqAct.ID,datas.get(position).getCompanyId());
                 getActivity().startActivity(intent);
             }
         });
