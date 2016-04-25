@@ -1,6 +1,6 @@
 package com.beyonditsm.echinfo;
 
-import com.beyonditsm.echinfo.activity.SearchAct;
+import com.beyonditsm.echinfo.entity.SearchEntity;
 import com.beyonditsm.echinfo.entity.UserEntity;
 
 /**
@@ -15,6 +15,6 @@ public interface ConstantValue {
      * 数据库版本
      */
     public final static int VERSION = 1;
-    public final static Class<?>[] MODELS = {UserEntity.class, SearchAct.class};
+    public final static Class<?>[] MODELS = {UserEntity.class, SearchEntity.class};
     public final static String DB_NAME = "user.db";
 }

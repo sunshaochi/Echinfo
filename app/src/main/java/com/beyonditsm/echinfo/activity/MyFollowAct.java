@@ -79,7 +79,7 @@ public class MyFollowAct extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent=new Intent(MyFollowAct.this,CompanyxqAct.class);
-                intent.putExtra(CompanyxqAct.ID, datas.get(position).getId());
+                intent.putExtra(CompanyxqAct.ID, datas.get(position).getCompanyId());
                 startActivity(intent);
             }
         });
