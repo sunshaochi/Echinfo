@@ -20,10 +20,11 @@ public class WebAct extends BaseActivity {
     @ViewInject(R.id.wv)
     private WebView wv;
     public static final String WEB_TYPE = "web_type";
-    private int TYPE;//0服务协议 1企业图谱 2行业分析 3常见问题
+    private int TYPE;//0服务协议 1企业图谱 2行业分析 3常见问题 4法院裁判书
     String url=null;
     public static final String ID="id";
     String id=null;
+    public static final String URL="url";
 
     @Override
     public void setLayout() {
@@ -33,7 +34,6 @@ public class WebAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         TYPE = getIntent().getIntExtra(WEB_TYPE, 0);
-        id=getIntent().getStringExtra(ID);
         switch (TYPE) {
             case 0:
                 setTopTitle("服务协议");
@@ -49,6 +49,7 @@ public class WebAct extends BaseActivity {
                 break;
             case 2:
                 setTopTitle("行业分析");
+                id=getIntent().getStringExtra(ID);
                 url=IEchinfoUrl.ANALY_URL+"?companyId="+id;
                 setRight("纠错", new View.OnClickListener() {
                     @Override
@@ -60,6 +61,10 @@ public class WebAct extends BaseActivity {
             case 3:
                 setTopTitle("常见问题");
                 url=IEchinfoUrl.PROBLEM_URL;
+                break;
+            case 4:
+                setTopTitle("法院裁判书");
+                url=getIntent().getStringExtra(URL);
                 break;
         }
         MyLogUtils.degug("h5:"+url);

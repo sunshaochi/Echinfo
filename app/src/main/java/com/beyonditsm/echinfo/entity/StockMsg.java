@@ -5,6 +5,22 @@ package com.beyonditsm.echinfo.entity;
  * Created by gxy on 2016/4/18.
  */
 public class StockMsg {
+    /**
+     * "id":"1",
+     * "companyId":"1",
+     * "name":"张婷婷",
+     * "stockType":"自然人股东",
+     * "cardType":"1",
+     * "cardNo":"1",
+     * "subcribe":345.0,
+     * "subcribeTime":"2015/9/11",
+     * "subcribeType":"货币",
+     * "realSubcribe":345.0,
+     * "realSubcribeTime":"2015/9/11",
+     * "realSubcribeType":"货币",
+     * "legalRepPersion":"李启孟",
+     * "recordStatus":"存续"
+     */
     private String	cardNo;//证件号码
     private String	cardType;//证件类型
     private String	companyId;//企业id

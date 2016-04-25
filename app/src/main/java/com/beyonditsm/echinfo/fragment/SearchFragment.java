@@ -14,6 +14,7 @@ import android.widget.ListView;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.activity.CompanyxqAct;
+import com.beyonditsm.echinfo.activity.DisinfodetailAct;
 import com.beyonditsm.echinfo.adapter.BadCAdaper;
 import com.beyonditsm.echinfo.adapter.EnterPAdapter;
 import com.beyonditsm.echinfo.adapter.LegalAdapter;
@@ -90,9 +91,21 @@ public class SearchFragment extends BaseFragment {
 
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
                 Intent intent=new Intent(getActivity(), CompanyxqAct.class);
-                intent.putExtra(CompanyxqAct.ID,comList.get(position).getId());
+                switch (position){
+                    case 0:
+                        intent.putExtra(CompanyxqAct.ID,comList.get(i).getId());
+                        break;
+                    case 1:
+                        intent.putExtra(CompanyxqAct.ID,stockMsgList.get(i).getId());
+                        break;
+                    case 2:
+                        intent=new Intent(getActivity(), DisinfodetailAct.class);
+                        intent.putExtra("entity",badCreditEntityList.get(i));
+//                        intent.putExtra(CompanyxqAct.ID,badCreditEntityList.get(i).get);
+                        break;
+                }
                 getActivity().startActivity(intent);
             }
         });
@@ -165,10 +178,11 @@ public class SearchFragment extends BaseFragment {
     private List<StockMsg> stockMsgList;
     /**
      * 查法人，查股东（公司）
-     * @param companyName
+     * @param name
      */
-    private void findStockMsgByCompanyName(String companyName){
-        RequestManager.getCommManager().findStockMsgByCompanyName(companyName, new CallBack() {
+    private void findStockMsgByCompanyName(String name){
+        MyLogUtils.degug("name:" + name);
+        RequestManager.getCommManager().findStockMsgByCompanyName(name, new CallBack() {
             @Override
             public void onSucess(String result) {
                 plv.onPullUpRefreshComplete();
@@ -182,8 +196,10 @@ public class SearchFragment extends BaseFragment {
                         stockMsgList = gson.fromJson(rows.toString(),
                                 new TypeToken<List<StockMsg>>() {
                                 }.getType());
-                        plv.getRefreshableView().setAdapter(new LegalAdapter(getActivity(),stockMsgList));
+                        plv.getRefreshableView().setAdapter(new LegalAdapter(getActivity(), stockMsgList));
 
+                    } else {
+                        MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -221,6 +237,8 @@ public class SearchFragment extends BaseFragment {
                                 }.getType());
                         plv.getRefreshableView().setAdapter(new BadCAdaper(getActivity(),badCreditEntityList));
 
+                    }else {
+                        MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -1,5 +1,6 @@
 package com.beyonditsm.echinfo.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.entity.BadCreditEntity;
 import com.beyonditsm.echinfo.widget.ShareDialog;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 
 /**
  * 失信榜单详情
@@ -59,14 +61,6 @@ public class DisinfodetailAct extends BaseActivity {
         setTopTitle("失信信息");
         entity=getIntent().getParcelableExtra("entity");
         setInfo(entity);
-        ivShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ShareDialog dialog = new ShareDialog(DisinfodetailAct.this).builder();
-                dialog.setContent("失信信息", "失信信息", "");
-                dialog.show();
-            }
-        });
     }
     private void setInfo(BadCreditEntity entity){
         if(entity!=null){
@@ -94,6 +88,22 @@ public class DisinfodetailAct extends BaseActivity {
                 zxyjdw.setText(entity.getCourtname());
             if(!TextUtils.isEmpty(entity.getPublishdate()))
                 time.setText(entity.getPublishdate());
+        }
+    }
+    @OnClick({R.id.iv_cd,R.id.fycps})
+    public void todo(View v){
+        switch (v.getId()){
+            case R.id.iv_cd:
+                ShareDialog dialog = new ShareDialog(DisinfodetailAct.this).builder();
+                dialog.setContent("失信信息", "失信信息", "");
+                dialog.show();
+                break;
+            case R.id.fycps:
+                Intent intent=new Intent(DisinfodetailAct.this,WebAct.class);
+                intent.putExtra(WebAct.WEB_TYPE,4);
+                intent.putExtra(WebAct.URL,entity.getUrl());
+                startActivity(intent);
+                break;
         }
     }
 }

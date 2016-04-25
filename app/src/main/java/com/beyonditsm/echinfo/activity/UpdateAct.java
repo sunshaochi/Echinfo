@@ -159,6 +159,7 @@ public class UpdateAct extends BaseActivity {
             @Override
             public void onSucess(String result) {
                 UserDao.updateUser(entity);
+                sendBroadcast(new Intent(MineAct.USER_INFO));
                 MyToastUtils.showShortToast(getApplicationContext(), "修改信息成功");
                 finish();
             }

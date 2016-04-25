@@ -57,7 +57,7 @@ public class LegalAdapter extends BaseAdapter{
         }
         holder.company.setText(list.get(position).getName());
         holder.name.setText(list.get(position).getStockType());
-//        holder.status.setText(list.get(position).);
+        holder.status.setText(list.get(position).getRecordStatus());
         return convertView;
     }
     class ViewHolder{
