@@ -81,11 +81,12 @@ public class SearchAct extends BaseActivity {
                 if(TextUtils.isEmpty(s.toString())){
                     llNoHis.setVisibility(View.VISIBLE);
                     llS.setVisibility(View.GONE);
-                }else if(s.length()>=2){
+                }else if(s.length()>0){
                     llNoHis.setVisibility(View.GONE);
                     llS.setVisibility(View.VISIBLE);
                     Intent intent=new Intent(SearchFragment.SEARCH_RECEIVER);
                     intent.putExtra("search",s.toString());
+                    intent.putExtra("address",tvCountry.getText().toString().trim());
                     sendBroadcast(intent);
                 }
             }

@@ -25,6 +25,7 @@ import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.GeneralUtils;
 import com.beyonditsm.echinfo.util.MyLogUtils;
+import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.beyonditsm.echinfo.view.flip.FlipViewController;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -238,13 +239,11 @@ public class MainAct extends BaseActivity {
             }
         };
         Timer timer = new Timer();
-        timer.schedule(task, 0, 5000);
+        timer.schedule(task, 0, 8000);
     }
 
     private void moveNext() {
-        if (list != null && list.size() > 0) {
-            setView(this.mCurrPos, this.mCurrPos + 1);
-        }
+        setView(this.mCurrPos, this.mCurrPos + 1);
         this.followVf.setInAnimation(this, R.anim.in_bottomtop);
         this.followVf.setOutAnimation(this, R.anim.out_bottomtop);
         this.followVf.showNext();
@@ -257,18 +256,14 @@ public class MainAct extends BaseActivity {
         TextView tvName = (TextView) noticeView.findViewById(R.id.tvName);
         TextView tvState = (TextView) noticeView.findViewById(R.id.tvState);
 
-//        if ((curr < next) && (next > (titleList.size() - 1))) {
         if ((curr < next) && (next > (list.size() - 1))) {
             next = 0;
         } else if ((curr > next) && (next < 0)) {
-//            next = titleList.size() - 1;
             next = list.size() - 1;
         }
-        if (list != null && list.size() > 0) {
-            tvComName.setText(list.get(next).getCompanyName());
-            tvName.setText("公司法人：" + list.get(next).getRepPersion());
-            tvState.setText(list.get(next).getRecordStatus());
-        }
+        tvComName.setText(list.get(next).getCompanyName());
+        tvName.setText("公司法人：" + list.get(next).getRepPersion());
+        tvState.setText(list.get(next).getRecordStatus());
         final int finalNext = next;
         noticeView.setOnClickListener(new View.OnClickListener() {
 
@@ -358,7 +353,7 @@ public class MainAct extends BaseActivity {
             }
         };
         Timer timer = new Timer();
-        timer.schedule(task, 0, 5000);
+        timer.schedule(task, 0, 8000);
     }
 
 

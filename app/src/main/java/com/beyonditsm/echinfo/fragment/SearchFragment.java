@@ -56,6 +56,7 @@ public class SearchFragment extends BaseFragment {
     private EnterPAdapter enterPAdapter;//搜索公司适配器
 
     private String searchData;
+    private String address;
 
     @Override
     public View initView(LayoutInflater inflater) {
@@ -79,13 +80,13 @@ public class SearchFragment extends BaseFragment {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 currentPage = 1;
-                searchData(searchData, currentPage);
+                searchData(searchData,address, currentPage);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 currentPage++;
-                searchData(searchData, currentPage);
+                searchData(searchData,address, currentPage);
             }
         });
 
@@ -130,8 +131,8 @@ public class SearchFragment extends BaseFragment {
      * @param company
      * @param currentP
      */
-    private void searchCompany(final String company, final int currentP) {
-        RequestManager.getCommManager().searchCompany(company, currentP, rows, new CallBack() {
+    private void searchCompany(final String company,String address, final int currentP) {
+        RequestManager.getCommManager().searchCompany(company,address, currentP, rows, new CallBack() {
             @Override
             public void onSucess(String result) {
                 plv.onPullUpRefreshComplete();
@@ -180,9 +181,9 @@ public class SearchFragment extends BaseFragment {
      * 查法人，查股东（公司）
      * @param name
      */
-    private void findStockMsgByCompanyName(String name){
+    private void findStockMsgByCompanyName(String name,String address){
         MyLogUtils.degug("name:" + name);
-        RequestManager.getCommManager().findStockMsgByCompanyName(name, new CallBack() {
+        RequestManager.getCommManager().findStockMsgByCompanyName(name,address, new CallBack() {
             @Override
             public void onSucess(String result) {
                 plv.onPullUpRefreshComplete();
@@ -219,9 +220,9 @@ public class SearchFragment extends BaseFragment {
      * 失信列表(公司)
      * @param iname
      */
-    private void findCourtitemList(String iname){
+    private void findCourtitemList(String iname,String address){
         MyLogUtils.degug(iname);
-        RequestManager.getCommManager().findCourtitemList(iname, new CallBack() {
+        RequestManager.getCommManager().findCourtitemList(iname,address, new CallBack() {
             @Override
             public void onSucess(String result) {
                 plv.onPullUpRefreshComplete();
@@ -281,22 +282,23 @@ public class SearchFragment extends BaseFragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             searchData = intent.getStringExtra("search");
+            address=intent.getStringExtra("address");
             currentPage = 1;
-            searchData(searchData, currentPage);
+            searchData(searchData,address, currentPage);
 
         }
     }
 
-    private void searchData(final String searchContent, final int currentP) {
+    private void searchData(final String searchContent,String address, final int currentP) {
         switch (position) {
             case 0:
-                searchCompany(searchContent, currentP);
+                searchCompany(searchContent,address, currentP);
                 break;
             case 1:
-                findStockMsgByCompanyName(searchContent);
+                findStockMsgByCompanyName(searchContent,address);
                 break;
             case 2:
-                findCourtitemList(searchContent);
+                findCourtitemList(searchContent,address);
                 break;
         }
     }

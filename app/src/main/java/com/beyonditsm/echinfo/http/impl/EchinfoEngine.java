@@ -431,9 +431,12 @@ public class EchinfoEngine extends RequestManager {
      * @param page
      * @param rows
      */
-    public void searchCompany(String companyName,int page,int rows,CallBack callBack){
+    public void searchCompany(String companyName,String address,int page,int rows,CallBack callBack){
         Map<String,String> map=new HashMap<>();
         map.put("companyName",companyName);
+        if(!TextUtils.isEmpty(address)&&!"全国".equals(address)) {
+            map.put("address", address);
+        }
         map.put("page",page+"");
         map.put("rows",rows+"");
         doPost(IEchinfoUrl.SEARCH_CPMPANY_URL,map,callBack);
@@ -468,10 +471,13 @@ public class EchinfoEngine extends RequestManager {
      * @param name
      * @param callBack
      */
-    public void findStockMsgByCompanyName(String name,CallBack callBack ){
-//        Map<String,String> map=new HashMap<>();
-//        map.put("name",name);
-        doPost(IEchinfoUrl.STOCKMSGBYNAME_URL+"?name="+name,null,callBack);
+    public void findStockMsgByCompanyName(String name,String address,CallBack callBack ){
+        Map<String,String> map=new HashMap<>();
+        map.put("name",name);
+        if(!TextUtils.isEmpty(address)&&!"全国".equals(address)) {
+            map.put("address", address);
+        }
+        doPost(IEchinfoUrl.STOCKMSGBYNAME_URL,map,callBack);
     }
 
     /**
@@ -479,10 +485,13 @@ public class EchinfoEngine extends RequestManager {
      * @param iname
      * @param callBack
      */
-    public void findCourtitemList(String iname ,CallBack callBack){
-//        Map<String,String> map=new HashMap<>();
-//        map.put("iname",iname);
-        doPost(IEchinfoUrl.COURTITEMMSG_URL+"?iname="+iname,null,callBack);
+    public void findCourtitemList(String iname ,String areaname ,CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        map.put("iname",iname);
+        if(!TextUtils.isEmpty(areaname)&&!"全国".equals(areaname)) {
+            map.put("areaname", areaname);
+        }
+        doPost(IEchinfoUrl.COURTITEMMSG_URL,map,callBack);
     }
 
     /**

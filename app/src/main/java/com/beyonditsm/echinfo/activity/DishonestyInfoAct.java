@@ -50,7 +50,7 @@ public class DishonestyInfoAct extends BaseActivity {
         companyId=getIntent().getStringExtra(CompanyxqAct.COMPANYID);
         iname=getIntent().getStringExtra("iname");
 //        iname="1234";
-        findCourtitemList(iname);
+        findCourtitemList(iname,null);
         plv.setPullRefreshEnabled(true);//下拉刷新
         plv.setScrollLoadEnabled(true);//滑动加载
         plv.setPullLoadEnabled(false);//上拉刷新
@@ -87,9 +87,9 @@ public class DishonestyInfoAct extends BaseActivity {
      * 失信列表
      * @param iname
      */
-    private void findCourtitemList(String iname){
+    private void findCourtitemList(String iname,String address){
         MyLogUtils.degug(iname);
-        RequestManager.getCommManager().findCourtitemList(iname, new CallBack() {
+        RequestManager.getCommManager().findCourtitemList(iname,address, new CallBack() {
             @Override
             public void onSucess(String result) {
                 plv.onPullUpRefreshComplete();
