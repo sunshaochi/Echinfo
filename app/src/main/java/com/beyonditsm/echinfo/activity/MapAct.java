@@ -56,6 +56,7 @@ public class MapAct extends BaseActivity {
         lat=entity.getLatitude();
         lng=entity.getLongitude();
         LatLng ll = new LatLng(lat, lng);
+        
         MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);
         mBaiduMap.animateMapStatus(u);
 

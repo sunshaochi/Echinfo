@@ -26,7 +26,6 @@ import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
 import com.beyonditsm.echinfo.util.MyLogUtils;
-import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshBase;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -144,7 +143,7 @@ public class SearchFragment extends BaseFragment {
                     }.getType());
                     if (datas.size() == 0) {
                         if (currentP == 1) {
-                            MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
+//                            MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
                         } else {
                             plv.setHasMoreData(false);
                         }
@@ -199,7 +198,7 @@ public class SearchFragment extends BaseFragment {
                         plv.getRefreshableView().setAdapter(new LegalAdapter(getActivity(), stockMsgList));
 
                     } else {
-                        MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
+//                        MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -238,7 +237,7 @@ public class SearchFragment extends BaseFragment {
                         plv.getRefreshableView().setAdapter(new BadCAdaper(getActivity(),badCreditEntityList));
 
                     }else {
-                        MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
+//                        MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -301,4 +300,9 @@ public class SearchFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
 }
