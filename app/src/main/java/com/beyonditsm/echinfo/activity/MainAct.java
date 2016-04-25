@@ -275,11 +275,8 @@ public class MainAct extends BaseActivity {
             @Override
             public void onClick(View arg0) {
 
-
-                openActivity(CompanyxqAct.class);
-
                 Intent intent = new Intent(MainAct.this, CompanyxqAct.class);
-                intent.putExtra(CompanyxqAct.ID, list.get(finalNext).getId());
+                intent.putExtra(CompanyxqAct.ID, list.get(finalNext).getCompanyId());
                 startActivity(intent);
 
             }

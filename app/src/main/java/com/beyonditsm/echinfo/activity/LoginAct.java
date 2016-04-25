@@ -254,6 +254,7 @@ public class LoginAct extends BaseActivity {
             @Override
             public void onSucess(String result) {
                 ResultData<UserDataEntity> rd = (ResultData<UserDataEntity>) GsonUtils.json(result, UserDataEntity.class);
+
                 UserDataEntity userEntitty = rd.getData();
                 UserEntity user = userEntitty.getUser();
                 UserDao.saveUser(user);
