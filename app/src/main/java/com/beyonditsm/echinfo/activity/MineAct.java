@@ -192,6 +192,12 @@ public class MineAct extends BaseActivity {
                 if (!TextUtils.isEmpty(userEntity.getIcon())) {
                     ImageLoader.getInstance().displayImage(IEchinfoUrl.BASE_URL + userEntity.getIcon(), civHeadIcon, civOptions);
                 }
+                if(!TextUtils.isEmpty(userEntity.getJob())){
+                    occur.setText(userEntity.getJob());
+                }
+                if(!TextUtils.isEmpty(userEntity.getCompanyName())){
+                    company.setText(userEntity.getCompanyName());
+                }
             }
         }
     }
