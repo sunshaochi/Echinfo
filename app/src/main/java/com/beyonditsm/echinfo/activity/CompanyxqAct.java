@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -77,11 +78,11 @@ public class CompanyxqAct extends BaseActivity {
     public void init(Bundle savedInstanceState) {
         setTopTitle("华东控股集团有限公司");
         iId =getIntent().getStringExtra(ID);
-        if(TextUtils.isEmpty(iId)){
-            iId ="1";
+        if(!TextUtils.isEmpty(iId)) {
+            selectStatus(iId);
+            findEnterpriseInfoMsgById(iId);
         }
-        selectStatus(iId);
-        findEnterpriseInfoMsgById(iId);
+
         gvqy.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             //            private final String TITLES[] = {"工商信息", "企业图谱", "行业分析", "失业信息", "诉讼信息",
 //                    "对外投资","股东信息","企业资讯","年报信息","分子机构","主要成员","变更记录"
@@ -108,7 +109,7 @@ public class CompanyxqAct extends BaseActivity {
                         if ("0".equals(statusEntity.getHangyeStatus())) {
                             intent = new Intent(CompanyxqAct.this, WebAct.class);
                             intent.putExtra(WebAct.WEB_TYPE, 2);
-                            intent.putExtra(WebAct.ID,iId);
+                            intent.putExtra(WebAct.ID, iId);
                             startActivity(intent);
                         }
                         break;
@@ -116,7 +117,7 @@ public class CompanyxqAct extends BaseActivity {
                         if ("0".equals(statusEntity.getCourtitemStatus())) {
                             intent = new Intent(CompanyxqAct.this, DishonestyInfoAct.class);
                             intent.putExtra(COMPANYID, iId);
-                            intent.putExtra("iname",entity.getCompanyName());
+                            intent.putExtra("iname", entity.getCompanyName());
                             startActivity(intent);
                         }
                         break;
@@ -311,11 +312,11 @@ public class CompanyxqAct extends BaseActivity {
                 guanzhunum.setText("0");
             }
 //                dbname.setText();
-            if(!TextUtils.isEmpty(entity.getCompanyInverstment())) {
-                zczj.setText(entity.getCompanyInverstment()+"万人民币");
-            }else {
-                zczj.setText("0万人民币");
-            }
+//            if(!TextUtils.isEmpty(entity.getCompanyInverstment())) {
+//                zczj.setText(entity.getCompanyInverstment()+"万人民币");
+//            }else {
+//                zczj.setText("0万人民币");
+//            }
 //                cltime.setText(entity.get);
             if(!TextUtils.isEmpty(entity.getAddress())) {
                 location.setText(entity.getAddress());
@@ -354,7 +355,7 @@ public class CompanyxqAct extends BaseActivity {
         LinearLayout layout = (LinearLayout) LayoutInflater.from(this).inflate(
                 R.layout.popuwindows_dialog, null);
         // 实例化popupWindow
-         final PopupWindow popupWindow = new PopupWindow(layout, 300, 800);
+         final PopupWindow popupWindow = new PopupWindow(layout, AbsListView.LayoutParams.WRAP_CONTENT, AbsListView.LayoutParams.WRAP_CONTENT);
         //控制键盘是否可以获得焦点
         popupWindow.setFocusable(true);
         //设置popupWindow弹出窗体的背景
