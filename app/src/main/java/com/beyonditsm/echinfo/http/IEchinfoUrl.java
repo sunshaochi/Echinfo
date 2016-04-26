@@ -83,9 +83,9 @@ public interface IEchinfoUrl {
     /*职业类别*/
     String OCCUPACTION_URL=BASE_URL+"occupationMsg/findOccupationList.do";
     /*常见问题*/
-    String PROBLEM_URL="http://139.196.50.38:8081/questions";
+    String PROBLEM_URL="http://139.196.50.38:8081/questions?hideHeader=1";
     /*行业分析*/
-    String ANALY_URL="http://139.196.50.38:8081/indana";
+    String ANALY_URL="http://139.196.50.38:8081/indana?hideHeader=1";
     /*根据股东名称精确查询行业信息*/
     String STOCKMSGBYNAME_URL=BASE_URL+"companyInfo/findStockMsgByName.do";
     /*失信列表*/

@@ -40,42 +40,25 @@ public class ReqyAct extends BaseActivity {
 
     private ReqyAdapter adapter;
 
-    private int page=1;
-    private int rows=10;
     @Override
     public void setLayout() {
         setContentView(R.layout.act_rmqy);
-
     }
 
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("热门企业");
-        plv.setPullRefreshEnabled(true);//下拉刷新
-        plv.setScrollLoadEnabled(true);//滑动加载
+        plv.setPullRefreshEnabled(false);//下拉刷新
+        plv.setScrollLoadEnabled(false);//滑动加载
         plv.setPullLoadEnabled(false);//上拉刷新
-        plv.setHasMoreData(true);//是否有更多数据
+        plv.setHasMoreData(false);//是否有更多数据
         plv.getRefreshableView().setVerticalScrollBarEnabled(false);//设置右侧滑动
         plv.getRefreshableView().setSelector(new ColorDrawable(Color.TRANSPARENT));
         plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
 
-        hotEnterprise(page,rows);
+        hotEnterprise();
         plv.getRefreshableView().setDivider(null);
-        plv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-            @Override
-            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-                plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
-                page=1;
-                hotEnterprise(page, rows);
 
-            }
-
-            @Override
-            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-                page++;
-                hotEnterprise(page, rows);
-            }
-        });
 //        plv.getRefreshableView().setAdapter(new ReqyAdapter(this));
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -87,57 +70,27 @@ public class ReqyAct extends BaseActivity {
         });
     }
     private List<CompanyEntity>list;
-    private List<CompanyEntity>datas=new ArrayList<>();
 
-    public void hotEnterprise(final int page,int rows){
+    private void hotEnterprise(){
         RequestManager.getCommManager().hotEnterprise(new CallBack() {
             @Override
             public void onSucess(String result) {
-                plv.onPullUpRefreshComplete();
-                plv.onPullDownRefreshComplete();
                 Gson gson = new Gson();
                 JSONObject json =null;
-
                 try {
                     json = new JSONObject(result);
                      JSONObject data=json.getJSONObject("data");
                      JSONArray rows = data.getJSONArray("rows");
                      if(rows.length()>0){
                          list=gson.fromJson(rows.toString(),new TypeToken<List<CompanyEntity>>(){}.getType());
-                         if(list.size()>0){
-                             if(page==1){
-                                 datas.clear();
-                             }
-                             datas.addAll(list);
-                             if(datas!=null&&datas.size()>0){
-                                 if(adapter==null){
-                                     adapter=new ReqyAdapter(ReqyAct.this,datas);
-                                     plv.getRefreshableView().setAdapter(adapter);
-                                 }else {
-                                     adapter.notify(datas);
-                                 }
-
-                             }else {}
-                         }else {
-                             plv.setHasMoreData(false);
-                         }
-
+                         adapter=new ReqyAdapter(ReqyAct.this,list);
+                         plv.getRefreshableView().setAdapter(adapter);
                     }else {
-
-                         if(page==1) {
-                             MyToastUtils.showShortToast(ReqyAct.this, "暂无数据");
-                         }else {
-                             plv.setHasMoreData(false);
-                         }
+                         MyToastUtils.showShortToast(ReqyAct.this, "暂无数据");
                      }
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
-
             }
 
             @Override

@@ -88,7 +88,7 @@ public class MainAct extends BaseActivity {
 
         initHotComlist();
         initMyFollow();//初始化我的关注
-        initBadCre();//初始化失信榜单
+//        initBadCre();//初始化失信榜单
 
         fcView.setAdapter(new FlipAdapter(this));
 //        generalUtils.toVersion(MainAct.this, EchinfoUtils.getAppVer(MainAct.this), 0);
@@ -110,42 +110,6 @@ public class MainAct extends BaseActivity {
         }
 
     }
-    /**
-     * 先获取热门企业列表
-     */
-    private void initHotComlist() {
-        RequestManager.getCommManager().hotEnterprise(new CallBack() {
-            @Override
-            public void onSucess(String result) {
-                Gson gson = new Gson();
-                JSONObject json = null;
-                try {
-                    json = new JSONObject(result);
-                    JSONObject data = json.getJSONObject("data");
-                    JSONArray rows = data.getJSONArray("rows");
-                    if (rows.length() > 0) {
-                        list = gson.fromJson(rows.toString(), new TypeToken<List<CompanyEntity>>() {
-                        }.getType());
-                        if (list.size() > 0) {
-                            datas.addAll(list);
-                        }
-                        initHotCom();//初始化热门
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                initHotCom();
-
-            }
-
-            @Override
-            public void onError(String error) {
-
-            }
-        });
-    }
-
 
     @Override
     protected void onPause() {
@@ -283,7 +247,7 @@ public class MainAct extends BaseActivity {
         mCurrPos = next;
     }
 
-//    private List<CompanyEntity> list=new ArrayList<>();
+    private List<CompanyEntity> list=new ArrayList<>();
 
     /**
      * 我的关注
@@ -334,8 +298,6 @@ public class MainAct extends BaseActivity {
     private LinearLayout llHot;
     private ViewFlipper followHot;
 
-    private List<CompanyEntity> list;
-    private List<CompanyEntity> datas = new ArrayList<>();
 
     //初始化热门企业
     private void initHotCom() {
@@ -400,6 +362,38 @@ public class MainAct extends BaseActivity {
         }
         followHot.addView(noticeView, followHot.getChildCount());
         mCurrPos = next;
+    }
+
+    private List<CompanyEntity> datas = new ArrayList<>();
+
+    /**
+     * 获取热门企业列表
+     */
+    private void initHotComlist() {
+        RequestManager.getCommManager().hotEnterprise(new CallBack() {
+            @Override
+            public void onSucess(String result) {
+                Gson gson = new Gson();
+                JSONObject json = null;
+                try {
+                    json = new JSONObject(result);
+                    JSONObject data = json.getJSONObject("data");
+                    JSONArray rows = data.getJSONArray("rows");
+                    if (rows.length() > 0) {
+                        datas = gson.fromJson(rows.toString(), new TypeToken<List<CompanyEntity>>() {
+                        }.getType());
+                        initHotCom();//初始化热门
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
     }
 
 
