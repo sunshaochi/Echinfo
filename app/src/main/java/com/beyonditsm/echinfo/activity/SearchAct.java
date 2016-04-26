@@ -62,6 +62,8 @@ public class SearchAct extends BaseActivity {
 
     private List<Fragment>  frgList=new ArrayList<>();
 
+    private boolean isShowCountry;
+
     @Override
     public void setLayout() {
         setContentView(R.layout.act_search);
@@ -80,12 +82,13 @@ public class SearchAct extends BaseActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(TextUtils.isEmpty(s.toString())){
                     llNoHis.setVisibility(View.VISIBLE);
-                    llS.setVisibility(View.GONE);
+                    llS.setVisibility(View.INVISIBLE);
                 }else if(s.length()>=2){
                     llNoHis.setVisibility(View.GONE);
                     llS.setVisibility(View.VISIBLE);
                     Intent intent=new Intent(SearchFragment.SEARCH_RECEIVER);
                     intent.putExtra("search",s.toString());
+                    intent.putExtra("address",tvCountry.getText().toString().trim());
                     sendBroadcast(intent);
                 }
             }
@@ -110,6 +113,10 @@ public class SearchAct extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 lvCountry.setVisibility(View.GONE);
                 tvCountry.setText(countryAdapter.getItem(position).toString());
+                Intent intent=new Intent(SearchFragment.SEARCH_RECEIVER);
+                intent.putExtra("search", ceSearch.getText().toString());
+                intent.putExtra("address", tvCountry.getText().toString().trim());
+                sendBroadcast(intent);
             }
         });
 
@@ -130,7 +137,14 @@ public class SearchAct extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rlRegion://搜索范围
-                lvCountry.setVisibility(View.VISIBLE);
+                if(isShowCountry){
+                    lvCountry.setVisibility(View.GONE);
+                    isShowCountry=false;
+                }else{
+                    lvCountry.setVisibility(View.VISIBLE);
+                    isShowCountry=true;
+                }
+
                 break;
         }
     }

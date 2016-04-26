@@ -169,7 +169,9 @@
         <!--子职业-->
         <activity android:name=".activity.OccupationChildAct"
             android:screenOrientation="portrait"/>
-        <!--股东详情-->
+        <!--法院判决书-->
+        <activity android:name=".activity.CourtAct"
+            android:screenOrientation="portrait"/>
 
         <!-- ###################注册SDK使用的Activity###################### -->
         <!--分享编辑页-->

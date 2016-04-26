@@ -19,14 +19,15 @@ import com.beyonditsm.echinfo.adapter.BadCAdaper;
 import com.beyonditsm.echinfo.adapter.EnterPAdapter;
 import com.beyonditsm.echinfo.adapter.LegalAdapter;
 import com.beyonditsm.echinfo.base.BaseFragment;
+import com.beyonditsm.echinfo.db.SearchDao;
 import com.beyonditsm.echinfo.entity.BadCreditEntity;
 import com.beyonditsm.echinfo.entity.CompanyEntity;
+import com.beyonditsm.echinfo.entity.SearchEntity;
 import com.beyonditsm.echinfo.entity.StockMsg;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
 import com.beyonditsm.echinfo.util.MyLogUtils;
-import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshBase;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -56,6 +57,7 @@ public class SearchFragment extends BaseFragment {
     private EnterPAdapter enterPAdapter;//搜索公司适配器
 
     private String searchData;
+    private String address;
 
     @Override
     public View initView(LayoutInflater inflater) {
@@ -79,13 +81,13 @@ public class SearchFragment extends BaseFragment {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 currentPage = 1;
-                searchData(searchData, currentPage);
+                searchData(searchData,address, currentPage);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 currentPage++;
-                searchData(searchData, currentPage);
+                searchData(searchData,address, currentPage);
             }
         });
 
@@ -93,19 +95,27 @@ public class SearchFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
                 Intent intent=new Intent(getActivity(), CompanyxqAct.class);
+                SearchEntity se=new SearchEntity();
                 switch (position){
                     case 0:
+                        se.setType(0);
                         intent.putExtra(CompanyxqAct.ID,comList.get(i).getId());
                         break;
                     case 1:
+                        se.setType(1);
                         intent.putExtra(CompanyxqAct.ID,stockMsgList.get(i).getId());
                         break;
                     case 2:
+                        se.setType(2);
                         intent=new Intent(getActivity(), DisinfodetailAct.class);
                         intent.putExtra("entity",badCreditEntityList.get(i));
 //                        intent.putExtra(CompanyxqAct.ID,badCreditEntityList.get(i).get);
                         break;
                 }
+                se.setContent(searchData);
+                se.setCountry("全国");
+                se.setTime(EchinfoUtils.getCurrentTime());
+                SearchDao.addSearch(se);
                 getActivity().startActivity(intent);
             }
         });
@@ -130,8 +140,8 @@ public class SearchFragment extends BaseFragment {
      * @param company
      * @param currentP
      */
-    private void searchCompany(final String company, final int currentP) {
-        RequestManager.getCommManager().searchCompany(company, currentP, rows, new CallBack() {
+    private void searchCompany(final String company,String address, final int currentP) {
+        RequestManager.getCommManager().searchCompany(company,address, currentP, rows, new CallBack() {
             @Override
             public void onSucess(String result) {
                 plv.onPullUpRefreshComplete();
@@ -144,7 +154,7 @@ public class SearchFragment extends BaseFragment {
                     }.getType());
                     if (datas.size() == 0) {
                         if (currentP == 1) {
-                            MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
+//                            MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
                         } else {
                             plv.setHasMoreData(false);
                         }
@@ -180,9 +190,9 @@ public class SearchFragment extends BaseFragment {
      * 查法人，查股东（公司）
      * @param name
      */
-    private void findStockMsgByCompanyName(String name){
+    private void findStockMsgByCompanyName(String name,String address){
         MyLogUtils.degug("name:" + name);
-        RequestManager.getCommManager().findStockMsgByCompanyName(name, new CallBack() {
+        RequestManager.getCommManager().findStockMsgByCompanyName(name,address, new CallBack() {
             @Override
             public void onSucess(String result) {
                 plv.onPullUpRefreshComplete();
@@ -199,7 +209,7 @@ public class SearchFragment extends BaseFragment {
                         plv.getRefreshableView().setAdapter(new LegalAdapter(getActivity(), stockMsgList));
 
                     } else {
-                        MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
+//                        MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -219,9 +229,9 @@ public class SearchFragment extends BaseFragment {
      * 失信列表(公司)
      * @param iname
      */
-    private void findCourtitemList(String iname){
+    private void findCourtitemList(String iname,String address){
         MyLogUtils.degug(iname);
-        RequestManager.getCommManager().findCourtitemList(iname, new CallBack() {
+        RequestManager.getCommManager().findCourtitemList(iname,address, new CallBack() {
             @Override
             public void onSucess(String result) {
                 plv.onPullUpRefreshComplete();
@@ -238,7 +248,7 @@ public class SearchFragment extends BaseFragment {
                         plv.getRefreshableView().setAdapter(new BadCAdaper(getActivity(),badCreditEntityList));
 
                     }else {
-                        MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
+//                        MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -281,22 +291,23 @@ public class SearchFragment extends BaseFragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             searchData = intent.getStringExtra("search");
+            address=intent.getStringExtra("address");
             currentPage = 1;
-            searchData(searchData, currentPage);
+            searchData(searchData,address, currentPage);
 
         }
     }
 
-    private void searchData(final String searchContent, final int currentP) {
+    private void searchData(final String searchContent,String address, final int currentP) {
         switch (position) {
             case 0:
-                searchCompany(searchContent, currentP);
+                searchCompany(searchContent,address, currentP);
                 break;
             case 1:
-                findStockMsgByCompanyName(searchContent);
+                findStockMsgByCompanyName(searchContent,address);
                 break;
             case 2:
-                findCourtitemList(searchContent);
+                findCourtitemList(searchContent,address);
                 break;
         }
     }

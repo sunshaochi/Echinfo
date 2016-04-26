@@ -317,16 +317,10 @@ public class CompanyxqAct extends BaseActivity {
                 zczj.setText("0万人民币");
             }
 //                cltime.setText(entity.get);
-            if(!TextUtils.isEmpty(entity.getAddress())&&!TextUtils.isEmpty(entity.getCoords())) {
-                location.setText(entity.getAddress()+entity.getCoords());
+            if(!TextUtils.isEmpty(entity.getAddress())) {
+                location.setText(entity.getAddress());
             }else {
-                if(!TextUtils.isEmpty(entity.getAddress())){
-                    location.setText(entity.getAddress());
-                }else if(!TextUtils.isEmpty(entity.getCoords())){
-                    location.setText(entity.getCoords());
-                }else {
-                    location.setText("");
-                }
+                location.setText("");
             }
             if (!TextUtils.isEmpty(entity.getLevel())) {
                 ratingBar.setProgress(Integer.valueOf(entity.getLevel()));
