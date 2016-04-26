@@ -34,43 +34,13 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/llNoHis"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="visible">
-            
-            <com.beyonditsm.echinfo.view.PagerSlidingTabStrip
-                android:id="@+id/tabsSearch"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                app:pstsShouldExpand="true"
-                app:pstsUnderlineHeight="2dp"
-                app:pstsIndicatorHeight="2dp"
-                app:pstsIndicatorColor="@color/main_color"
-                app:selectedTabTextColor="@color/main_color"
-                app:pstsDividerColor="@android:color/transparent"
-                app:pstsTabBackground="@android:color/transparent"
-                android:background="@android:color/white"></com.beyonditsm.echinfo.view.PagerSlidingTabStrip>
-
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/vpS"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"></android.support.v4.view.ViewPager>
-
-        </LinearLayout>
-
-
         <!--搜索出数据-->
         <LinearLayout
             android:id="@+id/llS"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:visibility="gone"
+            android:visibility="invisible"
             >
             <com.beyonditsm.echinfo.view.PagerSlidingTabStrip
                 android:id="@+id/tabS"
@@ -131,12 +101,12 @@
                         android:textColor="@color/main_color"
                         android:textSize="12sp" />
 
-                   <ImageView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:src="@mipmap/search_city_down"
-                       android:layout_marginLeft="5dp"
-                       />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/search_city_down"
+                        android:layout_marginLeft="5dp"
+                        />
 
                 </LinearLayout>
             </RelativeLayout>
@@ -163,6 +133,38 @@
             </FrameLayout>
 
         </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/llNoHis"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible">
+            
+            <com.beyonditsm.echinfo.view.PagerSlidingTabStrip
+                android:id="@+id/tabsSearch"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                app:pstsShouldExpand="true"
+                app:pstsUnderlineHeight="2dp"
+                app:pstsIndicatorHeight="2dp"
+                app:pstsIndicatorColor="@color/main_color"
+                app:selectedTabTextColor="@color/main_color"
+                app:pstsDividerColor="@android:color/transparent"
+                app:pstsTabBackground="@android:color/transparent"
+                android:background="@android:color/white"></com.beyonditsm.echinfo.view.PagerSlidingTabStrip>
+
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vpS"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+
+        </LinearLayout>
+
+
+
 
     </FrameLayout>
 </LinearLayout>

@@ -19,8 +19,10 @@ import com.beyonditsm.echinfo.adapter.BadCAdaper;
 import com.beyonditsm.echinfo.adapter.EnterPAdapter;
 import com.beyonditsm.echinfo.adapter.LegalAdapter;
 import com.beyonditsm.echinfo.base.BaseFragment;
+import com.beyonditsm.echinfo.db.SearchDao;
 import com.beyonditsm.echinfo.entity.BadCreditEntity;
 import com.beyonditsm.echinfo.entity.CompanyEntity;
+import com.beyonditsm.echinfo.entity.SearchEntity;
 import com.beyonditsm.echinfo.entity.StockMsg;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
@@ -92,19 +94,27 @@ public class SearchFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
                 Intent intent=new Intent(getActivity(), CompanyxqAct.class);
+                SearchEntity se=new SearchEntity();
                 switch (position){
                     case 0:
+                        se.setType(0);
                         intent.putExtra(CompanyxqAct.ID,comList.get(i).getId());
                         break;
                     case 1:
+                        se.setType(1);
                         intent.putExtra(CompanyxqAct.ID,stockMsgList.get(i).getId());
                         break;
                     case 2:
+                        se.setType(2);
                         intent=new Intent(getActivity(), DisinfodetailAct.class);
                         intent.putExtra("entity",badCreditEntityList.get(i));
 //                        intent.putExtra(CompanyxqAct.ID,badCreditEntityList.get(i).get);
                         break;
                 }
+                se.setContent(searchData);
+                se.setCountry("全国");
+                se.setTime(EchinfoUtils.getCurrentTime());
+                SearchDao.addSearch(se);
                 getActivity().startActivity(intent);
             }
         });
@@ -300,9 +310,4 @@ public class SearchFragment extends BaseFragment {
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-    }
 }

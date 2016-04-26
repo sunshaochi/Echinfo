@@ -316,6 +316,10 @@ public class MainAct extends BaseActivity {
                         down.setVisibility(View.VISIBLE);
                         initFlipView();
                     } else {
+                        rlgz.setVisibility(View.GONE);
+                        flFollow.setVisibility(View.GONE);
+                        top.setVisibility(View.GONE);
+                        down.setVisibility(View.GONE);
                     }
 
                 } catch (JSONException e) {

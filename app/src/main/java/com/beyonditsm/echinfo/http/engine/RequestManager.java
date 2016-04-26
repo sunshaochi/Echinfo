@@ -82,6 +82,7 @@ public class RequestManager {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap localHashMap = new HashMap();
+                if(!TextUtils.isEmpty(SpUtils.getCookie(MyApplication.getInstance())))
                 localHashMap.put("Cookie", SpUtils.getCookie(MyApplication.getInstance()));
                 return localHashMap;
             }

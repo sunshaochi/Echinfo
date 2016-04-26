@@ -62,8 +62,6 @@ public class SearchAct extends BaseActivity {
 
     private List<Fragment>  frgList=new ArrayList<>();
 
-    public static String SEARCH_CONTENT;
-
     @Override
     public void setLayout() {
         setContentView(R.layout.act_search);
@@ -82,7 +80,7 @@ public class SearchAct extends BaseActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(TextUtils.isEmpty(s.toString())){
                     llNoHis.setVisibility(View.VISIBLE);
-                    llS.setVisibility(View.GONE);
+                    llS.setVisibility(View.INVISIBLE);
                 }else if(s.length()>=2){
                     llNoHis.setVisibility(View.GONE);
                     llS.setVisibility(View.VISIBLE);
