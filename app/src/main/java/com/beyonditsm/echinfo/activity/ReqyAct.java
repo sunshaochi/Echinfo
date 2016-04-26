@@ -15,7 +15,6 @@ import com.beyonditsm.echinfo.entity.CompanyEntity;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
-import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshBase;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -26,7 +25,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,28 +50,25 @@ public class ReqyAct extends BaseActivity {
     public void init(Bundle savedInstanceState) {
         setTopTitle("热门企业");
         plv.setPullRefreshEnabled(true);//下拉刷新
-        plv.setScrollLoadEnabled(true);//滑动加载
+        plv.setScrollLoadEnabled(false);//滑动加载
         plv.setPullLoadEnabled(false);//上拉刷新
         plv.setHasMoreData(true);//是否有更多数据
         plv.getRefreshableView().setVerticalScrollBarEnabled(false);//设置右侧滑动
         plv.getRefreshableView().setSelector(new ColorDrawable(Color.TRANSPARENT));
         plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
 
-        hotEnterprise(page,rows);
+        hotEnterprise();
         plv.getRefreshableView().setDivider(null);
         plv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
-                page=1;
-                hotEnterprise(page, rows);
+                hotEnterprise();
 
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-                page++;
-                hotEnterprise(page, rows);
             }
         });
 //        plv.getRefreshableView().setAdapter(new ReqyAdapter(this));
@@ -87,9 +82,9 @@ public class ReqyAct extends BaseActivity {
         });
     }
     private List<CompanyEntity>list;
-    private List<CompanyEntity>datas=new ArrayList<>();
 
-    public void hotEnterprise(final int page,int rows){
+
+    public void hotEnterprise(){
         RequestManager.getCommManager().hotEnterprise(new CallBack() {
             @Override
             public void onSucess(String result) {
@@ -105,31 +100,11 @@ public class ReqyAct extends BaseActivity {
                      if(rows.length()>0){
                          list=gson.fromJson(rows.toString(),new TypeToken<List<CompanyEntity>>(){}.getType());
                          if(list.size()>0){
-                             if(page==1){
-                                 datas.clear();
-                             }
-                             datas.addAll(list);
-                             if(datas!=null&&datas.size()>0){
-                                 if(adapter==null){
-                                     adapter=new ReqyAdapter(ReqyAct.this,datas);
-                                     plv.getRefreshableView().setAdapter(adapter);
-                                 }else {
-                                     adapter.notify(datas);
-                                 }
+                             plv.getRefreshableView().setAdapter(new ReqyAdapter(ReqyAct.this,list));
 
-                             }else {}
-                         }else {
-                             plv.setHasMoreData(false);
                          }
 
-                    }else {
-
-                         if(page==1) {
-                             MyToastUtils.showShortToast(ReqyAct.this, "暂无数据");
-                         }else {
-                             plv.setHasMoreData(false);
-                         }
-                     }
+                    }
 
 
                 } catch (JSONException e) {
@@ -142,6 +117,8 @@ public class ReqyAct extends BaseActivity {
 
             @Override
             public void onError(String error) {
+                plv.onPullUpRefreshComplete();
+                plv.onPullDownRefreshComplete();
 
             }
         });
