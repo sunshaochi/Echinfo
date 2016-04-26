@@ -1,6 +1,9 @@
 package com.beyonditsm.echinfo.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -21,6 +24,7 @@ import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.fragment.MyFollowFrg;
 import com.beyonditsm.echinfo.fragment.SearchFragment;
 import com.beyonditsm.echinfo.fragment.SearchHisFrg;
+import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.beyonditsm.echinfo.view.ClearEditText;
 import com.beyonditsm.echinfo.view.PagerSlidingTabStrip;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -56,6 +60,9 @@ public class SearchAct extends BaseActivity {
     @ViewInject(R.id.tabS)
     private PagerSlidingTabStrip tabS;//企业、法人、失信
 
+    public static final String HIS="his";
+    private String search=null;
+
 
 
     private int SEARCH_TYPE;//0查企业 1、查股东 2、查失信
@@ -72,6 +79,7 @@ public class SearchAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         SEARCH_TYPE=getIntent().getIntExtra("search_type",0);
+
         ceSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -162,4 +170,40 @@ public class SearchAct extends BaseActivity {
         }
         return counList;
     }
+
+
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        if (receiver == null) {
+//            receiver = new MyBroadCastReceiver();
+//            registerReceiver(receiver, new IntentFilter(HIS));
+//        }
+//    }
+//
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        if (receiver != null) {
+//            unregisterReceiver(receiver);
+//            receiver = null;
+//        }
+//    }
+//
+//    private MyBroadCastReceiver receiver;
+//
+//    /**
+//     * 接收参数
+//     */
+//    class MyBroadCastReceiver extends BroadcastReceiver {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            search=getIntent().getStringExtra("searchhis");
+//            MyToastUtils.showShortToast(context,search);
+//            ceSearch.setText(search);
+//            llNoHis.setVisibility(View.GONE);
+//            llS.setVisibility(View.VISIBLE);
+//
+//        }
+//    }
 }

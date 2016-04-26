@@ -1,17 +1,21 @@
 package com.beyonditsm.echinfo.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
+import com.beyonditsm.echinfo.activity.SearchAct;
 import com.beyonditsm.echinfo.base.BaseFragment;
 import com.beyonditsm.echinfo.db.SearchDao;
 import com.beyonditsm.echinfo.entity.SearchEntity;
+import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.leaf.library.widget.MyListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -50,6 +54,14 @@ public class SearchHisFrg extends BaseFragment {
                 setData();
             }
         });
+//        plv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent=new Intent(SearchAct.HIS);
+//                intent.putExtra("searchhis", listData.get(position).getContent());
+//                getActivity().sendBroadcast(intent);
+//            }
+//        });
     }
 
     private void setData(){

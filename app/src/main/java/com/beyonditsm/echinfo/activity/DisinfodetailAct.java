@@ -74,8 +74,8 @@ public class DisinfodetailAct extends BaseActivity {
                 lxqk.setText(entity.getPerformance());
             if(!TextUtils.isEmpty(entity.getDisrupttypename()))
                 jtqk.setText(entity.getDisrupttypename());
-            if(!TextUtils.isEmpty(entity.getGistunit()))
-                zxfy.setText(entity.getGistunit());
+            if(!TextUtils.isEmpty(entity.getCourtname()))
+                zxfy.setText(entity.getCourtname());
             if(!TextUtils.isEmpty(entity.getAreaname()))
                 province.setText(entity.getAreaname());
             if(!TextUtils.isEmpty(entity.getGistid()))
@@ -84,8 +84,8 @@ public class DisinfodetailAct extends BaseActivity {
                 latime.setText(entity.getRegdate());
             if(!TextUtils.isEmpty(entity.getCasecode()))
                 anhaoid.setText(entity.getCasecode());
-            if(!TextUtils.isEmpty(entity.getCourtname()))
-                zxyjdw.setText(entity.getCourtname());
+            if(!TextUtils.isEmpty(entity.getGistunit()))
+                zxyjdw.setText(entity.getGistunit());
             if(!TextUtils.isEmpty(entity.getPublishdate()))
                 time.setText(entity.getPublishdate());
         }

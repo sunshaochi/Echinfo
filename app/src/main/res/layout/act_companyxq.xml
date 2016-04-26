@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/bg_color">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -285,7 +286,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:numColumns="4"
-            android:paddingTop="10dp"></com.beyonditsm.echinfo.view.MyGridView>
+            android:horizontalSpacing="1sp"
+            android:verticalSpacing="1sp"
+            android:background="@color/bg_color"
+            android:layout_marginTop="10dp"></com.beyonditsm.echinfo.view.MyGridView>
 
 
     </LinearLayout>

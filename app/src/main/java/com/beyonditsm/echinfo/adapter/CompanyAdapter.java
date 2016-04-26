@@ -68,6 +68,7 @@ public class CompanyAdapter extends BaseAdapter {
         switch (position){
             case 0:
                 if("0".equals(entity.getGongshangStatus())){
+                    convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
@@ -76,6 +77,7 @@ public class CompanyAdapter extends BaseAdapter {
                 break;
             case 1:
                 if("0".equals(entity.getTupuStatus())){
+                    convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
@@ -84,6 +86,7 @@ public class CompanyAdapter extends BaseAdapter {
                 break;
             case 2:
                 if("0".equals(entity.getHangyeStatus())){
+                    convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
@@ -92,6 +95,7 @@ public class CompanyAdapter extends BaseAdapter {
                 break;
             case 3:
                 if ("0".equals(entity.getCourtitemStatus())){
+                    convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
@@ -100,6 +104,7 @@ public class CompanyAdapter extends BaseAdapter {
                 break;
             case 4:
                 if("0".equals(entity.getLawsuitmsgStatus())){
+                    convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
@@ -108,6 +113,7 @@ public class CompanyAdapter extends BaseAdapter {
                 break;
             case 5:
                 if("0".equals(entity.getAbroadinvestmenttatus())){
+                    convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
@@ -116,6 +122,7 @@ public class CompanyAdapter extends BaseAdapter {
                 break;
             case 6:
                 if("0".equals(entity.getStockmsgStatus())){
+                    convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
@@ -124,6 +131,7 @@ public class CompanyAdapter extends BaseAdapter {
                 break;
             case 7:
                 if("0".equals(entity.getEnenewterprissStatus())){
+                    convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
@@ -132,6 +140,7 @@ public class CompanyAdapter extends BaseAdapter {
                 break;
             case 8:
                 if("0".equals(entity.getAnnualportsmsgStatus())){
+                    convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
@@ -140,6 +149,7 @@ public class CompanyAdapter extends BaseAdapter {
                 break;
             case 9:
                 if("0".equals(entity.getSonenterpriseStatus())){
+                    convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
@@ -148,6 +158,7 @@ public class CompanyAdapter extends BaseAdapter {
                 break;
             case 10:
                 if("0".equals(entity.getMainmemberStatus())){
+                    convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
@@ -156,6 +167,7 @@ public class CompanyAdapter extends BaseAdapter {
                 break;
             case 11:
                 if("0".equals(entity.getEditrecordStatus())){
+                    convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));

@@ -78,7 +78,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="邓艾"/>
+                    android:text=""/>
             </LinearLayout>
 
             <View style="@style/view_line"/>
@@ -107,7 +107,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="3444444477777666555"/>
+                    android:text=""/>
             </LinearLayout>
 
             <View style="@style/view_line"/>
@@ -135,7 +135,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="赔偿"/>
+                    android:text=""/>
             </LinearLayout>
 
             <View style="@style/view_line"/>
@@ -163,7 +163,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="全部未履行"/>
+                    android:text=""/>
             </LinearLayout>
 
             <View style="@style/view_line"/>
@@ -191,7 +191,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="违反"/>
+                    android:text=""/>
             </LinearLayout>
 
             <View style="@style/view_line"/>
@@ -219,7 +219,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="江西法院"/>
+                    android:text=""/>
             </LinearLayout>
 
             <View style="@style/view_line"/>
@@ -247,7 +247,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="江西"/>
+                    android:text=""/>
             </LinearLayout>
 
             <View style="@style/view_line"/>
@@ -275,7 +275,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="（2014）湘民一初字第155号"/>
+                    android:text=""/>
             </LinearLayout>
 
             <View style="@style/view_line"/>
@@ -303,7 +303,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="2014-10-10"/>
+                    android:text=""/>
             </LinearLayout>
 
             <View style="@style/view_line"/>
@@ -331,7 +331,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="（2014）湘民一初字第155号"/>
+                    android:text=""/>
             </LinearLayout>
             <View style="@style/view_line"/>
             <View style="@style/view_line"
@@ -358,7 +358,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="人民法院"/>
+                    android:text=""/>
             </LinearLayout>
             <View style="@style/view_line"
                 android:layout_marginTop="10dp"/>
@@ -384,7 +384,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="2015年12月24日"/>
+                    android:text=""/>
             </LinearLayout>
 
 

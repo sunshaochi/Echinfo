@@ -19,7 +19,7 @@
         android:layout_marginTop="-5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="上海华东电气股份有限公司"/>
+        android:text=""/>
     <ImageView
         android:layout_marginLeft="15dp"
         android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
         android:layout_marginTop="-5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="544934234567923"/>
+        android:text=""/>
     <ImageView
         android:layout_marginLeft="15dp"
         android:layout_width="wrap_content"
@@ -68,7 +68,7 @@
                 android:layout_marginTop="-5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="9-200"/>
+                android:text=""/>
         </LinearLayout>
         <LinearLayout
             android:layout_weight="1"
@@ -89,7 +89,7 @@
                 android:layout_marginTop="-5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="123456"/>
+                android:text=""/>
         </LinearLayout>
 
     </LinearLayout>
@@ -112,7 +112,7 @@
         android:layout_marginTop="-5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="上海市朝阳西大望路甲"/>
+        android:text=""/>
     <ImageView
         android:layout_marginLeft="15dp"
         android:layout_width="wrap_content"
@@ -132,7 +132,7 @@
         android:layout_marginTop="-5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="jjame@skyba.com"/>
+        android:text=""/>
     <ImageView
         android:layout_marginLeft="15dp"
         android:layout_width="wrap_content"
@@ -152,7 +152,7 @@
         android:layout_marginTop="-5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="否"/>
+        android:text=""/>
     <ImageView
         android:layout_marginLeft="15dp"
         android:layout_width="wrap_content"
@@ -172,7 +172,7 @@
         android:layout_marginTop="-5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="开业"/>
+        android:text=""/>
     <ImageView
         android:layout_marginLeft="15dp"
         android:layout_width="wrap_content"
@@ -192,7 +192,7 @@
         android:layout_marginTop="-5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="否"/>
+        android:text=""/>
     <ImageView
         android:layout_marginLeft="15dp"
         android:layout_width="wrap_content"
@@ -212,7 +212,7 @@
         android:layout_marginTop="-5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="无"/>
+        android:text=""/>
     <ImageView
         android:layout_marginLeft="15dp"
         android:layout_width="wrap_content"
@@ -232,5 +232,5 @@
         android:layout_marginTop="-5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="企业选择不公开"/>
+        android:text=""/>
 </LinearLayout>
