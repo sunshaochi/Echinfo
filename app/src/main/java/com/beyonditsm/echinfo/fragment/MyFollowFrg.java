@@ -17,7 +17,6 @@ import com.beyonditsm.echinfo.entity.CompanyEntity;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
-import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshBase;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -78,7 +77,7 @@ public class MyFollowFrg extends BaseFragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent=new Intent(getActivity(), CompanyxqAct.class);
-                intent.putExtra(CompanyxqAct.ID,datas.get(position).getId());
+                intent.putExtra(CompanyxqAct.ID,datas.get(position).getCompanyId());
                 getActivity().startActivity(intent);
             }
         });
@@ -126,7 +125,7 @@ public class MyFollowFrg extends BaseFragment{
 
                     } else {
                         if (page == 1) {
-                            MyToastUtils.showShortToast(getActivity(), "暂无数据");
+//                            MyToastUtils.showShortToast(getActivity(), "暂无数据");
                         } else {
                             plv.setHasMoreData(false);
                         }

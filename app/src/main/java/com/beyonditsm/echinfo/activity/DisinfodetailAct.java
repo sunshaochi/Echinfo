@@ -99,9 +99,7 @@ public class DisinfodetailAct extends BaseActivity {
                 dialog.show();
                 break;
             case R.id.fycps:
-                Intent intent=new Intent(DisinfodetailAct.this,WebAct.class);
-                intent.putExtra(WebAct.WEB_TYPE,4);
-                intent.putExtra(WebAct.URL,entity.getUrl());
+                Intent intent=new Intent(DisinfodetailAct.this,CourtAct.class);
                 startActivity(intent);
                 break;
         }
