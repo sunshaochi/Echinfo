@@ -29,6 +29,9 @@ public class SearchHisFrg extends BaseFragment {
     @ViewInject(R.id.llNoHis)
     private LinearLayout llNoHis;
 
+    @ViewInject(R.id.llClear)
+    private LinearLayout llClear;
+
     private List<SearchEntity> listData;
     private MyAdapter adapter;
 
@@ -40,6 +43,13 @@ public class SearchHisFrg extends BaseFragment {
     @Override
     public void initData(Bundle savedInstanceState) {
         setData();
+        llClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SearchDao.clearAll();
+                setData();
+            }
+        });
     }
 
     private void setData(){
@@ -47,9 +57,11 @@ public class SearchHisFrg extends BaseFragment {
         if(listData.size()==0){
             llHasHis.setVisibility(View.GONE);
             llNoHis.setVisibility(View.VISIBLE);
+            llClear.setVisibility(View.GONE);
         }else{
             llHasHis.setVisibility(View.VISIBLE);
             llNoHis.setVisibility(View.GONE);
+            llClear.setVisibility(View.VISIBLE);
         }
         if(adapter==null){
             adapter=new MyAdapter(listData);
