@@ -26,7 +26,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,9 +36,6 @@ public class ReqyAct extends BaseActivity {
 
     @ViewInject(R.id.plv)
     private PullToRefreshListView plv;
-
-    private ReqyAdapter adapter;
-
     @Override
     public void setLayout() {
         setContentView(R.layout.act_rmqy);
@@ -58,8 +54,6 @@ public class ReqyAct extends BaseActivity {
 
         hotEnterprise();
         plv.getRefreshableView().setDivider(null);
-
-//        plv.getRefreshableView().setAdapter(new ReqyAdapter(this));
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -71,7 +65,7 @@ public class ReqyAct extends BaseActivity {
     }
     private List<CompanyEntity>list;
 
-    private void hotEnterprise(){
+    public void hotEnterprise(){
         RequestManager.getCommManager().hotEnterprise(new CallBack() {
             @Override
             public void onSucess(String result) {
@@ -83,8 +77,7 @@ public class ReqyAct extends BaseActivity {
                      JSONArray rows = data.getJSONArray("rows");
                      if(rows.length()>0){
                          list=gson.fromJson(rows.toString(),new TypeToken<List<CompanyEntity>>(){}.getType());
-                         adapter=new ReqyAdapter(ReqyAct.this,list);
-                         plv.getRefreshableView().setAdapter(adapter);
+                         plv.getRefreshableView().setAdapter(new ReqyAdapter(ReqyAct.this,list));
                     }else {
                          MyToastUtils.showShortToast(ReqyAct.this, "暂无数据");
                      }
