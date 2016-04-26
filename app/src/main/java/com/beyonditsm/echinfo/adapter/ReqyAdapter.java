@@ -24,11 +24,6 @@ public class ReqyAdapter extends BaseAdapter {
         this.list=list;
     }
 
-    public void notify(List<CompanyEntity> list){
-        this.list=list;
-        notifyDataSetChanged();
-    }
-
 
     @Override
     public int getCount() {
