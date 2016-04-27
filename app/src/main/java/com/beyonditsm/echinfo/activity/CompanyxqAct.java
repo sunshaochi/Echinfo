@@ -98,12 +98,12 @@ public class CompanyxqAct extends BaseActivity {
                         }
                         break;
                     case 1://企业图谱
-//                        if ("1".equals(statusEntity.getTupuStatus())) {
+                        if ("1".equals(statusEntity.getTupuStatus())) {
                             intent = new Intent(CompanyxqAct.this, WebAct.class);
                             intent.putExtra(WebAct.WEB_TYPE, 1);
                             intent.putExtra(WebAct.ID, iId);
                             startActivity(intent);
-//                        }
+                        }
                         break;
                     case 2://行业分析
                         if ("1".equals(statusEntity.getHangyeStatus())) {
