@@ -110,6 +110,74 @@ public class RequestManager {
     }
 
 
+    /**
+     * Volley get请求
+     *
+     * @param url
+     * @param callback
+     */
+    public void doGet(String url, final CallBack callback) {
+        MyLogUtils.info("地址:" + url);
+        StringRequest request = new StringRequest(url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        String result = response.toString();
+                        MyLogUtils.info(result);
+                        try {
+                            JSONObject obj = new JSONObject(result);
+                            int status = obj.getInt("status");
+                            if (status == 200) {
+                                callback.onSucess(result);
+                            } else {
+                                callback.onError(obj.getString("message"));
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callback.onError(VolleyErrorHelper.getMessage(error));
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap localHashMap = new HashMap();
+                if(!TextUtils.isEmpty(SpUtils.getCookie(MyApplication.getInstance())))
+                    localHashMap.put("Cookie", SpUtils.getCookie(MyApplication.getInstance()));
+                return localHashMap;
+            }
+
+            @Override
+            protected Response<String> parseNetworkResponse(
+                    NetworkResponse response) {
+                // TODO Auto-generated method stub
+                try {
+
+                    Map<String, String> responseHeaders = response.headers;
+                    String rawCookies = responseHeaders.get("Set-Cookie");
+                    String dataString = new String(response.data, "UTF-8");
+                    if (!TextUtils.isEmpty(rawCookies))
+                        SpUtils.setCooike(MyApplication.getInstance(), rawCookies);
+                    return Response.success(dataString, HttpHeaderParser.parseCacheHeaders(response));
+                } catch (UnsupportedEncodingException e) {
+                    return Response.error(new ParseError(e));
+                }
+            }
+        };
+        // 设定超时时间
+        request.setRetryPolicy(new DefaultRetryPolicy(5000, 1, 1.0f));
+        MyApplication.getInstance().addToRequestQueue(request);
+        MyApplication.getInstance().getRequestQueue().start();
+
+    }
+
     /* 上传图片
     *
     * @param url

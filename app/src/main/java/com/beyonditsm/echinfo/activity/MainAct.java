@@ -25,7 +25,6 @@ import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.GeneralUtils;
 import com.beyonditsm.echinfo.util.MyLogUtils;
-import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.beyonditsm.echinfo.view.flip.FlipViewController;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -62,8 +61,6 @@ public class MainAct extends BaseActivity {
 
     private GeneralUtils generalUtils;
     public static final String ISLOADING = "com.Main.isloading";
-    private boolean isStart = false;
-    private boolean isUploading = false;
     /**
      * 按两次退出键时间小于2秒退出
      */
@@ -81,10 +78,10 @@ public class MainAct extends BaseActivity {
         name = sp.getString("screen_name", "");
         generalUtils = new GeneralUtils();
 
-        titleList.add("1");
-        titleList.add("2");
-        titleList.add("3");
-        titleList.add("4");
+//        titleList.add("1");
+//        titleList.add("2");
+//        titleList.add("3");
+//        titleList.add("4");
 
         initHotComlist();
         initMyFollow();//初始化我的关注
@@ -181,7 +178,7 @@ public class MainAct extends BaseActivity {
 
     private LinearLayout llFollow;
     private ViewFlipper followVf;
-    private List<String> titleList = new ArrayList<>();
+//    private List<String> titleList = new ArrayList<>();
 
     //初始化关注
     private void initFlipView() {
@@ -298,6 +295,7 @@ public class MainAct extends BaseActivity {
     private LinearLayout llHot;
     private ViewFlipper followHot;
 
+    private int mCurrHotPos;
 
     //初始化热门企业
     private void initHotCom() {
@@ -324,7 +322,7 @@ public class MainAct extends BaseActivity {
 
 
     private void moveHotNext() {
-        setHotView(this.mCurrPos, this.mCurrPos + 1);
+        setHotView(this.mCurrHotPos, this.mCurrHotPos + 1);
         this.followHot.setInAnimation(this, R.anim.in_bottomtop);
         this.followHot.setOutAnimation(this, R.anim.out_bottomtop);
         this.followHot.showNext();
@@ -339,9 +337,7 @@ public class MainAct extends BaseActivity {
         TextView tvrensu = (TextView) noticeView.findViewById(R.id.tv_rs);
         RatingBar rb_hot = (RatingBar) noticeView.findViewById(R.id.rb_hot);
 
-        tvComName.setText(datas.get(curr).getCompanyName());
-        tvrensu.setText(datas.get(curr).getFocus());
-        rb_hot.setRating(Float.parseFloat(datas.get(curr).getLevel()));
+
 
 
         if ((curr < next) && (next > (datas.size() - 1))) {
@@ -349,11 +345,15 @@ public class MainAct extends BaseActivity {
         } else if ((curr > next) && (next < 0)) {
             next = datas.size() - 1;
         }
+        tvComName.setText(datas.get(next).getCompanyName());
+        tvrensu.setText(datas.get(next).getFocus());
+        rb_hot.setRating(Float.parseFloat(datas.get(next).getLevel()));
+        final int finalNext=next;
         noticeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 Intent intent = new Intent(MainAct.this, CompanyxqAct.class);
-                intent.putExtra(CompanyxqAct.ID, datas.get(curr).getId());
+                intent.putExtra(CompanyxqAct.ID, datas.get(finalNext).getId());
                 startActivity(intent);
             }
         });
@@ -361,7 +361,7 @@ public class MainAct extends BaseActivity {
             followHot.removeViewAt(0);
         }
         followHot.addView(noticeView, followHot.getChildCount());
-        mCurrPos = next;
+        mCurrHotPos = next;
     }
 
     private List<CompanyEntity> datas = new ArrayList<>();
@@ -397,61 +397,61 @@ public class MainAct extends BaseActivity {
     }
 
 
-    private LinearLayout llBadCre;
-    private ViewFlipper followBad;
+//    private LinearLayout llBadCre;
+//    private ViewFlipper followBad;
 
     //初始化失信榜单
-    private void initBadCre() {
-        FrameLayout main_notice = (FrameLayout) findViewById(R.id.flBadCredit);
-        llBadCre = (LinearLayout) getLayoutInflater().inflate(
-                R.layout.layout_main_flip, null);
-        followBad = ((ViewFlipper) this.llBadCre
-                .findViewById(R.id.homepage_vf));
-        main_notice.addView(llBadCre);
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        moveBadCreNext();
-                    }
-                });
-            }
-        };
-        Timer timer = new Timer();
-        timer.schedule(task, 0, 5000);
-    }
-
-
-    private void moveBadCreNext() {
-        setBadCretView(this.mCurrPos, this.mCurrPos + 1);
-        this.followBad.setInAnimation(this, R.anim.in_bottomtop);
-        this.followBad.setOutAnimation(this, R.anim.out_bottomtop);
-        this.followBad.showNext();
-    }
-
-    private void setBadCretView(int curr, int next) {
-        View noticeView = getLayoutInflater().inflate(R.layout.layout_main_badcre,
-                null);
-        if ((curr < next) && (next > (titleList.size() - 1))) {
-            next = 0;
-        } else if ((curr > next) && (next < 0)) {
-            next = titleList.size() - 1;
-        }
-        noticeView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                openActivity(DishonestylistAct.class);
-//                openActivity(DishonestyDetailAct.class);
-            }
-        });
-        if (followBad.getChildCount() > 1) {
-            followBad.removeViewAt(0);
-        }
-        followBad.addView(noticeView, followBad.getChildCount());
-        mCurrPos = next;
-    }
+//    private void initBadCre() {
+//        FrameLayout main_notice = (FrameLayout) findViewById(R.id.flBadCredit);
+//        llBadCre = (LinearLayout) getLayoutInflater().inflate(
+//                R.layout.layout_main_flip, null);
+//        followBad = ((ViewFlipper) this.llBadCre
+//                .findViewById(R.id.homepage_vf));
+//        main_notice.addView(llBadCre);
+//        TimerTask task = new TimerTask() {
+//            @Override
+//            public void run() {
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        moveBadCreNext();
+//                    }
+//                });
+//            }
+//        };
+//        Timer timer = new Timer();
+//        timer.schedule(task, 0, 5000);
+//    }
+//
+//
+//    private void moveBadCreNext() {
+//        setBadCretView(this.mCurrPos, this.mCurrPos + 1);
+//        this.followBad.setInAnimation(this, R.anim.in_bottomtop);
+//        this.followBad.setOutAnimation(this, R.anim.out_bottomtop);
+//        this.followBad.showNext();
+//    }
+//
+//    private void setBadCretView(int curr, int next) {
+//        View noticeView = getLayoutInflater().inflate(R.layout.layout_main_badcre,
+//                null);
+//        if ((curr < next) && (next > (titleList.size() - 1))) {
+//            next = 0;
+//        } else if ((curr > next) && (next < 0)) {
+//            next = titleList.size() - 1;
+//        }
+//        noticeView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View arg0) {
+//                openActivity(DishonestylistAct.class);
+////                openActivity(DishonestyDetailAct.class);
+//            }
+//        });
+//        if (followBad.getChildCount() > 1) {
+//            followBad.removeViewAt(0);
+//        }
+//        followBad.addView(noticeView, followBad.getChildCount());
+//        mCurrPos = next;
+//    }
 
     @Override
     protected void onResume() {
@@ -490,20 +490,4 @@ public class MainAct extends BaseActivity {
         }
     }
 
-//    private MyBroadCastUnlogin broadCastUnlogin;
-//    public static final String UNLOGIN = "unLogin";
-//
-//    private class MyBroadCastUnlogin extends BroadcastReceiver {
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//            if (UserDao.getUser() != null) {
-//                findgzPortsMsg(1, 5);
-//            } else {
-//                rlgz.setVisibility(View.GONE);
-//                flFollow.setVisibility(View.GONE);
-//                top.setVisibility(View.GONE);
-//                down.setVisibility(View.GONE);
-//            }
-//        }
-//    }
 }
