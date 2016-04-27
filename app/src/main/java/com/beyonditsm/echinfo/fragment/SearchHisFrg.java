@@ -54,14 +54,12 @@ public class SearchHisFrg extends BaseFragment {
                 setData();
             }
         });
-//        plv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent=new Intent(SearchAct.HIS);
-//                intent.putExtra("searchhis", listData.get(position).getContent());
-//                getActivity().sendBroadcast(intent);
-//            }
-//        });
+        plv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ((SearchAct)getActivity()).setText(listData.get(position).getContent(),listData.get(position).getType());
+            }
+        });
     }
 
     private void setData(){

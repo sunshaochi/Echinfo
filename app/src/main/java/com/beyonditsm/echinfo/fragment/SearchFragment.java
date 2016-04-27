@@ -59,7 +59,7 @@ public class SearchFragment extends BaseFragment {
     private String searchData;
     private String address;
 
-    @Override
+   @Override
     public View initView(LayoutInflater inflater) {
         return inflater.inflate(R.layout.frg_my_floww, null);
     }

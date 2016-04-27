@@ -60,9 +60,6 @@ public class SearchAct extends BaseActivity {
     @ViewInject(R.id.tabS)
     private PagerSlidingTabStrip tabS;//企业、法人、失信
 
-    public static final String HIS="his";
-    private String search=null;
-
 
 
     private int SEARCH_TYPE;//0查企业 1、查股东 2、查失信
@@ -71,6 +68,7 @@ public class SearchAct extends BaseActivity {
 
     private boolean isShowCountry;
 
+    private SearchVpAdapter adapter;
     @Override
     public void setLayout() {
         setContentView(R.layout.act_search);
@@ -108,7 +106,9 @@ public class SearchAct extends BaseActivity {
             }
         });
         //企业、法人、失信
-        vp.setAdapter(new SearchVpAdapter(getSupportFragmentManager()));
+       // vp.setAdapter(new SearchVpAdapter(getSupportFragmentManager()));
+        adapter=new SearchVpAdapter(getSupportFragmentManager());
+        vp.setAdapter(adapter);
         vp.setCurrentItem(SEARCH_TYPE);
         tabS.setViewPager(vp);
 
@@ -170,40 +170,11 @@ public class SearchAct extends BaseActivity {
         }
         return counList;
     }
+    public void setText(String string,int type){
+        ceSearch.setText(string);
+        ceSearch.setSelection(string.length());
+        SEARCH_TYPE=type;
+        vp.setCurrentItem(SEARCH_TYPE);
+    }
 
-
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        if (receiver == null) {
-//            receiver = new MyBroadCastReceiver();
-//            registerReceiver(receiver, new IntentFilter(HIS));
-//        }
-//    }
-//
-//    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-//        if (receiver != null) {
-//            unregisterReceiver(receiver);
-//            receiver = null;
-//        }
-//    }
-//
-//    private MyBroadCastReceiver receiver;
-//
-//    /**
-//     * 接收参数
-//     */
-//    class MyBroadCastReceiver extends BroadcastReceiver {
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//            search=getIntent().getStringExtra("searchhis");
-//            MyToastUtils.showShortToast(context,search);
-//            ceSearch.setText(search);
-//            llNoHis.setVisibility(View.GONE);
-//            llS.setVisibility(View.VISIBLE);
-//
-//        }
-//    }
 }
