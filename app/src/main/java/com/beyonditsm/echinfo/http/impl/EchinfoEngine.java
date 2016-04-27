@@ -499,8 +499,8 @@ public class EchinfoEngine extends RequestManager {
      * @param callBack
      */
     public void hotEnterprise(CallBack callBack){
-        Map<String,String> map=new HashMap<>();
-        doPost(IEchinfoUrl.HOTENTERPRISE_URL,map,callBack);
+//        Map<String,String> map=new HashMap<>();
+        doGet(IEchinfoUrl.HOTENTERPRISE_URL,callBack);
 
     }
 
