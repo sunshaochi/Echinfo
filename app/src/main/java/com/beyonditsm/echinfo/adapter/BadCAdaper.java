@@ -59,7 +59,7 @@ public class BadCAdaper extends BaseAdapter{
         holder.company.setText(list.get(position).getIname());
         holder.cid.setText(list.get(position).getCardnum());
         holder.location.setText(list.get(position).getAreaname());
-        holder.idname.setText(list.get(position).getCasecode());
+        holder.idname.setText(list.get(position).getGistid());
         return convertView;
     }
     class ViewHolder{

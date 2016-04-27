@@ -34,11 +34,8 @@ public class AdetailsevenAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if(list!=null){
-            return list.size();
-        }else {
-            return 3;
-        }
+        return list.size();
+
     }
 
     @Override
