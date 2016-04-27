@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.entity.CompanyEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +21,11 @@ public class EnterPAdapter extends BaseAdapter {
 
     private Context context;
     private List<CompanyEntity> list;
+
+    public EnterPAdapter(Context context){
+        this.context=context;
+        list=new ArrayList<>();
+    }
 
     public EnterPAdapter(Context context, List<CompanyEntity> list) {
         this.context = context;

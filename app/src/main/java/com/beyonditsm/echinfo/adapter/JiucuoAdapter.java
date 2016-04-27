@@ -23,8 +23,8 @@ public class JiucuoAdapter extends BaseAdapter {
     private Map<Integer,String>map;
 
 
-    private final String TITLES[] = {"工商信息", "企业图谱", "行业分析", "失业信息", "诉讼信息",
-            "对外投资","股东信息","企业咨询","年报信息","分子机构","主要成员","变更记录"
+    private final String TITLES[] = {"工商信息", "企业图谱", "行业分析", "失信信息", "诉讼信息",
+            "对外投资","股东信息","企业资讯","年报信息","分支机构","主要成员","变更记录"
     };
 
     public JiucuoAdapter(Context context,ErrorAct activity) {

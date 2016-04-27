@@ -59,7 +59,12 @@ public class SearchFragment extends BaseFragment {
     private String searchData;
     private String address;
 
-   @Override
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public View initView(LayoutInflater inflater) {
         return inflater.inflate(R.layout.frg_my_floww, null);
     }
@@ -68,6 +73,10 @@ public class SearchFragment extends BaseFragment {
     public void initData(Bundle savedInstanceState) {
         position = getArguments().getInt("position", 0);
 
+        if (enterPAdapter == null) {
+            enterPAdapter = new EnterPAdapter(getContext());
+            plv.getRefreshableView().setAdapter(enterPAdapter);
+        }
         plv.setPullRefreshEnabled(true);//下拉刷新
         plv.setScrollLoadEnabled(true);//滑动加载
         plv.setPullLoadEnabled(false);//上拉刷新
@@ -150,8 +159,17 @@ public class SearchFragment extends BaseFragment {
                     JSONObject json = new JSONObject(result);
                     JSONObject data = json.getJSONObject("data");
                     JSONArray rows = data.getJSONArray("rows");
-                    List<CompanyEntity> datas = gson.fromJson(rows.toString(), new TypeToken<List<CompanyEntity>>() {
-                    }.getType());
+                    List<CompanyEntity> datas = gson.fromJson(rows.toString(), new TypeToken<List<CompanyEntity>>() {}.getType());
+                    if (currentP == 1) {
+                        comList.clear();
+                    }
+                    comList.addAll(datas);
+//                    if (enterPAdapter == null) {
+//                        enterPAdapter = new EnterPAdapter(getContext(), comList);
+//                        plv.getRefreshableView().setAdapter(enterPAdapter);
+//                    } else {
+                    enterPAdapter.notifyDataChange(comList);
+//                    }
                     if (datas.size() == 0) {
                         if (currentP == 1) {
 //                            MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
@@ -159,16 +177,6 @@ public class SearchFragment extends BaseFragment {
                             plv.setHasMoreData(false);
                         }
                         return;
-                    }
-                    if (currentP == 1) {
-                        comList.clear();
-                    }
-                    comList.addAll(datas);
-                    if (enterPAdapter == null) {
-                        enterPAdapter = new EnterPAdapter(getContext(), comList);
-                        plv.getRefreshableView().setAdapter(enterPAdapter);
-                    } else {
-                        enterPAdapter.notifyDataChange(comList);
                     }
 
                 } catch (JSONException e) {
@@ -281,6 +289,10 @@ public class SearchFragment extends BaseFragment {
         }
     }
 
+    public void sendRequest(String search,String address){
+        currentPage = 1;
+        searchData(search,address, currentPage);
+    }
     private MyBroadCastReceiver receiver;
     public final static String SEARCH_RECEIVER = "com.search.receiver";
 

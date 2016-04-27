@@ -76,7 +76,6 @@ public class CompanyxqAct extends BaseActivity {
 
     @Override
     public void init(Bundle savedInstanceState) {
-        setTopTitle("华东控股集团有限公司");
         iId =getIntent().getStringExtra(ID);
         if(!TextUtils.isEmpty(iId)) {
             selectStatus(iId);
@@ -92,21 +91,22 @@ public class CompanyxqAct extends BaseActivity {
                 Intent intent = null;
                 switch (position) {
                     case 0://工商信息
-                        if ("0".equals(statusEntity.getGongshangStatus())) {
+                        if ("1".equals(statusEntity.getGongshangStatus())) {
                             intent = new Intent(CompanyxqAct.this, BusinessinfoAct.class);
                             intent.putExtra(COMPANYID, iId);
                             startActivity(intent);
                         }
                         break;
                     case 1://企业图谱
-                        if ("0".equals(statusEntity.getTupuStatus())) {
+//                        if ("1".equals(statusEntity.getTupuStatus())) {
                             intent = new Intent(CompanyxqAct.this, WebAct.class);
                             intent.putExtra(WebAct.WEB_TYPE, 1);
+                            intent.putExtra(WebAct.ID, iId);
                             startActivity(intent);
-                        }
+//                        }
                         break;
                     case 2://行业分析
-                        if ("0".equals(statusEntity.getHangyeStatus())) {
+                        if ("1".equals(statusEntity.getHangyeStatus())) {
                             intent = new Intent(CompanyxqAct.this, WebAct.class);
                             intent.putExtra(WebAct.WEB_TYPE, 2);
                             intent.putExtra(WebAct.ID, iId);
@@ -114,7 +114,7 @@ public class CompanyxqAct extends BaseActivity {
                         }
                         break;
                     case 3://失信信息
-                        if ("0".equals(statusEntity.getCourtitemStatus())) {
+                        if ("1".equals(statusEntity.getCourtitemStatus())) {
                             intent = new Intent(CompanyxqAct.this, DishonestyInfoAct.class);
                             intent.putExtra(COMPANYID, iId);
                             intent.putExtra("iname", entity.getCompanyName());
@@ -122,56 +122,56 @@ public class CompanyxqAct extends BaseActivity {
                         }
                         break;
                     case 4://诉讼信息
-                        if ("0".equals(statusEntity.getLawsuitmsgStatus())) {
+                        if ("1".equals(statusEntity.getLawsuitmsgStatus())) {
                             intent = new Intent(CompanyxqAct.this, LitigationAct.class);
                             intent.putExtra(COMPANYID, iId);
                             startActivity(intent);
                         }
                         break;
                     case 5://对外投资
-                        if ("0".equals(statusEntity.getAbroadinvestmenttatus())) {
+                        if ("1".equals(statusEntity.getAbroadinvestmenttatus())) {
                             intent = new Intent(CompanyxqAct.this, InvestmentAct.class);
                             intent.putExtra(COMPANYID, iId);
                             startActivity(intent);
                         }
                         break;
                     case 6://股东信息
-                        if ("0".equals(statusEntity.getStockmsgStatus())) {
+                        if ("1".equals(statusEntity.getStockmsgStatus())) {
                             intent = new Intent(CompanyxqAct.this, GudonginfoAct.class);
                             intent.putExtra(COMPANYID, iId);
                             startActivity(intent);
                         }
                         break;
                     case 7://企业资讯
-                        if ("0".equals(statusEntity.getEnenewterprissStatus())) {
+                        if ("1".equals(statusEntity.getEnenewterprissStatus())) {
                             intent = new Intent(CompanyxqAct.this, InformationAct.class);
                             intent.putExtra(COMPANYID, iId);
                             startActivity(intent);
                         }
                         break;
                     case 8://年报信息
-                        if ("0".equals(statusEntity.getAnnualportsmsgStatus())) {
+                        if ("1".equals(statusEntity.getAnnualportsmsgStatus())) {
                             intent = new Intent(CompanyxqAct.this, AnnualAct.class);
                             intent.putExtra(COMPANYID, iId);
                             startActivity(intent);
                         }
                         break;
                     case 9://分支机构
-                        if ("0".equals(statusEntity.getSonenterpriseStatus())) {
+                        if ("1".equals(statusEntity.getSonenterpriseStatus())) {
                             intent = new Intent(CompanyxqAct.this, PamentAct.class);
                             intent.putExtra(COMPANYID, iId);
                             startActivity(intent);
                         }
                         break;
                     case 10://主要成员
-                        if ("0".equals(statusEntity.getMainmemberStatus())) {
+                        if ("1".equals(statusEntity.getMainmemberStatus())) {
                             intent = new Intent(CompanyxqAct.this, PeopleAct.class);
                             intent.putExtra(COMPANYID, iId);
                             startActivity(intent);
                         }
                         break;
                     case 11://变更记录
-                        if ("0".equals(statusEntity.getEditrecordStatus())) {
+                        if ("1".equals(statusEntity.getEditrecordStatus())) {
                             intent = new Intent(CompanyxqAct.this, ChangecodeAct.class);
                             intent.putExtra(COMPANYID, iId);
                             startActivity(intent);
@@ -226,6 +226,9 @@ public class CompanyxqAct extends BaseActivity {
                 tvAttention.setText("已关注");
                 flag = true;
                 sendBroadcast(new Intent(MainAct.MAIN_RECEIVER));
+                sendBroadcast(new Intent(ReqyAct.MAIN_RECEIVER_HOT));
+                sendBroadcast(new Intent(MyFollowAct.MAIN_RECEIVER_FOLLOW));
+                findEnterpriseInfoMsgById(iId);
                 MyToastUtils.showShortToast(CompanyxqAct.this, "关注企业成功");
             }
 
@@ -247,6 +250,9 @@ public class CompanyxqAct extends BaseActivity {
                 flag = false;
                 tvAttention.setText("关注");
                 sendBroadcast(new Intent(MainAct.MAIN_RECEIVER));
+                sendBroadcast(new Intent(ReqyAct.MAIN_RECEIVER_HOT));
+                sendBroadcast(new Intent(MyFollowAct.MAIN_RECEIVER_FOLLOW));
+                findEnterpriseInfoMsgById(iId);
                 MyToastUtils.showShortToast(CompanyxqAct.this, "取消关注成功");
             }
 

@@ -1,6 +1,9 @@
 package com.beyonditsm.echinfo.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -70,17 +73,18 @@ public class ReqyAct extends BaseActivity {
             @Override
             public void onSucess(String result) {
                 Gson gson = new Gson();
-                JSONObject json =null;
+                JSONObject json = null;
                 try {
                     json = new JSONObject(result);
-                     JSONObject data=json.getJSONObject("data");
-                     JSONArray rows = data.getJSONArray("rows");
-                     if(rows.length()>0){
-                         list=gson.fromJson(rows.toString(),new TypeToken<List<CompanyEntity>>(){}.getType());
-                         plv.getRefreshableView().setAdapter(new ReqyAdapter(ReqyAct.this,list));
-                    }else {
-                         MyToastUtils.showShortToast(ReqyAct.this, "暂无数据");
-                     }
+                    JSONObject data = json.getJSONObject("data");
+                    JSONArray rows = data.getJSONArray("rows");
+                    if (rows.length() > 0) {
+                        list = gson.fromJson(rows.toString(), new TypeToken<List<CompanyEntity>>() {
+                        }.getType());
+                        plv.getRefreshableView().setAdapter(new ReqyAdapter(ReqyAct.this, list));
+                    } else {
+                        MyToastUtils.showShortToast(ReqyAct.this, "暂无数据");
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -94,5 +98,33 @@ public class ReqyAct extends BaseActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (receiverhot == null) {
+            receiverhot = new MyBroadCastReceiverHot();
+            registerReceiver(receiverhot,new IntentFilter(MAIN_RECEIVER_HOT));
+        }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (receiverhot != null) {
+            unregisterReceiver(receiverhot);
+        }
+
+    }
+    private MyBroadCastReceiverHot receiverhot;
+    public static final String MAIN_RECEIVER_HOT = "com.hot.receiver";
+
+    private class MyBroadCastReceiverHot extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            hotEnterprise();
+        }
+    }
+
+}
 

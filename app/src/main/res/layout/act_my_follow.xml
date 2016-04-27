@@ -7,10 +7,19 @@
 
     <include layout="@layout/title_act_layout"></include>
 
-    <com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView
-        android:id="@+id/plv"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView
+            android:id="@+id/plv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <com.beyonditsm.echinfo.view.LoadingView
+            android:id="@+id/loadingView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-    </com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView>
+    </RelativeLayout>
+
+
 </LinearLayout>

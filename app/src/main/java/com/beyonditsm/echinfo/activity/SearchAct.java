@@ -1,9 +1,6 @@
 package com.beyonditsm.echinfo.activity;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -24,7 +21,6 @@ import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.fragment.MyFollowFrg;
 import com.beyonditsm.echinfo.fragment.SearchFragment;
 import com.beyonditsm.echinfo.fragment.SearchHisFrg;
-import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.beyonditsm.echinfo.view.ClearEditText;
 import com.beyonditsm.echinfo.view.PagerSlidingTabStrip;
 import com.lidroid.xutils.view.annotation.ViewInject;

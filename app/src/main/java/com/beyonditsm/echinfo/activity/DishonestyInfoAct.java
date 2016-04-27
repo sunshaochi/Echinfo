@@ -51,33 +51,21 @@ public class DishonestyInfoAct extends BaseActivity {
         iname=getIntent().getStringExtra("iname");
 //        iname="1234";
         findCourtitemList(iname,null);
-        plv.setPullRefreshEnabled(true);//下拉刷新
-        plv.setScrollLoadEnabled(true);//滑动加载
+        plv.setPullRefreshEnabled(false);//下拉刷新
+        plv.setScrollLoadEnabled(false);//滑动加载
         plv.setPullLoadEnabled(false);//上拉刷新
-        plv.setHasMoreData(true);//是否有更多数据
+        plv.setHasMoreData(false);//是否有更多数据
         plv.getRefreshableView().setVerticalScrollBarEnabled(false);//设置右侧滑动
         plv.getRefreshableView().setSelector(new ColorDrawable(Color.TRANSPARENT));
         plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
         plv.getRefreshableView().setDivider(null);
 
-        plv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-            @Override
-            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-                plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
-            }
-
-            @Override
-            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-            }
-        });
-//        plv.getRefreshableView().setAdapter(new BadCAdaper(this));
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent=new Intent(DishonestyInfoAct.this,DisinfodetailAct.class);
                 intent.putExtra("entity",badCreditEntityList.get(position));
                 startActivity(intent);
-//                openActivity(DisinfodetailAct.class);
             }
         });
     }
@@ -92,8 +80,6 @@ public class DishonestyInfoAct extends BaseActivity {
         RequestManager.getCommManager().findCourtitemList(iname,address, new CallBack() {
             @Override
             public void onSucess(String result) {
-                plv.onPullUpRefreshComplete();
-                plv.onPullDownRefreshComplete();
                 Gson gson = new Gson();
                 try {
                     JSONObject json = new JSONObject(result);
@@ -113,8 +99,6 @@ public class DishonestyInfoAct extends BaseActivity {
 
             @Override
             public void onError(String error) {
-                plv.onPullUpRefreshComplete();
-                plv.onPullDownRefreshComplete();
             }
         });
     }

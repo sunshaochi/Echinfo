@@ -1,11 +1,13 @@
 package com.beyonditsm.echinfo.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
+import com.beyonditsm.echinfo.activity.CompanyxqAct;
 import com.beyonditsm.echinfo.activity.GudonginfoAct;
 import com.beyonditsm.echinfo.entity.CompanyEntity;
 import com.beyonditsm.echinfo.entity.ResultData;
@@ -134,8 +137,47 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
         }
         TextView title = (TextView) view.findViewById(R.id.title);
         title.setText(getGroup(groupPosition).toString());
-//
+
+        TextView no= (TextView) view.findViewById(R.id.no);
         ImageView image=(ImageView) view.findViewById(R.id.image);
+//        switch (groupPosition){
+//            case 0:
+//                no.setVisibility(View.GONE);
+//                image.setVisibility(View.VISIBLE);
+//                break;
+//            case 1:
+//                view.setClickable(false);
+//                no.setVisibility(View.VISIBLE);
+//                image.setVisibility(View.GONE);
+//                break;
+//            case 2:
+//                no.setVisibility(View.GONE);
+//                image.setVisibility(View.VISIBLE);
+//                break;
+//            case 3:
+//                no.setVisibility(View.GONE);
+//                image.setVisibility(View.VISIBLE);
+//                break;
+//            case 4:
+//                view.setClickable(false);
+//                no.setVisibility(View.VISIBLE);
+//                image.setVisibility(View.GONE);
+//                break;
+//            case 5:
+//                view.setClickable(false);
+//                no.setVisibility(View.VISIBLE);
+//                image.setVisibility(View.GONE);
+//                break;
+//            case 6:
+//                view.setClickable(false);
+//                no.setVisibility(View.VISIBLE);
+//                image.setVisibility(View.GONE);
+//                break;
+//            case 7:
+//                no.setVisibility(View.GONE);
+//                image.setVisibility(View.VISIBLE);
+//                break;
+//        }
         //判断实例可以展开，如果可以则改变右侧的图标
         if(isExpanded) {
             view.setBackgroundColor(Color.WHITE);
@@ -156,17 +198,18 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
             case 0://企业基本信息
                 //填充视图
                 view = inflater.inflate(R.layout.annual_list_one, null);
-//                company= (TextView) view.findViewById(R.id.company);//企业名称
-//                regId= (TextView) view.findViewById(R.id.regId);//注册号
-//                phone= (TextView) view.findViewById(R.id.phone);//企业联系电话
-//                zipCode= (TextView) view.findViewById(R.id.zipCode);//邮政编码
-//                address= (TextView) view.findViewById(R.id.address);//企业通信地址
-//                email= (TextView) view.findViewById(R.id.email);//电子邮箱
-//                gqzr= (TextView) view.findViewById(R.id.gqzr);//有限责任公司本年度是否发生股权转让
-//                state= (TextView) view.findViewById(R.id.state);//营业状况
-//                online= (TextView) view.findViewById(R.id.online);//是否有网站或网店
-//                tzxx= (TextView) view.findViewById(R.id.tzxx);//企业是否有投资信息或购买其它公司股权
-//                number= (TextView) view.findViewById(R.id.number);//从业人数
+                company= (TextView) view.findViewById(R.id.company);//企业名称
+                regId= (TextView) view.findViewById(R.id.regId);//注册号
+                phone= (TextView) view.findViewById(R.id.phone);//企业联系电话
+                zipCode= (TextView) view.findViewById(R.id.zipCode);//邮政编码
+                address= (TextView) view.findViewById(R.id.address);//企业通信地址
+                email= (TextView) view.findViewById(R.id.email);//电子邮箱
+                gqzr= (TextView) view.findViewById(R.id.gqzr);//有限责任公司本年度是否发生股权转让
+                state= (TextView) view.findViewById(R.id.state);//营业状况
+                online= (TextView) view.findViewById(R.id.online);//是否有网站或网店
+                tzxx= (TextView) view.findViewById(R.id.tzxx);//企业是否有投资信息或购买其它公司股权
+                number= (TextView) view.findViewById(R.id.number);//从业人数
+                setBusiness(entity);
 //                findEnterpriseInfoMsgById("1");
                 break;
             case 1://网站或网店信息
@@ -230,6 +273,14 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
                 }else {
                     findAbroadInvestment("3",-1,-1);
                 }
+                lv3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent=new Intent(context,CompanyxqAct.class);
+                        intent.putExtra(CompanyxqAct.ID, listInvestment.get(position).getToCompanyId());
+                        context.startActivity(intent);
+                    }
+                });
 //                if(listInvestment!=null&&listInvestment.size()>0) {
 //                    LinearLayout layout3 = (LinearLayout) lv3.getChildAt(list.size() - 1);
 //                    View viewl3 = layout3.findViewById(R.id.view);
@@ -281,6 +332,9 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
         return true;
     }
 
+    public List<CompanyEntity> getListInvestment(){
+        return listInvestment;
+    }
 
     private CompanyEntity entity;
     /**
@@ -304,18 +358,18 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
     }
     //设置企业信息
     private void setBusiness(CompanyEntity entity){
-        view1 = inflater.inflate(R.layout.annual_list_one, null);
-        company= (TextView) view1.findViewById(R.id.company);//企业名称
-        regId= (TextView) view1.findViewById(R.id.regId);//注册号
-        phone= (TextView) view1.findViewById(R.id.phone);//企业联系电话
-        zipCode= (TextView) view1.findViewById(R.id.zipCode);//邮政编码
-        address= (TextView) view1.findViewById(R.id.address);//企业通信地址
-        email= (TextView) view1.findViewById(R.id.email);//电子邮箱
-        gqzr= (TextView) view1.findViewById(R.id.gqzr);//有限责任公司本年度是否发生股权转让
-        state= (TextView) view1.findViewById(R.id.state);//营业状况
-        online= (TextView) view1.findViewById(R.id.online);//是否有网站或网店
-        tzxx= (TextView) view1.findViewById(R.id.tzxx);//企业是否有投资信息或购买其它公司股权
-        number= (TextView) view1.findViewById(R.id.number);//从业人数
+//        view1 = inflater.inflate(R.layout.annual_list_one, null);
+//        company= (TextView) view1.findViewById(R.id.company);//企业名称
+//        regId= (TextView) view1.findViewById(R.id.regId);//注册号
+//        phone= (TextView) view1.findViewById(R.id.phone);//企业联系电话
+//        zipCode= (TextView) view1.findViewById(R.id.zipCode);//邮政编码
+//        address= (TextView) view1.findViewById(R.id.address);//企业通信地址
+//        email= (TextView) view1.findViewById(R.id.email);//电子邮箱
+//        gqzr= (TextView) view1.findViewById(R.id.gqzr);//有限责任公司本年度是否发生股权转让
+//        state= (TextView) view1.findViewById(R.id.state);//营业状况
+//        online= (TextView) view1.findViewById(R.id.online);//是否有网站或网店
+//        tzxx= (TextView) view1.findViewById(R.id.tzxx);//企业是否有投资信息或购买其它公司股权
+//        number= (TextView) view1.findViewById(R.id.number);//从业人数
         if(entity!=null){
             if(!TextUtils.isEmpty(entity.getCompanyName())){
                 company.setText(entity.getCompanyName());
@@ -362,7 +416,7 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
             if(!TextUtils.isEmpty(entity.getIsHaveWeb())){
                 if("0".equals(entity.getIsHaveWeb())) {
                     online.setText("否");
-                }else if("".equals(entity.getIsHaveWeb())){
+                }else if("1".equals(entity.getIsHaveWeb())){
                     online.setText("是");
                 }
             }else {

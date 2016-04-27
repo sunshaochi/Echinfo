@@ -1,5 +1,6 @@
 package com.beyonditsm.echinfo.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -111,15 +112,12 @@ public class AnnualDetaillistAct extends BaseActivity{
         //item点击事件
         listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
-            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-//                if (groupPosition == 0 || groupPosition == 3) {
-//                    listView.setClickable(false);
-//                } else {
-//                    openActivity(DishonestyDetailAct.class);
-//                }
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long i) {
+
                 return true;
             }
         });
+        listView.expandGroup(0);
 
     }
     /**
@@ -244,7 +242,7 @@ public class AnnualDetaillistAct extends BaseActivity{
                             adapter.notifyDataSetChanged();
                         }
                     } else {
-                        MyToastUtils.showShortToast(AnnualDetaillistAct.this,"暂无数据");
+//                        MyToastUtils.showShortToast(AnnualDetaillistAct.this,"暂无数据");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

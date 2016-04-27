@@ -6,6 +6,7 @@ import com.beyonditsm.echinfo.entity.UserEntity;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.IEchinfoUrl;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
+import com.beyonditsm.echinfo.util.MyLogUtils;
 import com.lidroid.xutils.http.client.multipart.content.FileBody;
 import com.tandong.sa.json.Gson;
 

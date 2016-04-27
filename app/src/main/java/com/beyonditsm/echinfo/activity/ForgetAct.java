@@ -38,7 +38,7 @@ public class ForgetAct extends BaseActivity {
     private int i = 60;
     private Timer timer;
     private MyTimerTask myTask;
-    ;
+
 
     private void assignViews() {
         llForg = (LinearLayout) findViewById(R.id.llForg);

@@ -48,7 +48,7 @@
         android:textColor="#3c3c3c"
         android:id="@+id/et_sj"
         android:padding="10dp"
-        android:hint="137611111"
+        android:hint="请输入您的手机号码"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"

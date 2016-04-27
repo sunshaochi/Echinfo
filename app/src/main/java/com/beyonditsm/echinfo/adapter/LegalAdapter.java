@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.entity.StockMsg;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,10 +22,16 @@ public class LegalAdapter extends BaseAdapter{
     private List<StockMsg> list;
     public LegalAdapter(Context context){
         this.context=context;
+        list=new ArrayList<>();
     }
     public LegalAdapter(Context context,List<StockMsg> list){
         this.context=context;
         this.list=list;
+    }
+
+    public void notifyDataChanged(List<StockMsg> list){
+        this.list=list;
+        notifyDataSetChanged();
     }
 
     @Override

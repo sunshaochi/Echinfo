@@ -1,9 +1,11 @@
 package com.beyonditsm.echinfo.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.beyonditsm.echinfo.R;
@@ -54,7 +56,7 @@ public class InvestmentAct extends BaseActivity {
                 openActivity(ErrorAct.class);
             }
         });
-        findAbroadInvestment(companyId,page,rows);
+        findAbroadInvestment(companyId, page, rows);
         plv.setPullRefreshEnabled(true);//下拉刷新
         plv.setScrollLoadEnabled(true);//滑动加载
         plv.setPullLoadEnabled(false);//上拉刷新
@@ -69,13 +71,21 @@ public class InvestmentAct extends BaseActivity {
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
                 page = 1;
-                findAbroadInvestment(companyId,page,rows);
+                findAbroadInvestment(companyId, page, rows);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 page++;
-                findAbroadInvestment(companyId,page,rows);
+                findAbroadInvestment(companyId, page, rows);
+            }
+        });
+        plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(InvestmentAct.this,CompanyxqAct.class);
+                intent.putExtra(CompanyxqAct.ID, datas.get(position).getToCompanyId());
+                startActivity(intent);
             }
         });
     }

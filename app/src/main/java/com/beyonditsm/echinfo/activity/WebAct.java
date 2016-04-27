@@ -39,6 +39,8 @@ public class WebAct extends BaseActivity {
                 break;
             case 1:
                 setTopTitle("企业图谱");
+                id=getIntent().getStringExtra(ID);
+                url=IEchinfoUrl.TUPU_URL+"&companyId="+id;
                 setRight("纠错", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -49,7 +51,7 @@ public class WebAct extends BaseActivity {
             case 2:
                 setTopTitle("行业分析");
                 id=getIntent().getStringExtra(ID);
-                url=IEchinfoUrl.ANALY_URL+"?companyId="+id;
+                url=IEchinfoUrl.ANALY_URL+"&companyId="+id;
                 setRight("纠错", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

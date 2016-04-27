@@ -487,6 +487,7 @@ public class MainAct extends BaseActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             initMyFollow();
+            initHotComlist();
         }
     }
 

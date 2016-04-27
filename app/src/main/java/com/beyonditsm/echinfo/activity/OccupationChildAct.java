@@ -66,7 +66,7 @@ public class OccupationChildAct extends BaseActivity {
                     JSONObject data=json.getJSONObject("data");
                     JSONArray rows = data.getJSONArray("rows");
                     list = gson.fromJson(rows.toString(), new TypeToken<List<OccuaptionEntity>>() {}.getType());
-                    lv.setAdapter(new OccuAdapter(OccupationChildAct.this,list));
+                    lv.setAdapter(new OccuAdapter(OccupationChildAct.this,list,1));
 
 
                 } catch (JSONException e) {

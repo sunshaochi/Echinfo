@@ -9,6 +9,7 @@ import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
+import com.beyonditsm.echinfo.util.EchinfoUtils;
 import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -53,6 +54,16 @@ public class FeedBackAct extends BaseActivity {
         if(TextUtils.isEmpty(phone)){
             MyToastUtils.showShortToast(FeedBackAct.this, "请输入手机号码");
             etFbPhone.requestFocus();
+            return false;
+        }
+        if(phone.length()!=11){
+            MyToastUtils.showShortToast(getApplicationContext(), "请输入正确的手机号");
+            etFbPhone.requestFocus();
+            etFbPhone.setSelection(phone.length());
+            return false;
+        }
+        if(!EchinfoUtils.checkCellPhone(phone)){
+            MyToastUtils.showShortToast(getApplicationContext(), "请输入有效的手机号");
             return false;
         }
         return true;

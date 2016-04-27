@@ -17,6 +17,7 @@ import com.beyonditsm.echinfo.entity.CompanyEntity;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
+import com.beyonditsm.echinfo.view.LoadingView;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshBase;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -41,6 +42,8 @@ public class MyFollowFrg extends BaseFragment{
     private List<CompanyEntity> list;
     private int page=1;
     private int rows=10;
+    @ViewInject(R.id.loadingView)
+    private LoadingView loadView;
     @Override
     public View initView(LayoutInflater inflater) {
         return inflater.inflate(R.layout.frg_my_floww,null);
@@ -49,6 +52,7 @@ public class MyFollowFrg extends BaseFragment{
     @Override
     public void initData(Bundle savedInstanceState) {
         findgzPortsMsg(page, rows);
+        loadView.setNoContentTxt("暂无结果");
         plv.setPullRefreshEnabled(true);//下拉刷新
         plv.setScrollLoadEnabled(true);//滑动加载
         plv.setPullLoadEnabled(false);//上拉刷新
@@ -63,12 +67,14 @@ public class MyFollowFrg extends BaseFragment{
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
                 page = 1;
+                loadView.loading();
                 findgzPortsMsg(page, rows);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 page++;
+                loadView.loading();
                 findgzPortsMsg(page, rows);
 
             }
@@ -76,9 +82,15 @@ public class MyFollowFrg extends BaseFragment{
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(getActivity(), CompanyxqAct.class);
-                intent.putExtra(CompanyxqAct.ID,datas.get(position).getCompanyId());
+                Intent intent = new Intent(getActivity(), CompanyxqAct.class);
+                intent.putExtra(CompanyxqAct.ID, datas.get(position).getCompanyId());
                 getActivity().startActivity(intent);
+            }
+        });
+        loadView.setOnRetryListener(new LoadingView.OnRetryListener() {
+            @Override
+            public void OnRetry() {
+                findgzPortsMsg(page, rows);
             }
         });
     }
@@ -92,6 +104,7 @@ public class MyFollowFrg extends BaseFragment{
         RequestManager.getCommManager().findgzPortsMsg(page, rows, new CallBack() {
             @Override
             public void onSucess(String result) {
+                loadView.loadComplete();
                 plv.onPullUpRefreshComplete();
                 plv.onPullDownRefreshComplete();
                 Gson gson = new Gson();
@@ -120,11 +133,16 @@ public class MyFollowFrg extends BaseFragment{
 
                             }
                         } else {
-                            plv.setHasMoreData(false);
+                            if(page==1) {
+                                loadView.noContent();
+                            }else {
+                                plv.setHasMoreData(false);
+                            }
                         }
 
                     } else {
                         if (page == 1) {
+                            loadView.noContent();
 //                            MyToastUtils.showShortToast(getActivity(), "暂无数据");
                         } else {
                             plv.setHasMoreData(false);
@@ -139,6 +157,7 @@ public class MyFollowFrg extends BaseFragment{
 
             @Override
             public void onError(String error) {
+                loadView.loadError();
                 plv.onPullUpRefreshComplete();
                 plv.onPullDownRefreshComplete();
             }
