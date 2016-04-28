@@ -28,6 +28,7 @@ import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
 import com.beyonditsm.echinfo.util.MyLogUtils;
+import com.beyonditsm.echinfo.view.LoadingView;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshBase;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -58,6 +59,8 @@ public class SearchFragment extends BaseFragment {
 
     private String searchData;
     private String address;
+    @ViewInject(R.id.loadingView)
+    private LoadingView loadView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,7 +75,7 @@ public class SearchFragment extends BaseFragment {
     @Override
     public void initData(Bundle savedInstanceState) {
         position = getArguments().getInt("position", 0);
-
+        loadView.setNoContentTxt("暂无结果");
         if (enterPAdapter == null) {
             enterPAdapter = new EnterPAdapter(getContext());
             plv.getRefreshableView().setAdapter(enterPAdapter);
@@ -90,16 +93,24 @@ public class SearchFragment extends BaseFragment {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 currentPage = 1;
-                searchData(searchData,address, currentPage);
+                loadView.loading();
+                searchData(searchData, address, currentPage);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 currentPage++;
-                searchData(searchData,address, currentPage);
+                loadView.loading();
+                searchData(searchData, address, currentPage);
             }
         });
 
+        loadView.setOnRetryListener(new LoadingView.OnRetryListener() {
+            @Override
+            public void OnRetry() {
+                searchData(searchData, address, currentPage);
+            }
+        });
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
@@ -125,6 +136,7 @@ public class SearchFragment extends BaseFragment {
                 se.setCountry("全国");
                 se.setTime(EchinfoUtils.getCurrentTime());
                 SearchDao.addSearch(se);
+
                 getActivity().startActivity(intent);
             }
         });
@@ -153,6 +165,7 @@ public class SearchFragment extends BaseFragment {
         RequestManager.getCommManager().searchCompany(company,address, currentP, rows, new CallBack() {
             @Override
             public void onSucess(String result) {
+                loadView.loadComplete();
                 plv.onPullUpRefreshComplete();
                 plv.onPullDownRefreshComplete();
                 try {
@@ -171,9 +184,9 @@ public class SearchFragment extends BaseFragment {
                     enterPAdapter.notifyDataChange(comList);
 //                    }
                     if (datas.size() == 0) {
-                        if (currentP == 1) {
-//                            MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
-                        } else {
+                        if(currentP==1) {
+                            loadView.noContent();
+                        }else {
                             plv.setHasMoreData(false);
                         }
                         return;
@@ -187,6 +200,7 @@ public class SearchFragment extends BaseFragment {
 
             @Override
             public void onError(String error) {
+                loadView.loadError();
                 plv.onPullUpRefreshComplete();
                 plv.onPullDownRefreshComplete();
             }
@@ -203,6 +217,7 @@ public class SearchFragment extends BaseFragment {
         RequestManager.getCommManager().findStockMsgByCompanyName(name,address, new CallBack() {
             @Override
             public void onSucess(String result) {
+                loadView.loadComplete();
                 plv.onPullUpRefreshComplete();
                 plv.onPullDownRefreshComplete();
                 Gson gson = new Gson();
@@ -217,6 +232,7 @@ public class SearchFragment extends BaseFragment {
                         plv.getRefreshableView().setAdapter(new LegalAdapter(getActivity(), stockMsgList));
 
                     } else {
+                        loadView.noContent();
 //                        MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
                     }
                 } catch (JSONException e) {
@@ -226,6 +242,7 @@ public class SearchFragment extends BaseFragment {
 
             @Override
             public void onError(String error) {
+                loadView.loadError();
                 plv.onPullUpRefreshComplete();
                 plv.onPullDownRefreshComplete();
             }
@@ -242,6 +259,7 @@ public class SearchFragment extends BaseFragment {
         RequestManager.getCommManager().findCourtitemList(iname,address, new CallBack() {
             @Override
             public void onSucess(String result) {
+                loadView.loadComplete();
                 plv.onPullUpRefreshComplete();
                 plv.onPullDownRefreshComplete();
                 Gson gson = new Gson();
@@ -256,6 +274,7 @@ public class SearchFragment extends BaseFragment {
                         plv.getRefreshableView().setAdapter(new BadCAdaper(getActivity(),badCreditEntityList));
 
                     }else {
+                        loadView.noContent();
 //                        MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
                     }
                 } catch (JSONException e) {
@@ -265,6 +284,7 @@ public class SearchFragment extends BaseFragment {
 
             @Override
             public void onError(String error) {
+                loadView.loadError();
                 plv.onPullUpRefreshComplete();
                 plv.onPullDownRefreshComplete();
             }
