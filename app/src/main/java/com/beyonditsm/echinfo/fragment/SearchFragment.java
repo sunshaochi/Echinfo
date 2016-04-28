@@ -125,7 +125,7 @@ public class SearchFragment extends BaseFragment {
                         break;
                     case 1:
                         se.setType(1);
-                        intent.putExtra(CompanyxqAct.ID,stockMsgList.get(i).getId());
+                        intent.putExtra(CompanyxqAct.ID,stockMsgList.get(i).getCompanyId());
                         break;
                     case 2:
                         se.setType(2);

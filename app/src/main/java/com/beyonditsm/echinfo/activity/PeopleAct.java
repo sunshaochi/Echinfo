@@ -65,7 +65,7 @@ public class PeopleAct extends BaseActivity{
         plv.getRefreshableView().setVerticalScrollBarEnabled(false);//设置右侧滑动
         plv.getRefreshableView().setSelector(new ColorDrawable(Color.TRANSPARENT));
         plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
-        plv.getRefreshableView().setDivider(null);
+//        plv.getRefreshableView().setDivider(null);
 
         findpeoplePortsMsg(companyId, page, rows);
         plv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
