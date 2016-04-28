@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.entity.BadCreditEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,10 +22,16 @@ public class BadCAdaper extends BaseAdapter{
     private List<BadCreditEntity> list;
     public BadCAdaper(Context context){
         this.context=context;
+        list=new ArrayList<>();
     }
     public BadCAdaper(Context context,List<BadCreditEntity> list){
         this.context=context;
         this.list=list;
+    }
+
+    public void notifyDataChanged(List<BadCreditEntity> list){
+        this.list=list;
+        notifyDataSetChanged();
     }
 
     @Override

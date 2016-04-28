@@ -33,11 +33,7 @@ public class FollowAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        if(list!=null){
-            return list.size();
-        }else {
-            return 10;
-        }
+        return list.size();
     }
 
     @Override
@@ -66,8 +62,8 @@ public class FollowAdapter extends BaseAdapter{
         if(list!=null){
             if(!TextUtils.isEmpty(list.get(position).getCompanyName()))
                 holder.company.setText(list.get(position).getCompanyName());
-            if(!TextUtils.isEmpty(list.get(position).getLegalRepPersion()))
-                holder.lename.setText("公司法人："+list.get(position).getLegalRepPersion());
+            if(!TextUtils.isEmpty(list.get(position).getRepPersion()))
+                holder.lename.setText("公司法人："+list.get(position).getRepPersion());
             if(!TextUtils.isEmpty(list.get(position).getRecordStatus()))
                 holder.status.setText(list.get(position).getRecordStatus());
         }

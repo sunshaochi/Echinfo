@@ -1,6 +1,7 @@
 package com.beyonditsm.echinfo.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -63,10 +64,14 @@ public class DetailsAct extends BaseActivity {
             public void onSucess(String result) {
                 ResultData<AnnualEntity> rd = (ResultData<AnnualEntity>) GsonUtils.json(result, AnnualEntity.class);
                 entity = rd.getData();
-                title.setText(entity.getNewsName());
-                come.setText("来源："+entity.getNewsFrom());
-                time.setText(entity.getNewsTime());
-                content.setText(entity.getContent());
+                if(!TextUtils.isEmpty(entity.getNewsName()))
+                    title.setText(entity.getNewsName());
+                if(!TextUtils.isEmpty(entity.getNewsFrom()))
+                    come.setText("来源："+entity.getNewsFrom());
+                if(!TextUtils.isEmpty(entity.getNewsTime()))
+                    time.setText(entity.getNewsTime());
+                if(!TextUtils.isEmpty(entity.getContent()))
+                    content.setText(entity.getContent());
             }
 
             @Override

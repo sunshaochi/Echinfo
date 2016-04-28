@@ -22,7 +22,7 @@
             android:background="@drawable/white"
             android:drawableLeft="@mipmap/zyserch"
             android:drawablePadding="10dp"
-            android:hint="请输入公司名和注册名"
+            android:hint="请输入企业名称或涉诉人名称"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:singleLine="true"

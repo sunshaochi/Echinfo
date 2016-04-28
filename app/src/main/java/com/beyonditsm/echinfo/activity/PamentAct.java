@@ -1,9 +1,11 @@
 package com.beyonditsm.echinfo.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.beyonditsm.echinfo.R;
@@ -64,7 +66,7 @@ public class PamentAct extends BaseActivity {
         plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
         plv.getRefreshableView().setDivider(null);
 
-        findSonEnterpriseInterMsg(companyId,page,rows);
+        findSonEnterpriseInterMsg(companyId, page, rows);
         plv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
@@ -77,6 +79,14 @@ public class PamentAct extends BaseActivity {
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 page++;
                 findSonEnterpriseInterMsg(companyId, page, rows);
+            }
+        });
+        plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(PamentAct.this,CompanyxqAct.class);
+                intent.putExtra(CompanyxqAct.ID, datas.get(position).getCompanyId());
+                startActivity(intent);
             }
         });
     }

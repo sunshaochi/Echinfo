@@ -67,109 +67,121 @@ public class CompanyAdapter extends BaseAdapter {
 
         switch (position){
             case 0:
-                if("0".equals(entity.getGongshangStatus())){
+                if("1".equals(entity.getGongshangStatus())){
                     convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
+                    viewHolder.ivQy.setImageResource(R.mipmap.gongshangw);
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
                 }
                 break;
             case 1:
-                if("0".equals(entity.getTupuStatus())){
+                if("1".equals(entity.getTupuStatus())){
                     convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
+                    viewHolder.ivQy.setImageResource(R.mipmap.qytpw);
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
                 }
                 break;
             case 2:
-                if("0".equals(entity.getHangyeStatus())){
+                if("1".equals(entity.getHangyeStatus())){
                     convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
+                    viewHolder.ivQy.setImageResource(R.mipmap.hyfxw);
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
                 }
                 break;
             case 3:
-                if ("0".equals(entity.getCourtitemStatus())){
+                if ("1".equals(entity.getCourtitemStatus())){
                     convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
+                    viewHolder.ivQy.setImageResource(R.mipmap.sxxxw);
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
                 }
                 break;
             case 4:
-                if("0".equals(entity.getLawsuitmsgStatus())){
+                if("1".equals(entity.getLawsuitmsgStatus())){
                     convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
+                    viewHolder.ivQy.setImageResource(R.mipmap.susongw);
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
                 }
                 break;
             case 5:
-                if("0".equals(entity.getAbroadinvestmenttatus())){
+                if("1".equals(entity.getAbroadinvestmenttatus())){
                     convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
+                    viewHolder.ivQy.setImageResource(R.mipmap.dwtzw);
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
                 }
                 break;
             case 6:
-                if("0".equals(entity.getStockmsgStatus())){
+                if("1".equals(entity.getStockmsgStatus())){
                     convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
+                    viewHolder.ivQy.setImageResource(R.mipmap.gdxxw);
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
                 }
                 break;
             case 7:
-                if("0".equals(entity.getEnenewterprissStatus())){
+                if("1".equals(entity.getEnenewterprissStatus())){
                     convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
+                    viewHolder.ivQy.setImageResource(R.mipmap.qyzxw);
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
                 }
                 break;
             case 8:
-                if("0".equals(entity.getAnnualportsmsgStatus())){
+                if("1".equals(entity.getAnnualportsmsgStatus())){
                     convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
+                    viewHolder.ivQy.setImageResource(R.mipmap.nbxxw);
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
                 }
                 break;
             case 9:
-                if("0".equals(entity.getSonenterpriseStatus())){
+                if("1".equals(entity.getSonenterpriseStatus())){
                     convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
+                    viewHolder.ivQy.setImageResource(R.mipmap.fzjgw);
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
                 }
                 break;
             case 10:
-                if("0".equals(entity.getMainmemberStatus())){
+                if("1".equals(entity.getMainmemberStatus())){
                     convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
+                    viewHolder.ivQy.setImageResource(R.mipmap.zycyw);
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
                 }
                 break;
             case 11:
-                if("0".equals(entity.getEditrecordStatus())){
+                if("1".equals(entity.getEditrecordStatus())){
                     convertView.setBackgroundResource(R.drawable.qygvitem_back);
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.black));
                 }else{
+                    viewHolder.ivQy.setImageResource(R.mipmap.bgjlw);
 //                    convertView.setBackgroundColor(context.getResources().getColor(R.color.gray));
                     viewHolder.tvQy.setTextColor(context.getResources().getColor(R.color.gray));
                 }

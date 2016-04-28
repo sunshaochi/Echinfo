@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
@@ -19,12 +20,14 @@ import java.util.List;
 public class OccuAdapter extends BaseAdapter{
     private Context context;
     private List<OccuaptionEntity> list;
+    private int flag;
     public OccuAdapter(Context context){
         this.context=context;
     }
-    public OccuAdapter(Context context,List<OccuaptionEntity> list){
+    public OccuAdapter(Context context,List<OccuaptionEntity> list,int flag){
         this.context=context;
         this.list=list;
+        this.flag=flag;
     }
     @Override
     public int getCount() {
@@ -45,6 +48,12 @@ public class OccuAdapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView=View.inflate(context, R.layout.lv_occu_item,null);
         TextView job= (TextView) convertView.findViewById(R.id.job);
+        ImageView iv= (ImageView) convertView.findViewById(R.id.iv);
+        if(flag==0){
+            iv.setVisibility(View.VISIBLE);
+        }else {
+            iv.setVisibility(View.GONE);
+        }
         job.setText(list.get(position).getOccupationName());
         return convertView;
     }

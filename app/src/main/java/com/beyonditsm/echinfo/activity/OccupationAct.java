@@ -47,7 +47,7 @@ public class OccupationAct extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                EventBus.getDefault().post(new OccuEvent("客户服务助理"));
                 Intent intent=new Intent(OccupationAct.this,OccupationChildAct.class);
-                intent.putExtra("id",list.get(position).getfOccupationId());
+                intent.putExtra("id",list.get(position).getId());
                 startActivity(intent);
             }
         });
@@ -67,7 +67,7 @@ public class OccupationAct extends BaseActivity {
                     JSONObject data=json.getJSONObject("data");
                     JSONArray rows = data.getJSONArray("rows");
                     list = gson.fromJson(rows.toString(), new TypeToken<List<OccuaptionEntity>>() {}.getType());
-                    lv.setAdapter(new OccuAdapter(OccupationAct.this,list));
+                    lv.setAdapter(new OccuAdapter(OccupationAct.this,list,0));
 
                 } catch (JSONException e) {
                     e.printStackTrace();

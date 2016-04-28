@@ -92,6 +92,8 @@ public interface IEchinfoUrl {
     String COURTITEMMSG_URL=BASE_URL+"courtitemMsg/findOccupationList.do";
     /*热门企业列表*/
     String HOTENTERPRISE_URL=BASE_URL+"companyInfo/hotEnterprise.do";
+    /*企业图谱*/
+    String TUPU_URL="http://139.196.50.38:8081/businessMap?hideHeader=1";
 
 
 
