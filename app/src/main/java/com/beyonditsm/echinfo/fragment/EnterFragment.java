@@ -100,7 +100,7 @@ public class EnterFragment extends BaseFragment{
                 SearchEntity se = new SearchEntity();
                 se.setType(0);
                 se.setContent(searchData);
-                se.setCountry("全国");
+                se.setCountry(address);
                 se.setTime(EchinfoUtils.getCurrentTime());
                 SearchDao.addSearch(se);
                 getActivity().sendBroadcast(new Intent(SearchHisFrg.SEARCH_HISTORY));
