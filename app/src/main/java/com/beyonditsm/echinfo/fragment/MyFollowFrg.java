@@ -13,6 +13,7 @@ import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.activity.CompanyxqAct;
 import com.beyonditsm.echinfo.adapter.FollowAdapter;
 import com.beyonditsm.echinfo.base.BaseFragment;
+import com.beyonditsm.echinfo.db.UserDao;
 import com.beyonditsm.echinfo.entity.CompanyEntity;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
@@ -51,7 +52,11 @@ public class MyFollowFrg extends BaseFragment{
 
     @Override
     public void initData(Bundle savedInstanceState) {
-        findgzPortsMsg(page, rows);
+        if(UserDao.getUser()!=null) {
+            findgzPortsMsg(page, rows);
+        }else {
+            loadView.noContent();
+        }
         loadView.setNoContentTxt("暂无结果");
         plv.setPullRefreshEnabled(true);//下拉刷新
         plv.setScrollLoadEnabled(true);//滑动加载
