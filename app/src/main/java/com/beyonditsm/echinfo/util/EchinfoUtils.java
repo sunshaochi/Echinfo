@@ -68,6 +68,16 @@ public class EchinfoUtils {
     }
 
     /**
+     * 密码验证
+     * @param pwd
+     * @return
+     */
+    public static boolean checkPwd(String pwd){
+        String reg="^[0-9A-Za-z]{6,20}$";
+        return startCheck(reg,pwd);
+    }
+
+    /**
      * 获取当前时间
      *
      * @return

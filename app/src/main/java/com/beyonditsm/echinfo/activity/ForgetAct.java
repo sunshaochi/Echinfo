@@ -14,6 +14,7 @@ import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
+import com.beyonditsm.echinfo.util.EchinfoUtils;
 import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
@@ -116,6 +117,22 @@ public class ForgetAct extends BaseActivity {
             MyToastUtils.showShortToast(getApplicationContext(), "请输入正确的手机号");
             etPhone.requestFocus();
             etPhone.setSelection(etPhone.length());
+            return false;
+        }
+        if(pwd.length()<6){
+            MyToastUtils.showShortToast(getApplicationContext(),"请输入至少6位密码");
+            etPwd.requestFocus();
+            etPwd.setSelection(pwd.length());
+            return false;
+        }
+        if(pwd.length()>20){
+            MyToastUtils.showShortToast(getApplicationContext(), "请输入不超过20位密码");
+            etPwd.requestFocus();
+            etPwd.setSelection(pwd.length());
+            return false;
+        }
+        if(!EchinfoUtils.checkPwd(pwd)){
+            MyToastUtils.showShortToast(getApplicationContext(),"请输入6-20位字母或数字");
             return false;
         }
 

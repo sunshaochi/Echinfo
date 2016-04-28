@@ -347,7 +347,8 @@ public class MainAct extends BaseActivity {
         }
         tvComName.setText(datas.get(next).getCompanyName());
         tvrensu.setText(datas.get(next).getFocus());
-        rb_hot.setRating(Float.parseFloat(datas.get(next).getLevel()));
+        if(!TextUtils.isEmpty(datas.get(next).getLevel()))
+            rb_hot.setRating(Float.parseFloat(datas.get(next).getLevel()));
         final int finalNext=next;
         noticeView.setOnClickListener(new View.OnClickListener() {
             @Override
