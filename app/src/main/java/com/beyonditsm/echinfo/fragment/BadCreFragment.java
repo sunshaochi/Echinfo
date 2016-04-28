@@ -99,9 +99,11 @@ public class BadCreFragment extends BaseFragment{
                 se.setContent(searchData);
                 se.setCountry(address);
                 se.setTime(EchinfoUtils.getCurrentTime());
-                SearchDao.addSearch(se);
+                if(!EchinfoUtils.isRepeat(se)){
+                    SearchDao.addSearch(se);
+                }
                 getActivity().sendBroadcast(new Intent(SearchHisFrg.SEARCH_HISTORY));
-               Intent intent = new Intent(getActivity(), DisinfodetailAct.class);
+                Intent intent = new Intent(getActivity(), DisinfodetailAct.class);
                 intent.putExtra("entity", badCreditEntityList.get(i));
                 getActivity().startActivity(intent);
             }

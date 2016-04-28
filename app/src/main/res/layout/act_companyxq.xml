@@ -43,18 +43,18 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:visibility="gone"
+                android:visibility="visible"
                 style="@style/ll_qyxq"
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:visibility="gone"
+                    android:visibility="visible"
                     style="@style/tv_qyxq"
                     android:text="更新：" />
 
                 <TextView
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:id="@+id/gxtime"
                     style="@style/tv_qyxq"
                     android:text="2016-03-01"
@@ -98,7 +98,7 @@
                 <TextView
                     android:paddingLeft="5dp"
                     android:gravity="center"
-                    android:id="@+id/zczj"
+                    android:id="@+id/zczjb"
                     style="@style/tv_second"
                     android:text="1000万人民币"
                     android:textColor="@color/white"
@@ -107,11 +107,11 @@
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
+                android:visibility="visible"
                 style="@style/ll_qyxq">
 
                 <TextView
-                    android:id="@+id/tvAttentionb"
+                    android:id="@+id/tvAttention"
                     style="@style/tv_third"
                     android:background="@drawable/yellow_btn"
                     android:paddingBottom="3dp"
@@ -150,10 +150,11 @@
             </LinearLayout>
 
             <LinearLayout style="@style/ll_qyxq"
+                android:visibility="gone"
                 android:layout_marginBottom="25dp">
 
                 <TextView
-                    android:id="@+id/tvAttention"
+                    android:id="@+id/tvAttentionb"
                     style="@style/tv_third"
                     android:background="@drawable/yellow_btn"
                     android:paddingBottom="3dp"
@@ -168,14 +169,14 @@
 
 
         <LinearLayout
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:background="#05A5DF"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:visibility="gone"
+                android:visibility="visible"
                 style="@style/sy_LinearLayout"
                 android:orientation="vertical">
 
@@ -212,7 +213,7 @@
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/zczjb"
+                    android:id="@+id/zczj"
                     style="@style/tv_second"
                     android:layout_marginTop="10dp"
                     android:text="1000万人民币"
@@ -228,7 +229,7 @@
                 android:background="@color/white"></View>
 
             <LinearLayout
-                android:visibility="gone"
+                android:visibility="visible"
                 style="@style/sy_LinearLayout"
                 android:orientation="vertical">
 

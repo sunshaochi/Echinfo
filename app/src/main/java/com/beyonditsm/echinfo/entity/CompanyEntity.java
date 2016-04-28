@@ -27,6 +27,12 @@ public class CompanyEntity implements Parcelable {
      * "browseCount":null,
      * "industry":null
      * "sts"
+     * "lastUpdateTime":null,
+     * "companyIntro":null,
+     * "column20":null,
+     * "legalRepPersion":"肖光富",
+     * "companyCreatTime":"1990-02-07",
+     * "registCapital":"10894.37 "
      */
     /**
      * "id":"1",
@@ -44,6 +50,11 @@ public class CompanyEntity implements Parcelable {
      * "repPersion":"李启孟",
      * "recordStatus":"存续"
      */
+    private String lastUpdateTime;
+    private String companyIntro;
+    private String column20;
+    private String companyCreatTime;
+    private String registCapital;
     private String sts;
     private String repPersion;
     private String accountId;
@@ -74,6 +85,96 @@ public class CompanyEntity implements Parcelable {
     private String industry;
     private float longitude;//经度
     private float latitude;// 纬度
+
+    protected CompanyEntity(Parcel in) {
+        lastUpdateTime = in.readString();
+        companyIntro = in.readString();
+        column20 = in.readString();
+        companyCreatTime = in.readString();
+        registCapital = in.readString();
+        sts = in.readString();
+        repPersion = in.readString();
+        accountId = in.readString();
+        editType = in.readString();
+        editTime = in.readString();
+        beforeEdit = in.readString();
+        afterEdit = in.readString();
+        companyId = in.readString();
+        legalRepPersion = in.readString();
+        recordStatus = in.readString();
+        toCompanyId = in.readString();
+        id = in.readString();
+        companyName = in.readString();
+        registNo = in.readString();
+        companyPhoneNo = in.readString();
+        postcode = in.readString();
+        address = in.readString();
+        email = in.readString();
+        stockTransfer = in.readString();
+        managementStatus = in.readString();
+        isHaveWeb = in.readString();
+        companyInverstment = in.readString();
+        employeeCount = in.readString();
+        focus = in.readString();
+        level = in.readString();
+        coords = in.readString();
+        browseCount = in.readString();
+        industry = in.readString();
+        longitude = in.readFloat();
+        latitude = in.readFloat();
+    }
+
+    public static final Creator<CompanyEntity> CREATOR = new Creator<CompanyEntity>() {
+        @Override
+        public CompanyEntity createFromParcel(Parcel in) {
+            return new CompanyEntity(in);
+        }
+
+        @Override
+        public CompanyEntity[] newArray(int size) {
+            return new CompanyEntity[size];
+        }
+    };
+
+    public String getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(String lastUpdateTime) {
+        this.lastUpdateTime = lastUpdateTime;
+    }
+
+    public String getCompanyIntro() {
+        return companyIntro;
+    }
+
+    public void setCompanyIntro(String companyIntro) {
+        this.companyIntro = companyIntro;
+    }
+
+    public String getColumn20() {
+        return column20;
+    }
+
+    public void setColumn20(String column20) {
+        this.column20 = column20;
+    }
+
+    public String getCompanyCreatTime() {
+        return companyCreatTime;
+    }
+
+    public void setCompanyCreatTime(String companyCreatTime) {
+        this.companyCreatTime = companyCreatTime;
+    }
+
+    public String getRegistCapital() {
+        return registCapital;
+    }
+
+    public void setRegistCapital(String registCapital) {
+        this.registCapital = registCapital;
+    }
 
     public float getLongitude() {
         return longitude;
@@ -325,78 +426,40 @@ public class CompanyEntity implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.sts);
-        dest.writeString(this.repPersion);
-        dest.writeString(this.accountId);
-        dest.writeString(this.editType);
-        dest.writeString(this.editTime);
-        dest.writeString(this.beforeEdit);
-        dest.writeString(this.afterEdit);
-        dest.writeString(this.companyId);
-        dest.writeString(this.legalRepPersion);
-        dest.writeString(this.recordStatus);
-        dest.writeString(this.toCompanyId);
-        dest.writeString(this.id);
-        dest.writeString(this.companyName);
-        dest.writeString(this.registNo);
-        dest.writeString(this.companyPhoneNo);
-        dest.writeString(this.postcode);
-        dest.writeString(this.address);
-        dest.writeString(this.email);
-        dest.writeString(this.stockTransfer);
-        dest.writeString(this.managementStatus);
-        dest.writeString(this.isHaveWeb);
-        dest.writeString(this.companyInverstment);
-        dest.writeString(this.employeeCount);
-        dest.writeString(this.focus);
-        dest.writeString(this.level);
-        dest.writeString(this.coords);
-        dest.writeString(this.browseCount);
-        dest.writeString(this.industry);
-        dest.writeFloat(this.longitude);
-        dest.writeFloat(this.latitude);
+        dest.writeString(lastUpdateTime);
+        dest.writeString(companyIntro);
+        dest.writeString(column20);
+        dest.writeString(companyCreatTime);
+        dest.writeString(registCapital);
+        dest.writeString(sts);
+        dest.writeString(repPersion);
+        dest.writeString(accountId);
+        dest.writeString(editType);
+        dest.writeString(editTime);
+        dest.writeString(beforeEdit);
+        dest.writeString(afterEdit);
+        dest.writeString(companyId);
+        dest.writeString(legalRepPersion);
+        dest.writeString(recordStatus);
+        dest.writeString(toCompanyId);
+        dest.writeString(id);
+        dest.writeString(companyName);
+        dest.writeString(registNo);
+        dest.writeString(companyPhoneNo);
+        dest.writeString(postcode);
+        dest.writeString(address);
+        dest.writeString(email);
+        dest.writeString(stockTransfer);
+        dest.writeString(managementStatus);
+        dest.writeString(isHaveWeb);
+        dest.writeString(companyInverstment);
+        dest.writeString(employeeCount);
+        dest.writeString(focus);
+        dest.writeString(level);
+        dest.writeString(coords);
+        dest.writeString(browseCount);
+        dest.writeString(industry);
+        dest.writeFloat(longitude);
+        dest.writeFloat(latitude);
     }
-
-    protected CompanyEntity(Parcel in) {
-        this.sts = in.readString();
-        this.repPersion = in.readString();
-        this.accountId = in.readString();
-        this.editType = in.readString();
-        this.editTime = in.readString();
-        this.beforeEdit = in.readString();
-        this.afterEdit = in.readString();
-        this.companyId = in.readString();
-        this.legalRepPersion = in.readString();
-        this.recordStatus = in.readString();
-        this.toCompanyId = in.readString();
-        this.id = in.readString();
-        this.companyName = in.readString();
-        this.registNo = in.readString();
-        this.companyPhoneNo = in.readString();
-        this.postcode = in.readString();
-        this.address = in.readString();
-        this.email = in.readString();
-        this.stockTransfer = in.readString();
-        this.managementStatus = in.readString();
-        this.isHaveWeb = in.readString();
-        this.companyInverstment = in.readString();
-        this.employeeCount = in.readString();
-        this.focus = in.readString();
-        this.level = in.readString();
-        this.coords = in.readString();
-        this.browseCount = in.readString();
-        this.industry = in.readString();
-        this.longitude = in.readFloat();
-        this.latitude = in.readFloat();
-    }
-
-    public static final Creator<CompanyEntity> CREATOR = new Creator<CompanyEntity>() {
-        public CompanyEntity createFromParcel(Parcel source) {
-            return new CompanyEntity(source);
-        }
-
-        public CompanyEntity[] newArray(int size) {
-            return new CompanyEntity[size];
-        }
-    };
 }

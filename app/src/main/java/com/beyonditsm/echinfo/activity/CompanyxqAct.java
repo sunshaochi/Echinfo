@@ -262,9 +262,9 @@ public class CompanyxqAct extends BaseActivity {
                 flag = false;
                 tvAttention.setText("关注");
                 try {
-                    JSONObject json=new JSONObject(result);
-                    JSONObject data=json.getJSONObject("data");
-                    String num=data.getString("focus");
+                    JSONObject json = new JSONObject(result);
+                    JSONObject data = json.getJSONObject("data");
+                    String num = data.getString("focus");
                     guanzhunum.setText(num);
                     sendBroadcast(new Intent(MainAct.MAIN_RECEIVER));
                     sendBroadcast(new Intent(ReqyAct.MAIN_RECEIVER_HOT));
@@ -324,11 +324,16 @@ public class CompanyxqAct extends BaseActivity {
                     setTopTitle(entity.getCompanyName().substring(0,11)+"...");
                 }
             }
-//                gxtime.setText();
+            if(!TextUtils.isEmpty(entity.getLastUpdateTime())){
+                gxtime.setText(entity.getLastUpdateTime());
+            }else {
+                gxtime.setText("      ");
+            }
             if(!TextUtils.isEmpty(entity.getManagementStatus())) {
                 xc.setText(entity.getManagementStatus());
             }else {
                 xc.setText("");
+                xc.setVisibility(View.GONE);
             }
             if(!TextUtils.isEmpty(entity.getBrowseCount())) {
                 looknum.setText(entity.getBrowseCount());
@@ -340,13 +345,21 @@ public class CompanyxqAct extends BaseActivity {
             }else {
                 guanzhunum.setText("0");
             }
-//                dbname.setText();
-//            if(!TextUtils.isEmpty(entity.getCompanyInverstment())) {
-//                zczj.setText(entity.getCompanyInverstment()+"万人民币");
-//            }else {
-//                zczj.setText("0万人民币");
-//            }
-//                cltime.setText(entity.get);
+            if(!TextUtils.isEmpty(entity.getLegalRepPersion())){
+                dbname.setText(entity.getLegalRepPersion());
+            }else {
+                dbname.setText("");
+            }
+            if(!TextUtils.isEmpty(entity.getRegistCapital())) {
+                zczj.setText(entity.getRegistCapital()+"万人民币");
+            }else {
+                zczj.setText("0万人民币");
+            }
+            if(!TextUtils.isEmpty(entity.getCompanyCreatTime())){
+                cltime.setText(entity.getCompanyCreatTime());
+            }else {
+                cltime.setText(entity.getCompanyCreatTime());
+            }
             if(!TextUtils.isEmpty(entity.getAddress())) {
                 location.setText(entity.getAddress());
             }else {

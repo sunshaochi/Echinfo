@@ -112,8 +112,8 @@ public class BusinessinfoAct extends BaseActivity{
             }else {
                 datecl.setText("");
             }
-            if(!TextUtils.isEmpty(entity.getCompanyCreatTime())) {
-                datefz.setText("");//发照日期
+            if(!TextUtils.isEmpty(entity.getIssuingCardTime())) {
+                datefz.setText(entity.getIssuingCardTime());//发照日期
             }else {
                 datefz.setText("");
             }
@@ -122,8 +122,8 @@ public class BusinessinfoAct extends BaseActivity{
             }else {
                 busireg.setText("");
             }
-            if(!TextUtils.isEmpty(entity.getCreditNo())) {
-                orgId.setText(entity.getCreditNo());//组织机构代码
+            if(!TextUtils.isEmpty(entity.getOrgCode())) {
+                orgId.setText(entity.getOrgCode());//组织机构代码
             }else {
                 orgId.setText("");
             }

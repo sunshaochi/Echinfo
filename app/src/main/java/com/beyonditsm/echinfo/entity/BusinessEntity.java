@@ -21,7 +21,16 @@ public class BusinessEntity {
      * "recordDept":null,
      * "businessDeadline":null,
      * "manageScope":null
+     *
+     * "orgCode":null,
+     * "blurb":null,
+     * "issuingCardTime":null,
+     * "dateOfApproval":null
      */
+    private String orgCode;
+    private String blurb;
+    private String issuingCardTime;
+    private String dateOfApproval;
     private String id;
     private String companyId;
     private String creditNo;
@@ -37,6 +46,38 @@ public class BusinessEntity {
     private String recordDept;
     private String businessDeadline;
     private String manageScope;
+
+    public String getOrgCode() {
+        return orgCode;
+    }
+
+    public void setOrgCode(String orgCode) {
+        this.orgCode = orgCode;
+    }
+
+    public String getBlurb() {
+        return blurb;
+    }
+
+    public void setBlurb(String blurb) {
+        this.blurb = blurb;
+    }
+
+    public String getIssuingCardTime() {
+        return issuingCardTime;
+    }
+
+    public void setIssuingCardTime(String issuingCardTime) {
+        this.issuingCardTime = issuingCardTime;
+    }
+
+    public String getDateOfApproval() {
+        return dateOfApproval;
+    }
+
+    public void setDateOfApproval(String dateOfApproval) {
+        this.dateOfApproval = dateOfApproval;
+    }
 
     public String getId() {
         return id;

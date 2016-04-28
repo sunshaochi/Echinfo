@@ -23,6 +23,9 @@ import android.view.Surface;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.beyonditsm.echinfo.db.SearchDao;
+import com.beyonditsm.echinfo.entity.SearchEntity;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Field;
@@ -47,6 +50,19 @@ public class EchinfoUtils {
 
     public static final String TAG = "NaviSDkDemo";
     public static double pi = 3.1415926535897932384626;
+
+    //判断本地是否有过搜索字段
+    public static boolean isRepeat(SearchEntity entity){
+        List<SearchEntity> searchList = SearchDao.getSearchList();
+        for (int i=0;i<searchList.size();i++){
+            if((searchList.get(i).getContent().equals(entity.getContent()))
+                    &&(searchList.get(i).getCountry().equals(entity.getCountry()))
+                    &&(searchList.get(i).getType()==entity.getType())){
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      * 手机号码验证,11位，不知道详细的手机号码段，只是验证开头必须是1和位数

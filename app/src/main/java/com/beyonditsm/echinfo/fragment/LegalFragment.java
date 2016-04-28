@@ -100,7 +100,9 @@ public class LegalFragment extends BaseFragment{
                 se.setContent(searchData);
                 se.setCountry(address);
                 se.setTime(EchinfoUtils.getCurrentTime());
-                SearchDao.addSearch(se);
+                if(!EchinfoUtils.isRepeat(se)){
+                    SearchDao.addSearch(se);
+                }
                 getActivity().sendBroadcast(new Intent(SearchHisFrg.SEARCH_HISTORY));
                 intent.putExtra(CompanyxqAct.ID, stockMsgList.get(i).getId());
                 getActivity().startActivity(intent);
