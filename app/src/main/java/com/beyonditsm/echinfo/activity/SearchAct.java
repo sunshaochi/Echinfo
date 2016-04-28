@@ -18,8 +18,10 @@ import com.beyonditsm.echinfo.adapter.CountryAdapter;
 import com.beyonditsm.echinfo.adapter.SVpsAdapter;
 import com.beyonditsm.echinfo.adapter.SearchVpAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.fragment.BadCreFragment;
+import com.beyonditsm.echinfo.fragment.EnterFragment;
+import com.beyonditsm.echinfo.fragment.LegalFragment;
 import com.beyonditsm.echinfo.fragment.MyFollowFrg;
-import com.beyonditsm.echinfo.fragment.SearchFragment;
 import com.beyonditsm.echinfo.fragment.SearchHisFrg;
 import com.beyonditsm.echinfo.view.ClearEditText;
 import com.beyonditsm.echinfo.view.PagerSlidingTabStrip;
@@ -62,6 +64,16 @@ public class SearchAct extends BaseActivity {
 
     private List<Fragment>  frgList=new ArrayList<>();
 
+    private EnterFragment searchFragment1=new EnterFragment();
+    private LegalFragment searchFragment2=new LegalFragment();
+    private BadCreFragment searchFragment3=new BadCreFragment();
+    List<Fragment> fragments=new ArrayList<>() ;
+
+
+    boolean[] fragmentsUpdateFlag = { false, false, false };
+    public static String searchContent,searchAddress;
+    private int currentPosition;
+
     private boolean isShowCountry;
 
     private SearchVpAdapter adapter;
@@ -74,6 +86,9 @@ public class SearchAct extends BaseActivity {
     public void init(Bundle savedInstanceState) {
         SEARCH_TYPE=getIntent().getIntExtra("search_type",0);
 
+        fragments.add(searchFragment1);
+        fragments.add(searchFragment2);
+        fragments.add(searchFragment3);
         ceSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -93,20 +108,41 @@ public class SearchAct extends BaseActivity {
                 }else if(s.length()>=2){
                     llNoHis.setVisibility(View.GONE);
                     llS.setVisibility(View.VISIBLE);
-                    Intent intent=new Intent(SearchFragment.SEARCH_RECEIVER);
-                    intent.putExtra("search",s.toString());
-                    intent.putExtra("address",tvCountry.getText().toString().trim());
-                    sendBroadcast(intent);
+
+                    searchContent=s.toString();
+                    searchAddress=tvCountry.getText().toString().trim();
+
+                    sendBroadCast(currentPosition);
+//                    Intent intent=new Intent(SearchFragment.SEARCH_RECEIVER);
+//                    intent.putExtra("search",s.toString());
+//                    intent.putExtra("address",tvCountry.getText().toString().trim());
+//                    sendBroadcast(intent);
                 }
 
             }
         });
         //企业、法人、失信
-       // vp.setAdapter(new SearchVpAdapter(getSupportFragmentManager()));
-        adapter=new SearchVpAdapter(getSupportFragmentManager());
+        adapter=new SearchVpAdapter(getSupportFragmentManager(),fragments);
         vp.setAdapter(adapter);
         vp.setCurrentItem(SEARCH_TYPE);
         tabS.setViewPager(vp);
+        tabS.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                currentPosition=position;
+                sendBroadCast(currentPosition);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
 
 
         //选择城市
@@ -117,10 +153,13 @@ public class SearchAct extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 lvCountry.setVisibility(View.GONE);
                 tvCountry.setText(countryAdapter.getItem(position).toString());
-                Intent intent=new Intent(SearchFragment.SEARCH_RECEIVER);
-                intent.putExtra("search", ceSearch.getText().toString());
-                intent.putExtra("address", tvCountry.getText().toString().trim());
-                sendBroadcast(intent);
+
+                searchAddress=tvCountry.getText().toString().trim();
+                sendBroadCast(currentPosition);
+//                Intent intent=new Intent(SearchFragment.SEARCH_RECEIVER);
+//                intent.putExtra("search", ceSearch.getText().toString());
+//                intent.putExtra("address", tvCountry.getText().toString().trim());
+//                sendBroadcast(intent);
             }
         });
 
@@ -153,6 +192,30 @@ public class SearchAct extends BaseActivity {
         }
     }
 
+    private void sendBroadCast(int position){
+        Intent intent;
+         switch (position){
+             case 0:
+                 intent=new Intent(EnterFragment.Enter_RECEIVER);
+                 intent.putExtra("search",searchContent);
+                 intent.putExtra("address",searchAddress);
+                 sendBroadcast(intent);
+                 break;
+             case 1:
+                 intent=new Intent(LegalFragment.LEGAL_RECEIVER);
+                 intent.putExtra("search",searchContent);
+                 intent.putExtra("address",searchAddress);
+                 sendBroadcast(intent);
+                 break;
+             case 2:
+                 intent=new Intent(BadCreFragment.BADCRE_RECEIVER);
+                 intent.putExtra("search",searchContent);
+                 intent.putExtra("address",searchAddress);
+                 sendBroadcast(intent);
+                 break;
+         }
+    }
+
 
     /**
      * 获取che
@@ -172,5 +235,95 @@ public class SearchAct extends BaseActivity {
         SEARCH_TYPE=type;
         vp.setCurrentItem(SEARCH_TYPE);
     }
+
+
+//    Handler mainHandler = new Handler() {
+//
+//        /*
+//         * （非 Javadoc）
+//         *
+//         * @see android.os.Handler#handleMessage(android.os.Message)
+//         */
+//        @Override
+//        public void handleMessage(Message msg) {
+//            // TODO 自动生成的方法存根
+//            super.handleMessage(msg);
+//            switch (msg.what){
+//                case 0:
+//                    fragments[msg.what]=searchFragment1;
+//                    break;
+//                case 1:
+//                    fragments[msg.what]=searchFragment2;
+//                    break;
+//                case 2:
+//                    fragments[msg.what]=searchFragment3;
+//                    break;
+//            }
+////            fragments[msg.what]=saveFragments[msg.what];
+//            fragmentsUpdateFlag[msg.what]=true;
+//            adapter.notifyDataSetChanged();
+//        }
+//    };
+
+
+//    class SearchVpAdapter extends FragmentPagerAdapter{
+//        FragmentManager fm;
+//        private final String titles[]={"企业","法人/股东","失信"};
+//        SearchVpAdapter(FragmentManager fm) {
+//            super(fm);
+//            this.fm = fm;
+//        }
+//
+//        @Override
+//        public int getCount() {
+//            return fragments.length;
+//        }
+//
+//        @Override
+//        public Fragment getItem(int position) {
+//            Fragment fragment = fragments[position % fragments.length];
+////            Log.i(Common.TAG, "getItem:position=" + position + ",fragment:"
+////                    + fragment.getClass().getName() + ",fragment.tag="
+////                    + fragment.getTag());
+//            return fragment;
+//        }
+//
+//        @Override
+//        public int getItemPosition(Object object) {
+//            return POSITION_NONE;
+//        }
+//        @Override
+//        public CharSequence getPageTitle(int position) {
+//            return titles[position];
+//        }
+//
+//        @Override
+//        public Object instantiateItem(ViewGroup container, int position) {
+//            //得到缓存的fragment
+//            Fragment fragment = (Fragment) super.instantiateItem(container,
+//                    position);
+//            //得到tag，这点很重要
+//            String fragmentTag = fragment.getTag();
+//
+//            if (fragmentsUpdateFlag[position % fragmentsUpdateFlag.length]) {
+//                //如果这个fragment需要更新
+//
+//                FragmentTransaction ft = fm.beginTransaction();
+//                //移除旧的fragment
+//                ft.remove(fragment);
+//                //换成新的fragment
+//                fragment = fragments[position % fragments.length];
+//                //添加新fragment时必须用前面获得的tag，这点很重要
+//                ft.add(container.getId(), fragment, fragmentTag);
+//                ft.attach(fragment);
+//                ft.commit();
+//
+//                //复位更新标志
+//                fragmentsUpdateFlag[position % fragmentsUpdateFlag.length] = false;
+//            }
+//
+//            return fragment;
+//        }
+//    }
 
 }

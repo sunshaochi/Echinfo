@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,6 +16,7 @@ import android.widget.ListView;
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.activity.CompanyxqAct;
 import com.beyonditsm.echinfo.activity.DisinfodetailAct;
+import com.beyonditsm.echinfo.activity.SearchAct;
 import com.beyonditsm.echinfo.adapter.BadCAdaper;
 import com.beyonditsm.echinfo.adapter.EnterPAdapter;
 import com.beyonditsm.echinfo.adapter.LegalAdapter;
@@ -56,16 +58,14 @@ public class SearchFragment extends BaseFragment {
     private int position;//0企业，1法人/股东 2、失信
 
     private EnterPAdapter enterPAdapter;//搜索公司适配器
+    private LegalAdapter legalAdapter;//企业法人股东
+    private BadCAdaper badCAdaper;//失信
 
     private String searchData;
     private String address;
     @ViewInject(R.id.loadingView)
     private LoadingView loadView;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     public View initView(LayoutInflater inflater) {
@@ -76,11 +76,11 @@ public class SearchFragment extends BaseFragment {
     public void initData(Bundle savedInstanceState) {
         position = getArguments().getInt("position", 0);
         loadView.setNoContentTxt("暂无结果");
-        if (enterPAdapter == null) {
-            enterPAdapter = new EnterPAdapter(getContext());
-            plv.getRefreshableView().setAdapter(enterPAdapter);
-        }
-        plv.setPullRefreshEnabled(true);//下拉刷新
+//        if (enterPAdapter == null) {
+//            enterPAdapter = new EnterPAdapter(getContext());
+//            plv.getRefreshableView().setAdapter(enterPAdapter);
+//        }
+        plv.setPullRefreshEnabled(false);//下拉刷新
         plv.setScrollLoadEnabled(true);//滑动加载
         plv.setPullLoadEnabled(false);//上拉刷新
         plv.setHasMoreData(true);//是否有更多数据
@@ -93,14 +93,12 @@ public class SearchFragment extends BaseFragment {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 currentPage = 1;
-                loadView.loading();
                 searchData(searchData, address, currentPage);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 currentPage++;
-                loadView.loading();
                 searchData(searchData, address, currentPage);
             }
         });
@@ -140,17 +138,12 @@ public class SearchFragment extends BaseFragment {
                 getActivity().startActivity(intent);
             }
         });
-        switch (position) {
-            case 0:
-//                searchCompany("阿里",currentPage);
-                break;
-            case 1:
-//                plv.getRefreshableView().setAdapter(new LegalAdapter(getContext()));
-                break;
-            case 2:
-//                plv.getRefreshableView().setAdapter(new BadCAdaper(getContext()));
-                break;
+
+        if(!TextUtils.isEmpty(SearchAct.searchContent)&&!TextUtils.isEmpty(SearchAct.searchAddress)){
+            currentPage=1;
+            searchData(SearchAct.searchContent,SearchAct.searchAddress,currentPage);
         }
+
     }
 
     private List<CompanyEntity> comList = new ArrayList<>();
@@ -177,12 +170,12 @@ public class SearchFragment extends BaseFragment {
                         comList.clear();
                     }
                     comList.addAll(datas);
-//                    if (enterPAdapter == null) {
-//                        enterPAdapter = new EnterPAdapter(getContext(), comList);
-//                        plv.getRefreshableView().setAdapter(enterPAdapter);
-//                    } else {
+                    if (enterPAdapter == null) {
+                        enterPAdapter = new EnterPAdapter(getContext(), comList);
+                        plv.getRefreshableView().setAdapter(enterPAdapter);
+                    } else {
                     enterPAdapter.notifyDataChange(comList);
-//                    }
+                    }
                     if (datas.size() == 0) {
                         if(currentP==1) {
                             loadView.noContent();
@@ -214,7 +207,7 @@ public class SearchFragment extends BaseFragment {
      */
     private void findStockMsgByCompanyName(String name,String address){
         MyLogUtils.degug("name:" + name);
-        RequestManager.getCommManager().findStockMsgByCompanyName(name,address, new CallBack() {
+        RequestManager.getCommManager().findStockMsgByCompanyName(name, address, new CallBack() {
             @Override
             public void onSucess(String result) {
                 loadView.loadComplete();
@@ -229,7 +222,12 @@ public class SearchFragment extends BaseFragment {
                         stockMsgList = gson.fromJson(rows.toString(),
                                 new TypeToken<List<StockMsg>>() {
                                 }.getType());
-                        plv.getRefreshableView().setAdapter(new LegalAdapter(getActivity(), stockMsgList));
+                        if (legalAdapter == null) {
+                            legalAdapter = new LegalAdapter(getContext(), stockMsgList);
+                            plv.getRefreshableView().setAdapter(legalAdapter);
+                        } else {
+                            legalAdapter.notifyDataChanged(stockMsgList);
+                        }
 
                     } else {
                         loadView.noContent();
@@ -271,7 +269,12 @@ public class SearchFragment extends BaseFragment {
                         badCreditEntityList = gson.fromJson(rows.toString(),
                                 new TypeToken<List<BadCreditEntity>>() {
                                 }.getType());
-                        plv.getRefreshableView().setAdapter(new BadCAdaper(getActivity(),badCreditEntityList));
+                        if(badCAdaper==null){
+                            badCAdaper=new BadCAdaper(getContext(),badCreditEntityList);
+                            plv.getRefreshableView().setAdapter(badCAdaper);
+                        }else{
+                            badCAdaper.notifyDataChanged(badCreditEntityList);
+                        }
 
                     }else {
                         loadView.noContent();
@@ -311,7 +314,7 @@ public class SearchFragment extends BaseFragment {
 
     public void sendRequest(String search,String address){
         currentPage = 1;
-        searchData(search,address, currentPage);
+        searchData(search, address, currentPage);
     }
     private MyBroadCastReceiver receiver;
     public final static String SEARCH_RECEIVER = "com.search.receiver";

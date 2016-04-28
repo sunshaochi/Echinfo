@@ -1,6 +1,9 @@
 package com.beyonditsm.echinfo.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +18,6 @@ import com.beyonditsm.echinfo.activity.SearchAct;
 import com.beyonditsm.echinfo.base.BaseFragment;
 import com.beyonditsm.echinfo.db.SearchDao;
 import com.beyonditsm.echinfo.entity.SearchEntity;
-import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.leaf.library.widget.MyListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -78,6 +80,38 @@ public class SearchHisFrg extends BaseFragment {
             plv.setAdapter(adapter);
         }else{
             adapter.notifyDataChange(listData);
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (receiver == null) {
+            receiver = new MyBroadCastReceiver();
+            getActivity().registerReceiver(receiver, new IntentFilter(SEARCH_HISTORY));
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (receiver != null) {
+            getActivity().unregisterReceiver(receiver);
+            receiver = null;
+        }
+    }
+
+    private MyBroadCastReceiver receiver;
+    public final static String SEARCH_HISTORY = "com.searchhistory.receiver";
+
+    /**
+     * 接收参数
+     */
+    class MyBroadCastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            setData();
+
         }
     }
 
