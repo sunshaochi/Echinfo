@@ -138,14 +138,14 @@ public class EnterFragment extends BaseFragment{
                         comList.clear();
                     }
                     comList.addAll(datas);
-//                    if (enterPAdapter == null) {
-//                        enterPAdapter = new EnterPAdapter(getContext(), comList);
-//                        plv.getRefreshableView().setAdapter(enterPAdapter);
-//                    } else {
-//                        enterPAdapter.notifyDataChange(comList);
-//                    }
-                    enterPAdapter = new EnterPAdapter(getContext(), comList);
-                    plv.getRefreshableView().setAdapter(enterPAdapter);
+                    if (enterPAdapter == null) {
+                        enterPAdapter = new EnterPAdapter(getContext(), comList);
+                        plv.getRefreshableView().setAdapter(enterPAdapter);
+                    } else {
+                        enterPAdapter.notifyDataChange(comList);
+                    }
+//                    enterPAdapter = new EnterPAdapter(getContext(), comList);
+//                    plv.getRefreshableView().setAdapter(enterPAdapter);
                     if (datas.size() == 0) {
                         if(currentP==1) {
                             loadView.noContent();
