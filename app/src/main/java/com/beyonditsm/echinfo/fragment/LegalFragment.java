@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -193,6 +194,7 @@ public class LegalFragment extends BaseFragment{
             searchData = intent.getStringExtra("search");
             address=intent.getStringExtra("address");
             currentPage = 1;
+            if(!TextUtils.isEmpty(searchData)&&!TextUtils.isEmpty(address))
             findStockMsgByCompanyName(searchData, address);
 
         }

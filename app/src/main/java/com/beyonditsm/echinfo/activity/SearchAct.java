@@ -85,7 +85,7 @@ public class SearchAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         SEARCH_TYPE=getIntent().getIntExtra("search_type",0);
-
+        currentPosition=SEARCH_TYPE;
         fragments.add(searchFragment1);
         fragments.add(searchFragment2);
         fragments.add(searchFragment3);
@@ -124,8 +124,9 @@ public class SearchAct extends BaseActivity {
         //企业、法人、失信
         adapter=new SearchVpAdapter(getSupportFragmentManager(),fragments);
         vp.setAdapter(adapter);
-        vp.setCurrentItem(SEARCH_TYPE);
+        vp.setOffscreenPageLimit(3);
         tabS.setViewPager(vp);
+        vp.setCurrentItem(SEARCH_TYPE);
         tabS.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
@@ -190,6 +191,13 @@ public class SearchAct extends BaseActivity {
 
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        searchContent=null;
+        searchAddress=null;
     }
 
     private void sendBroadCast(int position){

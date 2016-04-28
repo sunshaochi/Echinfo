@@ -15,7 +15,6 @@ import android.widget.ListView;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.activity.CompanyxqAct;
-import com.beyonditsm.echinfo.activity.SearchAct;
 import com.beyonditsm.echinfo.adapter.EnterPAdapter;
 import com.beyonditsm.echinfo.base.BaseFragment;
 import com.beyonditsm.echinfo.db.SearchDao;
@@ -109,12 +108,12 @@ public class EnterFragment extends BaseFragment{
             }
         });
 
-        if(!TextUtils.isEmpty(SearchAct.searchContent)&&!TextUtils.isEmpty(SearchAct.searchAddress)){
-            currentPage=1;
-            searchData=SearchAct.searchContent;
-            address=SearchAct.searchAddress;
-            searchCompany(SearchAct.searchContent, SearchAct.searchAddress, currentPage);
-        }
+//        if(!TextUtils.isEmpty(SearchAct.searchContent)&&!TextUtils.isEmpty(SearchAct.searchAddress)){
+//            currentPage=1;
+//            searchData=SearchAct.searchContent;
+//            address=SearchAct.searchAddress;
+//            searchCompany(SearchAct.searchContent, SearchAct.searchAddress, currentPage);
+//        }
     }
 
     /**
@@ -201,6 +200,7 @@ public class EnterFragment extends BaseFragment{
             searchData = intent.getStringExtra("search");
             address=intent.getStringExtra("address");
             currentPage = 1;
+            if(!TextUtils.isEmpty(searchData)&&!TextUtils.isEmpty(address))
             searchCompany(searchData, address, currentPage);
 
         }
