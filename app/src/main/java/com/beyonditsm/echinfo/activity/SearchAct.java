@@ -82,6 +82,11 @@ public class SearchAct extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
                 if(TextUtils.isEmpty(s.toString())){
                     llNoHis.setVisibility(View.VISIBLE);
                     llS.setVisibility(View.INVISIBLE);
@@ -93,11 +98,6 @@ public class SearchAct extends BaseActivity {
                     intent.putExtra("address",tvCountry.getText().toString().trim());
                     sendBroadcast(intent);
                 }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
 
             }
         });
