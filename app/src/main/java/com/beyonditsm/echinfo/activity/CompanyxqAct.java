@@ -32,6 +32,9 @@ import com.beyonditsm.echinfo.widget.ShareDialog;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by bitch-1 on 2016/4/6.
  * 企业详情界面
@@ -225,11 +228,20 @@ public class CompanyxqAct extends BaseActivity {
             public void onSucess(String result) {
                 tvAttention.setText("已关注");
                 flag = true;
-                sendBroadcast(new Intent(MainAct.MAIN_RECEIVER));
-                sendBroadcast(new Intent(ReqyAct.MAIN_RECEIVER_HOT));
-                sendBroadcast(new Intent(MyFollowAct.MAIN_RECEIVER_FOLLOW));
-                findEnterpriseInfoMsgById(iId);
-                MyToastUtils.showShortToast(CompanyxqAct.this, "关注企业成功");
+                //"status":200,"data":{"focus":0},"message":"成功！"
+                try {
+                    JSONObject json=new JSONObject(result);
+                    JSONObject data=json.getJSONObject("data");
+                    String num=data.getString("focus");
+                    guanzhunum.setText(num);
+                    sendBroadcast(new Intent(MainAct.MAIN_RECEIVER));
+                    sendBroadcast(new Intent(ReqyAct.MAIN_RECEIVER_HOT));
+                    sendBroadcast(new Intent(MyFollowAct.MAIN_RECEIVER_FOLLOW));
+                    MyToastUtils.showShortToast(CompanyxqAct.this, "关注企业成功");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
 
             @Override
@@ -249,11 +261,18 @@ public class CompanyxqAct extends BaseActivity {
             public void onSucess(String result) {
                 flag = false;
                 tvAttention.setText("关注");
-                sendBroadcast(new Intent(MainAct.MAIN_RECEIVER));
-                sendBroadcast(new Intent(ReqyAct.MAIN_RECEIVER_HOT));
-                sendBroadcast(new Intent(MyFollowAct.MAIN_RECEIVER_FOLLOW));
-                findEnterpriseInfoMsgById(iId);
-                MyToastUtils.showShortToast(CompanyxqAct.this, "取消关注成功");
+                try {
+                    JSONObject json=new JSONObject(result);
+                    JSONObject data=json.getJSONObject("data");
+                    String num=data.getString("focus");
+                    guanzhunum.setText(num);
+                    sendBroadcast(new Intent(MainAct.MAIN_RECEIVER));
+                    sendBroadcast(new Intent(ReqyAct.MAIN_RECEIVER_HOT));
+                    sendBroadcast(new Intent(MyFollowAct.MAIN_RECEIVER_FOLLOW));
+                    MyToastUtils.showShortToast(CompanyxqAct.this, "取消关注成功");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override

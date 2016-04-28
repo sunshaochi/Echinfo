@@ -340,15 +340,19 @@ public class MainAct extends BaseActivity {
 
 
 
-        if ((curr < next) && (next > (datas.size() - 1))) {
+        if ((curr < next) && (next > ((datas.size()>5?5:datas.size()) - 1))) {
             next = 0;
         } else if ((curr > next) && (next < 0)) {
-            next = datas.size() - 1;
+            next = (datas.size()>5?5:datas.size()) - 1;
         }
         tvComName.setText(datas.get(next).getCompanyName());
-        tvrensu.setText(datas.get(next).getFocus());
+        if(!TextUtils.isEmpty(datas.get(next).getFocus())) {
+            tvrensu.setText(datas.get(next).getFocus());
+        } else {
+            tvrensu.setText("0");
+        }
         if(!TextUtils.isEmpty(datas.get(next).getLevel()))
-        rb_hot.setRating(Float.parseFloat(datas.get(next).getLevel()));
+            rb_hot.setRating(Float.parseFloat(datas.get(next).getLevel()));
         final int finalNext=next;
         noticeView.setOnClickListener(new View.OnClickListener() {
             @Override

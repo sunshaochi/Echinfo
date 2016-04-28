@@ -140,44 +140,62 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
 
         TextView no= (TextView) view.findViewById(R.id.no);
         ImageView image=(ImageView) view.findViewById(R.id.image);
-//        switch (groupPosition){
-//            case 0:
-//                no.setVisibility(View.GONE);
-//                image.setVisibility(View.VISIBLE);
-//                break;
-//            case 1:
-//                view.setClickable(false);
-//                no.setVisibility(View.VISIBLE);
-//                image.setVisibility(View.GONE);
-//                break;
-//            case 2:
-//                no.setVisibility(View.GONE);
-//                image.setVisibility(View.VISIBLE);
-//                break;
-//            case 3:
-//                no.setVisibility(View.GONE);
-//                image.setVisibility(View.VISIBLE);
-//                break;
-//            case 4:
-//                view.setClickable(false);
-//                no.setVisibility(View.VISIBLE);
-//                image.setVisibility(View.GONE);
-//                break;
-//            case 5:
-//                view.setClickable(false);
-//                no.setVisibility(View.VISIBLE);
-//                image.setVisibility(View.GONE);
-//                break;
-//            case 6:
-//                view.setClickable(false);
-//                no.setVisibility(View.VISIBLE);
-//                image.setVisibility(View.GONE);
-//                break;
-//            case 7:
-//                no.setVisibility(View.GONE);
-//                image.setVisibility(View.VISIBLE);
-//                break;
-//        }
+        switch (groupPosition){
+            case 0:
+                no.setVisibility(View.GONE);
+                image.setVisibility(View.VISIBLE);
+                break;
+            case 1:
+                isExpanded=false;
+                no.setVisibility(View.VISIBLE);
+                image.setVisibility(View.GONE);
+                break;
+            case 2:
+                if(list!=null&&list.size()>0) {
+                    no.setVisibility(View.GONE);
+                    image.setVisibility(View.VISIBLE);
+                }else {
+                    isExpanded=false;
+                    no.setVisibility(View.VISIBLE);
+                    image.setVisibility(View.GONE);
+                }
+                break;
+            case 3:
+                if(listInvestment!=null&&listInvestment.size()>0) {
+                    no.setVisibility(View.GONE);
+                    image.setVisibility(View.VISIBLE);
+                }else {
+                    isExpanded=false;
+                    no.setVisibility(View.VISIBLE);
+                    image.setVisibility(View.GONE);
+                }
+                break;
+            case 4:
+                isExpanded=false;
+                no.setVisibility(View.VISIBLE);
+                image.setVisibility(View.GONE);
+                break;
+            case 5:
+                isExpanded=false;
+                no.setVisibility(View.VISIBLE);
+                image.setVisibility(View.GONE);
+                break;
+            case 6:
+                isExpanded=false;
+                no.setVisibility(View.VISIBLE);
+                image.setVisibility(View.GONE);
+                break;
+            case 7:
+                if(listChange!=null&&listChange.size()>0) {
+                    no.setVisibility(View.GONE);
+                    image.setVisibility(View.VISIBLE);
+                }else {
+                    isExpanded=false;
+                    no.setVisibility(View.VISIBLE);
+                    image.setVisibility(View.GONE);
+                }
+                break;
+        }
         //判断实例可以展开，如果可以则改变右侧的图标
         if(isExpanded) {
             view.setBackgroundColor(Color.WHITE);
@@ -215,6 +233,7 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
             case 1://网站或网店信息
                 view = inflater.inflate(R.layout.listview_item, null);
                 lv1= (MyListView) view.findViewById(R.id.lv);
+                lv1.setVisibility(View.GONE);
                 lv1.setAdapter(new AdetailtwoAdapter(context));
                 break;
             case 2://股东信息
@@ -288,15 +307,18 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
 //                }
                 break;
             case 4://企业资产状况信息
-                view = inflater.inflate(R.layout.annual_list_four, null);
-                money= (TextView) view.findViewById(R.id.money);//资产总额
-                qyAll= (TextView) view.findViewById(R.id.qyAll);//所有者权益合计
-                moneyAll= (TextView) view.findViewById(R.id.moneyAll);//营收总收入
-                profit= (TextView) view.findViewById(R.id.profit);//利润总额
-                moneyMain= (TextView) view.findViewById(R.id.moneyMain);//营业总收入中主营业务收入
-                netProfit= (TextView) view.findViewById(R.id.netProfit);//净利润
-                paytaxes= (TextView) view.findViewById(R.id.paytaxes);//纳税总额
-                liabilities= (TextView) view.findViewById(R.id.liabilities);//负债总额
+                view=inflater.inflate(R.layout.listview_item,null);//假的
+//                view = inflater.inflate(R.layout.annual_list_four, null);//企业资产状况信息
+//                LinearLayout linearLayout= (LinearLayout) view.findViewById(R.id.linear);
+//                linearLayout.setVisibility(View.GONE);
+//                money= (TextView) view.findViewById(R.id.money);//资产总额
+//                qyAll= (TextView) view.findViewById(R.id.qyAll);//所有者权益合计
+//                moneyAll= (TextView) view.findViewById(R.id.moneyAll);//营收总收入
+//                profit= (TextView) view.findViewById(R.id.profit);//利润总额
+//                moneyMain= (TextView) view.findViewById(R.id.moneyMain);//营业总收入中主营业务收入
+//                netProfit= (TextView) view.findViewById(R.id.netProfit);//净利润
+//                paytaxes= (TextView) view.findViewById(R.id.paytaxes);//纳税总额
+//                liabilities= (TextView) view.findViewById(R.id.liabilities);//负债总额
                 break;
             case 5://对外提供保证担保信息
                 view = inflater.inflate(R.layout.listview_item, null);
@@ -336,6 +358,10 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
         return listInvestment;
     }
 
+    public CompanyEntity getEntity(){
+        return entity;
+    }
+
     private CompanyEntity entity;
     /**
      * 查询企业信息
@@ -347,7 +373,9 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
             public void onSucess(String result) {
                 ResultData<CompanyEntity> rd = (ResultData<CompanyEntity>) GsonUtils.json(result, CompanyEntity.class);
                 entity = rd.getData();
-                setBusiness(entity);
+                if(entity!=null) {
+                    setBusiness(entity);
+                }
             }
 
             @Override

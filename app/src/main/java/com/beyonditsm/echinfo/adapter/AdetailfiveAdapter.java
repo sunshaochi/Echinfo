@@ -20,7 +20,7 @@ public class AdetailfiveAdapter extends BaseAdapter {
     }
     @Override
     public int getCount() {
-        return 3;
+        return 0;
     }
 
     @Override

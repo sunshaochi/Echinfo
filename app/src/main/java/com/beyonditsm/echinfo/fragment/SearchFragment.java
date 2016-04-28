@@ -83,7 +83,7 @@ public class SearchFragment extends BaseFragment {
 //        }
         plv.setPullRefreshEnabled(false);//下拉刷新
         plv.setScrollLoadEnabled(true);//滑动加载
-        plv.setPullLoadEnabled(false);//上拉刷新
+        plv.setPullLoadEnabled(true);//上拉刷新
         plv.setHasMoreData(true);//是否有更多数据
         plv.getRefreshableView().setVerticalScrollBarEnabled(false);//设置右侧滑动
         plv.getRefreshableView().setSelector(new ColorDrawable(Color.TRANSPARENT));
@@ -182,24 +182,29 @@ public class SearchFragment extends BaseFragment {
                     JSONObject data = json.getJSONObject("data");
                     JSONArray rows = data.getJSONArray("rows");
                     List<CompanyEntity> datas = gson.fromJson(rows.toString(), new TypeToken<List<CompanyEntity>>() {}.getType());
-                    if (currentP == 1) {
-                        comList.clear();
-                    }
-                    comList.addAll(datas);
-                    if (enterPAdapter == null) {
-                        enterPAdapter = new EnterPAdapter(getContext(), comList);
-                        plv.getRefreshableView().setAdapter(enterPAdapter);
-                    } else {
-                    enterPAdapter.notifyDataChange(comList);
-                    }
-                    if (datas.size() == 0) {
-                        if(currentP==1) {
-                            loadView.noContent();
-                        }else {
-                            plv.setHasMoreData(false);
+                    if(datas.size()>0){
+                        if (currentP == 1) {
+                            comList.clear();
                         }
-                        return;
+                        comList.addAll(datas);
+                        if (enterPAdapter == null) {
+                            enterPAdapter = new EnterPAdapter(getContext(), comList);
+                            plv.getRefreshableView().setAdapter(enterPAdapter);
+                        } else {
+                            enterPAdapter.notifyDataChange(comList);
+                        }
+                    }else {
+
+                        if (datas.size() == 0) {
+                            if(currentP==1) {
+                                loadView.noContent();
+                            }else {
+                                plv.setHasMoreData(false);
+                            }
+                        }
                     }
+
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -217,11 +222,12 @@ public class SearchFragment extends BaseFragment {
     }
 
     private List<StockMsg> stockMsgList;
+
     /**
      * 查法人，查股东（公司）
      * @param name
      */
-    private void findStockMsgByCompanyName(String name,String address){
+    private void findStockMsgByCompanyName(String name, String address) {
         MyLogUtils.degug("name:" + name);
         RequestManager.getCommManager().findStockMsgByCompanyName(name, address, new CallBack() {
             @Override
@@ -247,7 +253,6 @@ public class SearchFragment extends BaseFragment {
 
                     } else {
                         loadView.noContent();
-//                        MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -294,7 +299,6 @@ public class SearchFragment extends BaseFragment {
 
                     }else {
                         loadView.noContent();
-//                        MyToastUtils.showShortToast(getContext(), "没有查到任何公司信息");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
