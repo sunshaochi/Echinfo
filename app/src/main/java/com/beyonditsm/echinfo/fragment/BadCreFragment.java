@@ -136,14 +136,14 @@ public class BadCreFragment extends BaseFragment{
                         badCreditEntityList = gson.fromJson(rows.toString(),
                                 new TypeToken<List<BadCreditEntity>>() {
                                 }.getType());
-                        badCAdaper=new BadCAdaper(getContext(),badCreditEntityList);
-                        plv.getRefreshableView().setAdapter(badCAdaper);
-//                        if(badCAdaper==null){
-//                            badCAdaper=new BadCAdaper(getContext(),badCreditEntityList);
-//                            plv.getRefreshableView().setAdapter(badCAdaper);
-//                        }else{
-//                            badCAdaper.notifyDataChanged(badCreditEntityList);
-//                        }
+//                        badCAdaper=new BadCAdaper(getContext(),badCreditEntityList);
+//                        plv.getRefreshableView().setAdapter(badCAdaper);
+                        if(badCAdaper==null){
+                            badCAdaper=new BadCAdaper(getContext(),badCreditEntityList);
+                            plv.getRefreshableView().setAdapter(badCAdaper);
+                        }else{
+                            badCAdaper.notifyDataChanged(badCreditEntityList);
+                        }
 
                     }else {
                         loadView.noContent();

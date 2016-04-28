@@ -136,14 +136,14 @@ public class LegalFragment extends BaseFragment{
                         stockMsgList = gson.fromJson(rows.toString(),
                                 new TypeToken<List<StockMsg>>() {
                                 }.getType());
-                        legalAdapter = new LegalAdapter(getContext(), stockMsgList);
-                        plv.getRefreshableView().setAdapter(legalAdapter);
-//                        if (legalAdapter == null) {
-//                            legalAdapter = new LegalAdapter(getContext(), stockMsgList);
-//                            plv.getRefreshableView().setAdapter(legalAdapter);
-//                        } else {
-//                            legalAdapter.notifyDataChanged(stockMsgList);
-//                        }
+//                        legalAdapter = new LegalAdapter(getContext(), stockMsgList);
+//                        plv.getRefreshableView().setAdapter(legalAdapter);
+                        if (legalAdapter == null) {
+                            legalAdapter = new LegalAdapter(getContext(), stockMsgList);
+                            plv.getRefreshableView().setAdapter(legalAdapter);
+                        } else {
+                            legalAdapter.notifyDataChanged(stockMsgList);
+                        }
 
                     } else {
                         loadView.noContent();
