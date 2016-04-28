@@ -237,11 +237,14 @@ public class SearchAct extends BaseActivity {
         }
         return counList;
     }
-    public void setText(String string,int type){
+    public void setText(String string,int type,String country){
         ceSearch.setText(string);
         ceSearch.setSelection(string.length());
         SEARCH_TYPE=type;
         vp.setCurrentItem(SEARCH_TYPE);
+        tvCountry.setText(country);
+        searchAddress=country;
+        sendBroadCast(currentPosition);
     }
 
 

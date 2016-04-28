@@ -59,7 +59,7 @@ public class SearchHisFrg extends BaseFragment {
         plv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ((SearchAct)getActivity()).setText(listData.get(position).getContent(),listData.get(position).getType());
+                ((SearchAct)getActivity()).setText(listData.get(position).getContent(),listData.get(position).getType(),listData.get(position).getCountry());
             }
         });
     }

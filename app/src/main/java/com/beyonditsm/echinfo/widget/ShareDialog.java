@@ -40,8 +40,8 @@ public class ShareDialog implements OnClickListener {
     final UMSocialService mController = UMServiceFactory.getUMSocialService("com.umeng.share");
 
 
-    private String title = "一起查";
-    private String content = "一起查";
+    private String title = "一企查";
+    private String content = "一企查";
     String codeUrl="";
 
     public ShareDialog(Context context){
@@ -85,12 +85,12 @@ public class ShareDialog implements OnClickListener {
 
     public ShareDialog setContent(String title,String content,String codeUrl){
         if ("".equals(title)) {
-            this.title="一起查";
+            this.title="一企查";
         } else {
             this.title=title;
         }
         if ("".equals(content)) {
-            this.content="一起查";
+            this.content="一企查";
         } else {
             this.content=content;
         }
