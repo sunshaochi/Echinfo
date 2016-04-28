@@ -34,9 +34,12 @@ public abstract class BaseFragment extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = initView(inflater);
-        // 注入控件
-        ViewUtils.inject(this, view);
+        if(null==view) {
+            view = initView(inflater);
+            // 注入控件
+            ViewUtils.inject(this, view);
+        }
+
 
         return view;
     }
@@ -45,6 +48,14 @@ public abstract class BaseFragment extends Fragment{
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initData(savedInstanceState);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (null != view) {
+            ((ViewGroup) view.getParent()).removeView(view);
+        }
     }
 
     /**
