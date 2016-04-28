@@ -16,6 +16,7 @@ import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
 import com.beyonditsm.echinfo.util.MyToastUtils;
+import com.beyonditsm.echinfo.view.LoadingView;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshBase;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -42,6 +43,8 @@ public class PamentAct extends BaseActivity {
     private String companyId=null;
     private List<FenziEntity>list;
     private PamentAdapter adapter;
+    @ViewInject(R.id.loadingView)
+    private LoadingView loadView;
     @Override
     public void setLayout() {
         setContentView(R.layout.act_my_follow);
@@ -50,6 +53,7 @@ public class PamentAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("分支机构");
+        loadView.setNoContentTxt("暂无结果");
         companyId=getIntent().getStringExtra(CompanyxqAct.COMPANYID);
         setRight("纠错", new View.OnClickListener() {
             @Override
@@ -72,21 +76,29 @@ public class PamentAct extends BaseActivity {
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
                 page = 1;
+                loadView.loading();
                 findSonEnterpriseInterMsg(companyId, page, rows);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 page++;
+                loadView.loading();
                 findSonEnterpriseInterMsg(companyId, page, rows);
             }
         });
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(PamentAct.this,CompanyxqAct.class);
+                Intent intent = new Intent(PamentAct.this, CompanyxqAct.class);
                 intent.putExtra(CompanyxqAct.ID, datas.get(position).getCompanyId());
                 startActivity(intent);
+            }
+        });
+        loadView.setOnRetryListener(new LoadingView.OnRetryListener() {
+            @Override
+            public void OnRetry() {
+                findSonEnterpriseInterMsg(companyId, page, rows);
             }
         });
     }
@@ -96,6 +108,7 @@ public class PamentAct extends BaseActivity {
         RequestManager.getCommManager().findSonEnterpriseInterMsg(companyId, page, rows, new CallBack() {
             @Override
             public void onSucess(String result) {
+                loadView.loadComplete();
                 plv.onPullUpRefreshComplete();
                 plv.onPullDownRefreshComplete();
                 Gson gson = new Gson();
@@ -120,7 +133,11 @@ public class PamentAct extends BaseActivity {
                                     adapter.notify(datas);
                                 }
                             } else {
-
+                                if(page==1) {
+                                    loadView.noContent();
+                                }else {
+                                    plv.setHasMoreData(false);
+                                }
                             }
                         } else {
                             plv.setHasMoreData(false);
@@ -128,7 +145,7 @@ public class PamentAct extends BaseActivity {
 
                     } else {
                         if(page==1) {
-                            MyToastUtils.showShortToast(PamentAct.this, "暂无数据");
+                            loadView.noContent();
                         }else {
                             plv.setHasMoreData(false);
                         }
@@ -141,6 +158,7 @@ public class PamentAct extends BaseActivity {
 
             @Override
             public void onError(String error) {
+                loadView.loadError();
                 plv.onPullUpRefreshComplete();
                 plv.onPullDownRefreshComplete();
                 MyToastUtils.showShortToast(PamentAct.this, error);

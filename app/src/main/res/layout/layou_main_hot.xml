@@ -11,7 +11,7 @@
         >
         <TextView
             android:id="@+id/tv_companyname"
-            android:text="香港强悍信息科技有限公司"
+            android:text=""
             style="@style/tv_second"/>
         <RelativeLayout
             android:layout_marginTop="10dp"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content">
             <RatingBar
                 android:id="@+id/rb_hot"
-                android:rating="3"
+                android:rating="0"
                 style="@style/mysRatingBar" />
             <TextView
                 android:id="@+id/tv_rs"
@@ -27,7 +27,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_toLeftOf="@+id/iv_guanzhu"
                 android:layout_centerVertical="true"
-                android:text="20"
+                android:text="0"
                 style="@style/tv_third" />
             <TextView
                 android:id="@+id/iv_guanzhu"

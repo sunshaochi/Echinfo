@@ -30,6 +30,7 @@ import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
 import com.beyonditsm.echinfo.util.MyLogUtils;
+import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.beyonditsm.echinfo.view.LoadingView;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshBase;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView;
@@ -121,7 +122,7 @@ public class SearchFragment extends BaseFragment {
                         break;
                     case 1:
                         se.setType(1);
-                        intent.putExtra(CompanyxqAct.ID,stockMsgList.get(i).getId());
+                        intent.putExtra(CompanyxqAct.ID,stockMsgList.get(i).getCompanyId());
                         break;
                     case 2:
                         se.setType(2);
@@ -133,7 +134,9 @@ public class SearchFragment extends BaseFragment {
                 se.setContent(searchData);
                 se.setCountry("全国");
                 se.setTime(EchinfoUtils.getCurrentTime());
-                SearchDao.addSearch(se);
+                if(!isRepeat(se)){
+                    SearchDao.addSearch(se);
+                }
 
                 getActivity().startActivity(intent);
             }
@@ -144,6 +147,19 @@ public class SearchFragment extends BaseFragment {
             searchData(SearchAct.searchContent,SearchAct.searchAddress,currentPage);
         }
 
+    }
+
+    //判断本地是否有过搜索字段
+    private boolean isRepeat(SearchEntity entity){
+        List<SearchEntity> searchList = SearchDao.getSearchList();
+        for (int i=0;i<searchList.size();i++){
+            if((searchList.get(i).getContent().equals(entity.getContent()))
+                    &&(searchList.get(i).getCountry().equals(entity.getCountry()))
+                    &&(searchList.get(i).getType()==entity.getType())){
+                return true;
+            }
+        }
+        return false;
     }
 
     private List<CompanyEntity> comList = new ArrayList<>();
@@ -336,15 +352,16 @@ public class SearchFragment extends BaseFragment {
     private void searchData(final String searchContent,String address, final int currentP) {
         switch (position) {
             case 0:
-                searchCompany(searchContent,address, currentP);
+                searchCompany(searchContent, address, currentP);
                 break;
             case 1:
-                findStockMsgByCompanyName(searchContent,address);
+                findStockMsgByCompanyName(searchContent, address);
                 break;
             case 2:
-                findCourtitemList(searchContent,address);
+                findCourtitemList(searchContent, address);
                 break;
         }
+
     }
 
 }

@@ -16,6 +16,7 @@ import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
 import com.beyonditsm.echinfo.util.MyToastUtils;
+import com.beyonditsm.echinfo.view.LoadingView;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshBase;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -41,6 +42,8 @@ public class AnnualAct extends BaseActivity{
     private int rows=10;
     private String companyId=null;
     private List<AnnualEntity> list;
+    @ViewInject(R.id.loadingView)
+    private LoadingView loadView;
     @Override
     public void setLayout() {
         setContentView(R.layout.act_my_follow);
@@ -49,6 +52,7 @@ public class AnnualAct extends BaseActivity{
     @Override
     public void init(Bundle savedInstanceState) {
         setTopTitle("年报列表");
+        loadView.setNoContentTxt("暂无结果");
         companyId=getIntent().getStringExtra(CompanyxqAct.COMPANYID);
         setRight("纠错", new View.OnClickListener() {
             @Override
@@ -65,30 +69,38 @@ public class AnnualAct extends BaseActivity{
         plv.getRefreshableView().setVerticalScrollBarEnabled(false);//设置右侧滑动
         plv.getRefreshableView().setSelector(new ColorDrawable(Color.TRANSPARENT));
         plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
-        plv.getRefreshableView().setDivider(null);
+//        plv.getRefreshableView().setDivider(null);
 
         plv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 plv.setLastUpdatedLabel(EchinfoUtils.getCurrentTime());
                 page = 1;
-                findAnnualPortsMsg(companyId,page,rows);
+                loadView.loading();
+                findAnnualPortsMsg(companyId, page, rows);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 page++;
-                findAnnualPortsMsg(companyId,page,rows);
+                loadView.loading();
+                findAnnualPortsMsg(companyId, page, rows);
             }
         });
         plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 findEnterpriseInfoOfAnnual(datas.get(position).getCompanyId());
-                Intent intent=new Intent(AnnualAct.this,AnnualDetaillistAct.class);
-                intent.putExtra("id",datas.get(position).getCompanyId());
-                intent.putExtra("title",datas.get(position).getYear()+"年年报详情");
+                Intent intent = new Intent(AnnualAct.this, AnnualDetaillistAct.class);
+                intent.putExtra("id", datas.get(position).getCompanyId());
+                intent.putExtra("title", datas.get(position).getYear() + "年年报详情");
                 startActivity(intent);
+            }
+        });
+        loadView.setOnRetryListener(new LoadingView.OnRetryListener() {
+            @Override
+            public void OnRetry() {
+                findAnnualPortsMsg(companyId, page, rows);
             }
         });
     }
@@ -104,6 +116,7 @@ public class AnnualAct extends BaseActivity{
         RequestManager.getCommManager().findAnnualPortsMsg(companyId, page, rows, new CallBack() {
             @Override
             public void onSucess(String result) {
+                loadView.loadComplete();
                 plv.onPullUpRefreshComplete();
                 plv.onPullDownRefreshComplete();
                 Gson gson = new Gson();
@@ -128,7 +141,11 @@ public class AnnualAct extends BaseActivity{
                                     adapter.notify(datas);
                                 }
                             } else {
-
+                                if(page==1) {
+                                    loadView.noContent();
+                                }else {
+                                    plv.setHasMoreData(false);
+                                }
                             }
                         }else{
                             plv.setHasMoreData(false);
@@ -136,7 +153,7 @@ public class AnnualAct extends BaseActivity{
 
                     } else {
                         if(page==1) {
-                            MyToastUtils.showShortToast(AnnualAct.this, "暂无数据");
+                            loadView.noContent();
                         }else {
                             plv.setHasMoreData(false);
                         }
@@ -148,6 +165,7 @@ public class AnnualAct extends BaseActivity{
 
             @Override
             public void onError(String error) {
+                loadView.loadError();
                 plv.onPullUpRefreshComplete();
                 plv.onPullDownRefreshComplete();
                 MyToastUtils.showShortToast(AnnualAct.this, error);

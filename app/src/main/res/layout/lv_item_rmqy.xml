@@ -14,7 +14,7 @@
         <TextView
             android:id="@+id/company"
             style="@style/tv_second"
-            android:text="香港强悍信息科技有限公司"
+            android:text=""
             android:textColor="@color/text_first_color"
             android:textSize="14sp" />
 
@@ -26,7 +26,7 @@
             <RatingBar
                 android:id="@+id/rating"
                 style="@style/mysRatingBar"
-                android:rating="3" />
+                android:rating="0" />
 
             <TextView
                 android:id="@+id/number"
@@ -34,7 +34,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="5dp"
                 android:layout_toLeftOf="@+id/iv_guanzhu"
-                android:text="20"
+                android:text="0"
                 android:textColor="#ff5023"
                 android:textSize="12sp" />
 

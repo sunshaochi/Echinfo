@@ -299,7 +299,11 @@ public class CompanyxqAct extends BaseActivity {
                 tvAttention.setText("关注");
             }
             if(!TextUtils.isEmpty(entity.getCompanyName())){
-                setTopTitle(entity.getCompanyName());
+                if(entity.getCompanyName().length()<=12) {
+                    setTopTitle(entity.getCompanyName());
+                }else {
+                    setTopTitle(entity.getCompanyName().substring(0,11)+"...");
+                }
             }
 //                gxtime.setText();
             if(!TextUtils.isEmpty(entity.getManagementStatus())) {
