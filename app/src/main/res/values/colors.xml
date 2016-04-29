@@ -17,6 +17,8 @@
     <!--红色字-->
     <color name="text_red_color">#ff5023</color>
 
+    <color name="blue">#2582CE</color>
+
 
     <color name="item_focus_color">#e7e7e7</color>
     <color name="delete_red">#FF3a31</color>

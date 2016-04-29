@@ -33,7 +33,7 @@ public class SettingAct extends BaseActivity {
         mController.getConfig().closeToast();
     }
 
-    @OnClick({R.id.rlRecomm,R.id.rlUPwd})
+    @OnClick({R.id.rlRecomm,R.id.rlUPwd,R.id.rlAbout})
     public void onClick(View v){
         switch (v.getId()){
             case R.id.rlRecomm://推荐好友
@@ -42,6 +42,9 @@ public class SettingAct extends BaseActivity {
                 break;
             case R.id.rlUPwd://修改密码
                 openActivity(UpdatePwdAct.class);
+                break;
+            case R.id.rlAbout://关于我们
+                openActivity(AboutAct.class);
                 break;
         }
     }

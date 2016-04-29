@@ -227,6 +227,8 @@ public class CompanyxqAct extends BaseActivity {
             @Override
             public void onSucess(String result) {
                 tvAttention.setText("已关注");
+                tvAttention.setTextColor(getResources().getColor(R.color.tv_gray));
+                tvAttention.setBackgroundResource(R.drawable.yellow_btn);
                 flag = true;
                 //"status":200,"data":{"focus":0},"message":"成功！"
                 try {
@@ -261,6 +263,8 @@ public class CompanyxqAct extends BaseActivity {
             public void onSucess(String result) {
                 flag = false;
                 tvAttention.setText("关注");
+                tvAttention.setTextColor(getResources().getColor(R.color.white));
+                tvAttention.setBackgroundResource(R.drawable.yellow_tran_btn);
                 try {
                     JSONObject json = new JSONObject(result);
                     JSONObject data = json.getJSONObject("data");
@@ -309,13 +313,19 @@ public class CompanyxqAct extends BaseActivity {
                 if("1".equals(entity.getSts())){
                     flag=true;
                     tvAttention.setText("已关注");
+                    tvAttention.setTextColor(getResources().getColor(R.color.tv_gray));
+                    tvAttention.setBackgroundResource(R.drawable.yellow_btn);
                 }else {
                     flag=false;
                     tvAttention.setText("关注");
+                    tvAttention.setTextColor(getResources().getColor(R.color.white));
+                    tvAttention.setBackgroundResource(R.drawable.yellow_tran_btn);
                 }
             }else {
                 flag=false;
                 tvAttention.setText("关注");
+                tvAttention.setTextColor(getResources().getColor(R.color.white));
+                tvAttention.setBackgroundResource(R.drawable.yellow_tran_btn);
             }
             if(!TextUtils.isEmpty(entity.getCompanyName())){
                 if(entity.getCompanyName().length()<=12) {
@@ -351,7 +361,11 @@ public class CompanyxqAct extends BaseActivity {
                 dbname.setText("");
             }
             if(!TextUtils.isEmpty(entity.getRegistCapital())) {
-                zczj.setText(entity.getRegistCapital()+"万人民币");
+                if(entity.getRegistCapital().contains("未")){
+                    zczj.setText(entity.getRegistCapital());
+                }else {
+                    zczj.setText(Integer.valueOf(entity.getRegistCapital()) + "万人民币");
+                }
             }else {
                 zczj.setText("0万人民币");
             }

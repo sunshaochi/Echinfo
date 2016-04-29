@@ -109,6 +109,43 @@ public class AnnualDetaillistAct extends BaseActivity{
         adapter=new AnnualExAdapter(AnnualDetaillistAct.this,list,childlist,id);
         listView.setAdapter(adapter);
         listView.setChildDivider(new ColorDrawable(Color.WHITE));
+        listView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                switch (groupPosition){
+                    case 0:
+
+                        break;
+                    case 1:
+                        listView.collapseGroup(1);
+                        break;
+                    case 2:
+                        if(adapter.getList()==null){
+                            listView.collapseGroup(2);
+                        }
+                        break;
+                    case 3:
+                        if(adapter.getListInvestment()==null){
+                            listView.collapseGroup(3);
+                        }
+                        break;
+                    case 4:
+                        listView.collapseGroup(4);
+                        break;
+                    case 5:
+                        listView.collapseGroup(5);
+                        break;
+                    case 6:
+                        listView.collapseGroup(6);
+                        break;
+                    case 7:
+                        if(adapter.getListChange()==null){
+                            listView.collapseGroup(7);
+                        }
+                        break;
+                }
+            }
+        });
         //item点击事件
         listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override

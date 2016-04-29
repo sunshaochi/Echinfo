@@ -57,7 +57,7 @@
                     android:visibility="visible"
                     android:id="@+id/gxtime"
                     style="@style/tv_qyxq"
-                    android:text="2016-03-01"
+                    android:text=""
 
                     />
 
@@ -78,7 +78,7 @@
                     style="@style/myRatingBar"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
-                    android:rating="4" />
+                    android:rating="0" />
             </LinearLayout>
             <LinearLayout
                 android:visibility="gone"
@@ -111,6 +111,7 @@
                 style="@style/ll_qyxq">
 
                 <TextView
+                    android:textColor="@color/white"
                     android:id="@+id/tvAttention"
                     style="@style/tv_third"
                     android:background="@drawable/yellow_btn"
@@ -135,7 +136,7 @@
                 <TextView
                     android:id="@+id/looknum"
                     style="@style/tv_qyxq"
-                    android:text="51" />
+                    android:text="0" />
 
                 <TextView
                     style="@style/tv_qyxq"
@@ -145,7 +146,7 @@
                 <TextView
                     android:id="@+id/guanzhunum"
                     style="@style/tv_qyxq"
-                    android:text="1" />
+                    android:text="0" />
 
             </LinearLayout>
 
@@ -190,7 +191,7 @@
                     android:id="@+id/dbname"
                     style="@style/tv_second"
                     android:layout_marginTop="10dp"
-                    android:text="容立坤"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="14sp" />
 
@@ -216,7 +217,7 @@
                     android:id="@+id/zczj"
                     style="@style/tv_second"
                     android:layout_marginTop="10dp"
-                    android:text="1000万人民币"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="14sp" />
 
@@ -243,7 +244,7 @@
                     android:id="@+id/cltime"
                     style="@style/tv_second"
                     android:layout_marginTop="10dp"
-                    android:text="2015-3-18"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="14sp" />
 

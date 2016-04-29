@@ -85,6 +85,17 @@ public class SearchAct extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         SEARCH_TYPE=getIntent().getIntExtra("search_type",0);
+        switch (SEARCH_TYPE){
+            case 0:
+                ceSearch.setHint("请输入企业名称");
+                break;
+            case 1:
+                ceSearch.setHint("请输入法人或股东名称");
+                break;
+            case 2:
+                ceSearch.setHint("请输入涉诉人名称");
+                break;
+        }
         currentPosition=SEARCH_TYPE;
         fragments.add(searchFragment1);
         fragments.add(searchFragment2);

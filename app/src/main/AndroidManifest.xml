@@ -24,14 +24,14 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         android:name=".MyApplication">
 
         <activity
             android:name=".activity.SplashAct"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/logo"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -171,6 +171,9 @@
             android:screenOrientation="portrait"/>
         <!--法院判决书-->
         <activity android:name=".activity.CourtAct"
+            android:screenOrientation="portrait"/>
+        <!--关于我们-->
+        <activity android:name=".activity.AboutAct"
             android:screenOrientation="portrait"/>
 
         <!-- ###################注册SDK使用的Activity###################### -->

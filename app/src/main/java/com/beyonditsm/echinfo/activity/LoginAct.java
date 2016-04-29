@@ -19,6 +19,7 @@ import com.beyonditsm.echinfo.db.UserDao;
 import com.beyonditsm.echinfo.entity.ResultData;
 import com.beyonditsm.echinfo.entity.UserDataEntity;
 import com.beyonditsm.echinfo.entity.UserEntity;
+import com.beyonditsm.echinfo.fragment.MyFollowFrg;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.GsonUtils;
@@ -259,6 +260,7 @@ public class LoginAct extends BaseActivity {
                 UserEntity user = userEntitty.getUser();
                 UserDao.saveUser(user);
                 sendBroadcast(new Intent(MainAct.MAIN_RECEIVER));
+                sendBroadcast(new Intent(MyFollowFrg.FRG_RECEIVER));
                 finish();
                 MyToastUtils.showShortToast(getApplicationContext(), "登录成功");
             }

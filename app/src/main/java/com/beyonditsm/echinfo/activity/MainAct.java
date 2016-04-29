@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -18,6 +19,7 @@ import android.widget.ViewFlipper;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.adapter.FlipAdapter;
+import com.beyonditsm.echinfo.adapter.ReqyAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.db.UserDao;
 import com.beyonditsm.echinfo.entity.CompanyEntity;
@@ -26,6 +28,7 @@ import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.GeneralUtils;
 import com.beyonditsm.echinfo.util.MyLogUtils;
 import com.beyonditsm.echinfo.view.flip.FlipViewController;
+import com.leaf.library.widget.MyListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.tandong.sa.json.Gson;
@@ -66,7 +69,7 @@ public class MainAct extends BaseActivity {
      */
     private final static long WAITTIME = 2000;
     private long touchTime = 0;
-
+    private List<String> titleList;
     @Override
     public void setLayout() {
         setContentView(R.layout.activity_main);
@@ -78,11 +81,13 @@ public class MainAct extends BaseActivity {
         name = sp.getString("screen_name", "");
         generalUtils = new GeneralUtils();
 
-//        titleList.add("1");
-//        titleList.add("2");
-//        titleList.add("3");
-//        titleList.add("4");
+        titleList=new ArrayList<>();
+        titleList.add("1");
+        titleList.add("2");
+        titleList.add("3");
+        titleList.add("4");
 
+        initNumCom();//初始化数字
         initHotComlist();
         initMyFollow();//初始化我的关注
 //        initBadCre();//初始化失信榜单
@@ -90,9 +95,64 @@ public class MainAct extends BaseActivity {
         fcView.setAdapter(new FlipAdapter(this));
 //        generalUtils.toVersion(MainAct.this, EchinfoUtils.getAppVer(MainAct.this), 0);
 
-
     }
 
+
+    private LinearLayout llNum;
+    private ViewFlipper followNum;
+
+    private int mCurrNumPos;
+
+    //初始化数字
+    private void initNumCom() {
+        FrameLayout main_notice = (FrameLayout) findViewById(R.id.flNum);
+        llNum = (LinearLayout) getLayoutInflater().inflate(
+                R.layout.layout_main_flip, null);
+        llNum.setBackgroundColor(getResources().getColor(R.color.blue));
+        followNum = ((ViewFlipper) this.llNum
+                .findViewById(R.id.homepage_vf));
+        main_notice.addView(llNum);
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        moveNumNext();
+                    }
+                });
+            }
+        };
+        Timer timer = new Timer();
+        timer.schedule(task, 0, 1000);
+    }
+
+
+    private void moveNumNext() {
+        setNumView(this.mCurrNumPos, this.mCurrNumPos + 1);
+        this.followNum.setInAnimation(this, R.anim.in_bottomtop);
+        this.followNum.setOutAnimation(this, R.anim.out_bottomtop);
+        this.followNum.showNext();
+    }
+
+    private void setNumView(int curr, int next) {
+
+        View noticeView = getLayoutInflater().inflate(R.layout.lv_flip_item,
+                null);
+        TextView tvNum= (TextView) noticeView.findViewById(R.id.tvNum);
+
+        if ((curr < next) && (next > (titleList.size() - 1))) {
+            next = 0;
+        } else if ((curr > next) && (next < 0)) {
+            next = titleList.size() - 1;
+        }
+        tvNum.setText(titleList.get(next));
+        if (followNum.getChildCount() > 1) {
+            followNum.removeViewAt(0);
+        }
+        followNum.addView(noticeView, followNum.getChildCount());
+        mCurrNumPos = next;
+    }
     /**
      * 初始化我的关注
      */
@@ -296,6 +356,9 @@ public class MainAct extends BaseActivity {
     private ViewFlipper followHot;
 
     private int mCurrHotPos;
+    private List<CompanyEntity> hot1=new ArrayList<>();
+    private List<CompanyEntity> hot2=new ArrayList<>();
+    private List<List<CompanyEntity>> hotList=new ArrayList<>();
 
     //初始化热门企业
     private void initHotCom() {
@@ -330,38 +393,54 @@ public class MainAct extends BaseActivity {
 
     private void setHotView(final int curr, int next) {
 
-        View noticeView = getLayoutInflater().inflate(R.layout.layou_main_hot,
-                null);
+//        View noticeView = getLayoutInflater().inflate(R.layout.layou_main_hot, null);
+        View noticeView = getLayoutInflater().inflate(R.layout.listview_item, null);
 
-        TextView tvComName = (TextView) noticeView.findViewById(R.id.tv_companyname);
-        TextView tvrensu = (TextView) noticeView.findViewById(R.id.tv_rs);
-        RatingBar rb_hot = (RatingBar) noticeView.findViewById(R.id.rb_hot);
-
-
-
-
-        if ((curr < next) && (next > ((datas.size()>5?5:datas.size()) - 1))) {
+        MyListView listView= (MyListView) noticeView.findViewById(R.id.lv);
+        if ((curr < next) && (next > (hotList.size() - 1))) {
             next = 0;
         } else if ((curr > next) && (next < 0)) {
-            next = (datas.size()>5?5:datas.size()) - 1;
+            next = hotList.size() - 1;
         }
-        tvComName.setText(datas.get(next).getCompanyName());
-        if(!TextUtils.isEmpty(datas.get(next).getFocus())) {
-            tvrensu.setText(datas.get(next).getFocus());
-        } else {
-            tvrensu.setText("0");
+        if(hotList!=null) {
+            listView.setAdapter(new ReqyAdapter(MainAct.this, hotList.get(next)));
         }
-        if(!TextUtils.isEmpty(datas.get(next).getLevel()))
-            rb_hot.setRating(Float.parseFloat(datas.get(next).getLevel()));
+
+
+//        TextView tvComName = (TextView) noticeView.findViewById(R.id.tv_companyname);
+//        TextView tvrensu = (TextView) noticeView.findViewById(R.id.tv_rs);
+//        RatingBar rb_hot = (RatingBar) noticeView.findViewById(R.id.rb_hot);
+
+//        if ((curr < next) && (next > ((datas.size()>5?5:datas.size()) - 1))) {
+//            next = 0;
+//        } else if ((curr > next) && (next < 0)) {
+//            next = (datas.size()>5?5:datas.size()) - 1;
+//        }
+//        tvComName.setText(datas.get(next).getCompanyName());
+//        if(!TextUtils.isEmpty(datas.get(next).getFocus())) {
+//            tvrensu.setText(datas.get(next).getFocus());
+//        } else {
+//            tvrensu.setText("0");
+//        }
+//        if(!TextUtils.isEmpty(datas.get(next).getLevel()))
+//            rb_hot.setRating(Float.parseFloat(datas.get(next).getLevel()));
         final int finalNext=next;
-        noticeView.setOnClickListener(new View.OnClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View arg0) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MainAct.this, CompanyxqAct.class);
-                intent.putExtra(CompanyxqAct.ID, datas.get(finalNext).getId());
+                intent.putExtra(CompanyxqAct.ID, hotList.get(finalNext).get(position).getId());
                 startActivity(intent);
             }
         });
+//        noticeView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View arg0) {
+//                Intent intent = new Intent(MainAct.this, CompanyxqAct.class);
+//                intent.putExtra(CompanyxqAct.ID, datas.get(finalNext).getId());
+//                startActivity(intent);
+//            }
+//        });
         if (followHot.getChildCount() > 1) {
             followHot.removeViewAt(0);
         }
@@ -387,6 +466,12 @@ public class MainAct extends BaseActivity {
                     if (rows.length() > 0) {
                         datas = gson.fromJson(rows.toString(), new TypeToken<List<CompanyEntity>>() {
                         }.getType());
+                        if(datas.size()>0) {
+                            hot1 = datas.subList(0, datas.size() / 2);
+                            hot2 = datas.subList(datas.size() / 2, datas.size());
+                            hotList.add(hot1);
+                            hotList.add(hot2);
+                        }
                         initHotCom();//初始化热门
                     }
                 } catch (JSONException e) {

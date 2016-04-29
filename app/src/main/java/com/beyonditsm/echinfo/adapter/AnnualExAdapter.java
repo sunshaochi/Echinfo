@@ -86,20 +86,6 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-//        int i=0;
-//        switch (groupPosition){
-//            case 0:
-//                i=1;
-//                break;
-//            case 4:
-//                i=1;
-//                break;
-//            default:
-//                i=((List)getChildData().get(groupPosition)).size();
-//                break;
-//
-//        }
-//        return i;
         return 1;
     }
 
@@ -228,7 +214,6 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
                 tzxx= (TextView) view.findViewById(R.id.tzxx);//企业是否有投资信息或购买其它公司股权
                 number= (TextView) view.findViewById(R.id.number);//从业人数
                 setBusiness(entity);
-//                findEnterpriseInfoMsgById("1");
                 break;
             case 1://网站或网店信息
                 view = inflater.inflate(R.layout.listview_item, null);
@@ -240,57 +225,22 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
                 //填充视图
                 view = inflater.inflate(R.layout.listview_item, null);
                 lv2= (MyListView) view.findViewById(R.id.lv);
-//                findStockMsg("12",-1,-1);
                 if (list != null && list.size() > 0) {
                     adapter = new GudonginfoAdapter(context, list);
                     lv2.setAdapter(adapter);
                 }else {
-                    findStockMsg("12",-1,-1);
+                    findStockMsg(companyId,-1,-1);
                 }
-//                if(list!=null&&list.size()>0) {
-//                    LinearLayout layout2 = (LinearLayout) lv2.getChildAt(list.size() - 1);
-//                    View viewl2 = layout2.findViewById(R.id.view);
-//                    viewl2.setVisibility(View.GONE);
-//                }
-
-//                view = inflater2.inflate(R.layout.lv_item_gudong, null);
-//                TextView name= (TextView) view.findViewById(R.id.name);
-//                TextView identity= (TextView) view.findViewById(R.id.identity);
-//                TextView outtime= (TextView) view.findViewById(R.id.outtime);
-//                TextView outmoney= (TextView) view.findViewById(R.id.outmoney);
-//                TextView realtime= (TextView) view.findViewById(R.id.realtime);
-//                TextView realmoney= (TextView) view.findViewById(R.id.realmoney);
-//                TextView payway= (TextView) view.findViewById(R.id.payway);
-//                View view2=view.findViewById(R.id.view);
-//                MyLogUtils.degug("childData2"+getChildData().toString());
-//                List<StockMsg> stockMsgs= (List<StockMsg>) getChildData().get(2);
-//                if(stockMsgs!=null&&stockMsgs.size()>0) {
-//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getName()))
-//                        name.setText(stockMsgs.get(childPosition).getName());
-//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getStockType()))
-//                        identity.setText(stockMsgs.get(childPosition).getStockType());
-//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getSubcribeTime()))
-//                        outtime.setText(stockMsgs.get(childPosition).getSubcribeTime());
-//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getSubcribe() + ""))
-//                        outmoney.setText(stockMsgs.get(childPosition).getSubcribe() + "");
-//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getRealSubcribeTime()))
-//                        realtime.setText(stockMsgs.get(childPosition).getRealSubcribeTime());
-//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getRealSubcribe() + ""))
-//                        realmoney.setText(stockMsgs.get(childPosition).getRealSubcribe() + "");
-//                    if (!TextUtils.isEmpty(stockMsgs.get(childPosition).getRealSubcribeType()))
-//                        payway.setText(stockMsgs.get(childPosition).getRealSubcribeType());
-//                }
                 break;
             case 3://对外投资
                 //填充视图
                 view = inflater.inflate(R.layout.listview_item, null);
                 lv3= (MyListView) view.findViewById(R.id.lv);
-//                findAbroadInvestment("12",-1,-1);
                 if (listInvestment != null && listInvestment.size() > 0) {
                     adapterInvestment = new EnterPAdapter(context, listInvestment);
                     lv3.setAdapter(adapterInvestment);
                 }else {
-                    findAbroadInvestment("3",-1,-1);
+                    findAbroadInvestment(companyId,-1,-1);
                 }
                 lv3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -300,25 +250,19 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
                         context.startActivity(intent);
                     }
                 });
-//                if(listInvestment!=null&&listInvestment.size()>0) {
-//                    LinearLayout layout3 = (LinearLayout) lv3.getChildAt(list.size() - 1);
-//                    View viewl3 = layout3.findViewById(R.id.view);
-//                    viewl3.setVisibility(View.GONE);
-//                }
                 break;
             case 4://企业资产状况信息
-                view=inflater.inflate(R.layout.listview_item,null);//假的
-//                view = inflater.inflate(R.layout.annual_list_four, null);//企业资产状况信息
-//                LinearLayout linearLayout= (LinearLayout) view.findViewById(R.id.linear);
-//                linearLayout.setVisibility(View.GONE);
-//                money= (TextView) view.findViewById(R.id.money);//资产总额
-//                qyAll= (TextView) view.findViewById(R.id.qyAll);//所有者权益合计
-//                moneyAll= (TextView) view.findViewById(R.id.moneyAll);//营收总收入
-//                profit= (TextView) view.findViewById(R.id.profit);//利润总额
-//                moneyMain= (TextView) view.findViewById(R.id.moneyMain);//营业总收入中主营业务收入
-//                netProfit= (TextView) view.findViewById(R.id.netProfit);//净利润
-//                paytaxes= (TextView) view.findViewById(R.id.paytaxes);//纳税总额
-//                liabilities= (TextView) view.findViewById(R.id.liabilities);//负债总额
+                view = inflater.inflate(R.layout.annual_list_four, null);//企业资产状况信息
+                LinearLayout linearLayout= (LinearLayout) view.findViewById(R.id.linear);
+                linearLayout.setVisibility(View.GONE);
+                money= (TextView) view.findViewById(R.id.money);//资产总额
+                qyAll= (TextView) view.findViewById(R.id.qyAll);//所有者权益合计
+                moneyAll= (TextView) view.findViewById(R.id.moneyAll);//营收总收入
+                profit= (TextView) view.findViewById(R.id.profit);//利润总额
+                moneyMain= (TextView) view.findViewById(R.id.moneyMain);//营业总收入中主营业务收入
+                netProfit= (TextView) view.findViewById(R.id.netProfit);//净利润
+                paytaxes= (TextView) view.findViewById(R.id.paytaxes);//纳税总额
+                liabilities= (TextView) view.findViewById(R.id.liabilities);//负债总额
                 break;
             case 5://对外提供保证担保信息
                 view = inflater.inflate(R.layout.listview_item, null);
@@ -333,12 +277,11 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
             case 7://修改记录
                 view = inflater.inflate(R.layout.listview_item, null);
                 lv7= (MyListView) view.findViewById(R.id.lv);
-//                findAnnualPortsMsgChange("12",-1,-1);
                 if (listChange != null && listChange.size() > 0) {
                     adapterChange = new AdetailsevenAdapter(context, listChange);
                     lv7.setAdapter(adapterChange);
                 }else {
-                    findAnnualPortsMsgChange("12",-1,-1);
+                    findAnnualPortsMsgChange(companyId,-1,-1);
                 }
                 break;
             default:
@@ -360,6 +303,14 @@ public class AnnualExAdapter extends BaseExpandableListAdapter {
 
     public CompanyEntity getEntity(){
         return entity;
+    }
+
+    public List<StockMsg> getList(){
+        return list;
+    }
+
+    public List<CompanyEntity> getListChange(){
+        return listChange;
     }
 
     private CompanyEntity entity;

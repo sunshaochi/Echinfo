@@ -1,6 +1,9 @@
 package com.beyonditsm.echinfo.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -168,5 +171,35 @@ public class MyFollowFrg extends BaseFragment{
             }
         });
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (receiver == null) {
+            receiver = new MyBroadCastReceiver();
+            getActivity().registerReceiver(receiver,new IntentFilter(FRG_RECEIVER));
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (receiver != null) {
+            getActivity().unregisterReceiver(receiver);
+        }
+
+    }
+
+
+    private MyBroadCastReceiver receiver;
+    public static final String FRG_RECEIVER = "com.followfrg.receiver";
+
+    private class MyBroadCastReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            findgzPortsMsg(page,rows);
+        }
     }
 }

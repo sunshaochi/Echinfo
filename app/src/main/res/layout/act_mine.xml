@@ -92,7 +92,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:layout_weight="1">
 
                 <ImageView
@@ -119,7 +119,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:layout_weight="1"
                 android:paddingLeft="22dp"
 

@@ -53,15 +53,20 @@ public class ReqyAdapter extends BaseAdapter {
         }else {
             holder= (ViewHolder) convertView.getTag();
         }
-        if(list!=null){
-            if(!TextUtils.isEmpty(list.get(position).getCompanyName()))
-                holder.company.setText(list.get(position).getCompanyName());
-            if(!TextUtils.isEmpty(list.get(position).getLevel()))
-            holder.ratingBar.setRating(Float.parseFloat(list.get(position).getLevel()));
-            if (!TextUtils.isEmpty(list.get(position).getFocus()))
-                holder.number.setText(list.get(position).getFocus());
-
+        if(!TextUtils.isEmpty(list.get(position).getCompanyName())) {
+            holder.company.setText(list.get(position).getCompanyName());
         }
+        if(!TextUtils.isEmpty(list.get(position).getLevel())) {
+            holder.ratingBar.setRating(Float.parseFloat(list.get(position).getLevel()));
+        }else {
+            holder.ratingBar.setProgress(0);
+        }
+        if (!TextUtils.isEmpty(list.get(position).getFocus())) {
+            holder.number.setText(list.get(position).getFocus());
+        }else {
+            holder.number.setText("0");
+        }
+
         return convertView;
     }
     class ViewHolder{

@@ -133,9 +133,14 @@
                             style="@style/tv_qygx"
                             android:text="3" />
 
-                        <TextView
-                            style="@style/tv_qygx"
-                            android:text="3" />
+                        <!--<TextView-->
+                            <!--style="@style/tv_qygx"-->
+                            <!--android:text="3" />-->
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/flNum"/>
+
 
                         <!--<TextView-->
                             <!--style="@style/tv_qygx"-->
@@ -277,7 +282,7 @@
             <FrameLayout
                 android:id="@+id/flHotCom"
                 android:layout_width="match_parent"
-                android:layout_height="75dp"></FrameLayout>
+                android:layout_height="match_parent"></FrameLayout>
 
             <View
                 style="@style/view_line"></View>
