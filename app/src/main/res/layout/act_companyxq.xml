@@ -2,299 +2,302 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/bg_color">
+    android:background="@color/bg_color"
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp">
-
-        <include layout="@layout/title_act_layout"></include>
-            <RelativeLayout
-                android:id="@+id/rl_cd"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                >
-
-                <ImageView
-                    android:id="@+id/iv_cd"
-                    android:layout_marginRight="10dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:src="@mipmap/more"
-                    android:layout_width="25dp"
-                    android:layout_height="5dp" />
-            </RelativeLayout>
-
-        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/main_color"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <include layout="@layout/title_act_layout"></include>
+
+                <RelativeLayout
+                    android:id="@+id/rl_cd"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true">
+
+                    <ImageView
+                        android:id="@+id/iv_cd"
+                        android:layout_width="25dp"
+                        android:layout_height="5dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@mipmap/more" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
             <LinearLayout
-                android:visibility="visible"
-                style="@style/ll_qyxq"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:visibility="visible"
-                    style="@style/tv_qyxq"
-                    android:text="更新：" />
-
-                <TextView
-                    android:visibility="visible"
-                    android:id="@+id/gxtime"
-                    style="@style/tv_qyxq"
-                    android:text=""
-
-                    />
-
-                <TextView
-                    android:id="@+id/xc"
-                    style="@style/tv_qyxq"
-                    android:layout_marginLeft="5dp"
-                    android:background="@drawable/btn_tm"
-                    android:paddingRight="5dp"
-                    android:text="续存" />
-
-            </LinearLayout>
-
-            <LinearLayout style="@style/ll_qyxq">
-
-                <RatingBar
-                    android:id="@+id/rb_dpxx"
-                    style="@style/myRatingBar"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="5dp"
-                    android:rating="0" />
-            </LinearLayout>
-            <LinearLayout
-                android:visibility="gone"
-                android:gravity="center"
-                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:background="@color/main_color"
+                android:orientation="vertical">
 
-                <TextView
-                    android:gravity="center"
-                    style="@style/tv_second"
-                    android:text="注册资金："
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
+                <LinearLayout
+                    style="@style/ll_qyxq"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
 
-                <TextView
-                    android:paddingLeft="5dp"
+                    <TextView
+                        style="@style/tv_qyxq"
+                        android:text="更新："
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/gxtime"
+                        style="@style/tv_qyxq"
+                        android:text=""
+                        android:visibility="visible"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/xc"
+                        style="@style/tv_qyxq"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/btn_tm"
+                        android:paddingRight="5dp"
+                        android:text="续存" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/ll_qyxq">
+
+                    <RatingBar
+                        android:id="@+id/rb_dpxx"
+                        style="@style/myRatingBar"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:rating="0" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
                     android:gravity="center"
-                    android:id="@+id/zczjb"
-                    style="@style/tv_second"
-                    android:text="1000万人民币"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/tv_second"
+                        android:gravity="center"
+                        android:text="注册资金："
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/zczjb"
+                        style="@style/tv_second"
+                        android:gravity="center"
+                        android:paddingLeft="5dp"
+                        android:text="1000万人民币"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ll_qyxq"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_height="24dp"
+                        android:layout_width="50dp"
+                        android:id="@+id/tvAttention"
+                        style="@style/tv_third"
+                        android:background="@drawable/yellow_btn"
+                        android:text="关注"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ll_qyxq"
+                    android:orientation="horizontal"
+                    android:paddingBottom="10dp">
+
+                    <TextView
+                        style="@style/tv_qyxq"
+                        android:text="浏览：" />
+
+                    <TextView
+                        android:id="@+id/looknum"
+                        style="@style/tv_qyxq"
+                        android:text="0" />
+
+                    <TextView
+                        style="@style/tv_qyxq"
+                        android:layout_marginLeft="20dp"
+                        android:text="关注：" />
+
+                    <TextView
+                        android:id="@+id/guanzhunum"
+                        style="@style/tv_qyxq"
+                        android:text="0" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ll_qyxq"
+                    android:layout_marginBottom="25dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tvAttentionb"
+                        style="@style/tv_third"
+                        android:background="@drawable/yellow_btn"
+                        android:paddingBottom="3dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:text="关注"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:visibility="visible"
-                style="@style/ll_qyxq">
-
-                <TextView
-                    android:textColor="@color/white"
-                    android:id="@+id/tvAttention"
-                    style="@style/tv_third"
-                    android:background="@drawable/yellow_btn"
-                    android:paddingBottom="3dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:paddingTop="3dp"
-                    android:text="关注"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
 
             <LinearLayout
-                style="@style/ll_qyxq"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="#05A5DF"
                 android:orientation="horizontal"
-                android:paddingBottom="10dp">
+                android:visibility="visible">
 
-                <TextView
-                    style="@style/tv_qyxq"
-                    android:text="浏览：" />
+                <LinearLayout
+                    style="@style/sy_LinearLayout"
+                    android:orientation="vertical"
+                    android:visibility="visible">
 
-                <TextView
-                    android:id="@+id/looknum"
-                    style="@style/tv_qyxq"
-                    android:text="0" />
+                    <TextView
+                        style="@style/tv_second"
+                        android:text="法定代表人"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
 
-                <TextView
-                    style="@style/tv_qyxq"
-                    android:layout_marginLeft="20dp"
-                    android:text="关注：" />
+                    <TextView
+                        android:id="@+id/dbname"
+                        style="@style/tv_second"
+                        android:layout_marginTop="10dp"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/guanzhunum"
-                    style="@style/tv_qyxq"
-                    android:text="0" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/white"></View>
+
+                <LinearLayout
+                    style="@style/sy_LinearLayout"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/tv_second"
+                        android:text="注册资金"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/zczj"
+                        style="@style/tv_second"
+                        android:layout_marginTop="10dp"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/white"></View>
+
+                <LinearLayout
+                    style="@style/sy_LinearLayout"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <TextView
+                        style="@style/tv_second"
+                        android:text="成立日期"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/cltime"
+                        style="@style/tv_second"
+                        android:layout_marginTop="10dp"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout style="@style/ll_qyxq"
-                android:visibility="gone"
-                android:layout_marginBottom="25dp">
+            <RelativeLayout
+                android:id="@+id/rlMap"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/white_hui"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <ImageView
+                    android:id="@+id/iv_dt"
+                    android:layout_width="14dp"
+                    android:layout_height="16dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/address" />
 
                 <TextView
-                    android:id="@+id/tvAttentionb"
-                    style="@style/tv_third"
-                    android:background="@drawable/yellow_btn"
-                    android:paddingBottom="3dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:text="关注"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:visibility="visible"
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:background="#05A5DF"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:visibility="visible"
-                style="@style/sy_LinearLayout"
-                android:orientation="vertical">
-
-                <TextView
+                    android:id="@+id/location"
                     style="@style/tv_second"
-                    android:text="法定代表人"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/dbname"
-                    style="@style/tv_second"
-                    android:layout_marginTop="10dp"
-                    android:text=""
-                    android:textColor="@color/white"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/iv_dt"
                     android:textSize="14sp" />
 
-            </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/arrow_right" />
+            </RelativeLayout>
 
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="45dp"
-                android:layout_gravity="center_vertical"
-                android:background="@color/white"></View>
-
-            <LinearLayout
-                style="@style/sy_LinearLayout"
-                android:orientation="vertical">
-
-                <TextView
-                    style="@style/tv_second"
-                    android:text="注册资金"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/zczj"
-                    style="@style/tv_second"
-                    android:layout_marginTop="10dp"
-                    android:text=""
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="45dp"
-                android:layout_gravity="center_vertical"
-                android:background="@color/white"></View>
-
-            <LinearLayout
-                android:visibility="visible"
-                style="@style/sy_LinearLayout"
-                android:orientation="vertical">
-
-                <TextView
-                    style="@style/tv_second"
-                    android:text="成立日期"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/cltime"
-                    style="@style/tv_second"
-                    android:layout_marginTop="10dp"
-                    android:text=""
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/rlMap"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@drawable/white_hui"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp">
-
-            <ImageView
-                android:id="@+id/iv_dt"
-                android:layout_width="14dp"
-                android:layout_height="16dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:src="@mipmap/address" />
-
-            <TextView
-                android:id="@+id/location"
-                style="@style/tv_second"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/iv_dt"
-                android:textSize="14sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
+            <com.beyonditsm.echinfo.view.MyGridView
+                android:id="@+id/gvqy"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/arrow_right" />
-        </RelativeLayout>
-
-        <com.beyonditsm.echinfo.view.MyGridView
-            android:id="@+id/gvqy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:numColumns="4"
-            android:horizontalSpacing="1sp"
-            android:verticalSpacing="1sp"
-            android:background="@color/bg_color"
-            android:layout_marginTop="10dp"></com.beyonditsm.echinfo.view.MyGridView>
+                android:layout_marginTop="10dp"
+                android:background="@color/bg_color"
+                android:horizontalSpacing="1sp"
+                android:numColumns="4"
+                android:verticalSpacing="1sp"></com.beyonditsm.echinfo.view.MyGridView>
 
 
-    </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 
 </LinearLayout>

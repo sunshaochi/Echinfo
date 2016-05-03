@@ -15,7 +15,7 @@
             android:id="@+id/company"
             style="@style/tv_second"
             android:text=""
-            android:textColor="@color/text_first_color"
+            android:textColor="@color/text_sec_color"
             android:textSize="14sp" />
 
         <RelativeLayout
@@ -43,7 +43,7 @@
                 style="@style/tv_third"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:text="个人"
+                android:text="人关注"
                 android:textColor="@color/text_sec_color"
                 android:textSize="12sp" />
 

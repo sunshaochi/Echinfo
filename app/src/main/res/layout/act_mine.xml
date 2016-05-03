@@ -1,213 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_color"
-    >
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scrollbars="none"
         android:layout_marginBottom="10dp"
+        android:layout_weight="1"
         android:background="@color/bg_color"
-        >
+        android:scrollbars="none">
 
         <LinearLayout
+            android:background="@mipmap/mine_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/top_height">
-    <include layout="@layout/title_act_layout"></include>
-        <ImageView
-            android:id="@+id/ivSet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/mine_set"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="278dp"
-        android:background="@mipmap/mine_bg"
-        >
+            android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            >
             <RelativeLayout
-                android:id="@+id/rlHead"
-                android:layout_width="98dp"
-                android:layout_height="98dp">
-                <com.beyonditsm.echinfo.view.CircleImageView
-                    android:id="@+id/civHead"
-                    android:layout_width="94dp"
-                    android:layout_height="94dp"
-                    android:src="@mipmap/mine_head"/>
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/top_height">
 
-                <ImageView
+                <RelativeLayout
+                    android:id="@+id/rl_back"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:onClick="goback">
+
+                    <ImageView
+                        android:layout_width="11dp"
+                        android:layout_height="19dp"
+                        android:src="@mipmap/top_back"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        />
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:text="我的"
+                    android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/mine_edit"
+                    android:textColor="#ffffff"
+                    android:layout_centerInParent="true"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/ivSet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    />
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/mine_set" />
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="张三丰"
-                android:textColor="#ffffff"
-                android:textSize="16sp"
-                android:layout_marginTop="15dp"
-                android:layout_gravity="center_horizontal"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true"
-            android:paddingLeft="22dp"
-            android:paddingRight="22dp"
-            android:layout_marginBottom="10dp"
-            >
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/zhiwei"/>
-                <TextView
-                    android:id="@+id/occur"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="#ffffff"
-                    android:textSize="14sp"
-                    android:layout_marginLeft="10dp"
-                    />
-            </LinearLayout>
-
-            <View
-                android:layout_width="1px"
-                android:layout_height="20dp"
-                android:background="#ffffff"></View>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:paddingLeft="22dp"
-
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="235dp"
                 >
 
-                <ImageView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/company"/>
-                <TextView
-                    android:id="@+id/company"
-                    android:layout_width="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/rlHead"
+                        android:layout_width="98dp"
+                        android:layout_height="98dp">
+
+                        <com.beyonditsm.echinfo.view.CircleImageView
+                            android:id="@+id/civHead"
+                            android:layout_width="94dp"
+                            android:layout_height="94dp"
+                            android:src="@mipmap/mine_head" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:src="@mipmap/mine_edit" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="15dp"
+                        android:text="张三丰"
+                        android:textColor="#ffffff"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="#ffffff"
-                    android:textSize="14sp"
-                    android:layout_marginLeft="10dp"
-                    />
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="22dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/zhiwei" />
+
+                        <TextView
+                            android:id="@+id/occur"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text=""
+                            android:textColor="#ffffff"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1px"
+                        android:layout_height="20dp"
+                        android:background="#ffffff"></View>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingLeft="22dp"
+
+                        >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/company" />
+
+                        <TextView
+                            android:id="@+id/company"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text=""
+                            android:textColor="#ffffff"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#ffffff"
+                android:orientation="vertical">
+
+                <View style="@style/view_line"></View>
+
+                <com.beyonditsm.echinfo.view.CommonView
+                    android:id="@+id/cvFollow"
+                    style="@style/mine_item_style"
+                    app:desText="我的关注"
+                    app:statusImage="@mipmap/guanzhu"></com.beyonditsm.echinfo.view.CommonView>
+
+                <View
+                    style="@style/view_line"
+                    android:layout_marginLeft="52dp"
+                    android:visibility="gone"></View>
+
+                <com.beyonditsm.echinfo.view.CommonView
+                    android:id="@+id/cvMsg"
+                    style="@style/mine_item_style"
+                    android:visibility="gone"
+                    app:desText="系统消息"
+                    app:statusImage="@mipmap/xitongxiaoxi"></com.beyonditsm.echinfo.view.CommonView>
+
+                <View style="@style/view_line"></View>
             </LinearLayout>
 
-        </LinearLayout>
 
-    </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#ffffff"
+                android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#ffffff"
-        android:layout_marginTop="10dp"
-        >
-        <View
-            style="@style/view_line"></View>
+                <View style="@style/view_line"></View>
 
-       <com.beyonditsm.echinfo.view.CommonView
-           android:id="@+id/cvFollow"
-           style="@style/mine_item_style"
-           app:desText="我的关注"
-           app:statusImage="@mipmap/guanzhu"
-           ></com.beyonditsm.echinfo.view.CommonView>
-        <View
-            style="@style/view_line"
-            android:layout_marginLeft="52dp"
-            android:visibility="gone"
-            ></View>
-        <com.beyonditsm.echinfo.view.CommonView
-            android:id="@+id/cvMsg"
-            style="@style/mine_item_style"
-            app:desText="系统消息"
-            app:statusImage="@mipmap/xitongxiaoxi"
-            android:visibility="gone"
-            ></com.beyonditsm.echinfo.view.CommonView>
-        <View
-            style="@style/view_line"
-            ></View>
-    </LinearLayout>
+                <com.beyonditsm.echinfo.view.CommonView
+                    android:id="@+id/cvFeedBack"
+                    style="@style/mine_item_style"
+                    app:desText="意见反馈"
+                    app:statusImage="@mipmap/yijianfankui"></com.beyonditsm.echinfo.view.CommonView>
 
+                <View
+                    style="@style/view_line"
+                    android:layout_marginLeft="52dp"></View>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#ffffff"
-        android:layout_marginTop="10dp"
-        >
-        <View
-            style="@style/view_line"></View>
+                <com.beyonditsm.echinfo.view.CommonView
+                    android:id="@+id/cvPro"
+                    style="@style/mine_item_style"
+                    app:desText="常见问题"
+                    app:statusImage="@mipmap/changjianwent"></com.beyonditsm.echinfo.view.CommonView>
 
-        <com.beyonditsm.echinfo.view.CommonView
-            android:id="@+id/cvFeedBack"
-            style="@style/mine_item_style"
-            app:desText="意见反馈"
-            app:statusImage="@mipmap/yijianfankui"
-            ></com.beyonditsm.echinfo.view.CommonView>
-        <View
-            style="@style/view_line"
-            android:layout_marginLeft="52dp"
-            ></View>
-        <com.beyonditsm.echinfo.view.CommonView
-            android:id="@+id/cvPro"
-            style="@style/mine_item_style"
-            app:desText="常见问题"
-            app:statusImage="@mipmap/changjianwent"
-            ></com.beyonditsm.echinfo.view.CommonView>
-        <View
-            style="@style/view_line"
-            ></View>
-    </LinearLayout>
+                <View style="@style/view_line"></View>
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
@@ -217,10 +234,9 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/main_color"
-        android:text="退出账号"
         android:gravity="center"
-        android:textSize="14sp"
+        android:text="退出账号"
         android:textColor="#ffffff"
-        />
+        android:textSize="14sp" />
 
 </LinearLayout>
