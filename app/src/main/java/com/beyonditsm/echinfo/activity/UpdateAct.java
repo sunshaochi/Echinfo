@@ -173,7 +173,7 @@ public class UpdateAct extends BaseActivity {
     @OnClick({R.id.rlOccu, R.id.civHead})
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.rlOccu:
+            case R.id.rlOccu://职业选择
                 openActivity(OccupationAct.class);
                 break;
             case R.id.civHead://头像

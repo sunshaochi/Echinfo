@@ -5,6 +5,9 @@
     android:background="@color/bg_color"
     android:orientation="vertical">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -300,4 +303,10 @@
         </LinearLayout>
     </ScrollView>
 
+        <com.beyonditsm.echinfo.view.LoadingView
+            android:id="@+id/loadView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.beyonditsm.echinfo.view.LoadingView>
+
+    </FrameLayout>
 </LinearLayout>

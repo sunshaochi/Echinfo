@@ -1,6 +1,5 @@
 package com.beyonditsm.echinfo.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -46,9 +45,11 @@ public class OccupationAct extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                EventBus.getDefault().post(new OccuEvent("客户服务助理"));
-                Intent intent=new Intent(OccupationAct.this,OccupationChildAct.class);
-                intent.putExtra("id",list.get(position).getId());
-                startActivity(intent);
+//                Intent intent=new Intent(OccupationAct.this,OccupationChildAct.class);
+//                intent.putExtra("id",list.get(position).getId());
+//                startActivity(intent);
+                EventBus.getDefault().post(new OccuEvent(list.get(position).getOccupationName()));
+                finish();
             }
         });
     }

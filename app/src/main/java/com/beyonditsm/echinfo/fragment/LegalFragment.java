@@ -104,7 +104,7 @@ public class LegalFragment extends BaseFragment{
                     SearchDao.addSearch(se);
                 }
                 getActivity().sendBroadcast(new Intent(SearchHisFrg.SEARCH_HISTORY));
-                intent.putExtra(CompanyxqAct.ID, stockMsgList.get(i).getId());
+                intent.putExtra(CompanyxqAct.ID, stockMsgList.get(i).getCompanyId());
                 getActivity().startActivity(intent);
             }
         });

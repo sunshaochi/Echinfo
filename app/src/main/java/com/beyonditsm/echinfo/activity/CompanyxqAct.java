@@ -26,6 +26,7 @@ import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.GsonUtils;
 import com.beyonditsm.echinfo.util.MyToastUtils;
+import com.beyonditsm.echinfo.view.LoadingView;
 import com.beyonditsm.echinfo.view.MyGridView;
 import com.beyonditsm.echinfo.view.MySelfSheetDialog;
 import com.beyonditsm.echinfo.widget.ShareDialog;
@@ -65,6 +66,8 @@ public class CompanyxqAct extends BaseActivity {
     private TextView cltime;//成立时间
     @ViewInject(R.id.location)
     private TextView location;//公司位置
+    @ViewInject(R.id.loadView)
+    private LoadingView loadView;
 
     private CompanyEntity entity;
     private boolean flag;
@@ -84,6 +87,16 @@ public class CompanyxqAct extends BaseActivity {
             selectStatus(iId);
             findEnterpriseInfoMsgById(iId);
         }
+
+        loadView.setOnRetryListener(new LoadingView.OnRetryListener() {
+            @Override
+            public void OnRetry() {
+                if(!TextUtils.isEmpty(iId)) {
+                    selectStatus(iId);
+                    findEnterpriseInfoMsgById(iId);
+                }
+            }
+        });
 
         gvqy.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             //            private final String TITLES[] = {"工商信息", "企业图谱", "行业分析", "失业信息", "诉讼信息",
@@ -294,6 +307,7 @@ public class CompanyxqAct extends BaseActivity {
         RequestManager.getCommManager().findEnterpriseInfoMsgById(id, new CallBack() {
             @Override
             public void onSucess(String result) {
+                loadView.loadComplete();
                 ResultData<CompanyEntity> rd = (ResultData<CompanyEntity>) GsonUtils.json(result, CompanyEntity.class);
                 entity = rd.getData();
                 setBusiness(entity);
@@ -301,7 +315,7 @@ public class CompanyxqAct extends BaseActivity {
 
             @Override
             public void onError(String error) {
-
+                loadView.loadError();
             }
         });
     }
@@ -364,7 +378,7 @@ public class CompanyxqAct extends BaseActivity {
                 if(entity.getRegistCapital().contains("未")){
                     zczj.setText(entity.getRegistCapital());
                 }else {
-                    zczj.setText(Integer.valueOf(entity.getRegistCapital()) + "万人民币");
+                    zczj.setText(entity.getRegistCapital() + "万人民币");
                 }
             }else {
                 zczj.setText("0万人民币");
@@ -403,7 +417,20 @@ public class CompanyxqAct extends BaseActivity {
 
             @Override
             public void onError(String error) {
-
+                statusEntity=new StatusEntity();
+                statusEntity.setGongshangStatus("0");
+                statusEntity.setCourtitemStatus("0");
+                statusEntity.setEditrecordStatus("0");
+                statusEntity.setAbroadinvestmenttatus("0");
+                statusEntity.setSonenterpriseStatus("0");
+                statusEntity.setStockmsgStatus("0");
+                statusEntity.setAnnualportsmsgStatus("0");
+                statusEntity.setEnenewterprissStatus("0");
+                statusEntity.setLawsuitmsgStatus("0");
+                statusEntity.setMainmemberStatus("0");
+                statusEntity.setHangyeStatus("0");
+                statusEntity.setTupuStatus("0");
+                gvqy.setAdapter(new CompanyAdapter(CompanyxqAct.this, statusEntity));
             }
         });
     }

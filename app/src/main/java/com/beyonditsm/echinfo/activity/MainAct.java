@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -469,8 +468,8 @@ public class MainAct extends BaseActivity {
                         if(datas.size()>0) {
                             hot1 = datas.subList(0, datas.size() / 2);
                             hot2 = datas.subList(datas.size() / 2, datas.size());
-                            hotList.add(hot1);
                             hotList.add(hot2);
+                            hotList.add(hot1);
                         }
                         initHotCom();//初始化热门
                     }
