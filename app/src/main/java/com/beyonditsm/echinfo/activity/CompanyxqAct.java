@@ -32,6 +32,9 @@ import com.beyonditsm.echinfo.view.MySelfSheetDialog;
 import com.beyonditsm.echinfo.widget.ShareDialog;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.umeng.socialize.controller.UMServiceFactory;
+import com.umeng.socialize.controller.UMSocialService;
+import com.umeng.socialize.sso.UMSsoHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -74,6 +77,8 @@ public class CompanyxqAct extends BaseActivity {
     String iId =null;
     public static final String ID ="id";//企业详情
     public static final String COMPANYID ="companyId";//企业详情中gridview的item
+
+    final UMSocialService mController = UMServiceFactory.getUMSocialService("com.umeng.share");
     @Override
     public void setLayout() {
         setContentView(R.layout.act_companyxq);
@@ -82,6 +87,7 @@ public class CompanyxqAct extends BaseActivity {
 
     @Override
     public void init(Bundle savedInstanceState) {
+
         iId =getIntent().getStringExtra(ID);
         if(!TextUtils.isEmpty(iId)) {
             selectStatus(iId);
@@ -499,5 +505,15 @@ public class CompanyxqAct extends BaseActivity {
         });
 
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        /**使用SSO授权必须添加如下代码 */
+        UMSsoHandler ssoHandler = mController.getConfig().getSsoHandler(requestCode) ;
+        if(ssoHandler != null){
+            ssoHandler.authorizeCallBack(requestCode, resultCode, data);
+        }
     }
 }

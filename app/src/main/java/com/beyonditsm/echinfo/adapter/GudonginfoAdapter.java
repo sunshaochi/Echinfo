@@ -71,11 +71,11 @@ public class GudonginfoAdapter  extends BaseAdapter {
         if(!TextUtils.isEmpty(list.get(position).getSubcribeTime()))
             holder.outtime.setText(list.get(position).getSubcribeTime());
         if(list.get(position).getSubcribe()!=null)
-            holder.outmoney.setText(list.get(position).getSubcribe() + "");
+            holder.outmoney.setText(list.get(position).getSubcribe() + "万人民币");
         if(!TextUtils.isEmpty(list.get(position).getRealSubcribeTime()))
             holder.realtime.setText(list.get(position).getRealSubcribeTime());
         if(list.get(position).getRealSubcribe()!=null)
-            holder.realmoney.setText(list.get(position).getRealSubcribe() + "");
+            holder.realmoney.setText(list.get(position).getRealSubcribe() + "万人民币");
         if(!TextUtils.isEmpty(list.get(position).getRealSubcribeType()))
             holder.payway.setText(list.get(position).getRealSubcribeType());
         return convertView;

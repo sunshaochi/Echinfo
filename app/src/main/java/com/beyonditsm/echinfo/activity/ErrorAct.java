@@ -129,7 +129,6 @@ public class ErrorAct extends BaseActivity {
         connects="";//被点击的选项内容
         for(int key:datamap.keySet()){
             connects=connects.concat(datamap.get(key).toString()+"");
-
         }
 
         if (TextUtils.isEmpty(phone)) {
@@ -143,8 +142,8 @@ public class ErrorAct extends BaseActivity {
             et_sj.setSelection(et_sj.length());
             return false;
         }
-        if(TextUtils.isEmpty(connects)&&TextUtils.isEmpty(cw)){
-            MyToastUtils.showShortToast(getApplicationContext(),"请选择或输入错误内容");
+        if(TextUtils.isEmpty(connects)||TextUtils.isEmpty(cw)){
+            MyToastUtils.showShortToast(getApplicationContext(),"请选择错误类型和输入错误内容");
             return false;
         }
         return true;

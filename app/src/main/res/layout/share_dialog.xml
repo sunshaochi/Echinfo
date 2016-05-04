@@ -18,7 +18,7 @@
             android:orientation="vertical">
             <ImageView
                 android:layout_gravity="center_horizontal"
-                android:src="@mipmap/wexin"
+                android:src="@mipmap/weixin_friend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
@@ -26,7 +26,7 @@
                 android:gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="微信"
+                android:text="微信好友"
                 android:layout_marginTop="15dp"/>
         </LinearLayout>
         <LinearLayout
@@ -38,7 +38,7 @@
             android:orientation="vertical">
             <ImageView
                 android:layout_gravity="center_horizontal"
-                android:src="@mipmap/pengyq"
+                android:src="@mipmap/weixin_friendround"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
@@ -46,9 +46,30 @@
                 android:gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="朋友圈"
+                android:text="微信朋友圈"
                 android:layout_marginTop="15dp"/>
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/llqq"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:src="@mipmap/qq_friends"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="QQ好友"
+                android:layout_marginTop="15dp"/>
+        </LinearLayout>
+
         <LinearLayout
             android:id="@+id/llweibo"
             android:gravity="center_vertical"
@@ -58,7 +79,7 @@
             android:orientation="vertical">
             <ImageView
                 android:layout_gravity="center_horizontal"
-                android:src="@mipmap/weibo"
+                android:src="@mipmap/sinaweibo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
@@ -66,9 +87,31 @@
                 android:gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="新浪"
+                android:text="新浪微博"
                 android:layout_marginTop="15dp"/>
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llqqcircle"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:src="@mipmap/qqspace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="QQ空间"
+                android:layout_marginTop="15dp"/>
+        </LinearLayout>
+
     </LinearLayout>
     <View style="@style/view_line"/>
 

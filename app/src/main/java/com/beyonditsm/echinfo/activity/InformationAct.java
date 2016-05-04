@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.beyonditsm.echinfo.R;
-import com.beyonditsm.echinfo.adapter.AnnualAdapter;
 import com.beyonditsm.echinfo.adapter.InformationAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.entity.AnnualEntity;
@@ -17,6 +16,7 @@ import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
 import com.beyonditsm.echinfo.util.MyToastUtils;
+import com.beyonditsm.echinfo.view.LoadingView;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshBase;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -38,6 +38,9 @@ public class InformationAct extends BaseActivity{
 
     @ViewInject(R.id.plv)
     private PullToRefreshListView plv;
+
+    @ViewInject(R.id.loadingView)
+    private LoadingView loadView;
     private int page=1;
     private int rows=10;
     private String companyId=null;
@@ -103,6 +106,7 @@ public class InformationAct extends BaseActivity{
         RequestManager.getCommManager().findEnterpriseNewsList(id, page, rows, new CallBack() {
             @Override
             public void onSucess(String result) {
+                loadView.loadComplete();
                 plv.onPullUpRefreshComplete();
                 plv.onPullDownRefreshComplete();
                 Gson gson = new Gson();

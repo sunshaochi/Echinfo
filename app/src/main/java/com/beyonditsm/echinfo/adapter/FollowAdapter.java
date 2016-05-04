@@ -18,12 +18,14 @@ import java.util.List;
 public class FollowAdapter extends BaseAdapter{
     private Context context;
     List<CompanyEntity> list;
+    private int code;
     public FollowAdapter(Context context){
         this.context=context;
     }
-    public FollowAdapter(Context context,List<CompanyEntity> list){
+    public FollowAdapter(Context context,List<CompanyEntity> list,int code){
         this.context=context;
         this.list=list;
+        this.code=code;
     }
     public void notify(List<CompanyEntity> list){
         this.list=list;
@@ -62,10 +64,20 @@ public class FollowAdapter extends BaseAdapter{
         if(list!=null){
             if(!TextUtils.isEmpty(list.get(position).getCompanyName()))
                 holder.company.setText(list.get(position).getCompanyName());
-            if(!TextUtils.isEmpty(list.get(position).getRepPersion()))
-                holder.lename.setText("公司法人："+list.get(position).getRepPersion());
+
             if(!TextUtils.isEmpty(list.get(position).getRecordStatus()))
                 holder.status.setText(list.get(position).getRecordStatus());
+
+            switch (code){
+                case 0:
+                    if(!TextUtils.isEmpty(list.get(position).getRepPersion()))
+                    holder.lename.setText("公司法人："+list.get(position).getRepPersion());
+                    break;
+                case 1:
+                    if(!TextUtils.isEmpty(list.get(position).getLegalRepPersion()))
+                    holder.lename.setText("公司法人："+list.get(position).getLegalRepPersion());
+                    break;
+            }
         }
         return convertView;
     }

@@ -34,7 +34,7 @@ public class ShareDialog implements OnClickListener {
     private Display display;
     private LinearLayout llweixin;
     private LinearLayout llweixincircle;
-    private LinearLayout llweibo;
+    private LinearLayout llweibo,llqq,llqqcircle;
     private TextView tvclose;
     // 首先在您的Activity中添加如下成员变量
     final UMSocialService mController = UMServiceFactory.getUMSocialService("com.umeng.share");
@@ -46,6 +46,7 @@ public class ShareDialog implements OnClickListener {
 
     public ShareDialog(Context context){
         this.context = context;
+
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         display = windowManager.getDefaultDisplay();
         // 设置分享内容
@@ -66,11 +67,15 @@ public class ShareDialog implements OnClickListener {
         llweixin = (LinearLayout) view.findViewById(R.id.llweixin);
         llweixincircle = (LinearLayout) view.findViewById(R.id.llweixincircle);
         llweibo = (LinearLayout) view.findViewById(R.id.llweibo);
+        llqq= (LinearLayout) view.findViewById(R.id.llqq);
+        llqqcircle= (LinearLayout) view.findViewById(R.id.llqqcircle);
         tvclose = (TextView) view.findViewById(R.id.close);
         llweixin.setOnClickListener(this);
         llweixincircle.setOnClickListener(this);
         llweibo.setOnClickListener(this);
         tvclose.setOnClickListener(this);
+        llqq.setOnClickListener(this);
+        llqqcircle.setOnClickListener(this);
         // 定义Dialog布局和参数
         dialog = new Dialog(context, R.style.ActionSheetDialogStyle);
         dialog.setContentView(view);
@@ -129,9 +134,98 @@ public class ShareDialog implements OnClickListener {
             case R.id.close:
                 dialog.dismiss();
                 break;
+            case R.id.llqq:
+                qqShare();
+                break;
+
+            case R.id.llqqcircle:
+                qqcircleShare();
+                break;
             default:
                 break;
         }
+    }
+
+    /**
+     * 分享到qq空间
+     */
+    private void qqcircleShare() {
+//        UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(activity,"100424468", "c7394704798a158208a74ab60104f0ba");
+//        qqSsoHandler.addToSocialSDK();
+//
+//        QQShareContent qqContent = new QQShareContent();
+//        qqContent.setTitle(title);
+//        qqContent.setShareContent(content);
+//
+//        UMImage localImage = new UMImage(context, R.mipmap.ic_launcher);
+//        qqContent.setShareImage(localImage);
+//        qqContent.setTargetUrl(codeUrl);
+//        mController.setShareMedia(qqContent);
+//
+//        //分享到qq
+//        mController.postShare(context, SHARE_MEDIA.QZONE, new SocializeListeners.SnsPostListener() {
+//            @Override
+//            public void onStart() {
+////                Toast.makeText(getApplicationContext(), "分享到qq开始", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onComplete(SHARE_MEDIA share_media, int i, SocializeEntity socializeEntity) {
+//                if (i == 200) {
+//                    Toast.makeText(activity, "分享成功.", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    String eMsg = "";
+//                    if (i == -101) {
+//                        eMsg = "没有授权";
+//                    }
+//                    Toast.makeText(activity, "分享失败[" + i + "] " +
+//                            eMsg, Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+
+
+
+    }
+
+    /**
+     * 分享到qq
+     */
+    private void qqShare() {
+//        UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(activity,"100424468", "c7394704798a158208a74ab60104f0ba");
+//        qqSsoHandler.addToSocialSDK();
+//
+//        QQShareContent qqContent = new QQShareContent();
+//        qqContent.setTitle(title);
+//        qqContent.setShareContent(content);
+//
+//        UMImage localImage = new UMImage(context, R.mipmap.ic_launcher);
+//        qqContent.setShareImage(localImage);
+//        qqContent.setTargetUrl(codeUrl);
+//        mController.setShareMedia(qqContent);
+//
+//        //分享到qq
+//        mController.postShare(activity, SHARE_MEDIA.QQ, new SocializeListeners.SnsPostListener() {
+//            @Override
+//            public void onStart() {
+////                Toast.makeText(getApplicationContext(), "分享到qq开始", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onComplete(SHARE_MEDIA share_media, int i, SocializeEntity socializeEntity) {
+//                if (i == 200) {
+//                    Toast.makeText(activity, "分享成功.", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    String eMsg = "";
+//                    if (i == -101) {
+//                        eMsg = "没有授权";
+//                    }
+//                    Toast.makeText(activity, "分享失败[" + i + "] " +
+//                            eMsg, Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+
     }
 
     /**
@@ -142,7 +236,7 @@ public class ShareDialog implements OnClickListener {
         String appID = "wx82a8d922ed04d3fb";
         String appSecret = "175ffde69beb52ac75ec781a1f11cc8b";
         // 添加微信朋友圈
-        UMWXHandler wxCircleHandler = new UMWXHandler(context, appID, appSecret);
+        UMWXHandler wxCircleHandler = new UMWXHandler(context,appID,appSecret);
         wxCircleHandler.setToCircle(true);
         wxCircleHandler.addToSocialSDK();
         //设置微信朋友圈分享内容
