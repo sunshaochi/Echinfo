@@ -6,7 +6,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.adapter.BadCAdaper;
@@ -16,7 +15,7 @@ import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
 import com.beyonditsm.echinfo.util.MyLogUtils;
-import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshBase;
+import com.beyonditsm.echinfo.view.LoadingView;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.tandong.sa.json.Gson;
@@ -35,6 +34,8 @@ import java.util.List;
 public class DishonestyInfoAct extends BaseActivity {
     @ViewInject(R.id.plv)
     private PullToRefreshListView plv;
+    @ViewInject(R.id.loadingView)
+            private LoadingView loadingView;
     String companyId=null;
     String iname=null;
     private int page=1;
@@ -80,6 +81,7 @@ public class DishonestyInfoAct extends BaseActivity {
         RequestManager.getCommManager().findCourtitemList(iname,address, new CallBack() {
             @Override
             public void onSucess(String result) {
+                loadingView.loadComplete();
                 Gson gson = new Gson();
                 try {
                     JSONObject json = new JSONObject(result);

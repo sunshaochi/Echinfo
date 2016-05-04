@@ -15,7 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
         <com.beyonditsm.echinfo.view.LoadingView
-            android:visibility="gone"
             android:id="@+id/loadingView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
