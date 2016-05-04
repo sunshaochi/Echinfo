@@ -87,6 +87,16 @@
             style="@style/view_line"
             android:layout_marginLeft="15dp"></View>
 
+        <EditText
+            android:id="@+id/etOccu"
+            style="@style/edit_style"
+            android:layout_height="45dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:hint="职业"
+            android:textSize="14sp"
+            />
+
         <RelativeLayout
             android:id="@+id/rlOccu"
             android:layout_width="match_parent"
@@ -94,6 +104,7 @@
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:background="@drawable/item_back"
+            android:visibility="gone"
             >
             <TextView
                 android:layout_width="wrap_content"

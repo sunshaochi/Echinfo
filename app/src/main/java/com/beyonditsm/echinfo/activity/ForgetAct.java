@@ -75,8 +75,8 @@ public class ForgetAct extends BaseActivity {
 //                break;
             case R.id.tvCode://获取验证码
                 phone = etPhone.getText().toString().trim();
-                code=etCode.getText().toString().trim();
-                pwd=etPwd.getText().toString().trim();
+                code = etCode.getText().toString().trim();
+                pwd = etPwd.getText().toString().trim();
 
                 if (TextUtils.isEmpty(phone)) {
                     MyToastUtils.showShortToast(getApplicationContext(), "请输入手机号");
@@ -86,11 +86,11 @@ public class ForgetAct extends BaseActivity {
                     MyToastUtils.showShortToast(getApplicationContext(), "请输入正确的手机号码");
                     return;
                 }
-                sendSms(phone,"false");
+                sendSms(phone, "false");
                 break;
             case R.id.tvFPwd://重置密码
                 if (isValidate()) {
-                    forgetPwd(phone,code,pwd);
+                    forgetPwd(phone, code, pwd);
 //                    llForg.setVisibility(View.GONE);
 //                    llSucess.setVisibility(View.VISIBLE);
                 }
@@ -113,26 +113,26 @@ public class ForgetAct extends BaseActivity {
             etPhone.requestFocus();
             return false;
         }
-        if(phone.length()!=11){
+        if (phone.length() != 11) {
             MyToastUtils.showShortToast(getApplicationContext(), "请输入正确的手机号");
             etPhone.requestFocus();
             etPhone.setSelection(etPhone.length());
             return false;
         }
-        if(pwd.length()<6){
-            MyToastUtils.showShortToast(getApplicationContext(),"请输入至少6位密码");
+        if (pwd.length() < 6) {
+            MyToastUtils.showShortToast(getApplicationContext(), "请输入至少6位密码");
             etPwd.requestFocus();
             etPwd.setSelection(pwd.length());
             return false;
         }
-        if(pwd.length()>20){
+        if (pwd.length() > 20) {
             MyToastUtils.showShortToast(getApplicationContext(), "请输入不超过20位密码");
             etPwd.requestFocus();
             etPwd.setSelection(pwd.length());
             return false;
         }
-        if(!EchinfoUtils.checkPwd(pwd)){
-            MyToastUtils.showShortToast(getApplicationContext(),"请输入6-20位字母或数字");
+        if (!EchinfoUtils.checkPwd(pwd)) {
+            MyToastUtils.showShortToast(getApplicationContext(), "请输入6-20位字母或数字");
             return false;
         }
 
@@ -202,7 +202,6 @@ public class ForgetAct extends BaseActivity {
      * 倒计时
      *
      * @author wangbin
-     *
      */
     class MyTimerTask extends TimerTask {
 
@@ -233,10 +232,11 @@ public class ForgetAct extends BaseActivity {
 
     /**
      * 发送验证码
+     *
      * @param phoneNum
      * @param isRegister
      */
-    private void sendSms(String phoneNum,String isRegister) {
+    private void sendSms(String phoneNum, String isRegister) {
         RequestManager.getCommManager().toSendSms(phoneNum, isRegister, new CallBack() {
             @Override
             public void onSucess(String result) {
@@ -249,28 +249,29 @@ public class ForgetAct extends BaseActivity {
 
             @Override
             public void onError(String error) {
-                MyToastUtils.showShortToast(ForgetAct.this,error);
+                MyToastUtils.showShortToast(ForgetAct.this, error);
             }
         });
     }
 
     /**
      * 重置密码
+     *
      * @param phoneNumber
      * @param captcha
      * @param newpwd
      */
-    private void forgetPwd(String phoneNumber,String captcha,String newpwd){
+    private void forgetPwd(String phoneNumber, String captcha, String newpwd) {
         RequestManager.getCommManager().forgetPwd(phoneNumber, captcha, newpwd, new CallBack() {
             @Override
             public void onSucess(String result) {
-                MyToastUtils.showShortToast(getApplicationContext(),"找回密码成功");
+                MyToastUtils.showShortToast(getApplicationContext(), "找回密码成功");
                 finish();
             }
 
             @Override
             public void onError(String error) {
-
+                MyToastUtils.showShortToast(getApplication(), error);
             }
         });
     }
