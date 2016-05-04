@@ -35,7 +35,6 @@ public class FeedBackAct extends BaseActivity {
         setRight("提交", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if(isValide()){
                     addMsg(content,phone);
                 }

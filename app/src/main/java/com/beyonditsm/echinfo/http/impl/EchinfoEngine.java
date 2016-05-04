@@ -356,14 +356,14 @@ public class EchinfoEngine extends RequestManager {
     /**
      * 意见反馈
      * @param content
-     * @param phonenumber
+     * @param mobileEmailQqNo
      * @param callBack
      */
-    public void addIdeaTicking(String content,String phonenumber,CallBack callBack){
+    public void addIdeaTicking(String content,String mobileEmailQqNo,CallBack callBack){
         Map<String,String> map=new HashMap<>();
         map.put("content",content);
-        map.put("mobileEmailQqNo",phonenumber);
-        doPost(IEchinfoUrl.ADDMSG_URL,map,callBack);
+        map.put("mobileEmailQqNo",mobileEmailQqNo);
+        doPost(IEchinfoUrl.ADDMSG_URL, map, callBack);
     }
 
     /**
