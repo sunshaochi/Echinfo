@@ -145,32 +145,33 @@ public class RequestManager {
             public void onErrorResponse(VolleyError error) {
                 callback.onError(VolleyErrorHelper.getMessage(error));
             }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap localHashMap = new HashMap();
-                if(!TextUtils.isEmpty(SpUtils.getCookie(MyApplication.getInstance())))
-                    localHashMap.put("Cookie", SpUtils.getCookie(MyApplication.getInstance()));
-                return localHashMap;
-            }
-
-            @Override
-            protected Response<String> parseNetworkResponse(
-                    NetworkResponse response) {
-                // TODO Auto-generated method stub
-                try {
-
-                    Map<String, String> responseHeaders = response.headers;
-                    String rawCookies = responseHeaders.get("Set-Cookie");
-                    String dataString = new String(response.data, "UTF-8");
-                    if (!TextUtils.isEmpty(rawCookies))
-                        SpUtils.setCooike(MyApplication.getInstance(), rawCookies);
-                    return Response.success(dataString, HttpHeaderParser.parseCacheHeaders(response));
-                } catch (UnsupportedEncodingException e) {
-                    return Response.error(new ParseError(e));
-                }
-            }
-        };
+        });
+//        {
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                HashMap localHashMap = new HashMap();
+//                if(!TextUtils.isEmpty(SpUtils.getCookie(MyApplication.getInstance())))
+//                    localHashMap.put("Cookie", SpUtils.getCookie(MyApplication.getInstance()));
+//                return localHashMap;
+//            }
+//
+//            @Override
+//            protected Response<String> parseNetworkResponse(
+//                    NetworkResponse response) {
+//                // TODO Auto-generated method stub
+//                try {
+//
+//                    Map<String, String> responseHeaders = response.headers;
+//                    String rawCookies = responseHeaders.get("Set-Cookie");
+//                    String dataString = new String(response.data, "UTF-8");
+//                    if (!TextUtils.isEmpty(rawCookies))
+//                        SpUtils.setCooike(MyApplication.getInstance(), rawCookies);
+//                    return Response.success(dataString, HttpHeaderParser.parseCacheHeaders(response));
+//                } catch (UnsupportedEncodingException e) {
+//                    return Response.error(new ParseError(e));
+//                }
+//            }
+//        };
         // 设定超时时间
         request.setRetryPolicy(new DefaultRetryPolicy(5000, 1, 1.0f));
         MyApplication.getInstance().addToRequestQueue(request);

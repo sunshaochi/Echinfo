@@ -362,7 +362,7 @@ public class EchinfoEngine extends RequestManager {
     public void addIdeaTicking(String content,String phonenumber,CallBack callBack){
         Map<String,String> map=new HashMap<>();
         map.put("content",content);
-        map.put("mobileNo",phonenumber);
+        map.put("mobileEmailQqNo",phonenumber);
         doPost(IEchinfoUrl.ADDMSG_URL,map,callBack);
     }
 

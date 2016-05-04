@@ -70,11 +70,11 @@ public class GudonginfoAdapter  extends BaseAdapter {
             holder.identity.setText(list.get(position).getStockType());
         if(!TextUtils.isEmpty(list.get(position).getSubcribeTime()))
             holder.outtime.setText(list.get(position).getSubcribeTime());
-        if(!TextUtils.isEmpty(list.get(position).getSubcribe()+""))
+        if(list.get(position).getSubcribe()!=null)
             holder.outmoney.setText(list.get(position).getSubcribe() + "");
         if(!TextUtils.isEmpty(list.get(position).getRealSubcribeTime()))
             holder.realtime.setText(list.get(position).getRealSubcribeTime());
-        if(!TextUtils.isEmpty(list.get(position).getRealSubcribe() + ""))
+        if(list.get(position).getRealSubcribe()!=null)
             holder.realmoney.setText(list.get(position).getRealSubcribe() + "");
         if(!TextUtils.isEmpty(list.get(position).getRealSubcribeType()))
             holder.payway.setText(list.get(position).getRealSubcribeType());

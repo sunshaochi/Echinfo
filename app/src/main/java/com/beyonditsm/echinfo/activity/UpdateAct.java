@@ -31,7 +31,6 @@ import com.beyonditsm.echinfo.view.MySelfSheetDialog;
 import com.lidroid.xutils.http.client.multipart.content.FileBody;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.tandong.sa.eventbus.EventBus;
 import com.tandong.sa.zUImageLoader.core.DisplayImageOptions;
 import com.tandong.sa.zUImageLoader.core.ImageLoader;
 
@@ -46,6 +45,8 @@ import java.util.Map;
 public class UpdateAct extends BaseActivity {
     @ViewInject(R.id.tvOccu)
     private TextView tvOccu;//职业
+    @ViewInject(R.id.etOccu)
+    private EditText etOccu;
     @ViewInject(R.id.civHead)
     private CircleImageView civHead;
 
@@ -93,7 +94,7 @@ public class UpdateAct extends BaseActivity {
             setUserInfo(userentity);
             MyLogUtils.degug(userentity.toString());
         }
-        EventBus.getDefault().register(this);
+//        EventBus.getDefault().register(this);
         setRight("保存", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,7 +128,7 @@ public class UpdateAct extends BaseActivity {
                 company.setText(userEntitty.getCompanyName());
             }
             if (!TextUtils.isEmpty(userEntitty.getJob())) {
-                tvOccu.setText(userEntitty.getJob());
+                etOccu.setText(userEntitty.getJob());
             }
         }
     }
@@ -136,7 +137,7 @@ public class UpdateAct extends BaseActivity {
     private UserEntity saveUserInfo(){
         String tvname=etname.getText().toString().trim();
         String tvcompany=company.getText().toString().trim();
-        String occu=tvOccu.getText().toString().trim();
+        String occu=etOccu.getText().toString().trim();
         if(!TextUtils.isEmpty(tvname)){
             userentity.setName(tvname);
         }
@@ -204,7 +205,7 @@ public class UpdateAct extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
+//        EventBus.getDefault().unregister(this);
     }
 
     public void onEvent(OccuEvent event) {
