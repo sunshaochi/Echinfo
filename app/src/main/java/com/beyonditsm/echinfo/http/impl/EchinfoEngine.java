@@ -6,7 +6,6 @@ import com.beyonditsm.echinfo.entity.UserEntity;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.IEchinfoUrl;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
-import com.beyonditsm.echinfo.util.MyLogUtils;
 import com.lidroid.xutils.http.client.multipart.content.FileBody;
 import com.tandong.sa.json.Gson;
 
@@ -47,7 +46,7 @@ public class EchinfoEngine extends RequestManager {
         map.put("username", phoneNumber);
         map.put("phoneNumber", phoneNumber);
         map.put("captcha", captcha);
-//        map.put("password", password);
+        map.put("password", password);
         doPost(IEchinfoUrl.REGISTE_URL, map, callBack);
     }
 

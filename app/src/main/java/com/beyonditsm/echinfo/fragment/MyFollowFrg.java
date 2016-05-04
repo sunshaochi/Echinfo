@@ -10,10 +10,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.activity.CompanyxqAct;
+import com.beyonditsm.echinfo.activity.LoginAct;
 import com.beyonditsm.echinfo.adapter.FollowAdapter;
 import com.beyonditsm.echinfo.base.BaseFragment;
 import com.beyonditsm.echinfo.db.UserDao;
@@ -44,6 +47,11 @@ public class MyFollowFrg extends BaseFragment{
     private PullToRefreshListView plv;
     private FollowAdapter adapter;
     private List<CompanyEntity> list;
+    @ViewInject(R.id.rl_txdl)
+    private LinearLayout rl_txdl;//提醒登录
+    @ViewInject(R.id.tv_dl)
+    private TextView tv_dl;
+
     private int page=1;
     private int rows=10;
     @ViewInject(R.id.loadingView)
@@ -55,6 +63,16 @@ public class MyFollowFrg extends BaseFragment{
 
     @Override
     public void initData(Bundle savedInstanceState) {
+        if(UserDao.getUser()==null){
+            rl_txdl.setVisibility(View.VISIBLE);
+            tv_dl.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openActivity(LoginAct.class);
+                }
+            });
+
+        }
         if(UserDao.getUser()!=null) {
             findgzPortsMsg(page, rows);
         }else {
@@ -199,6 +217,7 @@ public class MyFollowFrg extends BaseFragment{
 
         @Override
         public void onReceive(Context context, Intent intent) {
+            rl_txdl.setVisibility(View.GONE);
             findgzPortsMsg(page,rows);
         }
     }

@@ -1,26 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_color"
-    >
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView
-            android:id="@+id/plv"
+
+        <RelativeLayout
+            android:background="@color/bg_color"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView>
+            <com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView
+                android:id="@+id/plv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <com.beyonditsm.echinfo.view.LoadingView
+            </com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView>
+
+            <com.beyonditsm.echinfo.view.LoadingView
+                android:id="@+id/loadingView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <LinearLayout
             android:visibility="gone"
-            android:id="@+id/loadingView"
+            android:background="#F2F3F5"
+            android:id="@+id/rl_txdl"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-    </RelativeLayout>
+            <TextView
+                style="@style/tv_second"
+                android:layout_marginTop="170dp"
+                android:text="您还没有登录"
+                android:textColor="#3c3c3c"
+                android:textSize="18sp" />
 
-    </LinearLayout>
+            <TextView
+                style="@style/tv_second"
+                android:layout_marginTop="25dp"
+                android:text="登录后我们将保存你所关注的企业"
+                android:textColor="#A0A0A0"
+                android:textSize="14sp" />
+
+            <TextView
+                android:background="@drawable/but_frg_dl"
+                android:id="@+id/tv_dl"
+                style="@style/btn_blue_style"
+                android:layout_width="240dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="65dp"
+                android:text="登录"
+                android:textSize="13sp" />
+
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+</LinearLayout>

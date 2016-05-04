@@ -20,7 +20,6 @@ import com.beyonditsm.echinfo.R;
  *
  */
 public class LoadingView extends RelativeLayout {
-
 	private LinearLayout mNoContent;
 	private TextView mNoContentTxt;
 	private ImageView mNoContentIco;
