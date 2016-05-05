@@ -39,6 +39,7 @@
             android:layout_marginLeft="15dp"
             ></View>
         <EditText
+            android:maxLength="20"
             android:id="@+id/etSP"
             style="@style/edit_style"
             android:layout_height="45dp"

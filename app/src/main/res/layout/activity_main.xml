@@ -72,8 +72,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginRight="17dp"
                     android:layout_marginTop="20dp"
                     android:orientation="vertical">
 
@@ -177,6 +177,7 @@
                         android:layout_height="25dp"
                         android:src="@mipmap/search"/>
                     <TextView
+                        android:textSize="14sp"
                         style="@style/tv_second"
                         android:text="查企业"
                         android:layout_marginLeft="10dp"
@@ -193,6 +194,7 @@
                         android:layout_height="28dp"
                         android:src="@mipmap/farengudong"/>
                     <TextView
+                        android:textSize="14sp"
                         style="@style/tv_second"
                        android:layout_marginLeft="10dp"
                         android:maxEms="5"
@@ -210,6 +212,7 @@
                         android:layout_height="29dp"
                         android:src="@mipmap/lose_letter"/>
                     <TextView
+                        android:textSize="14sp"
                         style="@style/tv_second"
                         android:layout_marginLeft="10dp"
                         android:text="查失信"
@@ -259,7 +262,7 @@
             <RelativeLayout
                 android:id="@+id/rl_qy"
                 style="@style/rl_item"
-                android:layout_height="40dp">
+                android:layout_height="35dp">
 
                 <TextView
                     style="@style/tv_second"

@@ -9,6 +9,7 @@ import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
+import com.beyonditsm.echinfo.util.EchinfoUtils;
 import com.beyonditsm.echinfo.util.MyToastUtils;
 
 /**
@@ -73,7 +74,26 @@ public class UpdatePwdAct extends BaseActivity {
             etSP.requestFocus();
             return false;
         }
+
+        if(nPwd.length()<6){
+            MyToastUtils.showShortToast(getApplicationContext(),"请输入至少6位密码");
+            etNewP.requestFocus();
+            etNewP.setSelection(nPwd.length());
+            return false;
+        }
+        if(nPwd.length()>20){
+            MyToastUtils.showShortToast(getApplicationContext(), "请输入不超过20位密码");
+            etNewP.requestFocus();
+            etNewP.setSelection(nPwd.length());
+            return false;
+        }
+        if(!EchinfoUtils.checkPwd(pwd)){
+            MyToastUtils.showShortToast(getApplicationContext(), "请输入6-20位字母或数字");
+            return false;
+        }
         return true;
+
+
     }
 
     /**

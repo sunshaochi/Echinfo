@@ -186,8 +186,8 @@ public class MineAct extends BaseActivity {
         public void onReceive(Context context, Intent intent) {
             UserEntity userEntity = UserDao.getUser();
             if (userEntity != null) {
-                if (!TextUtils.isEmpty(userEntity.getUsername())) {
-                    tvUserName.setText(userEntity.getUsername());
+                if (!TextUtils.isEmpty(userEntity.getName())) {
+                    tvUserName.setText(userEntity.getName());
                 }
                 if (!TextUtils.isEmpty(userEntity.getIcon())) {
                     ImageLoader.getInstance().displayImage(IEchinfoUrl.BASE_URL + userEntity.getIcon(), civHeadIcon, civOptions);

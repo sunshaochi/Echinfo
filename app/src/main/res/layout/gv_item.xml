@@ -12,7 +12,7 @@
         android:button="@null"
         android:background="@drawable/check_box"
         android:text="women"
-        android:textSize="14sp"
+        android:textSize="13sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>
