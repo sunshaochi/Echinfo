@@ -42,8 +42,6 @@
         android:textSize="16sp" />
     <EditText
         android:textColor="#A0A0A0"
-        android:inputType="phone"
-        android:maxLength="11"
         android:textSize="16sp"
         android:textColorHint="#c0c0c0"
         android:id="@+id/et_sj"

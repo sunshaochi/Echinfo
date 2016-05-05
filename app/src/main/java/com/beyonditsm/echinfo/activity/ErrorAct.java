@@ -132,16 +132,16 @@ public class ErrorAct extends BaseActivity {
         }
 
         if (TextUtils.isEmpty(phone)) {
-            MyToastUtils.showShortToast(getApplicationContext(), "请输入手机号");
+            MyToastUtils.showShortToast(getApplicationContext(), "请输入联系电话");
             et_sj.requestFocus();
             return false;
         }
-        if(phone.length()!=11){
-            MyToastUtils.showShortToast(getApplicationContext(), "请输入正确的手机号");
-            et_sj.requestFocus();
-            et_sj.setSelection(et_sj.length());
-            return false;
-        }
+//        if(phone.length()!=11){
+//            MyToastUtils.showShortToast(getApplicationContext(), "请输入11位的手机号");
+//            et_sj.requestFocus();
+//            et_sj.setSelection(et_sj.length());
+//            return false;
+//        }
         if(TextUtils.isEmpty(connects)||TextUtils.isEmpty(cw)){
             MyToastUtils.showShortToast(getApplicationContext(),"请选择错误类型和输入错误内容");
             return false;
