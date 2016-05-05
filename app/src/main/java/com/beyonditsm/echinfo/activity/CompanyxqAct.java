@@ -25,6 +25,7 @@ import com.beyonditsm.echinfo.entity.StatusEntity;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.GsonUtils;
+import com.beyonditsm.echinfo.util.MyLogUtils;
 import com.beyonditsm.echinfo.util.MyToastUtils;
 import com.beyonditsm.echinfo.view.LoadingView;
 import com.beyonditsm.echinfo.view.MyGridView;
@@ -89,6 +90,7 @@ public class CompanyxqAct extends BaseActivity {
     public void init(Bundle savedInstanceState) {
 
         iId =getIntent().getStringExtra(ID);
+        MyLogUtils.info("id:"+iId);
         if(!TextUtils.isEmpty(iId)) {
             selectStatus(iId);
             findEnterpriseInfoMsgById(iId);
