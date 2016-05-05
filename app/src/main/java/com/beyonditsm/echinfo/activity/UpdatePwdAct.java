@@ -7,6 +7,8 @@ import android.widget.EditText;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
+import com.beyonditsm.echinfo.db.UserDao;
+import com.beyonditsm.echinfo.entity.UserEntity;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
@@ -21,7 +23,7 @@ public class UpdatePwdAct extends BaseActivity {
     private EditText etNewP;
     private EditText etSP;
 
-    private String pwd, nPwd, sureP;
+    private String pwd, nPwd, sureP,ypwd;
 
     private void assignViews() {
         etPwd = (EditText) findViewById(R.id.etPwd);
@@ -36,6 +38,8 @@ public class UpdatePwdAct extends BaseActivity {
 
     @Override
     public void init(Bundle savedInstanceState) {
+        UserEntity user= UserDao.getUser();
+        ypwd=user.getPassword();
         setTopTitle("修改密码");
         assignViews();
         setRight("保存", new View.OnClickListener() {
@@ -65,7 +69,7 @@ public class UpdatePwdAct extends BaseActivity {
             return false;
         }
         if (TextUtils.isEmpty(sureP)) {
-            MyToastUtils.showShortToast(getApplicationContext(), "请输入确认密码");
+            MyToastUtils.showShortToast(getApplicationContext(), "请确认新密码");
             etSP.requestFocus();
             return false;
         }
@@ -89,6 +93,10 @@ public class UpdatePwdAct extends BaseActivity {
         }
         if(!EchinfoUtils.checkPwd(pwd)){
             MyToastUtils.showShortToast(getApplicationContext(), "请输入6-20位字母或数字");
+            return false;
+        }
+        if(!(ypwd.equals(pwd))){
+            MyToastUtils.showShortToast(getApplicationContext(), "原密码输入错误");
             return false;
         }
         return true;

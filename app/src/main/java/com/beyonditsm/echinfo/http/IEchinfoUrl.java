@@ -31,7 +31,6 @@ public interface IEchinfoUrl {
     String CHECK_UPDATE_URL = BASE_URL + "manager/unLogin/checkUpdrage.do";
     /*根据key获取类型*/
     String GETTYPEBYKEY_URL = BASE_URL + "manager/unLogin/findTypesByKey.do";
-
     /*企业列表信息*/
 //    String ENTERPRISELIST_URL = BASE_URL + "companyInfo/login/findEnterpriseInfo.do";
     /*企业基本信息*/
@@ -51,7 +50,8 @@ public interface IEchinfoUrl {
     /*主要成员*/
     String FINDMAINMEMBERMSG_URL = BASE_URL + "mainMemberMsg/unLogin/findMainMemberMsg.do";
     /*关注企业信息列表*/
-    String MYATTENTTIONMSG_URL = BASE_URL + "myAttenttionMsg/unLogin/findMyAttenttionMsg.do";
+//    String MYATTENTTIONMSG_URL = BASE_URL + "myAttenttionMsg/unLogin/findMyAttenttionMsg.do";
+    String MYATTENTTIONMSG_URL = BASE_URL + "myAttenttionMsg/findMyAttenttionMsg.do";
 
     /*查询企业*/
     String SEARCH_CPMPANY_URL = BASE_URL + "companyInfo/unLogin/findEnterpriseInfo.do";
