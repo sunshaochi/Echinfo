@@ -1,11 +1,9 @@
 package com.beyonditsm.echinfo.activity;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.beyonditsm.echinfo.R;
@@ -87,14 +85,14 @@ public class PamentAct extends BaseActivity {
                 findSonEnterpriseInterMsg(companyId, page, rows);
             }
         });
-        plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(PamentAct.this, CompanyxqAct.class);
-                intent.putExtra(CompanyxqAct.ID, datas.get(position).getCompanyId());
-                startActivity(intent);
-            }
-        });
+//        plv.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(PamentAct.this, CompanyxqAct.class);
+//                intent.putExtra(CompanyxqAct.ID, datas.get(position).getCompanyId());
+//                startActivity(intent);
+//            }
+//        });
         loadView.setOnRetryListener(new LoadingView.OnRetryListener() {
             @Override
             public void OnRetry() {

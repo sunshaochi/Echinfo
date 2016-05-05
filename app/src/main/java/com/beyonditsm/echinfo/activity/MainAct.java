@@ -61,6 +61,8 @@ public class MainAct extends BaseActivity {
     String name = null;
     SharedPreferences sp;
 
+    private Timer timer1,timer2;//热门企业timer1 关注企业timer2
+
     private GeneralUtils generalUtils;
     public static final String ISLOADING = "com.Main.isloading";
     /**
@@ -76,6 +78,8 @@ public class MainAct extends BaseActivity {
 
     @Override
     public void init(Bundle savedInstanceState) {
+        timer1=new Timer();
+        timer2=new Timer();
         sp = getSharedPreferences("config", Context.MODE_PRIVATE);
         name = sp.getString("screen_name", "");
         generalUtils = new GeneralUtils();
@@ -241,6 +245,7 @@ public class MainAct extends BaseActivity {
 
     //初始化关注
     private void initFlipView() {
+        timer2.cancel();
         FrameLayout main_notice = (FrameLayout) findViewById(R.id.flFollow);
         llFollow = (LinearLayout) getLayoutInflater().inflate(
                 R.layout.layout_main_flip, null);
@@ -258,8 +263,8 @@ public class MainAct extends BaseActivity {
                 });
             }
         };
-        Timer timer = new Timer();
-        timer.schedule(task, 0, 8000);
+        timer2 = new Timer();
+        timer2.schedule(task, 0, 8000);
     }
 
     private void moveNext() {
@@ -361,6 +366,7 @@ public class MainAct extends BaseActivity {
 
     //初始化热门企业
     private void initHotCom() {
+        timer1.cancel();
         FrameLayout main_notice = (FrameLayout) findViewById(R.id.flHotCom);
         llHot = (LinearLayout) getLayoutInflater().inflate(
                 R.layout.layout_main_flip, null);
@@ -378,8 +384,8 @@ public class MainAct extends BaseActivity {
                 });
             }
         };
-        Timer timer = new Timer();
-        timer.schedule(task, 0, 8000);
+         timer1 = new Timer();
+        timer1.schedule(task, 0, 8000);
     }
 
 
