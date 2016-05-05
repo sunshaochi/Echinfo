@@ -190,6 +190,17 @@ public class EchinfoEngine extends RequestManager {
         map.put("id",id);
         doPost(IEchinfoUrl.ENTERPRISEINFO_URL,map,callBack);
     }
+
+    /**
+     * 查询企业详细信息
+     * @param id
+     * @param callBack
+     */
+    public void findEnterpriseInfoMsgByIdLogin(String id,CallBack callBack){
+        Map<String,String> map=new HashMap<>();
+        map.put("id",id);
+        doPost(IEchinfoUrl.ENTERINFO_LOGIN_URL,map,callBack);
+    }
     /**
      * 查询企业工商信息
      * @param companyId

@@ -140,12 +140,18 @@ public class UpdateAct extends BaseActivity {
         String occu=etOccu.getText().toString().trim();
         if(!TextUtils.isEmpty(tvname)){
             userentity.setName(tvname);
+        }else{
+            userentity.setName("");
         }
         if(!TextUtils.isEmpty(tvcompany)){
             userentity.setCompanyName(tvcompany);
+        }else{
+            userentity.setCompanyName("");
         }
         if(!TextUtils.isEmpty(occu)){
             userentity.setJob(occu);
+        }else{
+            userentity.setJob("");
         }
         MyLogUtils.degug("更新："+userentity.toString());
         return userentity;
@@ -235,7 +241,7 @@ public class UpdateAct extends BaseActivity {
                 }
                 uri = data.getData();
                 Bitmap userbitmap = MyBitmapUtils.decodeUriAsBitmap(UpdateAct.this, uri);
-                File user_head = MyBitmapUtils.saveBitmap(userbitmap, "user_head.png");
+                File user_head = MyBitmapUtils.saveBitmap(MyBitmapUtils.zoomImg(userbitmap, 100, 100), "user_head.png");
                 Intent intent3 = new Intent(UpdateAct.this, ClipActivity.class);
                 intent3.putExtra("path", Environment.getExternalStorageDirectory() + "/" + "user_head.png");
                 startActivityForResult(intent3, IMAGE_COMPLETE);

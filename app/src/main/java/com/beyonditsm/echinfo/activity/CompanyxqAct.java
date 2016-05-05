@@ -80,6 +80,9 @@ public class CompanyxqAct extends BaseActivity {
     public static final String COMPANYID ="companyId";//企业详情中gridview的item
 
     final UMSocialService mController = UMServiceFactory.getUMSocialService("com.umeng.share");
+
+    private String industry;
+    private String companyName;
     @Override
     public void setLayout() {
         setContentView(R.layout.act_companyxq);
@@ -126,6 +129,7 @@ public class CompanyxqAct extends BaseActivity {
                             intent = new Intent(CompanyxqAct.this, WebAct.class);
                             intent.putExtra(WebAct.WEB_TYPE, 1);
                             intent.putExtra(WebAct.ID, iId);
+                            intent.putExtra(WebAct.COMANY_NAME,companyName);
                             startActivity(intent);
                         }
                         break;
@@ -133,7 +137,7 @@ public class CompanyxqAct extends BaseActivity {
                         if ("1".equals(statusEntity.getHangyeStatus())) {
                             intent = new Intent(CompanyxqAct.this, WebAct.class);
                             intent.putExtra(WebAct.WEB_TYPE, 2);
-                            intent.putExtra(WebAct.ID, iId);
+                            intent.putExtra(WebAct.ID, industry);
                             startActivity(intent);
                         }
                         break;
@@ -253,9 +257,9 @@ public class CompanyxqAct extends BaseActivity {
                 flag = true;
                 //"status":200,"data":{"focus":0},"message":"成功！"
                 try {
-                    JSONObject json=new JSONObject(result);
-                    JSONObject data=json.getJSONObject("data");
-                    String num=data.getString("focus");
+                    JSONObject json = new JSONObject(result);
+                    JSONObject data = json.getJSONObject("data");
+                    String num = data.getString("focus");
                     guanzhunum.setText(num);
                     sendBroadcast(new Intent(MainAct.MAIN_RECEIVER));
                     sendBroadcast(new Intent(ReqyAct.MAIN_RECEIVER_HOT));
@@ -312,20 +316,42 @@ public class CompanyxqAct extends BaseActivity {
      * @param id
      */
     private void findEnterpriseInfoMsgById(String id){
-        RequestManager.getCommManager().findEnterpriseInfoMsgById(id, new CallBack() {
-            @Override
-            public void onSucess(String result) {
-                loadView.loadComplete();
-                ResultData<CompanyEntity> rd = (ResultData<CompanyEntity>) GsonUtils.json(result, CompanyEntity.class);
-                entity = rd.getData();
-                setBusiness(entity);
-            }
+        if(UserDao.getUser()==null) {
+            RequestManager.getCommManager().findEnterpriseInfoMsgById(id, new CallBack() {
+                @Override
+                public void onSucess(String result) {
+                    loadView.loadComplete();
+                    ResultData<CompanyEntity> rd = (ResultData<CompanyEntity>) GsonUtils.json(result, CompanyEntity.class);
+                    entity = rd.getData();
+                    industry = entity.getIndustry();
+                    companyName = entity.getCompanyName();
+                    setBusiness(entity);
+                }
 
-            @Override
-            public void onError(String error) {
-                loadView.loadError();
-            }
-        });
+                @Override
+                public void onError(String error) {
+                    loadView.loadError();
+                }
+            });
+
+        }else{
+            RequestManager.getCommManager().findEnterpriseInfoMsgByIdLogin(id, new CallBack() {
+                @Override
+                public void onSucess(String result) {
+                    loadView.loadComplete();
+                    ResultData<CompanyEntity> rd = (ResultData<CompanyEntity>) GsonUtils.json(result, CompanyEntity.class);
+                    entity = rd.getData();
+                    industry = entity.getIndustry();
+                    companyName = entity.getCompanyName();
+                    setBusiness(entity);
+                }
+
+                @Override
+                public void onError(String error) {
+                    loadView.loadError();
+                }
+            });
+        }
     }
 
     //设置企业信息

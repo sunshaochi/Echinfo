@@ -20,10 +20,13 @@ public class WebAct extends BaseActivity {
     @ViewInject(R.id.wv)
     private WebView wv;
     public static final String WEB_TYPE = "web_type";
+    public static final String COMANY_NAME="companyName";
     private int TYPE;//0服务协议 1企业图谱 2行业分析 3常见问题
     String url=null;
     public static final String ID="id";
     String id=null;
+
+    String companyName;
 
     @Override
     public void setLayout() {
@@ -40,7 +43,8 @@ public class WebAct extends BaseActivity {
             case 1:
                 setTopTitle("企业图谱");
                 id=getIntent().getStringExtra(ID);
-                url=IEchinfoUrl.TUPU_URL+"&companyId="+id;
+                companyName=getIntent().getStringExtra(COMANY_NAME);
+                url=IEchinfoUrl.TUPU_URL+"&companyId="+id+"&companyName="+companyName;
                 setRight("纠错", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -51,7 +55,7 @@ public class WebAct extends BaseActivity {
             case 2:
                 setTopTitle("行业分析");
                 id=getIntent().getStringExtra(ID);
-                url=IEchinfoUrl.ANALY_URL+"&companyId="+id;
+                url=IEchinfoUrl.ANALY_URL+"&industry="+id;
                 setRight("纠错", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

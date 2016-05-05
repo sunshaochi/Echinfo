@@ -17,7 +17,6 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.beyonditsm.echinfo.R;
-import com.beyonditsm.echinfo.adapter.FlipAdapter;
 import com.beyonditsm.echinfo.adapter.ReqyAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.db.UserDao;
@@ -26,7 +25,6 @@ import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.GeneralUtils;
 import com.beyonditsm.echinfo.util.MyLogUtils;
-import com.beyonditsm.echinfo.view.flip.FlipViewController;
 import com.leaf.library.widget.MyListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -55,8 +53,8 @@ public class MainAct extends BaseActivity {
     private View top;//我的关注线
     @ViewInject(R.id.down)
     private View down;//我的关注线
-    @ViewInject(R.id.fcView)
-    private FlipViewController fcView;
+//    @ViewInject(R.id.fcView)
+//    private FlipViewController fcView;
     private int mCurrPos;
     String name = null;
     SharedPreferences sp;
@@ -71,6 +69,23 @@ public class MainAct extends BaseActivity {
     private final static long WAITTIME = 2000;
     private long touchTime = 0;
     private List<String> titleList;
+
+    @ViewInject(R.id.tv1)
+    private TextView tv1;
+    @ViewInject(R.id.tv2)
+    private TextView tv2;
+    @ViewInject(R.id.tv3)
+    private TextView tv3;
+    @ViewInject(R.id.tv4)
+    private TextView tv4;
+    @ViewInject(R.id.tv5)
+    private TextView tv5;
+    @ViewInject(R.id.tv6)
+    private TextView tv6;
+    @ViewInject(R.id.tv7)
+    private TextView tv7;
+    @ViewInject(R.id.tv8)
+    private TextView tv8;
     @Override
     public void setLayout() {
         setContentView(R.layout.activity_main);
@@ -96,8 +111,22 @@ public class MainAct extends BaseActivity {
         initMyFollow();//初始化我的关注
 //        initBadCre();//初始化失信榜单
 
-        fcView.setAdapter(new FlipAdapter(this));
+//        fcView.setAdapter(new FlipAdapter(this));
 //        generalUtils.toVersion(MainAct.this, EchinfoUtils.getAppVer(MainAct.this), 0);
+
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getEnterCount();
+                    }
+                });
+            }
+        };
+        Timer timer4 = new Timer();
+        timer4.schedule(task, 0, 10000);
 
     }
 
@@ -175,7 +204,7 @@ public class MainAct extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        fcView.onPause();
+//        fcView.onPause();
     }
 
     @Override
@@ -553,7 +582,6 @@ public class MainAct extends BaseActivity {
     protected void onResume() {
         super.onResume();
         name = sp.getString("screen_name", "");
-        fcView.onResume();
     }
 
     @Override
@@ -595,6 +623,13 @@ public class MainAct extends BaseActivity {
             @Override
             public void onSucess(String result) {
                 MyLogUtils.info("企业总数："+result);
+                try {
+                    JSONObject jsonObject=new JSONObject(result);
+                    int enterCount=jsonObject.getInt("data");
+                    setEnterCount(enterCount+"");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -602,6 +637,50 @@ public class MainAct extends BaseActivity {
 
             }
         });
+    }
+
+
+    private void setEnterCount(String enterCount){
+        try{
+            tv8.setText(enterCount.substring(enterCount.length()-1,enterCount.length()));
+        }catch (Exception e){
+            tv8.setText("0");
+        }
+        try{
+            tv7.setText(enterCount.substring(enterCount.length()-2,enterCount.length()-1));
+        }catch (Exception e){
+            tv7.setText("0");
+        }
+        try{
+            tv6.setText(enterCount.substring(enterCount.length()-3,enterCount.length()-2));
+        }catch (Exception e){
+            tv6.setText("0");
+        }
+        try{
+            tv5.setText(enterCount.substring(enterCount.length()-4,enterCount.length()-3));
+        }catch (Exception e){
+            tv5.setText("0");
+        }
+        try{
+            tv4.setText(enterCount.substring(enterCount.length()-5,enterCount.length()-4));
+        }catch (Exception e){
+            tv4.setText("0");
+        }
+        try{
+            tv3.setText(enterCount.substring(enterCount.length()-6,enterCount.length()-5));
+        }catch (Exception e){
+            tv3.setText("0");
+        }
+        try{
+            tv2.setText(enterCount.substring(enterCount.length()-7,enterCount.length()-6));
+        }catch (Exception e){
+            tv2.setText("0");
+        }
+        try{
+            tv1.setText(enterCount.substring(enterCount.length()-8,enterCount.length()-7));
+        }catch (Exception e){
+            tv1.setText("0");
+        }
     }
 
 }
