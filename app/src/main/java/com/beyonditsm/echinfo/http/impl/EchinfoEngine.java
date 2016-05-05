@@ -504,6 +504,14 @@ public class EchinfoEngine extends RequestManager {
 
     }
 
+    /**
+     * 获取企业总数
+     * @param callBack
+     */
+    public void getEnterCount(CallBack callBack){
+        doPost(IEchinfoUrl.ENTER_COUNT_URL,null,callBack);
+    }
+
 
 
 }

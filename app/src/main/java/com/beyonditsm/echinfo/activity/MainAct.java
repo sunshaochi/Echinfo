@@ -90,7 +90,8 @@ public class MainAct extends BaseActivity {
         titleList.add("3");
         titleList.add("4");
 
-        initNumCom();//初始化数字
+        getEnterCount();
+//        initNumCom();//初始化数字
         initHotComlist();
         initMyFollow();//初始化我的关注
 //        initBadCre();//初始化失信榜单
@@ -582,8 +583,25 @@ public class MainAct extends BaseActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             initMyFollow();
-            initHotComlist();
         }
+    }
+
+
+    /**
+     * 获取企业总数
+     */
+    private void getEnterCount(){
+        RequestManager.getCommManager().getEnterCount(new CallBack() {
+            @Override
+            public void onSucess(String result) {
+                MyLogUtils.info("企业总数："+result);
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
     }
 
 }

@@ -97,7 +97,8 @@ public interface IEchinfoUrl {
     /*企业图谱*/
     String TUPU_URL="http://139.196.50.38:8081/businessMap?hideHeader=1";
 
-
+    /*统计企业总数*/
+    String ENTER_COUNT_URL=BASE_URL+"companyInfo/unLogin/countEnterpriseInfo.do";
 
 
 
