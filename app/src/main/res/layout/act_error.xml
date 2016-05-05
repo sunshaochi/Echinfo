@@ -34,27 +34,25 @@
         android:background="@drawable/btn_white_gray"
         android:gravity="top"
         android:textColorHint="#c0c0c0"
-        android:textColor="#3c3c3c"
+        android:textColor="#A0A0A0"
         android:hint="我们收集您提交请求，并在3-5个工作日回复"
         android:lines="10"
         android:maxLength="200"
         android:padding="10dp"
-        android:textSize="12sp" />
+        android:textSize="16sp" />
     <EditText
-        android:inputType="phone"
-        android:maxLength="11"
-        android:textSize="12sp"
+        android:textColor="#A0A0A0"
+        android:textSize="16sp"
         android:textColorHint="#c0c0c0"
-        android:textColor="#3c3c3c"
         android:id="@+id/et_sj"
         android:padding="10dp"
-        android:hint="请输入您的手机号码"
+        android:hint="您的联系电话"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:background="@drawable/btn_white_gray"
         android:layout_width="match_parent"
-        android:layout_height="35dp" />
+        android:layout_height="45dp" />
 
     <TextView
         android:id="@+id/tv_tj"

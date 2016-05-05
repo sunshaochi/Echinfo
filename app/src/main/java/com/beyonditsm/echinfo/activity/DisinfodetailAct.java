@@ -1,6 +1,5 @@
 package com.beyonditsm.echinfo.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -98,10 +97,10 @@ public class DisinfodetailAct extends BaseActivity {
                 dialog.setContent("失信信息", "失信信息", "");
                 dialog.show();
                 break;
-            case R.id.fycps:
-                Intent intent=new Intent(DisinfodetailAct.this,CourtAct.class);
-                startActivity(intent);
-                break;
+//            case R.id.fycps:
+//                Intent intent=new Intent(DisinfodetailAct.this,CourtAct.class);
+//                startActivity(intent);
+//                break;
         }
     }
 }

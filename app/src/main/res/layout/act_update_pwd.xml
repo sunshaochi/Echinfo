@@ -32,13 +32,14 @@
             style="@style/edit_style"
             android:layout_height="45dp"
             android:inputType="textPassword"
-            android:hint="新密码"
+            android:hint="新密码(请输入6-20位密码)"
             android:paddingLeft="15dp"
             />
         <View style="@style/view_line"
             android:layout_marginLeft="15dp"
             ></View>
         <EditText
+            android:maxLength="20"
             android:id="@+id/etSP"
             style="@style/edit_style"
             android:layout_height="45dp"

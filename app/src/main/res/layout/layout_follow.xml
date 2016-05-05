@@ -10,6 +10,8 @@
         style="@style/ll_item"
         >
         <TextView
+            android:textColor="#858585"
+            android:textSize="14sp"
             android:id="@+id/tvComName"
             android:text="香港强悍信息科技有限公司"
             style="@style/tv_second"/>
@@ -25,6 +27,8 @@
                 android:layout_height="14dp"
                 />
             <TextView
+                android:textColor="#A0A0A0"
+                android:textSize="12sp"
                 android:id="@+id/tvName"
                 android:layout_marginLeft="5dp"
                 android:layout_centerVertical="true"
@@ -32,6 +36,8 @@
                 android:text="公司法人：张飞"
                 style="@style/tv_third" />
             <TextView
+                android:textColor="#A0A0A0"
+                android:textSize="12sp"
                 android:id="@+id/tvState"
                 android:layout_centerVertical="true"
                 android:text="在营企业"

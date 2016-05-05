@@ -7,6 +7,7 @@
     <include layout="@layout/title_act_layout"></include>
 
     <EditText
+        android:textColor="#A0A0A0"
         android:id="@+id/etFb"
         style="@style/edit_style"
         android:hint="我们会收集您提交的请求，并在3-5个工作日回复。"
@@ -14,19 +15,22 @@
         android:background="#ffffff"
         android:layout_marginTop="10dp"
         android:singleLine="false"
-        android:padding="10dp"
+        android:paddingLeft="17dp"
+        android:paddingRight="17dp"
+        android:paddingTop="12dp"
         android:gravity="top"
         />
 
     <EditText
+        android:textColor="#A0A0A0"
         android:id="@+id/etFbPhone"
        style="@style/edit_style"
         android:layout_marginTop="10dp"
         android:background="#ffffff"
         android:hint="您的联系电话"
         android:layout_height="45dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:paddingLeft="17dp"
+        android:paddingRight="17dp"
         android:inputType="phone"
         android:maxLength="11"
         />
