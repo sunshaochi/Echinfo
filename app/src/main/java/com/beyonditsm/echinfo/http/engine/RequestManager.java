@@ -73,7 +73,9 @@ public class RequestManager {
             public void onErrorResponse(VolleyError error) {
                 callback.onError(VolleyErrorHelper.getMessage(error));
             }
-        }) {
+        })
+
+        {
             @Override
             protected Map<String, String> getParams() {
                 return params;
@@ -102,6 +104,54 @@ public class RequestManager {
                     return Response.error(new ParseError(e));
                 }
             }
+        };
+        // 设定超时时间
+        request.setRetryPolicy(new DefaultRetryPolicy(5000, 1, 1.0f));
+        MyApplication.getInstance().addToRequestQueue(request);
+        MyApplication.getInstance().getRequestQueue().start();
+    }
+
+    /**
+     * 不需要登录接口请求
+     * @param url
+     * @param params
+     * @param callback
+     */
+    public void doPostNoLogin(final String url, final Map<String, String> params, final CallBack callback){
+        MyLogUtils.info("地址:" + url);
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        String result = response.toString();
+                        MyLogUtils.info(result);
+                        try {
+                            JSONObject obj = new JSONObject(result);
+                            int status = obj.getInt("status");
+                            if (status == 200) {
+                                callback.onSucess(result);
+                            } else {
+                                callback.onError(obj.getString("message"));
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callback.onError(VolleyErrorHelper.getMessage(error));
+            }
+        })
+
+        {
+            @Override
+            protected Map<String, String> getParams() {
+                return params;
+            }
+
         };
         // 设定超时时间
         request.setRetryPolicy(new DefaultRetryPolicy(5000, 1, 1.0f));
