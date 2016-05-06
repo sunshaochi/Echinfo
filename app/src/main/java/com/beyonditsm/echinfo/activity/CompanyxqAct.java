@@ -33,7 +33,6 @@ import com.beyonditsm.echinfo.view.MySelfSheetDialog;
 import com.beyonditsm.echinfo.widget.ShareDialog;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.umeng.socialize.controller.UMSocialService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
