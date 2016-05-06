@@ -63,7 +63,7 @@
                             android:id="@+id/gxtime"
                             style="@style/tv_qyxq"
                             android:text=""
-                            android:visibility="visible"
+                            android:visibility="gone"
 
                             />
 

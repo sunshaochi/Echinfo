@@ -176,6 +176,8 @@
         <activity android:name=".activity.AboutAct"
             android:screenOrientation="portrait"/>
 
+
+
         <!-- ###################注册SDK使用的Activity###################### -->
         <!--分享编辑页-->
         <activity
@@ -194,7 +196,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="1105241351" />
+                <data android:scheme="tencent100424468" />
             </intent-filter>
         </activity>
         <activity android:name="com.tencent.connect.common.AssistActivity"
@@ -210,7 +212,7 @@
         <!-- ###################添加UmengAppkey###################### -->
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="5705d89ce0f55aed4f000ee7" >
+            android:value="572bfebc67e58eefab0005bb" >
         </meta-data>
 
         <meta-data
