@@ -187,8 +187,11 @@ public class ShareDialog implements OnClickListener {
                     if (i == -101) {
                         eMsg = "没有授权";
                     }
-                    Toast.makeText(activity, "分享失败[" + i + "] " +
-                            eMsg, Toast.LENGTH_SHORT).show();
+                    if(i!=40000){
+                        Toast.makeText(activity, "分享失败[" + i + "] " +
+                                eMsg, Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             }
         });
@@ -232,8 +235,10 @@ public class ShareDialog implements OnClickListener {
                     if (i == -101) {
                         eMsg = "没有授权";
                     }
-                    Toast.makeText(activity, "分享失败[" + i + "] " +
-                            eMsg, Toast.LENGTH_SHORT).show();
+                    if(i!=40000){
+                        Toast.makeText(activity, "分享失败[" + i + "] " +
+                                eMsg, Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -276,8 +281,10 @@ public class ShareDialog implements OnClickListener {
                     if (i == -101) {
                         eMsg = "没有授权";
                     }
-                    Toast.makeText(activity, "分享失败[" + i + "] " +
-                            eMsg, Toast.LENGTH_SHORT).show();
+                    if(i!=40000){
+                        Toast.makeText(activity, "分享失败[" + i + "] " +
+                                eMsg, Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -318,8 +325,10 @@ public class ShareDialog implements OnClickListener {
                     if (i == -101) {
                         eMsg = "没有授权";
                     }
-                    Toast.makeText(activity, "分享失败[" + i + "] " +
-                            eMsg, Toast.LENGTH_SHORT).show();
+                    if(i!=40000){
+                        Toast.makeText(activity, "分享失败[" + i + "] " +
+                                eMsg, Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -355,8 +364,10 @@ public class ShareDialog implements OnClickListener {
                     if (i == -101) {
                         eMsg = "没有授权";
                     }
-                    Toast.makeText(activity, "分享失败[" + i + "] " +
-                            eMsg, Toast.LENGTH_SHORT).show();
+                    if(i!=40000){
+                        Toast.makeText(activity, "分享失败[" + i + "] " +
+                                eMsg, Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
