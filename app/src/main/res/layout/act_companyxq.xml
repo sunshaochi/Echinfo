@@ -63,11 +63,11 @@
                             android:id="@+id/gxtime"
                             style="@style/tv_qyxq"
                             android:text=""
-                            android:visibility="visible"
 
                             />
 
                         <TextView
+                            android:visibility="gone"
                             android:id="@+id/xc"
                             style="@style/tv_qyxq"
                             android:layout_marginLeft="5dp"
