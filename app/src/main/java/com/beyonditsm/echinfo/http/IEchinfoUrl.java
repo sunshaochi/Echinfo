@@ -31,10 +31,13 @@ public interface IEchinfoUrl {
     String CHECK_UPDATE_URL = BASE_URL + "manager/unLogin/checkUpdrage.do";
     /*根据key获取类型*/
     String GETTYPEBYKEY_URL = BASE_URL + "manager/unLogin/findTypesByKey.do";
+
     /*企业列表信息*/
 //    String ENTERPRISELIST_URL = BASE_URL + "companyInfo/login/findEnterpriseInfo.do";
     /*企业基本信息*/
     String ENTERPRISEINFO_URL = BASE_URL + "companyInfo/unLogin/findEnterpriseInfoMsgById.do";
+    /*已经登录*/
+    String ENTERINFO_LOGIN_URL=BASE_URL+"companyInfo/findEnterpriseInfoMsgById.do";
     /*工商信息*/
     String BUSINESSINFO_URL = BASE_URL + "companyInfo/unLogin/findVietinbanhInfoByCompanyId.do";
     /*纠错提交*/
@@ -50,7 +53,6 @@ public interface IEchinfoUrl {
     /*主要成员*/
     String FINDMAINMEMBERMSG_URL = BASE_URL + "mainMemberMsg/unLogin/findMainMemberMsg.do";
     /*关注企业信息列表*/
-//    String MYATTENTTIONMSG_URL = BASE_URL + "myAttenttionMsg/unLogin/findMyAttenttionMsg.do";
     String MYATTENTTIONMSG_URL = BASE_URL + "myAttenttionMsg/findMyAttenttionMsg.do";
 
     /*查询企业*/
@@ -97,7 +99,8 @@ public interface IEchinfoUrl {
     /*企业图谱*/
     String TUPU_URL="http://139.196.50.38:8081/businessMap?hideHeader=1";
 
-
+    /*统计企业总数*/
+    String ENTER_COUNT_URL=BASE_URL+"companyInfo/unLogin/countEnterpriseInfo.do";
 
 
 

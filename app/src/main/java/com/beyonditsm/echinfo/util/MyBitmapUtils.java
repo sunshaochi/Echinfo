@@ -288,7 +288,7 @@ public class MyBitmapUtils {
 		}
 		return bitmap;
 	}
-	
+
 	/**
 	 * 保存图片
 	 * @param bitmap
@@ -297,10 +297,12 @@ public class MyBitmapUtils {
 	 */
 	public static File saveBitmap(final Bitmap bitmap,final String file){
 		final File f = new File(Environment.getExternalStorageDirectory()+"/"+file);
-		if (f.exists()) {
+		if (!f.exists()) {
+			f.getParentFile().mkdirs();
+		}else{
 			f.delete();
 		}
-		
+
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		bitmap.compress(Bitmap.CompressFormat.PNG,90, baos);
 		try {
