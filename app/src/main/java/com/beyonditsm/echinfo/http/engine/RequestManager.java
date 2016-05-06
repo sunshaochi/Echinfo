@@ -16,6 +16,7 @@ import com.beyonditsm.echinfo.MyApplication;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.impl.EchinfoEngine;
 import com.beyonditsm.echinfo.http.util.VolleyErrorHelper;
+import com.beyonditsm.echinfo.util.GsonUtils;
 import com.beyonditsm.echinfo.util.MyLogUtils;
 import com.beyonditsm.echinfo.util.SpUtils;
 import com.lidroid.xutils.http.client.multipart.content.FileBody;
@@ -48,6 +49,7 @@ public class RequestManager {
      */
     public void doPost(final String url, final Map<String, String> params, final CallBack callback) {
         MyLogUtils.info("地址:" + url);
+        MyLogUtils.info("传入参数："+ GsonUtils.bean2Json(params));
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

@@ -95,10 +95,10 @@ public class UpdatePwdAct extends BaseActivity {
             MyToastUtils.showShortToast(getApplicationContext(), "请输入6-20位字母或数字");
             return false;
         }
-        if(!(ypwd.equals(pwd))){
-            MyToastUtils.showShortToast(getApplicationContext(), "原密码输入错误");
-            return false;
-        }
+//        if(!(ypwd.equals(pwd))){
+//            MyToastUtils.showShortToast(getApplicationContext(), "原密码输入错误");
+//            return false;
+//        }
         return true;
 
 
