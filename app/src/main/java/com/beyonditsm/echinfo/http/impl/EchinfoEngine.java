@@ -31,7 +31,7 @@ public class EchinfoEngine extends RequestManager {
         Map<String, String> map = new HashMap<>();
         map.put("phoneNumber", phoneNumber);
         map.put("isRegister", isRegister);
-        doPost(IEchinfoUrl.SEND_SMS_URL, map, callBack);
+        doPostNoLogin(IEchinfoUrl.SEND_SMS_URL, map, callBack);
     }
 
     /**
@@ -47,7 +47,7 @@ public class EchinfoEngine extends RequestManager {
         map.put("phoneNumber", phoneNumber);
         map.put("captcha", captcha);
         map.put("password", password);
-        doPost(IEchinfoUrl.REGISTE_URL, map, callBack);
+        doPostNoLogin(IEchinfoUrl.REGISTE_URL, map, callBack);
     }
 
     /**
@@ -67,7 +67,7 @@ public class EchinfoEngine extends RequestManager {
         if (!TextUtils.isEmpty(key)) {
             map.put("mobilePhoneKey", key);
         }
-        doPost(IEchinfoUrl.LOGIN_URL, map, callBack);
+        doPostNoLogin(IEchinfoUrl.LOGIN_URL, map, callBack);
     }
 
     /**
@@ -80,7 +80,7 @@ public class EchinfoEngine extends RequestManager {
         if (!TextUtils.isEmpty(userName)) {
             map.put("userName", userName);
         }
-        doPost(IEchinfoUrl.UNLOGIN_URL, map, callBack);
+        doPostNoLogin(IEchinfoUrl.UNLOGIN_URL, map, callBack);
     }
 
     /**
@@ -170,14 +170,14 @@ public class EchinfoEngine extends RequestManager {
         Map<String, String> map = new HashMap<>();
         map.put("currentVersion", currentVersion + "");
         map.put("platform", platform);
-        doPost(IEchinfoUrl.CHECK_UPDATE_URL, map, callBack);
+        doPostNoLogin(IEchinfoUrl.CHECK_UPDATE_URL, map, callBack);
     }
 
     //获取机构列表
     public void getTypes(CallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("key", "ep_institution_001");
-        doPost(IEchinfoUrl.GETTYPEBYKEY_URL, map, callBack);
+        doPostNoLogin(IEchinfoUrl.GETTYPEBYKEY_URL, map, callBack);
     }
 
     /**
@@ -188,7 +188,7 @@ public class EchinfoEngine extends RequestManager {
     public void findEnterpriseInfoMsgById(String id,CallBack callBack){
         Map<String,String> map=new HashMap<>();
         map.put("id",id);
-        doPost(IEchinfoUrl.ENTERPRISEINFO_URL,map,callBack);
+        doPostNoLogin(IEchinfoUrl.ENTERPRISEINFO_URL, map, callBack);
     }
 
     /**
@@ -209,7 +209,7 @@ public class EchinfoEngine extends RequestManager {
     public void findVietinbanhInfoByCompanyId(String companyId,CallBack callBack){
         Map<String,String> map=new HashMap<>();
         map.put("companyId",companyId);
-        doPost(IEchinfoUrl.BUSINESSINFO_URL,map,callBack);
+        doPostNoLogin(IEchinfoUrl.BUSINESSINFO_URL, map, callBack);
     }
 
     /**
@@ -223,7 +223,7 @@ public class EchinfoEngine extends RequestManager {
         map.put("companyId",companyId);
         map.put("page",page+"");
         map.put("rows",rows+"");
-        doPost(IEchinfoUrl.LAWSUITMSG_URL, map, callBack);
+        doPostNoLogin(IEchinfoUrl.LAWSUITMSG_URL, map, callBack);
     }
 
     /**
@@ -234,7 +234,7 @@ public class EchinfoEngine extends RequestManager {
     public void findLawsuitMsgById(String id,CallBack callBack){
         Map<String,String> map=new HashMap<>();
         map.put("id",id);
-        doPost(IEchinfoUrl.LAWSUITDETAIL_URL,map,callBack);
+        doPostNoLogin(IEchinfoUrl.LAWSUITDETAIL_URL, map, callBack);
     }
     /**
      * 股东列表
@@ -247,7 +247,7 @@ public class EchinfoEngine extends RequestManager {
         map.put("companyId",companyId);
         map.put("page", page + "");
         map.put("rows", rows + "");
-        doPost(IEchinfoUrl.STOCKMSG_URL, map, callBack);
+        doPostNoLogin(IEchinfoUrl.STOCKMSG_URL, map, callBack);
     }
     /**
      * 纠错
@@ -261,7 +261,7 @@ public class EchinfoEngine extends RequestManager {
         map.put("errorParts", errorParts);
         map.put("errorContent", errorContent);
         map.put("mobileNo", mobileNo);
-        doPost(IEchinfoUrl.CORRECTIONMANAGE_URL, map, callBack);
+        doPostNoLogin(IEchinfoUrl.CORRECTIONMANAGE_URL, map, callBack);
     }
 
 
@@ -277,7 +277,7 @@ public class EchinfoEngine extends RequestManager {
         map.put("companyId",companyId);
         map.put("page", page + "");
         map.put("rows", rows + "");
-        doPost(IEchinfoUrl.INTERMSG_URL, map, callBack);
+        doPostNoLogin(IEchinfoUrl.INTERMSG_URL, map, callBack);
     }
 
 
@@ -293,7 +293,7 @@ public class EchinfoEngine extends RequestManager {
         map.put("companyId",companyId);
         map.put("page", page + "");
         map.put("rows", rows + "");
-        doPost(IEchinfoUrl.FINDMAINMEMBERMSG_URL, map, callBack);
+        doPostNoLogin(IEchinfoUrl.FINDMAINMEMBERMSG_URL, map, callBack);
     }
 
     /**
@@ -325,7 +325,7 @@ public class EchinfoEngine extends RequestManager {
         map.put("companyId",companyId);
         map.put("page",page+"");
         map.put("rows",rows+"");
-        doPost(IEchinfoUrl.ANNUALLIST_URL,map,callBack);
+        doPostNoLogin(IEchinfoUrl.ANNUALLIST_URL, map, callBack);
     }
 
     /**
@@ -336,7 +336,7 @@ public class EchinfoEngine extends RequestManager {
     public void findEnterpriseInfoOfAnnual(String id,CallBack callBack){
         Map<String,String> map=new HashMap<>();
         map.put("companyId",id);
-        doPost(IEchinfoUrl.ANNUALDETAIL_URL,map,callBack);
+        doPostNoLogin(IEchinfoUrl.ANNUALDETAIL_URL, map, callBack);
     }
     /**
      * 根据企业的id查询出该企业下所有的企业资讯
@@ -409,7 +409,7 @@ public class EchinfoEngine extends RequestManager {
         map.put("companyId",companyId);
         map.put("page",page+"");
         map.put("rows",rows+"");
-        doPost(IEchinfoUrl.INVESTMENT_URL,map,callBack);
+        doPostNoLogin(IEchinfoUrl.INVESTMENT_URL, map, callBack);
     }
 
     /**
@@ -424,7 +424,7 @@ public class EchinfoEngine extends RequestManager {
         map.put("companyId",companyId);
         map.put("page",page+"");
         map.put("rows",rows+"");
-        doPost(IEchinfoUrl.URL,map,callBack);
+        doPostNoLogin(IEchinfoUrl.URL, map, callBack);
     }
 
     /**
@@ -450,7 +450,7 @@ public class EchinfoEngine extends RequestManager {
         }
         map.put("page",page+"");
         map.put("rows",rows+"");
-        doPost(IEchinfoUrl.SEARCH_CPMPANY_URL,map,callBack);
+        doPostNoLogin(IEchinfoUrl.SEARCH_CPMPANY_URL, map, callBack);
     }
 
     /**
@@ -461,7 +461,7 @@ public class EchinfoEngine extends RequestManager {
     public void selectStatus(String companyId,CallBack callBack){
         Map<String,String> map=new HashMap<>();
         map.put("companyId",companyId);
-        doPost(IEchinfoUrl.ENTEPRISESTS_URL,map,callBack);
+        doPostNoLogin(IEchinfoUrl.ENTEPRISESTS_URL, map, callBack);
     }
 
     /**
@@ -488,7 +488,7 @@ public class EchinfoEngine extends RequestManager {
         if(!TextUtils.isEmpty(address)&&!"全国".equals(address)) {
             map.put("address", address);
         }
-        doPost(IEchinfoUrl.STOCKMSGBYNAME_URL,map,callBack);
+        doPostNoLogin(IEchinfoUrl.STOCKMSGBYNAME_URL, map, callBack);
     }
 
     /**
@@ -502,7 +502,7 @@ public class EchinfoEngine extends RequestManager {
         if(!TextUtils.isEmpty(areaname)&&!"全国".equals(areaname)) {
             map.put("areaname", areaname);
         }
-        doPost(IEchinfoUrl.COURTITEMMSG_URL,map,callBack);
+        doPostNoLogin(IEchinfoUrl.COURTITEMMSG_URL, map, callBack);
     }
 
     /**
@@ -520,7 +520,7 @@ public class EchinfoEngine extends RequestManager {
      * @param callBack
      */
     public void getEnterCount(CallBack callBack){
-        doPost(IEchinfoUrl.ENTER_COUNT_URL,null,callBack);
+        doPostNoLogin(IEchinfoUrl.ENTER_COUNT_URL, null, callBack);
     }
 
 

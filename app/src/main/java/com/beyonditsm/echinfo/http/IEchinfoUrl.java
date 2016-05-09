@@ -41,7 +41,7 @@ public interface IEchinfoUrl {
     /*工商信息*/
     String BUSINESSINFO_URL = BASE_URL + "companyInfo/unLogin/findVietinbanhInfoByCompanyId.do";
     /*纠错提交*/
-    String CORRECTIONMANAGE_URL = BASE_URL + "companyInfo/addCorrectionManage.do";
+    String CORRECTIONMANAGE_URL = BASE_URL + "companyInfo/unLogin/addCorrectionManage.do";
     /*诉讼列表*/
     String LAWSUITMSG_URL = BASE_URL + "companyInfo/unLogin/findLawsuitMsg.do";
     /*诉讼详情*/

@@ -70,12 +70,12 @@ public class WebAct extends BaseActivity {
         }
         MyLogUtils.degug("h5:"+url);
         WebSettings webSettings = wv.getSettings();
-        webSettings.setUseWideViewPort(true);// 设置此属性，可任意比例缩放
-        webSettings.setLoadWithOverviewMode(true);
+//        webSettings.setUseWideViewPort(true);// 设置此属性，可任意比例缩放
+//        webSettings.setLoadWithOverviewMode(true);
         webSettings.setJavaScriptEnabled(true);
-        webSettings.setBuiltInZoomControls(true);
-        webSettings.setSupportZoom(true);
-        wv.requestFocusFromTouch();
+//        webSettings.setBuiltInZoomControls(true);
+//        webSettings.setSupportZoom(true);
+//        wv.requestFocusFromTouch();
         wv.loadUrl(url);
         wv.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
