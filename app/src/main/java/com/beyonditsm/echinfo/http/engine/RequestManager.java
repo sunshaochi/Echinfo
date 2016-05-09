@@ -24,7 +24,6 @@ import com.lidroid.xutils.http.client.multipart.content.FileBody;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,6 +33,7 @@ import java.util.Map;
  */
 public class RequestManager {
     public static EchinfoEngine echinfoEngine;
+
     public static EchinfoEngine getCommManager() {
         if (echinfoEngine == null) {
             echinfoEngine = new EchinfoEngine();
@@ -49,7 +49,7 @@ public class RequestManager {
      */
     public void doPost(final String url, final Map<String, String> params, final CallBack callback) {
         MyLogUtils.info("地址:" + url);
-        MyLogUtils.info("传入参数："+ GsonUtils.bean2Json(params));
+        MyLogUtils.info("传入参数：" + GsonUtils.bean2Json(params));
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -73,6 +73,7 @@ public class RequestManager {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                error.getMessage();
                 callback.onError(VolleyErrorHelper.getMessage(error));
             }
         })
@@ -86,8 +87,8 @@ public class RequestManager {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap localHashMap = new HashMap();
-                if(!TextUtils.isEmpty(SpUtils.getCookie(MyApplication.getInstance())))
-                localHashMap.put("Cookie", SpUtils.getCookie(MyApplication.getInstance()));
+                if (!TextUtils.isEmpty(SpUtils.getCookie(MyApplication.getInstance())))
+                    localHashMap.put("Cookie", SpUtils.getCookie(MyApplication.getInstance()));
                 return localHashMap;
             }
 
@@ -102,7 +103,7 @@ public class RequestManager {
                     if (!TextUtils.isEmpty(rawCookies))
                         SpUtils.setCooike(MyApplication.getInstance(), rawCookies);
                     return Response.success(dataString, HttpHeaderParser.parseCacheHeaders(response));
-                } catch (UnsupportedEncodingException e) {
+                } catch (Exception e) {
                     return Response.error(new ParseError(e));
                 }
             }
@@ -115,11 +116,12 @@ public class RequestManager {
 
     /**
      * 不需要登录接口请求
+     *
      * @param url
      * @param params
      * @param callback
      */
-    public void doPostNoLogin(final String url, final Map<String, String> params, final CallBack callback){
+    public void doPostNoLogin(final String url, final Map<String, String> params, final CallBack callback) {
         MyLogUtils.info("地址:" + url);
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -154,7 +156,24 @@ public class RequestManager {
                 return params;
             }
 
-        };
+            @Override
+            protected Response<String> parseNetworkResponse(
+                    NetworkResponse response) {
+                // TODO Auto-generated method stub
+                try {
+                    Map<String, String> responseHeaders = response.headers;
+                    String rawCookies = responseHeaders.get("Set-Cookie");
+                    String dataString = new String(response.data, "UTF-8");
+                    if (!TextUtils.isEmpty(rawCookies))
+                        SpUtils.setCooike(MyApplication.getInstance(), rawCookies);
+                    return Response.success(dataString, HttpHeaderParser.parseCacheHeaders(response));
+                } catch (Exception e) {
+                    return Response.error(new ParseError(e));
+                }
+            }
+        }
+
+                ;
         // 设定超时时间
         request.setRetryPolicy(new DefaultRetryPolicy(5000, 1, 1.0f));
         MyApplication.getInstance().addToRequestQueue(request);
@@ -260,13 +279,13 @@ public class RequestManager {
                 MyLogUtils.info("上传图片：" + result);
                 JSONObject obj = null;
                 try {
-                    if(result!=null)
-                    obj = new JSONObject(result);
+                    if (result != null)
+                        obj = new JSONObject(result);
                     int status = obj.getInt("status");
                     if (status == 200) {
                         callBack.onSucess(obj.getString("data"));
                     } else {
-                        callBack.onError( obj.getString("message"));
+                        callBack.onError(obj.getString("message"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -107,7 +107,6 @@ public class MainAct extends BaseActivity {
 
         getEnterCount();
 //        initNumCom();//初始化数字
-        initHotComlist();
         initMyFollow();//初始化我的关注
 //        initBadCre();//初始化失信榜单
 
@@ -582,6 +581,7 @@ public class MainAct extends BaseActivity {
     protected void onResume() {
         super.onResume();
         name = sp.getString("screen_name", "");
+        initHotComlist();
     }
 
     @Override
@@ -611,6 +611,7 @@ public class MainAct extends BaseActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             initMyFollow();
+//            initHotComlist();
         }
     }
 

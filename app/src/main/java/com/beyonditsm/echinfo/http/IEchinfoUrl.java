@@ -7,7 +7,7 @@ public interface IEchinfoUrl {
     /*基础URL*/
     public String BASE_URL = "http://139.196.50.38:8088/yiqicha/";
 
-//    public String BASE_URL="http://172.16.5.192:8088/yiqicha/";
+//    public String BASE_URL="http://172.16.6.184:8080/yiqicha/";
 
     /*注册地址*/
     String REGISTE_URL = BASE_URL + "manager/unLogin/register.do";
@@ -41,7 +41,7 @@ public interface IEchinfoUrl {
     /*工商信息*/
     String BUSINESSINFO_URL = BASE_URL + "companyInfo/unLogin/findVietinbanhInfoByCompanyId.do";
     /*纠错提交*/
-    String CORRECTIONMANAGE_URL = BASE_URL + "companyInfo/addCorrectionManage.do";
+    String CORRECTIONMANAGE_URL = BASE_URL + "companyInfo/unLogin/addCorrectionManage.do";
     /*诉讼列表*/
     String LAWSUITMSG_URL = BASE_URL + "companyInfo/unLogin/findLawsuitMsg.do";
     /*诉讼详情*/
