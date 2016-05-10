@@ -21,6 +21,7 @@ import com.beyonditsm.echinfo.adapter.ReqyAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.db.UserDao;
 import com.beyonditsm.echinfo.entity.CompanyEntity;
+import com.beyonditsm.echinfo.event.HotEvent;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.GeneralUtils;
@@ -28,6 +29,7 @@ import com.beyonditsm.echinfo.util.MyLogUtils;
 import com.leaf.library.widget.MyListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.tandong.sa.eventbus.EventBus;
 import com.tandong.sa.json.Gson;
 import com.tandong.sa.json.reflect.TypeToken;
 
@@ -53,13 +55,13 @@ public class MainAct extends BaseActivity {
     private View top;//我的关注线
     @ViewInject(R.id.down)
     private View down;//我的关注线
-//    @ViewInject(R.id.fcView)
+    //    @ViewInject(R.id.fcView)
 //    private FlipViewController fcView;
     private int mCurrPos;
     String name = null;
     SharedPreferences sp;
 
-    private Timer timer1,timer2;//热门企业timer1 关注企业timer2
+    private Timer timer1, timer2;//热门企业timer1 关注企业timer2
 
     private GeneralUtils generalUtils;
     public static final String ISLOADING = "com.Main.isloading";
@@ -86,6 +88,7 @@ public class MainAct extends BaseActivity {
     private TextView tv7;
     @ViewInject(R.id.tv8)
     private TextView tv8;
+
     @Override
     public void setLayout() {
         setContentView(R.layout.activity_main);
@@ -93,18 +96,20 @@ public class MainAct extends BaseActivity {
 
     @Override
     public void init(Bundle savedInstanceState) {
-        timer1=new Timer();
-        timer2=new Timer();
+        EventBus.getDefault().register(this);
+        timer1 = new Timer();
+        timer2 = new Timer();
         sp = getSharedPreferences("config", Context.MODE_PRIVATE);
         name = sp.getString("screen_name", "");
         generalUtils = new GeneralUtils();
 
-        titleList=new ArrayList<>();
+        titleList = new ArrayList<>();
         titleList.add("1");
         titleList.add("2");
         titleList.add("3");
         titleList.add("4");
 
+        initHotComlist();
         getEnterCount();
 //        initNumCom();//初始化数字
         initMyFollow();//初始化我的关注
@@ -171,7 +176,7 @@ public class MainAct extends BaseActivity {
 
         View noticeView = getLayoutInflater().inflate(R.layout.lv_flip_item,
                 null);
-        TextView tvNum= (TextView) noticeView.findViewById(R.id.tvNum);
+        TextView tvNum = (TextView) noticeView.findViewById(R.id.tvNum);
 
         if ((curr < next) && (next > (titleList.size() - 1))) {
             next = 0;
@@ -185,10 +190,11 @@ public class MainAct extends BaseActivity {
         followNum.addView(noticeView, followNum.getChildCount());
         mCurrNumPos = next;
     }
+
     /**
      * 初始化我的关注
      */
-    private void initMyFollow(){
+    private void initMyFollow() {
         if (UserDao.getUser() != null) {
             findgzPortsMsg(1, 5);
         } else {
@@ -196,6 +202,24 @@ public class MainAct extends BaseActivity {
             flFollow.setVisibility(View.GONE);
             top.setVisibility(View.GONE);
             down.setVisibility(View.GONE);
+        }
+
+    }
+
+    /**
+     * 改变热门
+     *
+     * @param event
+     */
+    public void onEvent(HotEvent event) {
+        datas = event.list;
+        if (datas.size() > 0) {
+            hotList.clear();
+            hot1 = datas.subList(0, datas.size() / 2);
+            hot2 = datas.subList(datas.size() / 2, datas.size());
+            hotList.add(hot2);
+            hotList.add(hot1);
+            initHotCom();//初始化热门
         }
 
     }
@@ -337,7 +361,7 @@ public class MainAct extends BaseActivity {
         mCurrPos = next;
     }
 
-    private List<CompanyEntity> list=new ArrayList<>();
+    private List<CompanyEntity> list = new ArrayList<>();
 
     /**
      * 我的关注
@@ -389,9 +413,9 @@ public class MainAct extends BaseActivity {
     private ViewFlipper followHot;
 
     private int mCurrHotPos;
-    private List<CompanyEntity> hot1=new ArrayList<>();
-    private List<CompanyEntity> hot2=new ArrayList<>();
-    private List<List<CompanyEntity>> hotList=new ArrayList<>();
+    private List<CompanyEntity> hot1 = new ArrayList<>();
+    private List<CompanyEntity> hot2 = new ArrayList<>();
+    private List<List<CompanyEntity>> hotList = new ArrayList<>();
 
     //初始化热门企业
     private void initHotCom() {
@@ -413,7 +437,7 @@ public class MainAct extends BaseActivity {
                 });
             }
         };
-         timer1 = new Timer();
+        timer1 = new Timer();
         timer1.schedule(task, 0, 8000);
     }
 
@@ -430,13 +454,13 @@ public class MainAct extends BaseActivity {
 //        View noticeView = getLayoutInflater().inflate(R.layout.layou_main_hot, null);
         View noticeView = getLayoutInflater().inflate(R.layout.listview_item, null);
 
-        MyListView listView= (MyListView) noticeView.findViewById(R.id.lv);
+        MyListView listView = (MyListView) noticeView.findViewById(R.id.lv);
         if ((curr < next) && (next > (hotList.size() - 1))) {
             next = 0;
         } else if ((curr > next) && (next < 0)) {
             next = hotList.size() - 1;
         }
-        if(hotList!=null) {
+        if (hotList != null) {
             listView.setAdapter(new ReqyAdapter(MainAct.this, hotList.get(next)));
         }
 
@@ -458,7 +482,7 @@ public class MainAct extends BaseActivity {
 //        }
 //        if(!TextUtils.isEmpty(datas.get(next).getLevel()))
 //            rb_hot.setRating(Float.parseFloat(datas.get(next).getLevel()));
-        final int finalNext=next;
+        final int finalNext = next;
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -500,7 +524,8 @@ public class MainAct extends BaseActivity {
                     if (rows.length() > 0) {
                         datas = gson.fromJson(rows.toString(), new TypeToken<List<CompanyEntity>>() {
                         }.getType());
-                        if(datas.size()>0) {
+                        if (datas.size() > 0) {
+                            hotList.clear();
                             hot1 = datas.subList(0, datas.size() / 2);
                             hot2 = datas.subList(datas.size() / 2, datas.size());
                             hotList.add(hot2);
@@ -581,7 +606,7 @@ public class MainAct extends BaseActivity {
     protected void onResume() {
         super.onResume();
         name = sp.getString("screen_name", "");
-        initHotComlist();
+//        initHotComlist();
     }
 
     @Override
@@ -589,7 +614,7 @@ public class MainAct extends BaseActivity {
         super.onStart();
         if (receiver == null) {
             receiver = new MyBroadCastReceiver();
-            registerReceiver(receiver,new IntentFilter(MAIN_RECEIVER));
+            registerReceiver(receiver, new IntentFilter(MAIN_RECEIVER));
         }
     }
 
@@ -599,6 +624,7 @@ public class MainAct extends BaseActivity {
         if (receiver != null) {
             unregisterReceiver(receiver);
         }
+        EventBus.getDefault().unregister(this);
 
     }
 
@@ -611,7 +637,7 @@ public class MainAct extends BaseActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             initMyFollow();
-//            initHotComlist();
+            initHotComlist();
         }
     }
 
@@ -619,15 +645,15 @@ public class MainAct extends BaseActivity {
     /**
      * 获取企业总数
      */
-    private void getEnterCount(){
+    private void getEnterCount() {
         RequestManager.getCommManager().getEnterCount(new CallBack() {
             @Override
             public void onSucess(String result) {
-                MyLogUtils.info("企业总数："+result);
+                MyLogUtils.info("企业总数：" + result);
                 try {
-                    JSONObject jsonObject=new JSONObject(result);
-                    int enterCount=jsonObject.getInt("data");
-                    setEnterCount(enterCount+"");
+                    JSONObject jsonObject = new JSONObject(result);
+                    int enterCount = jsonObject.getInt("data");
+                    setEnterCount(enterCount + "");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -641,45 +667,45 @@ public class MainAct extends BaseActivity {
     }
 
 
-    private void setEnterCount(String enterCount){
-        try{
-            tv8.setText(enterCount.substring(enterCount.length()-1,enterCount.length()));
-        }catch (Exception e){
+    private void setEnterCount(String enterCount) {
+        try {
+            tv8.setText(enterCount.substring(enterCount.length() - 1, enterCount.length()));
+        } catch (Exception e) {
             tv8.setText("0");
         }
-        try{
-            tv7.setText(enterCount.substring(enterCount.length()-2,enterCount.length()-1));
-        }catch (Exception e){
+        try {
+            tv7.setText(enterCount.substring(enterCount.length() - 2, enterCount.length() - 1));
+        } catch (Exception e) {
             tv7.setText("0");
         }
-        try{
-            tv6.setText(enterCount.substring(enterCount.length()-3,enterCount.length()-2));
-        }catch (Exception e){
+        try {
+            tv6.setText(enterCount.substring(enterCount.length() - 3, enterCount.length() - 2));
+        } catch (Exception e) {
             tv6.setText("0");
         }
-        try{
-            tv5.setText(enterCount.substring(enterCount.length()-4,enterCount.length()-3));
-        }catch (Exception e){
+        try {
+            tv5.setText(enterCount.substring(enterCount.length() - 4, enterCount.length() - 3));
+        } catch (Exception e) {
             tv5.setText("0");
         }
-        try{
-            tv4.setText(enterCount.substring(enterCount.length()-5,enterCount.length()-4));
-        }catch (Exception e){
+        try {
+            tv4.setText(enterCount.substring(enterCount.length() - 5, enterCount.length() - 4));
+        } catch (Exception e) {
             tv4.setText("0");
         }
-        try{
-            tv3.setText(enterCount.substring(enterCount.length()-6,enterCount.length()-5));
-        }catch (Exception e){
+        try {
+            tv3.setText(enterCount.substring(enterCount.length() - 6, enterCount.length() - 5));
+        } catch (Exception e) {
             tv3.setText("0");
         }
-        try{
-            tv2.setText(enterCount.substring(enterCount.length()-7,enterCount.length()-6));
-        }catch (Exception e){
+        try {
+            tv2.setText(enterCount.substring(enterCount.length() - 7, enterCount.length() - 6));
+        } catch (Exception e) {
             tv2.setText("0");
         }
-        try{
-            tv1.setText(enterCount.substring(enterCount.length()-8,enterCount.length()-7));
-        }catch (Exception e){
+        try {
+            tv1.setText(enterCount.substring(enterCount.length() - 8, enterCount.length() - 7));
+        } catch (Exception e) {
             tv1.setText("0");
         }
     }

@@ -1,5 +1,6 @@
 package com.beyonditsm.echinfo.activity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -10,6 +11,7 @@ import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.http.IEchinfoUrl;
 import com.beyonditsm.echinfo.util.MyLogUtils;
+import com.beyonditsm.echinfo.view.LoadingView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 /**
@@ -19,14 +21,17 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 public class WebAct extends BaseActivity {
     @ViewInject(R.id.wv)
     private WebView wv;
+    @ViewInject(R.id.loadView)
+    private LoadingView loadingView;
     public static final String WEB_TYPE = "web_type";
-    public static final String COMANY_NAME="companyName";
+    public static final String COMANY_NAME = "companyName";
     private int TYPE;//0服务协议 1企业图谱 2行业分析 3常见问题
-    String url=null;
-    public static final String ID="id";
-    String id=null;
+    String url = null;
+    public static final String ID = "id";
+    String id = null;
 
     String companyName;
+
 
     @Override
     public void setLayout() {
@@ -42,9 +47,9 @@ public class WebAct extends BaseActivity {
                 break;
             case 1:
                 setTopTitle("企业图谱");
-                id=getIntent().getStringExtra(ID);
-                companyName=getIntent().getStringExtra(COMANY_NAME);
-                url=IEchinfoUrl.TUPU_URL+"&companyId="+id+"&companyName="+companyName;
+                id = getIntent().getStringExtra(ID);
+                companyName = getIntent().getStringExtra(COMANY_NAME);
+                url = IEchinfoUrl.TUPU_URL + "&companyId=" + id + "&companyName=" + companyName;
                 setRight("纠错", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -54,8 +59,8 @@ public class WebAct extends BaseActivity {
                 break;
             case 2:
                 setTopTitle("行业分析");
-                id=getIntent().getStringExtra(ID);
-                url=IEchinfoUrl.ANALY_URL+"&industry="+id;
+                id = getIntent().getStringExtra(ID);
+                url = IEchinfoUrl.ANALY_URL + "&industry=" + id;
                 setRight("纠错", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -65,10 +70,10 @@ public class WebAct extends BaseActivity {
                 break;
             case 3:
                 setTopTitle("常见问题");
-                url=IEchinfoUrl.PROBLEM_URL;
+                url = IEchinfoUrl.PROBLEM_URL;
                 break;
         }
-        MyLogUtils.degug("h5:"+url);
+        MyLogUtils.degug("h5:" + url);
         WebSettings webSettings = wv.getSettings();
 //        webSettings.setUseWideViewPort(true);// 设置此属性，可任意比例缩放
 //        webSettings.setLoadWithOverviewMode(true);
@@ -78,13 +83,20 @@ public class WebAct extends BaseActivity {
 //        wv.requestFocusFromTouch();
         wv.loadUrl(url);
         wv.setWebViewClient(new WebViewClient() {
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                // 重写此方法表明点击网页里面的链接还是在当前的webview里跳转，不跳到浏览器那边
-                view.loadUrl(url);
-                return true;
-            }
-        });
+                                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                                    // 重写此方法表明点击网页里面的链接还是在当前的webview里跳转，不跳到浏览器那边
+                                    view.loadUrl(url);
+                                    return true;
+                                }
+
+                                @Override
+                                public void onPageFinished(WebView view, String url) {
+                                    loadingView.loadComplete();
+                                }
+                            }
+        );
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

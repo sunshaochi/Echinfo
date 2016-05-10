@@ -9,20 +9,19 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.adapter.ReqyAdapter;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.entity.CompanyEntity;
+import com.beyonditsm.echinfo.event.HotEvent;
 import com.beyonditsm.echinfo.http.CallBack;
 import com.beyonditsm.echinfo.http.engine.RequestManager;
 import com.beyonditsm.echinfo.util.EchinfoUtils;
-import com.beyonditsm.echinfo.util.MyLogUtils;
 import com.beyonditsm.echinfo.util.MyToastUtils;
-import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshBase;
 import com.beyonditsm.echinfo.view.pullrefreshview.PullToRefreshListView;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.tandong.sa.eventbus.EventBus;
 import com.tandong.sa.json.Gson;
 import com.tandong.sa.json.reflect.TypeToken;
 
@@ -82,6 +81,7 @@ public class ReqyAct extends BaseActivity {
                     if (rows.length() > 0) {
                         list = gson.fromJson(rows.toString(), new TypeToken<List<CompanyEntity>>() {
                         }.getType());
+                        EventBus.getDefault().post(new HotEvent(list));
                         plv.getRefreshableView().setAdapter(new ReqyAdapter(ReqyAct.this, list));
                     } else {
                         MyToastUtils.showShortToast(ReqyAct.this, "暂无数据");
