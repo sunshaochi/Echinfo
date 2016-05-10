@@ -36,7 +36,9 @@
             android:layout_marginRight="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="企业+是国内最大的数据查询服务平台，是国内最大的数据查询服务平台，是国内最大的数据查询服务平台，是国内最大的数据查询服务平台"
+            android:text="企业+是一款全面精准的企业信息查询工具，方便用户按多种维度：企业名称、法人代表、股东、失信人名称等，一键查询企业相关信息。如工商信息、企业图谱、行业分析、失信信息、诉讼信息、对外投资、股东信息、企业资讯、年报信息、分支机构、主要成员、变更记录等。
+
+企业+目前已覆盖全国各省份的企业信息，是各界商业人士必备的企业征信利器。查企业，就上企业+！"
             />
     </LinearLayout>
 </LinearLayout>
