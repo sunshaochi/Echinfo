@@ -192,6 +192,9 @@ public class MineAct extends BaseActivity {
                 if (userEntity.getName()!=null) {
                     tvUserName.setText(userEntity.getName());
                 }
+                if(TextUtils.isEmpty(userEntity.getName())){
+                    tvUserName.setText(userEntity.getUsername());
+                }
                 if (!TextUtils.isEmpty(userEntity.getIcon())) {
                     ImageLoader.getInstance().displayImage(IEchinfoUrl.BASE_URL + userEntity.getIcon(), civHeadIcon, civOptions);
                 }

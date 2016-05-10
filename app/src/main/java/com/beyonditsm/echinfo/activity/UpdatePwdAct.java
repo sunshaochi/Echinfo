@@ -92,7 +92,8 @@ public class UpdatePwdAct extends BaseActivity {
             return false;
         }
         if(!EchinfoUtils.checkPwd(pwd)){
-            MyToastUtils.showShortToast(getApplicationContext(), "请输入6-20位字母或数字");
+            MyToastUtils.showShortToast(getApplicationContext(), "请输入6-20位字母或数字的原始密码");
+            etPwd.requestFocus();
             return false;
         }
 //        if(!(ypwd.equals(pwd))){
