@@ -189,16 +189,16 @@ public class MineAct extends BaseActivity {
         public void onReceive(Context context, Intent intent) {
             UserEntity userEntity = UserDao.getUser();
             if (userEntity != null) {
-                if (!TextUtils.isEmpty(userEntity.getName())) {
+                if (userEntity.getName()!=null) {
                     tvUserName.setText(userEntity.getName());
                 }
                 if (!TextUtils.isEmpty(userEntity.getIcon())) {
                     ImageLoader.getInstance().displayImage(IEchinfoUrl.BASE_URL + userEntity.getIcon(), civHeadIcon, civOptions);
                 }
-                if(!TextUtils.isEmpty(userEntity.getJob())){
+                if(userEntity.getJob()!=null){
                     occur.setText(userEntity.getJob());
                 }
-                if(!TextUtils.isEmpty(userEntity.getCompanyName())){
+                if(userEntity.getCompanyName()!=null){
                     company.setText(userEntity.getCompanyName());
                 }
             }
