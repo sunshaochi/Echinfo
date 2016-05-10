@@ -261,6 +261,7 @@ public class LoginAct extends BaseActivity {
                 UserDao.saveUser(user);
                 sendBroadcast(new Intent(MainAct.MAIN_RECEIVER));
                 sendBroadcast(new Intent(MyFollowFrg.FRG_RECEIVER));
+                sendBroadcast(new Intent(CompanyxqAct.COMP_RECEIVER));
                 finish();
                 MyToastUtils.showShortToast(getApplicationContext(), "登录成功");
             }

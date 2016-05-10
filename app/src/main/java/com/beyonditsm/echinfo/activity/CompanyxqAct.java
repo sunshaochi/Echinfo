@@ -1,6 +1,9 @@
 package com.beyonditsm.echinfo.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -537,5 +540,38 @@ public class CompanyxqAct extends BaseActivity {
 
     }
 
+    private MyBroadCastReceiver receiver;
+    public static final String COMP_RECEIVER = "com.companyxqact.receiver";
 
+    private class MyBroadCastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            iId =getIntent().getStringExtra(ID);
+            MyLogUtils.info("id:"+iId);
+            if(!TextUtils.isEmpty(iId)) {
+                selectStatus(iId);
+                findEnterpriseInfoMsgById(iId);
+            }
+
+        }
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (receiver == null) {
+            receiver = new MyBroadCastReceiver();
+            registerReceiver(receiver,new IntentFilter(COMP_RECEIVER));
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (receiver != null) {
+            unregisterReceiver(receiver);
+        }
+
+    }
 }
