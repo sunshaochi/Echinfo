@@ -47,7 +47,7 @@ public class EchinfoEngine extends RequestManager {
         map.put("phoneNumber", phoneNumber);
         map.put("captcha", captcha);
         map.put("password", password);
-        doPostNoLogin(IEchinfoUrl.REGISTE_URL, map, callBack);
+        doPost(IEchinfoUrl.REGISTE_URL, map, callBack);
     }
 
     /**
