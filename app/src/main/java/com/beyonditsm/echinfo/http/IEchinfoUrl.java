@@ -5,8 +5,9 @@ package com.beyonditsm.echinfo.http;
  */
 public interface IEchinfoUrl {
     /*基础URL*/
-    public String BASE_URL = "http://139.196.50.38:8088/yiqicha/";
+//    public String BASE_URL = "http://139.196.50.38:8088/yiqicha/";
 
+    public String BASE_URL="http://139.196.50.242:8082/yiqicha/";
 //    public String BASE_URL="http://172.16.6.184:8080/yiqicha/";
 
     /*注册地址*/
