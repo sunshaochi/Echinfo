@@ -49,7 +49,7 @@
                         android:background="@drawable/white"
                         android:drawableLeft="@mipmap/zyserch"
                         android:drawablePadding="10dp"
-                        android:hint="请输入公司名和注册名"
+                        android:hint="请输入企业名称"
                         android:paddingLeft="10dp"
                         android:textColor="#c0c0c0"
                         android:textSize="12sp"

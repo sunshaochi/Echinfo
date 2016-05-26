@@ -5,6 +5,7 @@
     android:background="@color/bg_color"
     android:orientation="vertical">
 
+
     <include layout="@layout/title_act_layout"></include>
 
     <FrameLayout
@@ -146,6 +147,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:background="@color/bg_color"
             android:id="@+id/llSucess"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

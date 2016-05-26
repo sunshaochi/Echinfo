@@ -22,6 +22,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
+ *
+ *
  * 忘记密码
  * Created by wangbin on 16/4/5.
  */
@@ -91,8 +93,7 @@ public class ForgetAct extends BaseActivity {
             case R.id.tvFPwd://重置密码
                 if (isValidate()) {
                     forgetPwd(phone, code, pwd);
-//                    llForg.setVisibility(View.GONE);
-//                    llSucess.setVisibility(View.VISIBLE);
+
                 }
                 break;
         }
@@ -265,6 +266,9 @@ public class ForgetAct extends BaseActivity {
         RequestManager.getCommManager().forgetPwd(phoneNumber, captcha, newpwd, new CallBack() {
             @Override
             public void onSucess(String result) {
+                setTopTitle("重置完成");
+                llForg.setVisibility(View.GONE);
+                llSucess.setVisibility(View.VISIBLE);
                 MyToastUtils.showShortToast(getApplicationContext(), "找回密码成功");
                 finish();
             }

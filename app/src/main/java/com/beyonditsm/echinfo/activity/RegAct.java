@@ -28,6 +28,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
+ *
  * 注册
  * Created by wangbin on 16/4/5.
  */
@@ -226,6 +227,9 @@ public class RegAct extends BaseActivity {
 
             @Override
             public void onSucess(String result) {
+                setTopTitle("注册完成");
+                llForg.setVisibility(View.GONE);
+                llSucess.setVisibility(View.VISIBLE);
                 ResultData<UserDataEntity> rd = (ResultData<UserDataEntity>) GsonUtils.json(result, UserDataEntity.class);
                 UserDataEntity userEntitty = rd.getData();
                 UserEntity user = userEntitty.getUser();
