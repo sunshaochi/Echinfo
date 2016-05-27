@@ -1,6 +1,5 @@
 package com.beyonditsm.echinfo.activity;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -44,6 +43,7 @@ public class WebAct extends BaseActivity {
         switch (TYPE) {
             case 0:
                 setTopTitle("服务协议");
+                url="file:///android_asset/userAgreement.html";
                 break;
             case 1:
                 setTopTitle("企业图谱");
