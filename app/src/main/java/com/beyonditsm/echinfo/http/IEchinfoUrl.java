@@ -103,6 +103,4 @@ public interface IEchinfoUrl {
     /*统计企业总数*/
     String ENTER_COUNT_URL=BASE_URL+"companyInfo/unLogin/countEnterpriseInfo.do";
 
-
-
 }

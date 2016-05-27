@@ -266,7 +266,7 @@ public class ForgetAct extends BaseActivity {
         RequestManager.getCommManager().forgetPwd(phoneNumber, captcha, newpwd, new CallBack() {
             @Override
             public void onSucess(String result) {
-                setTopTitle("重置完成");
+                setTopTitle("重置密码成功");
                 llForg.setVisibility(View.GONE);
                 llSucess.setVisibility(View.VISIBLE);
                 MyToastUtils.showShortToast(getApplicationContext(), "找回密码成功");
