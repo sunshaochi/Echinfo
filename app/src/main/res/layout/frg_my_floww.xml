@@ -58,7 +58,7 @@
                 android:layout_width="240dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="65dp"
-                android:text="登陆"
+                android:text="登录"
                 android:textSize="13sp" />
 
 
