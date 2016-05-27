@@ -77,6 +77,8 @@ public class SearchAct extends BaseActivity {
     private boolean isShowCountry;
 
     private SearchVpAdapter adapter;
+    private SearchHisFrg searchHisFrg;
+
     @Override
     public void setLayout() {
         setContentView(R.layout.act_search);
@@ -84,7 +86,11 @@ public class SearchAct extends BaseActivity {
 
     @Override
     public void init(Bundle savedInstanceState) {
+        searchHisFrg = new SearchHisFrg();
         SEARCH_TYPE=getIntent().getIntExtra("search_type",0);
+        Bundle bundle = new Bundle();
+        bundle.putInt("key",SEARCH_TYPE);
+        searchHisFrg.setArguments(bundle);
         switch (SEARCH_TYPE){
             case 0:
                 ceSearch.setHint("请输入企业名称");
@@ -175,7 +181,7 @@ public class SearchAct extends BaseActivity {
             }
         });
 
-        frgList.add(new SearchHisFrg());
+        frgList.add(searchHisFrg);
         frgList.add(new MyFollowFrg());
         vpS.setAdapter(new SVpsAdapter(getSupportFragmentManager(), frgList));
         vpS.setCurrentItem(0);

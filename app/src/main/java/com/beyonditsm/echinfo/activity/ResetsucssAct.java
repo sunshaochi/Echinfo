@@ -20,7 +20,7 @@ public class ResetsucssAct extends BaseActivity {
 
     @Override
     public void init(Bundle savedInstanceState) {
-        setTopTitle("重置密码完成");
+        setTopTitle("重置密码");
 
     }
 }

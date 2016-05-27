@@ -35,11 +35,18 @@ public class SearchHisFrg extends BaseFragment {
     @ViewInject(R.id.llNoHis)
     private LinearLayout llNoHis;
 
+    @ViewInject(R.id.tv_xinxi)
+    private TextView tv_xinxi;//从主页查法人 查企业 查失信 进来后不同的无记录提示模块 （的企业名称 的法人或股东名称 的涉诉人名称）
+
+//    @ViewInject(R.id.tv_shishi)
+//    private TextView tv_shishi;//试试在上面的搜索框中输入您想要搜索
+
     @ViewInject(R.id.llClear)
     private LinearLayout llClear;
 
     private List<SearchEntity> listData;
     private MyAdapter adapter;
+    private int key;
 
     @Override
     public View initView(LayoutInflater inflater) {
@@ -48,6 +55,9 @@ public class SearchHisFrg extends BaseFragment {
 
     @Override
     public void initData(Bundle savedInstanceState) {
+        Bundle arguments = getArguments();
+        key = arguments.getInt("key");
+
         setData();
         llClear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +80,18 @@ public class SearchHisFrg extends BaseFragment {
             llHasHis.setVisibility(View.GONE);
             llNoHis.setVisibility(View.VISIBLE);
             llClear.setVisibility(View.GONE);
+            switch (key){
+                case 0:
+                    tv_xinxi.setText("的企业名称，例如：“阿里巴巴");
+                    break;
+                case 1:
+                    tv_xinxi.setText("的法人或股东名称，例如：“王明”");
+                    break;
+                case 2:
+                    tv_xinxi.setText("的涉诉人名称，例如：“陈红”");
+                    break;
+            }
+
         }else{
             llHasHis.setVisibility(View.VISIBLE);
             llNoHis.setVisibility(View.GONE);
