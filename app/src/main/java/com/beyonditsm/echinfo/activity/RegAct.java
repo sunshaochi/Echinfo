@@ -66,6 +66,7 @@ public class RegAct extends BaseActivity {
 
     @Override
     public void init(Bundle savedInstanceState) {
+        AppManager.getAppManager().addActivity(RegAct.this);
         assignViews();
         setTopTitle("注册");
     }
@@ -227,17 +228,17 @@ public class RegAct extends BaseActivity {
 
             @Override
             public void onSucess(String result) {
-                setTopTitle("注册完成");
-                llForg.setVisibility(View.GONE);
-                llSucess.setVisibility(View.VISIBLE);
+//                setTopTitle("注册完成");
+//                llForg.setVisibility(View.GONE);
+//                llSucess.setVisibility(View.VISIBLE);
                 ResultData<UserDataEntity> rd = (ResultData<UserDataEntity>) GsonUtils.json(result, UserDataEntity.class);
                 UserDataEntity userEntitty = rd.getData();
                 UserEntity user = userEntitty.getUser();
                 UserDao.saveUser(user);
-//                openActivity(MineAct.class);
-                MyToastUtils.showShortToast(getApplicationContext(), rd.getMessage());
-                AppManager.getAppManager().finishActivity(LoginAct.class);
-                finish();
+                openActivity(RegsucssAct.class);
+//                MyToastUtils.showShortToast(getApplicationContext(), rd.getMessage());
+//                AppManager.getAppManager().finishActivity(LoginAct.class);
+//                finish();
             }
 
             @Override

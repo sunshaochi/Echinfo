@@ -15,10 +15,14 @@
         android:scrollbars="none">
 
         <LinearLayout
-            android:background="@mipmap/mine_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+            <LinearLayout
+                android:background="@mipmap/mine_bg"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -166,6 +170,7 @@
                 </LinearLayout>
 
             </RelativeLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -175,6 +175,12 @@
         <!--关于我们-->
         <activity android:name=".activity.AboutAct"
             android:screenOrientation="portrait"/>
+        <!--注册成功界面-->
+        <activity android:name=".activity.RegsucssAct"
+            android:screenOrientation="portrait"></activity>
+        <!--重置密码成功界面-->
+        <activity android:name=".activity.ResetsucssAct"
+            android:screenOrientation="portrait"></activity>
 
 
 

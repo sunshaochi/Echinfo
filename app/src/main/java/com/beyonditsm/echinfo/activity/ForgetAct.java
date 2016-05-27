@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.beyonditsm.echinfo.AppManager;
 import com.beyonditsm.echinfo.R;
 import com.beyonditsm.echinfo.base.BaseActivity;
 import com.beyonditsm.echinfo.http.CallBack;
@@ -61,6 +62,7 @@ public class ForgetAct extends BaseActivity {
 
     @Override
     public void init(Bundle savedInstanceState) {
+        AppManager.getAppManager().addActivity(ForgetAct.this);
         assignViews();
         setTopTitle("忘记密码");
 
@@ -266,11 +268,12 @@ public class ForgetAct extends BaseActivity {
         RequestManager.getCommManager().forgetPwd(phoneNumber, captcha, newpwd, new CallBack() {
             @Override
             public void onSucess(String result) {
-                setTopTitle("重置密码成功");
-                llForg.setVisibility(View.GONE);
-                llSucess.setVisibility(View.VISIBLE);
-                MyToastUtils.showShortToast(getApplicationContext(), "找回密码成功");
-                finish();
+//                setTopTitle("重置密码成功");
+//                llForg.setVisibility(View.GONE);
+//                llSucess.setVisibility(View.VISIBLE);
+                openActivity(ResetsucssAct.class);
+//                MyToastUtils.showShortToast(getApplicationContext(), "找回密码成功");
+//                finish();
             }
 
             @Override
