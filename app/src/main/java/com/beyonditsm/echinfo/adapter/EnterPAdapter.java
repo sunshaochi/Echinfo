@@ -61,8 +61,8 @@ public class EnterPAdapter extends BaseAdapter {
             holder.tvComName.setText(list.get(position).getCompanyName());
         if(!TextUtils.isEmpty(list.get(position).getLegalRepPersion()))
             holder.tvPerson.setText("公司法人:"+list.get(position).getLegalRepPersion());
-        if(!TextUtils.isEmpty(list.get(position).getRecordStatus()))
-            holder.tvState.setText(list.get(position).getRecordStatus());
+        if(!TextUtils.isEmpty(list.get(position).getManagementStatus()))
+            holder.tvState.setText(list.get(position).getManagementStatus());
 
         return convertView;
     }

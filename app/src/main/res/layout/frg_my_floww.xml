@@ -47,7 +47,7 @@
             <TextView
                 style="@style/tv_second"
                 android:layout_marginTop="25dp"
-                android:text="登录后我们将保存你所关注的企业"
+                android:text="登录后我们将保存您所关注的企业"
                 android:textColor="#A0A0A0"
                 android:textSize="14sp" />
 
@@ -58,7 +58,7 @@
                 android:layout_width="240dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="65dp"
-                android:text="登录"
+                android:text="登陆"
                 android:textSize="13sp" />
 
 

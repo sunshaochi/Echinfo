@@ -187,7 +187,7 @@ public class RegAct extends BaseActivity {
                 timer.cancel();
                 myTask.cancel();
             } else {
-                tvCode.setText(msg.what + "秒");
+                tvCode.setText("重新获取"+"("+msg.what + "秒"+")");
             }
         }
 
