@@ -75,7 +75,7 @@ public class AdetailsevenAdapter extends BaseAdapter {
         }
         if(position==0){
             holder.view.setVisibility(View.INVISIBLE);
-        }
+        }else{holder.view.setVisibility(View.VISIBLE);}
         return convertView;
     }
     class ViewHolder{
