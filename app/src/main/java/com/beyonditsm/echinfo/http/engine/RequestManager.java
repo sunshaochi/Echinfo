@@ -56,6 +56,17 @@ public class RequestManager {
                     public void onResponse(String response) {
                         String result = response.toString();
                         MyLogUtils.info(result);
+
+                        try {
+                            JSONObject jsonObject=new JSONObject(result);
+                            if(jsonObject.getInt("status")==200){//成功
+
+                            }else{//失败
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         try {
                             JSONObject obj = new JSONObject(result);
                             int status = obj.getInt("status");
